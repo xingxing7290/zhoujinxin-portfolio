@@ -27,6 +27,8 @@ type detectedFile struct {
 	Kind      string
 }
 
+var errFileTooLarge = errors.New("文件超过上传限制")
+
 func (s *Server) listMedia(w http.ResponseWriter, r *http.Request) {
 	items, err := s.store.ListMedia(r.Context())
 	if err != nil {
@@ -77,6 +79,10 @@ func (s *Server) uploadMedia(w http.ResponseWriter, r *http.Request) {
 	written, detected, err := streamAndDetect(temp, reader, limit, kind)
 	closeErr := temp.Close()
 	if err != nil {
+		if errors.Is(err, errFileTooLarge) {
+			writeError(w, http.StatusRequestEntityTooLarge, err.Error())
+			return
+		}
 		writeError(w, http.StatusUnsupportedMediaType, err.Error())
 		return
 	}
@@ -174,6 +180,10 @@ func (s *Server) uploadDocument(w http.ResponseWriter, r *http.Request) {
 	defer os.Remove(tempName)
 	written, detected, err := streamAndDetect(temp, reader, 25<<20, "document")
 	closeErr := temp.Close()
+	if errors.Is(err, errFileTooLarge) {
+		writeError(w, http.StatusRequestEntityTooLarge, err.Error())
+		return
+	}
 	if err != nil || detected.MIME != "application/pdf" {
 		writeError(w, http.StatusUnsupportedMediaType, "仅支持真实的 PDF 文件")
 		return
@@ -247,7 +257,7 @@ func streamAndDetect(destination *os.File, source io.Reader, limit int64, expect
 		return 0, detectedFile{}, errors.New("写入上传文件失败")
 	}
 	if written > limit {
-		return 0, detectedFile{}, fmt.Errorf("文件超过 %dMB 限制", limit>>20)
+		return 0, detectedFile{}, fmt.Errorf("%w：文件超过 %dMB 限制", errFileTooLarge, limit>>20)
 	}
 	return written, detected, nil
 }
