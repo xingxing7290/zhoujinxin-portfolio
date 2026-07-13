@@ -1,0 +1,36 @@
+{{define "project"}}
+<!doctype html>
+<html lang="{{.Locale}}">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#090b0f"><meta name="description" content="{{tr .Project.Summary .Locale}}">
+  <link rel="canonical" href="{{.BaseURL}}{{projectPath .Locale .Project.Slug}}">
+  <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}{{projectPath "zh" .Project.Slug}}">
+  <link rel="alternate" hreflang="en" href="{{.BaseURL}}{{projectPath "en" .Project.Slug}}">
+  <link rel="stylesheet" href="/static/assets/style.css">
+  <title>{{tr .Project.Title .Locale}} · {{tr .Content.Profile.Name .Locale}}</title>
+</head>
+<body class="project-page">
+  <a class="skip-link" href="#main">{{if eq .Locale "en"}}Skip to content{{else}}跳到主要内容{{end}}</a>
+  <header class="site-header compact"><a class="monogram" href="{{localePath .Locale "/"}}">JX<span>.</span></a><a class="back-link" href="{{localePath .Locale "/"}}#projects">← {{if eq .Locale "en"}}All projects{{else}}全部项目{{end}}</a><a class="locale-switch" href="{{projectPath (otherLocale .Locale) .Project.Slug}}">{{if eq .Locale "en"}}中文{{else}}EN{{end}}</a></header>
+  <main id="main">
+    <article class="case-study section-shell">
+      <header class="case-header reveal">
+        <p class="section-index">CASE STUDY / {{tr .Project.Period .Locale}}</p>
+        <h1>{{tr .Project.Title .Locale}}</h1>
+        <p class="case-summary">{{tr .Project.Summary .Locale}}</p>
+        <div class="case-meta"><span><small>{{if eq .Locale "en"}}ROLE{{else}}角色{{end}}</small>{{tr .Project.Role .Locale}}</span><span><small>{{if eq .Locale "en"}}STACK{{else}}技术栈{{end}}</small>{{join .Project.Stack " · "}}</span></div>
+      </header>
+      <div class="case-visual reveal" aria-hidden="true"><div class="system-orbit"><span></span><span></span><span></span><i></i></div><strong>{{tr .Project.Title .Locale}}</strong></div>
+      <div class="case-body">
+        <section class="reveal"><p class="section-index">01 / CONTEXT</p><h2>{{if eq .Locale "en"}}Background{{else}}项目背景{{end}}</h2>{{markdown .Project.Background .Locale}}</section>
+        <section class="reveal"><p class="section-index">02 / EXECUTION</p><h2>{{if eq .Locale "en"}}Key work{{else}}关键方案{{end}}</h2>{{markdown .Project.Actions .Locale}}</section>
+        <section class="reveal"><p class="section-index">03 / OUTCOME</p><h2>{{if eq .Locale "en"}}Verified outcome{{else}}验证成果{{end}}</h2>{{markdown .Project.Results .Locale}}</section>
+      </div>
+      {{if .Media}}<section class="case-media" aria-label="Project media">{{range .Media}}{{if eq .Kind "image"}}<img src="/media/{{.ID}}/original" alt="">{{else}}<video controls preload="metadata" src="/media/{{.ID}}/original"></video>{{end}}{{end}}</section>{{end}}
+      <nav class="case-next"><a href="{{projectPath .Locale .Next.Slug}}"><span>{{if eq .Locale "en"}}Next case study{{else}}下一个项目{{end}}</span><strong>{{tr .Next.Title .Locale}}</strong><i aria-hidden="true">→</i></a></nav>
+    </article>
+  </main>
+  <script type="module" src="/static/assets/public.js"></script>
+</body></html>
+{{end}}

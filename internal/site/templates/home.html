@@ -1,0 +1,155 @@
+{{define "home"}}
+<!doctype html>
+<html lang="{{.Locale}}" data-locale="{{.Locale}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#090b0f">
+  <meta name="description" content="{{tr .Content.Profile.Summary .Locale}}">
+  <meta property="og:title" content="{{tr .Content.Profile.Name .Locale}} · {{tr .Content.Profile.Title .Locale}}">
+  <meta property="og:description" content="{{tr .Content.Profile.Summary .Locale}}">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{.BaseURL}}/static/images/zhou-jinxin-executive.jpg">
+  <link rel="canonical" href="{{.BaseURL}}{{localePath .Locale "/"}}">
+  <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}/">
+  <link rel="alternate" hreflang="en" href="{{.BaseURL}}/en">
+  <link rel="alternate" hreflang="x-default" href="{{.BaseURL}}/">
+  <link rel="preload" as="image" href="/static/images/zhou-jinxin-executive.avif" type="image/avif" fetchpriority="high">
+  <link rel="stylesheet" href="/static/assets/style.css">
+  <title>{{tr .Content.Profile.Name .Locale}} · {{tr .Content.Profile.Title .Locale}}</title>
+  <script type="application/ld+json">{{.StructuredData}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main">{{if eq .Locale "en"}}Skip to content{{else}}跳到主要内容{{end}}</a>
+  <header class="site-header" data-header>
+    <a class="monogram" href="{{localePath .Locale "/"}}" aria-label="{{tr .Content.Profile.Name .Locale}}">JX<span>.</span></a>
+    <nav aria-label="{{if eq .Locale "en"}}Primary navigation{{else}}主导航{{end}}">
+      <a href="#projects">{{if eq .Locale "en"}}Projects{{else}}项目{{end}}</a>
+      <a href="#experience">{{if eq .Locale "en"}}Experience{{else}}经历{{end}}</a>
+      <a href="#capabilities">{{if eq .Locale "en"}}Capabilities{{else}}能力{{end}}</a>
+      <a href="#contact">{{if eq .Locale "en"}}Contact{{else}}联系{{end}}</a>
+    </nav>
+    <a class="locale-switch" href="{{if eq .Locale "en"}}/{{else}}/en{{end}}" hreflang="{{if eq .Locale "en"}}zh-CN{{else}}en{{end}}">{{if eq .Locale "en"}}中文{{else}}EN{{end}}</a>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-canvas-wrap" aria-hidden="true">
+        <canvas id="chip-scene"></canvas>
+        <div class="hero-grid"></div>
+      </div>
+      <div class="hero-fallback" aria-hidden="true"></div>
+      <div class="hero-intro">
+        <p class="eyebrow reveal">{{tr .Content.Profile.Eyebrow .Locale}}</p>
+        <h1 id="hero-title" class="display-title reveal">{{tr .Content.Profile.Name .Locale}}</h1>
+        <p class="hero-role reveal">{{tr .Content.Profile.Title .Locale}}</p>
+        <p class="hero-summary reveal">{{tr .Content.Profile.Summary .Locale}}</p>
+        <div class="hero-actions reveal">
+          <a class="button magnetic" href="#projects">{{if eq .Locale "en"}}Explore selected work{{else}}查看精选项目{{end}}</a>
+          <a class="text-link" href="/resume.pdf">{{if eq .Locale "en"}}Download résumé{{else}}下载完整简历{{end}} <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+      <picture class="hero-portrait reveal">
+        <source srcset="/static/images/zhou-jinxin-executive.avif" type="image/avif">
+        <source srcset="/static/images/zhou-jinxin-executive.webp" type="image/webp">
+        <img src="/static/images/zhou-jinxin-executive.jpg" alt="{{tr .Content.Profile.Name .Locale}}" width="1200" height="1500" fetchpriority="high">
+      </picture>
+      <div class="hero-steps" data-hero-steps>
+        {{range .Content.Hero}}
+        <article class="hero-step" data-step="{{.Index}}">
+          <p>{{tr .Kicker $.Locale}}</p>
+          <h2>{{tr .Title $.Locale}}</h2>
+          <div>{{tr .Body $.Locale}}</div>
+        </article>
+        {{end}}
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span></span>{{if eq .Locale "en"}}SCROLL TO TRACE{{else}}滚动追踪系统链路{{end}}</div>
+    </section>
+
+    <section class="statement section-shell reveal" aria-label="{{if eq .Locale "en"}}Positioning{{else}}职业定位{{end}}">
+      <p class="section-index">01 / POSITIONING</p>
+      <h2>{{if eq .Locale "en"}}I turn constrained hardware into dependable connected products.{{else}}把受限硬件，做成可靠可交付的连接型产品。{{end}}</h2>
+      <p>{{if eq .Locale "en"}}From MCU drivers and protocol paths to cross-platform apps and IoT platforms, I build across boundaries and keep the full system verifiable.{{else}}从 MCU 驱动与协议链路，到跨端 APP 与物联网平台；跨越软硬件边界，让完整系统可验证、可维护、可交付。{{end}}</p>
+    </section>
+
+    <section id="projects" class="projects section-shell">
+      <div class="section-heading reveal">
+        <p class="section-index">02 / SELECTED SYSTEMS</p>
+        <h2>{{if eq .Locale "en"}}Selected projects{{else}}精选项目{{end}}</h2>
+        <p>{{if eq .Locale "en"}}Six systems that connect device, network, application and platform.{{else}}六个跨越设备、网络、应用与平台的完整系统。{{end}}</p>
+      </div>
+      <div class="project-list">
+        {{range $i, $project := .Content.FeaturedProjects}}
+        <a class="project-card reveal tilt" href="{{projectPath $.Locale $project.Slug}}">
+          <div class="project-number">0{{add $i 1}}</div>
+          <div class="project-copy">
+            <p>{{tr $project.Role $.Locale}} · {{tr $project.Period $.Locale}}</p>
+            <h3>{{tr $project.Title $.Locale}}</h3>
+            <div>{{tr $project.Summary $.Locale}}</div>
+            <ul class="tag-list" aria-label="Technology stack">{{range $project.Stack}}<li>{{.}}</li>{{end}}</ul>
+          </div>
+          <span class="project-arrow" aria-hidden="true">↗</span>
+        </a>
+        {{end}}
+      </div>
+    </section>
+
+    <section id="experience" class="experience section-shell">
+      <div class="section-heading reveal">
+        <p class="section-index">03 / EXPERIENCE</p>
+        <h2>{{if eq .Locale "en"}}Experience{{else}}工作经历{{end}}</h2>
+      </div>
+      {{range .Content.Experiences}}
+      <article class="timeline-item reveal">
+        <p class="timeline-period">{{tr .Period $.Locale}}</p>
+        <div>
+          <h3>{{tr .Role $.Locale}}</h3>
+          <p class="muted">{{tr .Company $.Locale}}</p>
+          <p>{{tr .Summary $.Locale}}</p>
+          {{markdown .Bullets $.Locale}}
+        </div>
+      </article>
+      {{end}}
+      <div class="archive-grid">
+        {{range .Content.ArchiveProjects}}
+        <a class="archive-card reveal" href="{{projectPath $.Locale .Slug}}"><span>{{tr .Period $.Locale}}</span><strong>{{tr .Title $.Locale}}</strong><small>{{join .Stack " · "}}</small></a>
+        {{end}}
+      </div>
+    </section>
+
+    <section id="capabilities" class="capabilities section-shell">
+      <div class="section-heading reveal">
+        <p class="section-index">04 / CAPABILITIES</p>
+        <h2>{{if eq .Locale "en"}}Capabilities{{else}}能力矩阵{{end}}</h2>
+      </div>
+      <div class="capability-grid">
+        {{range .Content.Skills}}
+        <article class="capability-card reveal"><h3>{{tr .Title $.Locale}}</h3><ul>{{range .Items}}<li>{{.}}</li>{{end}}</ul></article>
+        {{end}}
+      </div>
+    </section>
+
+    <section class="credentials section-shell">
+      <div class="education reveal">
+        <p class="section-index">05 / EDUCATION</p>
+        {{range .Content.Education}}<article><span>{{tr .Period $.Locale}}</span><h2>{{tr .School $.Locale}}</h2><p>{{tr .Degree $.Locale}}</p><small>{{tr .Details $.Locale}}</small></article>{{end}}
+      </div>
+      <div class="awards reveal">
+        <p class="section-index">HONORS & CERTIFICATES</p>
+        {{range .Content.Awards}}<div><span>{{.Period}}</span><strong>{{tr .Title $.Locale}}</strong></div>{{end}}
+      </div>
+    </section>
+
+    <section id="contact" class="contact section-shell reveal">
+      <p class="section-index">06 / CONTACT</p>
+      <p>{{tr .Content.Profile.Availability .Locale}}</p>
+      <h2>{{if eq .Locale "en"}}Let’s build the path<br>from chip to cloud.{{else}}让我们一起完成<br>从芯片到云端。{{end}}</h2>
+      <a class="contact-email magnetic" href="mailto:{{.Content.Profile.Email}}">{{.Content.Profile.Email}} <span aria-hidden="true">↗</span></a>
+      <p class="contact-location">{{tr .Content.Profile.Location .Locale}}</p>
+    </section>
+  </main>
+  <footer><span>© {{.Year}} {{tr .Content.Profile.Name .Locale}}</span><span>EMBEDDED · CONNECTED · DELIVERED</span><a href="#main">{{if eq .Locale "en"}}Back to top{{else}}返回顶部{{end}} ↑</a></footer>
+  <script type="module" src="/static/assets/public.js"></script>
+</body>
+</html>
+{{end}}
