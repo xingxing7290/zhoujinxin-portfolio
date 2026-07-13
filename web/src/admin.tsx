@@ -212,8 +212,9 @@ function Workspace({ session, onLogout }: { session:Session;onLogout:()=>void })
   function toastFor(message:string){setToast(message);window.setTimeout(()=>setToast(""),3500);}
   async function load(){try{const data=await api<{content:Content;version:number}>("/api/admin/content");setContent(data.content);setVersion(data.version);}catch(e){toastFor((e as Error).message);}}
   useEffect(()=>{load();},[]);
-  async function save(){if(!content)return;setBusy(true);try{const result=await api<{version:number}>("/api/admin/content",{method:"PUT",body:JSON.stringify({content,version})});setVersion(result.version);toastFor("草稿已安全保存");}catch(e){toastFor((e as Error).message);}finally{setBusy(false);}}
-  async function publish(){setBusy(true);try{await save();await api("/api/admin/publish",{method:"POST",body:JSON.stringify({note})});setPublishOpen(false);setNote("");toastFor("新版本已原子发布");}catch(e){toastFor((e as Error).message);}finally{setBusy(false);}}
+  async function persistDraft(){if(!content)throw new Error("草稿尚未加载");const result=await api<{version:number}>("/api/admin/content",{method:"PUT",body:JSON.stringify({content,version})});setVersion(result.version);return result.version;}
+  async function save(){setBusy(true);try{await persistDraft();toastFor("草稿已安全保存");}catch(e){toastFor((e as Error).message);}finally{setBusy(false);}}
+  async function publish(){setBusy(true);try{await persistDraft();await api("/api/admin/publish",{method:"POST",body:JSON.stringify({note})});setPublishOpen(false);setNote("");toastFor("新版本已原子发布");}catch(e){toastFor((e as Error).message);}finally{setBusy(false);}}
   async function logout(){try{await api("/api/admin/session",{method:"DELETE"});}finally{csrfToken="";onLogout();}}
   const detail=useMemo(()=>`草稿版本 ${version} · 会话至 ${new Date(session.expiresAt).toLocaleTimeString()}`,[version,session.expiresAt]);
   if(!content)return <p className="admin-loading">正在读取加密内容工作区…</p>;
