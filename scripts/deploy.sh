@@ -2,7 +2,7 @@
 set -eu
 
 ROOT="/srv/zhoujinxin-portfolio"
-DOMAIN="113-44-50-108.sslip.io"
+PUBLIC_URL="https://113.44.50.108"
 NEW_IMAGE="${1:-}"
 
 if [ -z "$NEW_IMAGE" ] || ! printf '%s' "$NEW_IMAGE" | grep -Eq '^ghcr\.io/xingxing7290/zhoujinxin-portfolio@sha256:[a-f0-9]{64}$'; then
@@ -57,7 +57,7 @@ done
 
 echo "[6/6] checking public HTTPS"
 attempt=0
-until curl --fail --silent --show-error "https://$DOMAIN/api/health" >/dev/null; do
+until curl --fail --silent --show-error "$PUBLIC_URL/api/health" >/dev/null; do
   attempt=$((attempt + 1))
   if [ "$attempt" -ge 45 ]; then
     rollback
@@ -67,4 +67,4 @@ done
 
 printf '%s\n' "$NEW_IMAGE" > .current-image
 trap - HUP INT TERM
-echo "deployment complete: https://$DOMAIN/"
+echo "deployment complete: $PUBLIC_URL/"

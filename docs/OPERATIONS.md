@@ -4,9 +4,9 @@
 
 - 服务器：`113.44.50.108`
 - 工作目录：`/srv/zhoujinxin-portfolio`
-- 正式域名：`113-44-50-108.sslip.io`
+- 正式地址：`https://113.44.50.108/`
 - 容器：`app`、`caddy`
-- 持久数据：`./data`、`caddy_data`、`caddy_config`
+- 持久数据：`./data`、`caddy_data`、`caddy_config`、`/etc/letsencrypt`
 
 服务器不构建源码，只匿名拉取 GitHub Actions 发布到 GHCR 的 `linux/amd64` 镜像。应用镜像必须以 `@sha256:...` 摘要传给部署脚本。
 
@@ -22,7 +22,22 @@ cp .env.example .env
 chmod 600 .env
 ```
 
-在 `.env` 设置正式 `BASE_URL`、随机生成且至少 14 字符的 `ADMIN_INITIAL_PASSWORD`、`SECURE_COOKIES=true` 和证书邮箱。不要把 `.env` 回传仓库。
+在 `.env` 设置 `BASE_URL=https://113.44.50.108`、随机生成且至少 14 字符的 `ADMIN_INITIAL_PASSWORD` 和 `SECURE_COOKIES=true`。不要把 `.env` 回传仓库。
+
+当前机房的域名合规网关会拦截 sslip.io/nip.io 等动态 DNS 域名，因此生产入口使用 Let’s Encrypt 的六天公网 IP 证书。Caddy 的 `default_sni` 负责为不发送 SNI 的 IP 客户端选择该证书。首次部署需安装 Certbot 5.3 或更高版本并签发证书：
+
+```bash
+sudo /opt/certbot-ip/bin/certbot certonly --standalone \
+  --preferred-profile shortlived \
+  --ip-address 113.44.50.108 \
+  --non-interactive --agree-tos \
+  --email zhoujx158@163.com --no-eff-email
+sudo cp deploy/systemd/zhoujinxin-portfolio-cert-renew.* /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable --now zhoujinxin-portfolio-cert-renew.timer
+```
+
+续期任务每天检查两次。只有证书进入续期窗口时才短暂停止 Caddy 完成 standalone 校验，应用容器和其他业务容器保持运行。
 
 ```bash
 sh scripts/deploy.sh ghcr.io/xingxing7290/zhoujinxin-portfolio@sha256:<digest>
@@ -44,8 +59,8 @@ rm -f data/inbox/resume.pdf
 
 ```bash
 curl -I http://113.44.50.108/
-curl --fail https://113-44-50-108.sslip.io/api/health
-curl -I https://113-44-50-108.sslip.io/resume.pdf
+curl --fail https://113.44.50.108/api/health
+curl -I https://113.44.50.108/resume.pdf
 docker compose ps
 docker stats --no-stream
 ```
