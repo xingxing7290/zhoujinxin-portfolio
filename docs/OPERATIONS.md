@@ -30,6 +30,16 @@ sh scripts/deploy.sh ghcr.io/xingxing7290/zhoujinxin-portfolio@sha256:<digest>
 
 部署固定执行：SQLite 在线一致性备份、拉取摘要镜像、向前迁移、启动、容器健康检查、公开 HTTPS 检查。任一步失败都会停止新应用，恢复上一镜像和数据库备份。
 
+含手机号的首份简历只通过 SSH 放进持久卷，然后用镜像内的受限导入命令登记；文件不经过 Git 或镜像层：
+
+```bash
+install -d -o 10001 -g 10001 -m 0750 data/inbox
+# 将私有 PDF 上传为 data/inbox/resume.pdf 后：
+APP_IMAGE="$(cat .current-image)" docker compose run --rm --no-deps \
+  --entrypoint /app/portfolio-import-document app /app/data/inbox/resume.pdf
+rm -f data/inbox/resume.pdf
+```
+
 ## 验收
 
 ```bash
