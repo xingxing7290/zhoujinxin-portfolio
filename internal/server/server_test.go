@@ -46,6 +46,8 @@ func TestPublicAndAdminLifecycle(t *testing.T) {
 
 	assertPage(t, testServer.URL+"/", http.StatusOK, "zhoujx158@163.com", false)
 	assertPage(t, testServer.URL+"/en", http.StatusOK, "Selected projects", false)
+	assertPage(t, testServer.URL+"/robots.txt", http.StatusOK, "Sitemap: http://portfolio.test/sitemap.xml", false)
+	assertPage(t, testServer.URL+"/sitemap.xml", http.StatusOK, "/en/projects/iot-control-platform", false)
 	assertPage(t, testServer.URL+"/projects/iot-control-platform", http.StatusOK, "物联网集中控制平台", false)
 	assertPage(t, testServer.URL+"/missing", http.StatusNotFound, "信号已丢失", false)
 

@@ -109,6 +109,8 @@ func (s *Server) Handler() http.Handler {
 	static := http.StripPrefix("/static/", http.FileServer(http.FS(s.dist)))
 	mux.Handle("GET /static/", cacheStatic(static))
 	mux.HandleFunc("GET /api/health", s.health)
+	mux.HandleFunc("GET /robots.txt", s.robots)
+	mux.HandleFunc("GET /sitemap.xml", s.sitemap)
 	mux.HandleFunc("GET /", s.home)
 	mux.HandleFunc("GET /en", s.home)
 	mux.HandleFunc("GET /projects/{slug}", s.project)
@@ -160,7 +162,7 @@ func cacheStatic(next http.Handler) http.Handler {
 }
 
 func (s *Server) health(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": "1.0.2", "time": time.Now().UTC()})
+	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": "1.0.3", "time": time.Now().UTC()})
 }
 
 func (s *Server) activeContent(ctx context.Context) (model.SiteContent, error) {
