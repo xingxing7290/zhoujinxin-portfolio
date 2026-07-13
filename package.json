@@ -1,0 +1,35 @@
+{
+  "name": "zhoujinxin-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config web/vite.config.ts",
+    "build": "npm run images && vite build --config web/vite.config.ts",
+    "images": "node web/scripts/optimize-images.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:e2e": "playwright test",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "gsap": "3.12.7",
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.171.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.49.1",
+    "@types/node": "22.10.5",
+    "@types/react": "18.3.18",
+    "@types/react-dom": "18.3.5",
+    "@types/three": "0.171.0",
+    "jsdom": "25.0.1",
+    "sharp": "0.33.5",
+    "typescript": "5.7.2",
+    "vite": "5.4.11",
+    "vitest": "2.1.8"
+  }
+}
