@@ -1,0 +1,15 @@
+.git
+.github
+.codegraph
+node_modules
+data
+storage
+backups
+test-results
+playwright-report
+coverage
+*.db
+*.log
+.env
+.env.*
+!.env.example

@@ -1,0 +1,62 @@
+services:
+  app:
+    image: ${APP_IMAGE:?APP_IMAGE must be an immutable GHCR digest}
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: "8080"
+      DATA_DIR: /app/data
+    volumes:
+      - ./data:/app/data
+    mem_limit: 320m
+    cpus: 1.25
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    networks:
+      - portfolio
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+  caddy:
+    image: caddy:2.8.4-alpine
+    restart: unless-stopped
+    depends_on:
+      app:
+        condition: service_healthy
+    environment:
+      CADDY_EMAIL: ${CADDY_EMAIL:-zhoujx158@163.com}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    mem_limit: 128m
+    cpus: 0.5
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - portfolio
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+
+networks:
+  portfolio:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:
