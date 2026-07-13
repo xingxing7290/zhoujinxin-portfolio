@@ -5,6 +5,7 @@ export default defineConfig({
   timeout: 30_000,
   expect: { timeout: 8_000 },
   fullyParallel: false,
+  workers: 1,
   reporter: [["list"], ["html", { open: "never" }]],
   use: {
     baseURL: "http://127.0.0.1:8098",
@@ -13,7 +14,7 @@ export default defineConfig({
   },
   projects: [
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
-    { name: "mobile", use: { ...devices["iPhone 13"], reducedMotion: "reduce" } },
+    { name: "mobile", use: { ...devices["iPhone 13"], browserName: "chromium", reducedMotion: "reduce" } },
   ],
   webServer: {
     command: "go run ./cmd/server",
