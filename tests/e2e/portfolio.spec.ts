@@ -26,12 +26,67 @@ test("keyboard navigation and reduced-motion fallback remain usable", async ({ p
   await expect(page.locator("html")).toHaveClass(/motion-lite/);
 });
 
-test("admin enforces first-login password change", async ({ page }) => {
+test("save-data clients receive the lightweight poster experience", async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "connection", { configurable: true, value: { saveData: true } });
+  });
+  await page.goto("/");
+  await expect(page.locator("html")).toHaveClass(/motion-lite/);
+  await expect(page.locator(".hero-portrait img")).toBeVisible();
+});
+
+test("admin enforces first-login password change", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name === "mobile", "The state-changing admin workflow runs once on desktop.");
   await page.goto("/admin");
   await page.getByLabel("用户名").fill("admin");
   await page.getByLabel("密码").fill("E2E-Temporary-Portfolio-2026!");
   await page.getByRole("button", { name: "安全登录" }).click();
   await expect(page.getByRole("heading", { name: "首次修改密码" })).toBeVisible();
+});
+
+test("admin saves previews and publishes a bilingual draft", async ({ page, context }, testInfo) => {
+  test.skip(testInfo.project.name === "mobile", "The state-changing admin workflow runs once on desktop.");
+  const temporaryPassword = "E2E-Temporary-Portfolio-2026!";
+  const changedPassword = "E2E-Changed-Portfolio-2026!";
+  const marker = "浏览器验收：草稿预览与原子发布";
+
+  await page.goto("/admin");
+  await page.getByLabel("用户名").fill("admin");
+  await page.getByLabel("密码").fill(temporaryPassword);
+  await page.getByRole("button", { name: "安全登录" }).click();
+  await page.getByLabel("临时密码").fill(temporaryPassword);
+  await page.getByLabel("新密码", { exact: true }).fill(changedPassword);
+  await page.getByLabel("确认新密码").fill(changedPassword);
+  await page.getByRole("button", { name: "更新密码并重新登录" }).click();
+
+  await page.getByLabel("用户名").fill("admin");
+  await page.getByLabel("密码").fill(changedPassword);
+  await page.getByRole("button", { name: "安全登录" }).click();
+  await expect(page.getByText("Portfolio Content OS")).toBeVisible();
+
+  const summary = page.locator(".field.wide").filter({ hasText: "定位摘要" }).locator("textarea").first();
+  await summary.fill(marker);
+  await page.getByRole("button", { name: "保存草稿" }).click();
+  await expect(page.getByRole("status")).toContainText("草稿已安全保存");
+
+  const publicPage = await context.newPage();
+  await publicPage.goto("/");
+  await expect(publicPage.locator("body")).not.toContainText(marker);
+  const [preview] = await Promise.all([
+    context.waitForEvent("page"),
+    page.getByRole("link", { name: /中文预览/ }).click(),
+  ]);
+  await preview.waitForLoadState("domcontentloaded");
+  await expect(preview.locator("body")).toContainText(marker);
+  await preview.close();
+
+  await page.getByRole("button", { name: "发布", exact: true }).click();
+  await page.getByLabel("版本说明").fill("Playwright 后台发布验收");
+  await page.getByRole("button", { name: "确认发布" }).click();
+  await expect(page.getByRole("status")).toContainText("新版本已原子发布");
+  await publicPage.reload();
+  await expect(publicPage.locator("body")).toContainText(marker);
+  await publicPage.close();
 });
 
 test("unknown project returns an accessible 404", async ({ page }) => {
