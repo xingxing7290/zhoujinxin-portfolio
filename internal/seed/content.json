@@ -1,0 +1,300 @@
+{
+  "profile": {
+    "name": { "zh": "周金鑫", "en": "Jinxin Zhou" },
+    "title": {
+      "zh": "嵌入式软件工程师｜设备通信 · 4G 网关 · IoT 平台",
+      "en": "Embedded Software Engineer · Device Connectivity · 4G Gateways · IoT Platforms"
+    },
+    "eyebrow": { "zh": "从芯片到云端", "en": "From silicon to cloud" },
+    "summary": {
+      "zh": "3 年以上嵌入式软件与物联网项目经验，覆盖设备端、4G 网关、跨端 APP、Web 平台与上位机工具。擅长把复杂通信链路拆解为可验证、可交付、可长期维护的系统。",
+      "en": "3+ years building embedded and IoT products across devices, 4G gateways, cross-platform apps, web platforms, and desktop tools. I turn complex communication paths into systems that can be verified, shipped, and maintained."
+    },
+    "availability": { "zh": "开放嵌入式软件工程师机会", "en": "Open to embedded software engineering opportunities" },
+    "email": "zhoujx158@163.com",
+    "location": { "zh": "中国 · 北京", "en": "Beijing, China" },
+    "portraitUrl": "/static/images/zhou-jinxin-executive.avif"
+  },
+  "hero": [
+    {
+      "index": 0,
+      "kicker": { "zh": "01 · 设备端", "en": "01 · Device" },
+      "title": { "zh": "让硬件可靠地表达状态", "en": "Make hardware communicate reliably" },
+      "body": { "zh": "C、FreeRTOS、RT-Thread、LWIP、USART 与 DMA，构成稳定通信的第一层。", "en": "C, FreeRTOS, RT-Thread, LWIP, USART, and DMA form the first layer of reliable connectivity." }
+    },
+    {
+      "index": 1,
+      "kicker": { "zh": "02 · 网关", "en": "02 · Gateway" },
+      "title": { "zh": "把多协议汇成一条可控链路", "en": "Unify protocols into one controlled path" },
+      "body": { "zh": "在 TCP、UDP、MQTT、RS485、USB、BLE 与 SPP 之间完成协议设计、适配与联调。", "en": "Design, adapt, and verify flows across TCP, UDP, MQTT, RS485, USB, BLE, and SPP." }
+    },
+    {
+      "index": 2,
+      "kicker": { "zh": "03 · 应用", "en": "03 · Application" },
+      "title": { "zh": "让控制抵达每一个终端", "en": "Deliver control to every endpoint" },
+      "body": { "zh": "以 Flutter、Android 原生与设备通信桥接，覆盖 Android、iOS、HarmonyOS。", "en": "Bridge Flutter and native Android with devices across Android, iOS, and HarmonyOS." }
+    },
+    {
+      "index": 3,
+      "kicker": { "zh": "04 · 平台", "en": "04 · Platform" },
+      "title": { "zh": "从现场交付走向持续演进", "en": "Move from field delivery to continuous evolution" },
+      "body": { "zh": "通过 Go、Vue、数据存储和部署文档，将设备能力沉淀为可运营的平台。", "en": "Use Go, Vue, data systems, and deployment discipline to turn device capabilities into an operable platform." }
+    }
+  ],
+  "skills": [
+    {
+      "id": "embedded",
+      "title": { "zh": "嵌入式与实时系统", "en": "Embedded & RTOS" },
+      "items": ["C", "FreeRTOS", "RT-Thread", "LWIP", "USART", "DMA", "J-Link", "GDB", "OpenOCD", "Ozone"],
+      "order": 0
+    },
+    {
+      "id": "connectivity",
+      "title": { "zh": "通信与协议", "en": "Connectivity" },
+      "items": ["TCP/UDP", "MQTT", "HTTP/HTTPS", "RS485", "Modbus", "USB", "BLE", "SPP", "UART", "I2C"],
+      "order": 1
+    },
+    {
+      "id": "platform",
+      "title": { "zh": "平台与跨端", "en": "Platform & Cross-platform" },
+      "items": ["Go", "Flutter", "Java", "Vue 3", "TypeScript", "Python", "SQLite", "MySQL", "Linux"],
+      "order": 2
+    },
+    {
+      "id": "delivery",
+      "title": { "zh": "调试与交付", "en": "Debugging & Delivery" },
+      "items": ["Wireshark", "FFmpeg", "QEMU", "Git", "Docker", "示波器", "逻辑分析仪", "技术文档"],
+      "order": 3
+    }
+  ],
+  "experiences": [
+    {
+      "id": "softstone",
+      "company": { "zh": "北京软石智控科技有限公司", "en": "Beijing Softstone Intelligent Control Technology" },
+      "role": { "zh": "嵌入式软件开发工程师", "en": "Embedded Software Engineer" },
+      "period": { "zh": "2023.02 — 至今", "en": "Feb 2023 — Present" },
+      "summary": { "zh": "负责嵌入式设备、4G 网关、物联网平台、移动端 APP 与上位机工具的开发、调试和交付。", "en": "Build, debug, and deliver embedded devices, 4G gateways, IoT platforms, mobile apps, and desktop tools." },
+      "bullets": {
+        "zh": "- 设计自定义 JSON 协议，覆盖指令下发、状态采集、文件传输与远程控制。\n- 完成 4G、USB、BLE、SPP、TCP、UDP、MQTT、RS485 等通道的适配与联调。\n- 参与 Air780E、HC32、FreeRTOS、RT-Thread、LWIP、USART、DMA 的移植与调试。\n- 负责部署、客户现场适配、性能优化、问题闭环与技术文档。",
+        "en": "- Designed a JSON protocol for commands, telemetry, file transfer, and remote control.\n- Integrated 4G, USB, BLE, SPP, TCP, UDP, MQTT, and RS485 channels.\n- Ported and debugged Air780E, HC32, FreeRTOS, RT-Thread, LWIP, USART, and DMA components.\n- Owned deployments, field adaptation, performance tuning, issue closure, and technical documentation."
+      },
+      "order": 0
+    }
+  ],
+  "projects": [
+    {
+      "id": "iot-control-platform",
+      "slug": "iot-control-platform",
+      "title": { "zh": "物联网集中控制平台", "en": "Centralized IoT Control Platform" },
+      "summary": { "zh": "面向 Linux 嵌入式设备的集中管理、指令控制、数据采集与文件下发平台。", "en": "A platform for centralized management, command execution, telemetry, and file delivery across embedded Linux devices." },
+      "role": { "zh": "软件开发工程师", "en": "Software Engineer" },
+      "period": { "zh": "2025.05 — 至今", "en": "May 2025 — Present" },
+      "background": { "zh": "设备类型和强弱电功能持续扩展，需要一套统一、可演进的设备控制架构。", "en": "Growing device types and power-control modules required a unified architecture that could evolve without fragmenting operations." },
+      "actions": { "zh": "- 负责 Vue 3 前端、Go 后端接口及设备控制核心功能。\n- 制定平台与下位机之间的 JSON 通信协议。\n- 设计指令、状态和文件传输流程，并参与强弱电模块测试。", "en": "- Built core Vue 3 interfaces, Go APIs, and device-control workflows.\n- Defined the JSON protocol between the platform and embedded clients.\n- Designed command, state, and file-transfer flows and validated power-control modules." },
+      "results": { "zh": "- 实现多类型设备的统一接入与控制。\n- 完成部署和环境适配，持续维护操作说明书。", "en": "- Delivered unified onboarding and control for multiple device types.\n- Completed deployment adaptation and maintained operational documentation." },
+      "stack": ["Vue 3", "TypeScript", "Go", "Linux", "JSON Protocol", "4G"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 0
+    },
+    {
+      "id": "device-management-app",
+      "slug": "device-management-app",
+      "title": { "zh": "4G 设备管理跨端 APP", "en": "Cross-platform 4G Device Management App" },
+      "summary": { "zh": "通过 4G、USB、SPP 与 BLE 管理设备、传输文件并执行远程升级。", "en": "Manage devices, transfer files, and perform remote upgrades over 4G, USB, SPP, and BLE." },
+      "role": { "zh": "程序开发工程师", "en": "Application Engineer" },
+      "period": { "zh": "2025.05 — 至今", "en": "May 2025 — Present" },
+      "background": { "zh": "同一设备需要同时覆盖远程、本地有线和近场无线三类控制场景。", "en": "The same device needed consistent control across remote, local wired, and nearby wireless scenarios." },
+      "actions": { "zh": "- 开发 Flutter 核心功能与原生通信桥接。\n- 适配 4G、USB、SPP、BLE 通信和文件传输。\n- 配合设备端完成协议联调、异常定位与版本迭代。", "en": "- Built Flutter workflows and native communication bridges.\n- Integrated 4G, USB, SPP, BLE, and file transfer.\n- Coordinated protocol debugging, failure analysis, and release iterations with embedded teams." },
+      "results": { "zh": "- 完成 Android、iOS、HarmonyOS 多平台打包发布。\n- 应用成功上架 Android 应用商店、Apple App Store 与华为应用商店。", "en": "- Shipped Android, iOS, and HarmonyOS packages.\n- Published releases to Android stores, Apple App Store, and Huawei AppGallery." },
+      "stack": ["Flutter", "Dart", "Java", "USB", "BLE", "SPP", "4G"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 1
+    },
+    {
+      "id": "embedded-4g-gateway",
+      "slug": "embedded-4g-gateway",
+      "title": { "zh": "嵌入式 4G 网关", "en": "Embedded 4G Gateway" },
+      "summary": { "zh": "连接上位平台与强电、弱电设备的多协议 Linux 网关。", "en": "A multi-protocol Linux gateway connecting cloud platforms with high- and low-voltage devices." },
+      "role": { "zh": "项目工程师", "en": "Project Engineer" },
+      "period": { "zh": "2024.03 — 2024.10", "en": "Mar 2024 — Oct 2024" },
+      "background": { "zh": "已有硬件需要快速演进为支持多通信通道、场景编排和本地数据管理的新产品。", "en": "Existing hardware needed to evolve into a product supporting multiple channels, scene orchestration, and local data management." },
+      "actions": { "zh": "- 负责需求、架构、协议、功能开发到性能优化的完整流程。\n- 实现 TCP、UDP、MQTT、RS485 指令转发与设备数据读取。\n- 设计基于时间轴的多场景、多事件联动控制。", "en": "- Owned requirements, architecture, protocol design, implementation, and tuning.\n- Implemented TCP, UDP, MQTT, and RS485 command routing and data acquisition.\n- Designed timeline-based orchestration across scenes, events, and channels." },
+      "results": { "zh": "- 完成网关核心功能和 SQLite 本地化管理。\n- 支持客户平台部署、适配和现场问题闭环。", "en": "- Delivered gateway fundamentals and SQLite-backed local management.\n- Supported platform deployment, customer adaptation, and field issue closure." },
+      "stack": ["C", "Linux", "TCP/UDP", "MQTT", "RS485", "SQLite"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 2
+    },
+    {
+      "id": "air780e-hc32",
+      "slug": "air780e-hc32-connectivity",
+      "title": { "zh": "Air780E 与 HC32 通信开发", "en": "Air780E & HC32 Connectivity" },
+      "summary": { "zh": "验证 Cat.1 模块能力，完成 MCU、4G 模块与 PC 之间的稳定通信。", "en": "Validated Cat.1 capabilities and established reliable communication among MCU, 4G module, and PC." },
+      "role": { "zh": "工程师", "en": "Embedded Engineer" },
+      "period": { "zh": "2023.04 — 2023.07", "en": "Apr 2023 — Jul 2023" },
+      "background": { "zh": "项目需要验证模块网络能力、FOTA 流程，并解决 HC32 与 Air780E 的 IP 包和多任务调试问题。", "en": "The project required network and FOTA validation while resolving IP packet and multitasking issues between HC32 and Air780E." },
+      "actions": { "zh": "- 测试 TCP 带宽、HTTP/HTTPS、DNS 与 FOTA。\n- 移植 FreeRTOS、RT-Thread、LWIP、USART 与 DMA。\n- 使用 J-Link、GDB、OpenOCD、Ozone 分析任务切换和内存分布。", "en": "- Tested TCP throughput, HTTP/HTTPS, DNS, and FOTA.\n- Ported FreeRTOS, RT-Thread, LWIP, USART, and DMA.\n- Used J-Link, GDB, OpenOCD, and Ozone to analyze scheduling and memory." },
+      "results": { "zh": "- 解决模块间 IP 包通信问题并实现 TCP 通信。\n- 完成开发环境、资源情况与调试流程文档。", "en": "- Resolved inter-module IP packet issues and enabled TCP communication.\n- Documented the development environment, resource usage, and debugging workflow." },
+      "stack": ["C", "Air780E", "HC32", "FreeRTOS", "RT-Thread", "LWIP"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 3
+    },
+    {
+      "id": "desktop-media-tools",
+      "slug": "desktop-media-tools",
+      "title": { "zh": "上位机与音视频工具", "en": "Desktop & Media Tooling" },
+      "summary": { "zh": "围绕 DXF 处理、音视频同步、实时帧输出和动画控制优化上位机工具链。", "en": "Desktop tooling for DXF processing, audio-video synchronization, real-time frame output, and animation control." },
+      "role": { "zh": "软件开发与优化工程师", "en": "Software Optimization Engineer" },
+      "period": { "zh": "2023.06 — 2024.08", "en": "Jun 2023 — Aug 2024" },
+      "background": { "zh": "旧有工具在图形处理效率、跨平台音视频同步和特定演示控制上需要持续优化。", "en": "Legacy tooling needed improvements in geometry throughput, cross-platform synchronization, and specialized visual control." },
+      "actions": { "zh": "- 使用 VB6 与 Python 优化 DXF 线段分割。\n- 基于 FFmpeg 实现指定帧跳转、实时帧输出和音频同步。\n- 使用 VBDX9 实现旋转过程中图片方向保持不变。", "en": "- Optimized DXF line segmentation with VB6 and Python.\n- Implemented frame seeking, real-time frame output, and audio sync with FFmpeg.\n- Built VBDX9 animation logic that preserves image orientation during rotation." },
+      "results": { "zh": "- 将音视频能力封装为支持 Linux 与 Windows 的库。\n- 提升图形处理效率与播放同步一致性。", "en": "- Packaged media capabilities for Linux and Windows.\n- Improved geometry processing throughput and playback consistency." },
+      "stack": ["VB6", "Python", "FFmpeg", "VBDX9", "Linux", "Windows"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 4
+    },
+    {
+      "id": "dify-knowledge-base",
+      "slug": "dify-knowledge-base",
+      "title": { "zh": "产品说明书与 AI 知识库", "en": "Product Documentation & AI Knowledge Base" },
+      "summary": { "zh": "将产品说明书、技术资料和常见问题整合为线上资料平台与 Dify 智能问答。", "en": "An online documentation platform and Dify knowledge base built from manuals, technical references, and FAQs." },
+      "role": { "zh": "平台搭建工程师", "en": "Platform Engineer" },
+      "period": { "zh": "2024.11 — 2025.01", "en": "Nov 2024 — Jan 2025" },
+      "background": { "zh": "客户、销售与售后需要更快定位产品资料，减少重复答疑。", "en": "Customers, sales, and support teams needed faster access to product knowledge with less repeated manual assistance." },
+      "actions": { "zh": "- 整合产品说明书、技术支持资料和常见问题。\n- 搭建 Dify 知识库并开发 APP 端接入。\n- 建设支持在线查看和下载的说明书平台。", "en": "- Consolidated manuals, support references, and FAQs.\n- Built a Dify knowledge base and integrated it into the mobile app.\n- Delivered an online platform for viewing and downloading documentation." },
+      "results": { "zh": "- 提供面向客户、销售和售后的智能问答与资料检索入口。\n- 提升用户自助查询能力。", "en": "- Delivered intelligent Q&A and retrieval for customers, sales, and support.\n- Improved self-service access to product information." },
+      "stack": ["Dify", "Knowledge Base", "Mobile Integration", "Documentation"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 5
+    },
+    {
+      "id": "android-device-comms",
+      "slug": "android-device-communications",
+      "title": { "zh": "Android 与嵌入式设备通信", "en": "Android-to-Device Communications" },
+      "summary": { "zh": "Android 原生 APP 与 Linux 设备之间的 USB、蓝牙和 4G 通信。", "en": "Native Android communication with Linux devices over USB, Bluetooth, and 4G." },
+      "role": { "zh": "嵌入式软件工程师", "en": "Embedded Software Engineer" },
+      "period": { "zh": "2023.10 — 2024.02", "en": "Oct 2023 — Feb 2024" },
+      "background": { "zh": "", "en": "" },
+      "actions": { "zh": "USB、BLE、SPP、Linux Socket、文件传输、UI 同步、NFC 与音视频同步。", "en": "USB, BLE, SPP, Linux sockets, file transfer, UI synchronization, NFC, and media sync." },
+      "results": { "zh": "持续维护脱机控制并完成多类通信问题定位。", "en": "Maintained offline controls and resolved cross-channel communication issues." },
+      "stack": ["Android", "Java", "NDK", "USB", "BLE", "FFmpeg", "NFC"],
+      "mediaIds": [],
+      "featured": false,
+      "visible": true,
+      "order": 6
+    },
+    {
+      "id": "qemu-platform",
+      "slug": "qemu-virtual-platform",
+      "title": { "zh": "QEMU 虚拟平台", "en": "QEMU Virtual Platforms" },
+      "summary": { "zh": "在 Windows 中搭建 Cortex-A9 Linux 与 Cortex-M4 FreeRTOS 虚拟环境。", "en": "Cortex-A9 Linux and Cortex-M4 FreeRTOS virtual environments hosted on Windows." },
+      "role": { "zh": "嵌入式软件工程师", "en": "Embedded Software Engineer" },
+      "period": { "zh": "2024.03 — 2024.04", "en": "Mar 2024 — Apr 2024" },
+      "background": { "zh": "", "en": "" },
+      "actions": { "zh": "配置 SSH、Framebuffer、任务启动与 GDB 调试。", "en": "Configured SSH, framebuffer tests, task startup, and GDB debugging." },
+      "results": { "zh": "完成两类处理器虚拟平台的运行与全面测试。", "en": "Validated virtual platforms for two processor families." },
+      "stack": ["QEMU", "Linux", "Cortex-A9", "Cortex-M4", "FreeRTOS", "GDB"],
+      "mediaIds": [],
+      "featured": false,
+      "visible": true,
+      "order": 7
+    },
+    {
+      "id": "lora-ranch",
+      "slug": "lora-smart-ranch",
+      "title": { "zh": "LoRa 物联网智慧牧场", "en": "LoRa Smart Ranch" },
+      "summary": { "zh": "LoRa 自组织网络、Android APP 与 C# 上位机组成的环境监测与控制系统。", "en": "Environmental monitoring and control built with a LoRa mesh, Android app, and C# desktop client." },
+      "role": { "zh": "软件开发及文档编辑", "en": "Software & Documentation" },
+      "period": { "zh": "2020.02 — 2021.04", "en": "Feb 2020 — Apr 2021" },
+      "background": { "zh": "", "en": "" },
+      "actions": { "zh": "开发 Android APP、C# 上位机，参与通信流程和 Python 数据分析。", "en": "Built Android and C# applications and contributed to connectivity and Python-based analysis." },
+      "results": { "zh": "以第一作者发表两篇相关论文。", "en": "Published two related papers as first author." },
+      "stack": ["LoRa", "Android", "Java", "C#", "Python", ".NET"],
+      "mediaIds": [],
+      "featured": false,
+      "visible": true,
+      "order": 8
+    },
+    {
+      "id": "winter-olympics-test",
+      "slug": "winter-olympics-test-software",
+      "title": { "zh": "冬奥会电梯测试软件", "en": "Winter Olympics Elevator Test Software" },
+      "summary": { "zh": "连接信号仪、功率计与场强计的辐射参数测试和报表软件。", "en": "Radiation parameter testing and reporting software integrating signal, power, and field-strength instruments." },
+      "role": { "zh": "软件工程师", "en": "Software Engineer" },
+      "period": { "zh": "2020.11 — 2021.01", "en": "Nov 2020 — Jan 2021" },
+      "background": { "zh": "", "en": "" },
+      "actions": { "zh": "负责界面、后端代码、测试和项目文档。", "en": "Owned UI, backend code, testing, and project documentation." },
+      "results": { "zh": "三人小组完成软件交付。", "en": "Delivered the software as part of a three-person team." },
+      "stack": ["C#", ".NET", "Instrumentation", "Reporting"],
+      "mediaIds": [],
+      "featured": false,
+      "visible": true,
+      "order": 9
+    },
+    {
+      "id": "smart-warehouse",
+      "slug": "smart-warehouse",
+      "title": { "zh": "智慧仓储", "en": "Smart Warehouse" },
+      "summary": { "zh": "基于 ARM、Linux 与 C 的校内实训项目。", "en": "An ARM, Linux, and C training project for smart warehouse management." },
+      "role": { "zh": "项目开发", "en": "Project Developer" },
+      "period": { "zh": "2019.08 — 2020.09", "en": "Aug 2019 — Sep 2020" },
+      "background": { "zh": "", "en": "" },
+      "actions": { "zh": "参与系统移植、内核编译、驱动、BOA 与 CGI 配置开发。", "en": "Worked on system porting, kernel builds, drivers, BOA, and CGI configuration." },
+      "results": { "zh": "项目获得 95 分。", "en": "The project received a score of 95." },
+      "stack": ["C", "Linux", "ARM", "Kernel", "Driver", "BOA", "CGI"],
+      "mediaIds": [],
+      "featured": false,
+      "visible": true,
+      "order": 10
+    }
+  ],
+  "education": [
+    {
+      "id": "university",
+      "school": { "zh": "应急管理大学", "en": "University of Emergency Management" },
+      "degree": { "zh": "物联网工程 · 本科", "en": "B.Eng. in Internet of Things Engineering" },
+      "period": { "zh": "2018 — 2022", "en": "2018 — 2022" },
+      "details": { "zh": "国家励志奖学金、三好学生、三好学生标兵、优秀毕业设计。", "en": "National Encouragement Scholarship, Outstanding Student honors, and Excellent Graduation Project." },
+      "order": 0
+    }
+  ],
+  "awards": [
+    {
+      "id": "paper-lora",
+      "title": { "zh": "第一作者：《基于 LoRa 物联网的智慧牧场系统》", "en": "First-author paper: LoRa-based IoT Smart Ranch System" },
+      "period": "2020 — 2021",
+      "order": 0
+    },
+    {
+      "id": "lanqiao",
+      "title": { "zh": "第十一届蓝桥杯电子类省级三等奖", "en": "Provincial Third Prize, 11th Lanqiao Cup (Electronics)" },
+      "period": "2021",
+      "order": 1
+    },
+    {
+      "id": "paper-android",
+      "title": { "zh": "第一作者：《基于 LoRa 网络的 Android 智慧养殖场系统》", "en": "First-author paper: Android Smart Farm System over LoRa" },
+      "period": "2021 — 2022",
+      "order": 2
+    },
+    {
+      "id": "certificates",
+      "title": { "zh": "CET-4 · 普通话二级甲等 · 驾驶证 C1", "en": "CET-4 · Mandarin Level 2-A · Driver License C1" },
+      "period": "",
+      "order": 3
+    }
+  ],
+  "updatedAt": "2026-07-13T00:00:00Z"
+}
+
