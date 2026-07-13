@@ -3,6 +3,7 @@ package server
 import (
 	"database/sql"
 	"encoding/json"
+	"encoding/xml"
 	"errors"
 	"html/template"
 	"net/http"
@@ -14,6 +15,37 @@ import (
 	"github.com/xingxing7290/zhoujinxin-portfolio/internal/security"
 	"github.com/xingxing7290/zhoujinxin-portfolio/internal/store"
 )
+
+func (s *Server) robots(w http.ResponseWriter, _ *http.Request) {
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Cache-Control", "public, max-age=3600")
+	baseURL := strings.TrimRight(s.config.BaseURL, "/")
+	_, _ = w.Write([]byte("User-agent: *\nAllow: /\nDisallow: /admin\nDisallow: /api/admin/\nSitemap: " + baseURL + "/sitemap.xml\n"))
+}
+
+func (s *Server) sitemap(w http.ResponseWriter, r *http.Request) {
+	content, err := s.activeContent(r.Context())
+	if err != nil {
+		http.Error(w, "content unavailable", http.StatusServiceUnavailable)
+		return
+	}
+	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
+	w.Header().Set("Cache-Control", "public, max-age=3600")
+	baseURL := strings.TrimRight(s.config.BaseURL, "/")
+	_, _ = w.Write([]byte(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`))
+	writeLocation := func(path string) {
+		_, _ = w.Write([]byte("<url><loc>"))
+		_ = xml.EscapeText(w, []byte(baseURL+path))
+		_, _ = w.Write([]byte("</loc></url>"))
+	}
+	writeLocation("/")
+	writeLocation("/en")
+	for _, project := range content.VisibleProjects() {
+		writeLocation("/projects/" + project.Slug)
+		writeLocation("/en/projects/" + project.Slug)
+	}
+	_, _ = w.Write([]byte("</urlset>"))
+}
 
 func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 	if r.URL.Path != "/" && r.URL.Path != "/en" {
