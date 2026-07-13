@@ -1,9 +1,10 @@
 {
-  email {$CADDY_EMAIL}
   admin off
+  default_sni 113.44.50.108
 }
 
-113-44-50-108.sslip.io {
+https://113.44.50.108 {
+  tls /etc/letsencrypt/live/113.44.50.108/fullchain.pem /etc/letsencrypt/live/113.44.50.108/privkey.pem
   encode zstd gzip
   reverse_proxy app:8080 {
     health_uri /api/health
@@ -21,5 +22,9 @@
 }
 
 http://113.44.50.108 {
-  redir https://113-44-50-108.sslip.io{uri} permanent
+  redir https://113.44.50.108{uri} permanent
+}
+
+http://113-44-50-108.sslip.io {
+  redir https://113.44.50.108{uri} permanent
 }
