@@ -1,0 +1,8 @@
+[Unit]
+Description=Renew the Zhou Jinxin portfolio IP certificate
+After=docker.service network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /srv/zhoujinxin-portfolio/scripts/renew-ip-certificate.sh

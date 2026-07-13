@@ -2,17 +2,17 @@
 
 中英双语的个人简历与项目案例网站。公开页面以服务端渲染保证内容、SEO 和无障碍基础，桌面端在能力允许时按需加载 Three.js/GSAP“芯片到云端”滚动叙事；独立管理后台负责结构化内容、媒体、简历 PDF、发布快照和版本恢复。
 
-- 正式网站：<https://113-44-50-108.sslip.io/>
-- English：<https://113-44-50-108.sslip.io/en>
-- 内容后台：<https://113-44-50-108.sslip.io/admin>
-- 健康检查：<https://113-44-50-108.sslip.io/api/health>
+- 正式网站：<https://113.44.50.108/>
+- English：<https://113.44.50.108/en>
+- 内容后台：<https://113.44.50.108/admin>
+- 健康检查：<https://113.44.50.108/api/health>
 
 ## 技术结构
 
 - Go 单二进制：公开页面、管理 API、媒体 Range 响应和静态资源全部由同一进程提供。
 - SQLite：草稿、不可变发布快照、管理员会话、媒体和文档元数据。
 - Vite + TypeScript：公开页渐进增强；React 管理后台；Three.js/GSAP 高性能动效。
-- Caddy：HTTPS 自动申请/续期、HTTP 重定向、压缩和反向代理。
+- Caddy：受信任 IP 证书、HTTP 重定向、压缩和反向代理；Certbot 定时续期六天短证书。
 - Docker Compose：应用与 Caddy 两个轻量容器，数据和证书独立持久化。
 - GitHub Actions：类型检查、单测、E2E、Lighthouse、镜像构建、SBOM 与供应链证明。
 
