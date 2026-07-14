@@ -14,7 +14,7 @@ type Content = { profile: Profile; hero: HeroStep[]; skills: SkillGroup[]; exper
 type Session = { username: string; csrfToken: string; expiresAt: string; mustChangePassword: boolean };
 type Revision = { id: string; note: string; createdAt: string; active: boolean };
 type Media = { id: string; kind: "image" | "video"; originalName: string; mimeType: string; size: number; status: string; createdAt: string };
-type Tab = "profile" | "projects" | "experience" | "skills" | "credentials" | "media" | "history";
+type Tab = "profile" | "preview" | "projects" | "experience" | "skills" | "credentials" | "media" | "history";
 
 let csrfToken = "";
 
@@ -204,11 +204,54 @@ function HistoryEditor({ onToast, reload }: { onToast:(m:string)=>void;reload:()
   return <><Title title="历史版本" detail="每次发布都会生成不可变快照；恢复操作只覆盖草稿，不会静默改变线上内容。"/><div className="editor-card">{items.map(item=><div className="revision" key={item.id}><div><strong>{item.note} {item.active&&"· 当前发布"}</strong><small>{new Date(item.createdAt).toLocaleString()} · {item.id}</small></div><button className="admin-button" disabled={item.active} onClick={()=>restore(item.id)}>恢复到草稿</button></div>)}</div></>;
 }
 
+function LivePreview({ content }: { content: Content }) {
+  const [locale, setLocale] = useState<keyof Localized>("zh");
+  const otherLocale: keyof Localized = locale === "zh" ? "en" : "zh";
+  const copy = (value: Localized) => value[locale].trim() || value[otherLocale].trim();
+  const projects = [...content.projects]
+    .filter((project) => project.visible || project.status === "published")
+    .sort((left, right) => left.order - right.order);
+  const experiences = [...content.experiences].sort((left, right) => left.order - right.order);
+
+  return <>
+    <Title title="实时双语预览" detail="直接读取当前编辑器内存；未保存的改动也会立即显示。完整页面预览仍以已保存草稿为准。" />
+    <div className="live-preview-toolbar" role="group" aria-label="预览语言">
+      <button type="button" className={locale === "zh" ? "active" : ""} aria-pressed={locale === "zh"} onClick={() => setLocale("zh")}>中文</button>
+      <button type="button" className={locale === "en" ? "active" : ""} aria-pressed={locale === "en"} onClick={() => setLocale("en")}>English</button>
+      <span>LIVE · UNSAVED</span>
+    </div>
+    <article className="live-preview" aria-live="polite" data-locale={locale}>
+      <header className="live-preview-hero">
+        <p>{copy(content.profile.eyebrow)}</p>
+        <h1>{copy(content.profile.name)}</h1>
+        <h2>{copy(content.profile.title)}</h2>
+        <div className="live-preview-copy">{copy(content.profile.summary)}</div>
+        <small>{copy(content.profile.location)} · {content.profile.email}</small>
+      </header>
+      <section className="live-preview-scenes">
+        {content.hero.map((step, index) => <div key={step.index}><span>0{index + 1}</span><div><strong>{copy(step.title)}</strong><p>{copy(step.body)}</p></div></div>)}
+      </section>
+      <section>
+        <p className="live-preview-kicker">{locale === "zh" ? "精选项目" : "SELECTED PROJECTS"}</p>
+        <div className="live-preview-projects">
+          {projects.map((project) => <div key={project.id}><small>{project.period[locale] || project.period[otherLocale]}</small><h3>{copy(project.title)}</h3><p>{copy(project.summary)}</p><span>{project.stack.slice(0, 5).join(" · ")}</span></div>)}
+        </div>
+      </section>
+      <section>
+        <p className="live-preview-kicker">{locale === "zh" ? "工作经历" : "EXPERIENCE"}</p>
+        <div className="live-preview-experience">
+          {experiences.map((experience) => <div key={experience.id}><span>{copy(experience.period)}</span><div><h3>{copy(experience.role)}</h3><strong>{copy(experience.company)}</strong><p>{copy(experience.summary)}</p></div></div>)}
+        </div>
+      </section>
+    </article>
+  </>;
+}
+
 function Title({ title, detail, action, compact=false }: {title:string;detail:string;action?:React.ReactNode;compact?:boolean}) { return <div className="admin-section-title" style={compact?{marginTop:50}:undefined}><div><h1>{title}</h1><p>{detail}</p></div>{action}</div>; }
 
 function Workspace({ session, onLogout }: { session:Session;onLogout:()=>void }) {
   const [tab,setTab]=useState<Tab>("profile"); const [content,setContent]=useState<Content|null>(null); const [version,setVersion]=useState(0); const [busy,setBusy]=useState(false); const [toast,setToast]=useState(""); const [publishOpen,setPublishOpen]=useState(false); const [note,setNote]=useState("");
-  const tabs: {id:Tab;label:string}[]=[{id:"profile",label:"首页与定位"},{id:"projects",label:"项目案例"},{id:"experience",label:"工作经历"},{id:"skills",label:"能力矩阵"},{id:"credentials",label:"教育荣誉"},{id:"media",label:"媒体与 PDF"},{id:"history",label:"历史版本"}];
+  const tabs: {id:Tab;label:string}[]=[{id:"profile",label:"首页与定位"},{id:"preview",label:"实时预览"},{id:"projects",label:"项目案例"},{id:"experience",label:"工作经历"},{id:"skills",label:"能力矩阵"},{id:"credentials",label:"教育荣誉"},{id:"media",label:"媒体与 PDF"},{id:"history",label:"历史版本"}];
   function toastFor(message:string){setToast(message);window.setTimeout(()=>setToast(""),3500);}
   async function load(){try{const data=await api<{content:Content;version:number}>("/api/admin/content");setContent(data.content);setVersion(data.version);}catch(e){toastFor((e as Error).message);}}
   useEffect(()=>{load();},[]);
@@ -219,8 +262,8 @@ function Workspace({ session, onLogout }: { session:Session;onLogout:()=>void })
   const detail=useMemo(()=>`草稿版本 ${version} · 会话至 ${new Date(session.expiresAt).toLocaleTimeString()}`,[version,session.expiresAt]);
   if(!content)return <p className="admin-loading">正在读取加密内容工作区…</p>;
   return <div className="admin-shell"><aside className="admin-sidebar"><div className="admin-logo">JX<span>.</span> STUDIO</div><nav>{tabs.map(item=><button key={item.id} className={tab===item.id?"active":""} onClick={()=>setTab(item.id)}>{item.label}</button>)}</nav><div className="admin-user">{session.username}<br/><button onClick={logout}>安全退出</button></div></aside>
-    <main className="admin-main"><header className="admin-topbar"><div><strong>Portfolio Content OS</strong><p>{detail}</p></div><div className="admin-actions"><a className="admin-button" href="/preview?lang=zh" target="_blank">中文预览 ↗</a><a className="admin-button" href="/preview?lang=en" target="_blank">EN Preview ↗</a><button className="admin-button" disabled={busy} onClick={save}>{busy?"处理中…":"保存草稿"}</button><button className="admin-button primary" onClick={()=>setPublishOpen(true)}>发布</button></div></header>
-      <div className="admin-content">{tab==="profile"&&<ProfileEditor content={content} setContent={setContent}/>} {tab==="projects"&&<ProjectsEditor content={content} setContent={setContent}/>} {tab==="experience"&&<ExperienceEditor content={content} setContent={setContent}/>} {tab==="skills"&&<SkillsEditor content={content} setContent={setContent}/>} {tab==="credentials"&&<CredentialsEditor content={content} setContent={setContent}/>} {tab==="media"&&<MediaEditor onToast={toastFor}/>} {tab==="history"&&<HistoryEditor onToast={toastFor} reload={load}/>}</div>
+    <main className="admin-main"><header className="admin-topbar"><div><strong>Portfolio Content OS</strong><p>{detail}</p></div><div className="admin-actions"><a className="admin-button" href="/preview?lang=zh" target="_blank">已保存中文预览 ↗</a><a className="admin-button" href="/preview?lang=en" target="_blank">Saved EN Preview ↗</a><button className="admin-button" disabled={busy} onClick={save}>{busy?"处理中…":"保存草稿"}</button><button className="admin-button primary" onClick={()=>setPublishOpen(true)}>发布</button></div></header>
+      <div className="admin-content">{tab==="profile"&&<ProfileEditor content={content} setContent={setContent}/>} {tab==="preview"&&<LivePreview content={content}/>} {tab==="projects"&&<ProjectsEditor content={content} setContent={setContent}/>} {tab==="experience"&&<ExperienceEditor content={content} setContent={setContent}/>} {tab==="skills"&&<SkillsEditor content={content} setContent={setContent}/>} {tab==="credentials"&&<CredentialsEditor content={content} setContent={setContent}/>} {tab==="media"&&<MediaEditor onToast={toastFor}/>} {tab==="history"&&<HistoryEditor onToast={toastFor} reload={load}/>}</div>
     </main>{publishOpen&&<div className="login-panel" style={{position:"fixed",inset:0,zIndex:90,background:"rgba(0,0,0,.75)",backdropFilter:"blur(10px)"}}><div className="login-form editor-card"><h2>发布新版本</h2><p>将当前草稿保存为不可变快照，并原子切换公开页面。</p><label className="field"><span>版本说明</span><input autoFocus value={note} onChange={e=>setNote(e.target.value)} placeholder="例如：优化 4G 网关项目说明"/></label><div className="admin-actions"><button className="admin-button" onClick={()=>setPublishOpen(false)}>取消</button><button className="admin-button primary" disabled={busy} onClick={publish}>确认发布</button></div></div></div>}{toast&&<div className="status-toast" role="status">{toast}</div>}
   </div>;
 }
