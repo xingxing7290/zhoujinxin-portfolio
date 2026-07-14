@@ -17,9 +17,9 @@ export default defineConfig({
     { name: "mobile", use: { ...devices["iPhone 13"], browserName: "chromium", reducedMotion: "reduce" } },
   ],
   webServer: {
-    command: "go run ./cmd/server",
+    command: "node -e \"require('node:fs').rmSync('./data/e2e', { recursive: true, force: true })\" && go run ./cmd/server",
     url: "http://127.0.0.1:8098/api/health",
-    reuseExistingServer: true,
+    reuseExistingServer: false,
     timeout: 120_000,
     env: {
       PORT: "8098",
