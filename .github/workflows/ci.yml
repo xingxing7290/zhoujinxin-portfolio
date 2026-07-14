@@ -29,8 +29,10 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
+      - run: test -z "$(gofmt -l cmd internal)"
       - run: go test ./...
       - run: go vet ./...
+      - run: sh tests/deploy-script.sh
 
   browser:
     runs-on: ubuntu-latest
