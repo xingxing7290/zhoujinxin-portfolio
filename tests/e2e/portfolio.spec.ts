@@ -66,6 +66,9 @@ test("admin saves previews and publishes a bilingual draft", async ({ page, cont
 
   const summary = page.locator(".field.wide").filter({ hasText: "定位摘要" }).locator("textarea").first();
   await summary.fill(marker);
+  await page.getByRole("button", { name: "实时预览" }).click();
+  await expect(page.locator(".live-preview")).toContainText(marker);
+  await page.getByRole("button", { name: "首页与定位" }).click();
   await page.getByRole("button", { name: "保存草稿" }).click();
   await expect(page.getByRole("status")).toContainText("草稿已安全保存");
 
@@ -74,7 +77,7 @@ test("admin saves previews and publishes a bilingual draft", async ({ page, cont
   await expect(publicPage.locator("body")).not.toContainText(marker);
   const [preview] = await Promise.all([
     context.waitForEvent("page"),
-    page.getByRole("link", { name: /中文预览/ }).click(),
+    page.getByRole("link", { name: /已保存中文预览/ }).click(),
   ]);
   await preview.waitForLoadState("domcontentloaded");
   await expect(preview.locator("body")).toContainText(marker);
