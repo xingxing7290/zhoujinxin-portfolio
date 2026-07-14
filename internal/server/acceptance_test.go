@@ -438,6 +438,26 @@ func TestDetectSupportedFileMagic(t *testing.T) {
 	}
 }
 
+func TestMediaQuotaBoundary(t *testing.T) {
+	if exceedsMediaQuota(maxMediaQuota-1, 1) {
+		t.Fatal("an upload exactly at the quota boundary should be accepted")
+	}
+	for _, test := range []struct {
+		usage    int64
+		incoming int64
+	}{
+		{maxMediaQuota, 1},
+		{maxMediaQuota - 1, 2},
+		{maxMediaQuota + 1, 0},
+		{-1, 1},
+		{0, -1},
+	} {
+		if !exceedsMediaQuota(test.usage, test.incoming) {
+			t.Fatalf("quota overflow was accepted: usage=%d incoming=%d", test.usage, test.incoming)
+		}
+	}
+}
+
 func getBody(t *testing.T, url string) string {
 	t.Helper()
 	response, err := http.Get(url)

@@ -90,7 +90,7 @@ func (s *Server) uploadMedia(w http.ResponseWriter, r *http.Request) {
 		writeError(w, http.StatusInternalServerError, "无法保存媒体")
 		return
 	}
-	if usage+written > maxMediaQuota {
+	if exceedsMediaQuota(usage, written) {
 		writeError(w, http.StatusRequestEntityTooLarge, "上传后将超过 2GB 媒体配额")
 		return
 	}
@@ -104,6 +104,11 @@ func (s *Server) uploadMedia(w http.ResponseWriter, r *http.Request) {
 		tempName = remuxed
 		written = remuxedSize
 		detected = detectedFile{MIME: "video/mp4", Extension: ".mp4", Kind: "video"}
+		if exceedsMediaQuota(usage, written) {
+			_ = os.Remove(tempName)
+			writeError(w, http.StatusRequestEntityTooLarge, "MOV 封装后将超过 2GB 媒体配额")
+			return
+		}
 	}
 	idToken, _ := security.RandomToken(12)
 	id := "med_" + idToken
@@ -299,7 +304,35 @@ func isISOBaseMedia(header []byte) bool {
 	return size >= 8
 }
 
+func exceedsMediaQuota(usage, incoming int64) bool {
+	return usage < 0 || incoming < 0 || usage > maxMediaQuota || incoming > maxMediaQuota-usage
+}
+
+func verifyH264MOV(parent context.Context, input string) error {
+	ffprobe, err := exec.LookPath("ffprobe")
+	if err != nil {
+		return errors.New("MOV 需要服务器提供 ffprobe 以验证 H.264 视频编码")
+	}
+	ctx, cancel := context.WithTimeout(parent, 30*time.Second)
+	defer cancel()
+	command := exec.CommandContext(ctx, ffprobe, "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=codec_name", "-of", "default=noprint_wrappers=1:nokey=1", input)
+	result, err := command.CombinedOutput()
+	if ctx.Err() == context.DeadlineExceeded {
+		return errors.New("MOV 编码验证超时")
+	}
+	if err != nil {
+		return errors.New("无法验证 MOV 的视频编码")
+	}
+	if !strings.EqualFold(strings.TrimSpace(string(result)), "h264") {
+		return errors.New("仅支持 H.264 编码的 MOV 文件进行无损 MP4 封装")
+	}
+	return nil
+}
+
 func remuxMOV(parent context.Context, input, directory string) (string, int64, error) {
+	if err := verifyH264MOV(parent, input); err != nil {
+		return "", 0, err
+	}
 	ffmpeg, err := exec.LookPath("ffmpeg")
 	if err != nil {
 		return "", 0, errors.New("MOV 需要服务器提供 ffmpeg 以无损封装为 MP4")
