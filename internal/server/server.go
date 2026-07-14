@@ -162,7 +162,7 @@ func cacheStatic(next http.Handler) http.Handler {
 }
 
 func (s *Server) health(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": "1.0.6", "time": time.Now().UTC()})
+	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": "1.0.7", "time": time.Now().UTC()})
 }
 
 func (s *Server) activeContent(ctx context.Context) (model.SiteContent, error) {
