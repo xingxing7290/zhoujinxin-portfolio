@@ -43,7 +43,7 @@ sudo systemctl enable --now zhoujinxin-portfolio-cert-renew.timer
 sh scripts/deploy.sh ghcr.io/xingxing7290/zhoujinxin-portfolio@sha256:<digest>
 ```
 
-部署固定执行：SQLite 在线一致性备份、拉取摘要镜像、向前迁移、启动、容器健康检查、公开 HTTPS 检查。任一步失败都会停止新应用，恢复上一镜像和数据库备份。
+部署固定执行：SQLite 在线一致性备份、拉取摘要镜像、向前迁移、启动、容器健康检查、公开 HTTPS 检查。成功后会原子更新 `.current-image`，并同步 `.env` 中的 `APP_IMAGE`，防止后续普通 `docker compose up` 意外回退；任一步失败都会停止新应用，恢复上一镜像、镜像状态和数据库备份。
 
 含手机号的首份简历只通过 SSH 放进持久卷，然后用镜像内的受限导入命令登记；文件不经过 Git 或镜像层：
 
