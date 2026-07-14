@@ -62,6 +62,7 @@ run_success_case() {
   test "$(cat "$root/.current-image")" = "$NEW_IMAGE"
   test "$(grep '^APP_IMAGE=' "$root/.env")" = "APP_IMAGE=$NEW_IMAGE"
   test "$(stat -c '%a' "$root/.env")" = "600"
+  grep -q 'compose up -d app caddy cloudflared' "$root/fake.log"
 }
 
 run_rollback_case() {
@@ -84,6 +85,7 @@ run_rollback_case() {
   test "$(cat "$root/.current-image")" = "$OLD_IMAGE"
   test "$(grep '^APP_IMAGE=' "$root/.env")" = "APP_IMAGE=$OLD_IMAGE"
   test "$(cat "$root/data/portfolio.sqlite")" = 'stable-database'
+  grep -q 'compose up -d app caddy cloudflared' "$root/fake.log"
 }
 
 run_success_case
