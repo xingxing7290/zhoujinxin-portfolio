@@ -71,7 +71,7 @@ services:
     tmpfs:
       - /tmp:size=16m,mode=1777
     healthcheck:
-      test: ["CMD", "cloudflared", "tunnel", "--metrics", "localhost:2000", "ready"]
+      test: ["CMD", "cloudflared", "tunnel", "--metrics", "127.0.0.1:2000", "ready"]
       interval: 15s
       timeout: 5s
       retries: 4
