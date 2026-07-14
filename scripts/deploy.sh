@@ -2,7 +2,7 @@
 set -eu
 
 ROOT="${PORTFOLIO_ROOT:-/srv/zhoujinxin-portfolio}"
-PUBLIC_URL="${PUBLIC_URL:-https://113.44.50.108}"
+PUBLIC_URL="${PUBLIC_URL:-https://xstar.cc.cd}"
 HEALTH_ATTEMPTS="${DEPLOY_HEALTH_ATTEMPTS:-30}"
 PUBLIC_ATTEMPTS="${DEPLOY_PUBLIC_ATTEMPTS:-45}"
 SLEEP_SECONDS="${DEPLOY_SLEEP_SECONDS:-2}"
@@ -68,7 +68,7 @@ rollback() {
   cp "data/backups/portfolio-$timestamp.sqlite" data/portfolio.sqlite
   rm -f data/portfolio.sqlite-wal data/portfolio.sqlite-shm
   persist_image "$CURRENT_IMAGE" || true
-  APP_IMAGE="$CURRENT_IMAGE" docker compose up -d app caddy || true
+  APP_IMAGE="$CURRENT_IMAGE" docker compose up -d app caddy cloudflared || true
   exit 1
 }
 trap rollback HUP INT TERM
@@ -79,8 +79,8 @@ APP_IMAGE="$NEW_IMAGE" docker compose pull app || rollback
 echo "[3/6] running forward migration"
 APP_IMAGE="$NEW_IMAGE" docker compose run --rm --no-deps --entrypoint /app/portfolio-migrate app || rollback
 
-echo "[4/6] starting application and Caddy"
-APP_IMAGE="$NEW_IMAGE" docker compose up -d app caddy || rollback
+echo "[4/6] starting application, Caddy, and Cloudflare Tunnel"
+APP_IMAGE="$NEW_IMAGE" docker compose up -d app caddy cloudflared || rollback
 
 echo "[5/6] checking container health"
 attempt=0

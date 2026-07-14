@@ -1,32 +1,48 @@
 {
-  admin off
-  default_sni 113.44.50.108
+	admin off
+	default_sni 113.44.50.108
+}
+
+(portfolio_proxy) {
+	encode zstd gzip
+	reverse_proxy app:8080 {
+		health_uri /api/health
+		health_interval 10s
+		health_timeout 5s
+		health_fails 3
+		health_passes 1
+	}
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		-Server
+	}
+	log {
+		output stdout
+		format json
+	}
+}
+
+(tunnel_proxy) {
+	@insecure header X-Forwarded-Proto http
+	redir @insecure https://xstar.cc.cd{uri} permanent
+	import portfolio_proxy
 }
 
 https://113.44.50.108 {
-  tls /etc/letsencrypt/live/113.44.50.108/fullchain.pem /etc/letsencrypt/live/113.44.50.108/privkey.pem
-  encode zstd gzip
-  reverse_proxy app:8080 {
-    health_uri /api/health
-    health_interval 10s
-    health_timeout 5s
-    health_fails 3
-    health_passes 1
-  }
-  header {
-    Strict-Transport-Security "max-age=31536000; includeSubDomains"
-    -Server
-  }
-  log {
-    output stdout
-    format json
-  }
+	tls /etc/letsencrypt/live/113.44.50.108/fullchain.pem /etc/letsencrypt/live/113.44.50.108/privkey.pem
+	import portfolio_proxy
+}
+
+# This listener is private to the Docker network. Cloudflare Tunnel terminates
+# public TLS and reaches Caddy here without exposing another host port.
+http://:8081 {
+	import tunnel_proxy
 }
 
 http://113.44.50.108 {
-  redir https://113.44.50.108{uri} permanent
+	redir https://xstar.cc.cd{uri} permanent
 }
 
 http://113-44-50-108.sslip.io {
-  redir https://113.44.50.108{uri} permanent
+	redir https://xstar.cc.cd{uri} permanent
 }
