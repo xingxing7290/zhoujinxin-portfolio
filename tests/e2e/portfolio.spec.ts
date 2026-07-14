@@ -35,6 +35,18 @@ test("save-data clients receive the lightweight poster experience", async ({ pag
   await expect(page.locator(".hero-portrait img")).toBeVisible();
 });
 
+test("the public layout never widens the visual viewport", async ({ page }) => {
+  await page.goto("/");
+  const viewport = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+    headerWidth: document.querySelector(".site-header")?.getBoundingClientRect().width ?? 0,
+  }));
+
+  expect(viewport.scrollWidth).toBeLessThanOrEqual(viewport.clientWidth + 1);
+  expect(viewport.headerWidth).toBeLessThanOrEqual(viewport.clientWidth + 1);
+});
+
 test("admin enforces first-login password change", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name === "mobile", "The state-changing admin workflow runs once on desktop.");
   await page.goto("/admin");
