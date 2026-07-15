@@ -71,15 +71,15 @@
 
     <section class="statement section-shell reveal" aria-label="{{if eq .Locale "en"}}Positioning{{else}}职业定位{{end}}">
       <p class="section-index">01 / POSITIONING</p>
-      <h2>{{if eq .Locale "en"}}I turn constrained hardware into dependable connected products.{{else}}把受限硬件，做成可靠可交付的连接型产品。{{end}}</h2>
-      <p>{{if eq .Locale "en"}}From MCU drivers and protocol paths to cross-platform apps and IoT platforms, I build across boundaries and keep the full system verifiable.{{else}}从 MCU 驱动与协议链路，到跨端 APP 与物联网平台；跨越软硬件边界，让完整系统可验证、可维护、可交付。{{end}}</p>
+      <h2>{{if eq .Locale "en"}}I take device connectivity from “it works” to “it can be verified and shipped.”{{else}}让设备通信从“能连上”，走向“可验证、可交付”。{{end}}</h2>
+      <p>{{if eq .Locale "en"}}From MCU and protocol paths to 4G gateways, apps, and IoT platforms, I work across boundaries to make integration, diagnosis, field adaptation, and delivery traceable.{{else}}从 MCU 与协议链路，到 4G 网关、跨端 APP 和物联网平台；跨越软硬件边界，让联调、定位、现场适配与交付都有清晰闭环。{{end}}</p>
     </section>
 
     <section id="projects" class="projects section-shell">
       <div class="section-heading reveal">
         <p class="section-index">02 / SELECTED SYSTEMS</p>
         <h2>{{if eq .Locale "en"}}Selected projects{{else}}精选项目{{end}}</h2>
-        <p>{{if eq .Locale "en"}}Six systems that connect device, network, application and platform.{{else}}六个跨越设备、网络、应用与平台的完整系统。{{end}}</p>
+        <p>{{if eq .Locale "en"}}Six representative systems spanning device, network, application, and platform delivery.{{else}}六个覆盖设备、网络、应用与平台交付的代表项目。{{end}}</p>
       </div>
       <div class="project-list">
         {{range $i, $project := .Content.FeaturedProjects}}
