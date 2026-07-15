@@ -231,10 +231,10 @@ func (s *Server) notFound(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	w.WriteHeader(http.StatusNotFound)
 	if locale == "en" {
-		_, _ = w.Write([]byte(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="/static/assets/style.css"><title>Not found · Zhou Jinxin</title></head><body class="not-found"><main><span>404</span><h1>Signal lost.</h1><p>The route does not exist or is no longer published.</p><a class="button" href="/en">Return home</a></main></body></html>`))
+		_, _ = w.Write([]byte(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="` + assetPath("assets/style.css") + `"><title>Not found · Zhou Jinxin</title></head><body class="not-found"><main><span>404</span><h1>Signal lost.</h1><p>The route does not exist or is no longer published.</p><a class="button" href="/en">Return home</a></main></body></html>`))
 		return
 	}
-	_, _ = w.Write([]byte(`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="/static/assets/style.css"><title>未找到 · 周金鑫</title></head><body class="not-found"><main><span>404</span><h1>信号已丢失。</h1><p>这个路径不存在，或内容尚未发布。</p><a class="button" href="/">返回首页</a></main></body></html>`))
+	_, _ = w.Write([]byte(`<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="stylesheet" href="` + assetPath("assets/style.css") + `"><title>未找到 · 周金鑫</title></head><body class="not-found"><main><span>404</span><h1>信号已丢失。</h1><p>这个路径不存在，或内容尚未发布。</p><a class="button" href="/">返回首页</a></main></body></html>`))
 }
 
 func localeFromPath(path string) string {

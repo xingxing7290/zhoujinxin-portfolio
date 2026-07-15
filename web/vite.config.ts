@@ -21,7 +21,7 @@ export default defineConfig({
       },
       output: {
         entryFileNames: 'assets/[name].js',
-        chunkFileNames: 'assets/[name].js',
+        chunkFileNames: 'assets/[name]-[hash].js',
         assetFileNames: (assetInfo) =>
           assetInfo.name?.endsWith('.css') ? 'assets/style.css' : 'assets/[name][extname]'
       }
