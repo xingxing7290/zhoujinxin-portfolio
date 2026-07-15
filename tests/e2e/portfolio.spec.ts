@@ -37,6 +37,10 @@ test("save-data clients receive the lightweight poster experience", async ({ pag
 
 test("the public layout never widens the visual viewport", async ({ page }) => {
   await page.goto("/");
+  await expect(page.locator('link[rel="stylesheet"]')).toHaveAttribute(
+    "href",
+    /^\/static\/assets\/style\.css\?v=\d+\.\d+\.\d+$/,
+  );
   const viewport = await page.evaluate(() => ({
     clientWidth: document.documentElement.clientWidth,
     scrollWidth: document.documentElement.scrollWidth,
@@ -107,5 +111,9 @@ test("admin saves previews and publishes a bilingual draft", async ({ page, cont
 test("unknown project returns an accessible 404", async ({ page }) => {
   const response = await page.goto("/projects/not-a-project");
   expect(response?.status()).toBe(404);
+  await expect(page.locator('link[rel="stylesheet"]')).toHaveAttribute(
+    "href",
+    /^\/static\/assets\/style\.css\?v=\d+\.\d+\.\d+$/,
+  );
   await expect(page.getByRole("heading", { name: "信号已丢失。" })).toBeVisible();
 });

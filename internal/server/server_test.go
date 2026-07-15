@@ -21,6 +21,27 @@ import (
 	"github.com/xingxing7290/zhoujinxin-portfolio/internal/store"
 )
 
+func TestVersionedStaticAssetsUseImmutableCaching(t *testing.T) {
+	handler := cacheStatic(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusNoContent)
+	}))
+
+	versioned := httptest.NewRecorder()
+	handler.ServeHTTP(versioned, httptest.NewRequest(http.MethodGet, assetPath("assets/style.css"), nil))
+	if got := versioned.Header().Get("Cache-Control"); got != "public, max-age=31536000, immutable" {
+		t.Fatalf("unexpected versioned cache policy: %q", got)
+	}
+	if got := assetPath("assets/style.css"); got != "/static/assets/style.css?v="+appVersion {
+		t.Fatalf("unexpected asset path: %q", got)
+	}
+
+	unversioned := httptest.NewRecorder()
+	handler.ServeHTTP(unversioned, httptest.NewRequest(http.MethodGet, "/static/assets/style.css", nil))
+	if got := unversioned.Header().Get("Cache-Control"); got != "public, max-age=300, must-revalidate" {
+		t.Fatalf("unexpected unversioned cache policy: %q", got)
+	}
+}
+
 func TestPublicAndAdminLifecycle(t *testing.T) {
 	dataDir := t.TempDir()
 	dataStore, err := store.Open(filepath.Join(dataDir, "portfolio.sqlite"))
