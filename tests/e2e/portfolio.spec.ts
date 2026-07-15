@@ -5,6 +5,7 @@ test("Chinese home exposes content before motion code", async ({ page }) => {
   await expect(page).toHaveTitle(/周金鑫/);
   await expect(page.getByRole("heading", { name: "周金鑫", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "精选项目" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "让设备通信从“能连上”，走向“可验证、可交付”。" })).toBeVisible();
   await expect(page.locator("body")).not.toContainText(/1[3-9][0-9]{9}/);
   await expect(page.getByRole("link", { name: /物联网集中控制平台/ })).toBeVisible();
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", "http://127.0.0.1:8098/");
@@ -25,7 +26,7 @@ test("archived work remains a complete case study", async ({ page }) => {
   await page.goto("/projects/qemu-virtual-platform");
   await expect(page.getByRole("heading", { name: "项目背景" })).toBeVisible();
   await expect(page.locator(".case-body")).toContainText("Cortex-A9 Linux");
-  await expect(page.locator(".case-body")).toContainText("完成两类处理器虚拟平台的运行、调试与全面测试");
+  await expect(page.locator(".case-body")).toContainText("完成两类处理器虚拟平台的运行、调试与验证");
 });
 
 test("keyboard navigation and reduced-motion fallback remain usable", async ({ page }) => {
