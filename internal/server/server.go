@@ -24,9 +24,14 @@ import (
 )
 
 const (
+	appVersion    = "1.0.8"
 	sessionCookie = "portfolio_session"
 	maxMediaQuota = int64(2 << 30)
 )
+
+func assetPath(path string) string {
+	return "/static/" + strings.TrimLeft(path, "/") + "?v=" + url.QueryEscape(appVersion)
+}
 
 type Server struct {
 	config       app.Config
@@ -64,7 +69,8 @@ type pageData struct {
 
 func New(config app.Config, dataStore *store.Store, logger *slog.Logger) (*Server, error) {
 	funcs := template.FuncMap{
-		"tr": func(value model.LocalizedText, locale string) string { return value.Value(locale) },
+		"asset": func(path string) string { return assetPath(path) },
+		"tr":    func(value model.LocalizedText, locale string) string { return value.Value(locale) },
 		"localePath": func(locale, path string) string {
 			if locale == "en" {
 				if path == "/" {
@@ -156,13 +162,17 @@ func securityHeaders(next http.Handler) http.Handler {
 
 func cacheStatic(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Cache-Control", "public, max-age=86400, stale-while-revalidate=604800")
+		if r.URL.Query().Get("v") == appVersion {
+			w.Header().Set("Cache-Control", "public, max-age=31536000, immutable")
+		} else {
+			w.Header().Set("Cache-Control", "public, max-age=300, must-revalidate")
+		}
 		next.ServeHTTP(w, r)
 	})
 }
 
 func (s *Server) health(w http.ResponseWriter, _ *http.Request) {
-	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": "1.0.7", "time": time.Now().UTC()})
+	writeJSON(w, http.StatusOK, map[string]any{"status": "ok", "version": appVersion, "time": time.Now().UTC()})
 }
 
 func (s *Server) activeContent(ctx context.Context) (model.SiteContent, error) {

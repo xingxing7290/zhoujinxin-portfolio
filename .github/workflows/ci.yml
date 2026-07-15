@@ -128,6 +128,33 @@ jobs:
           cache-to: type=gha,mode=max
           provenance: mode=max
           sbom: true
+      - name: Smoke test packaged static assets
+        if: github.event_name != 'pull_request'
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: |
+          set -eu
+          image="${REGISTRY_IMAGE}@${IMAGE_DIGEST}"
+          name="portfolio-smoke-${GITHUB_RUN_ID}"
+          version="$(node -p "require('./package.json').version")"
+          docker pull "$image"
+          docker run -d --name "$name" -p 127.0.0.1:18080:8080 \
+            -e BASE_URL=http://127.0.0.1:18080 \
+            -e ADMIN_USERNAME=admin \
+            -e ADMIN_INITIAL_PASSWORD='Container-Smoke-Temporary-2026!' \
+            "$image"
+          trap 'docker rm -f "$name" >/dev/null 2>&1 || true' EXIT
+          for attempt in $(seq 1 45); do
+            curl --fail --silent http://127.0.0.1:18080/api/health >/dev/null && break
+            if [ "$attempt" -eq 45 ]; then
+              docker logs "$name"
+              exit 1
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:18080/ | grep -F "/static/assets/style.css?v=${version}"
+          curl --fail --silent "http://127.0.0.1:18080/static/assets/style.css?v=${version}" | grep -F 'html{max-width:100%'
+          curl --fail --silent --head "http://127.0.0.1:18080/static/assets/style.css?v=${version}" | grep -i -F 'cache-control: public, max-age=31536000, immutable'
       - name: Attest image provenance
         if: github.event_name != 'pull_request'
         uses: actions/attest-build-provenance@v2

@@ -9,13 +9,13 @@
   <meta property="og:title" content="{{tr .Content.Profile.Name .Locale}} · {{tr .Content.Profile.Title .Locale}}">
   <meta property="og:description" content="{{tr .Content.Profile.Summary .Locale}}">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="{{.BaseURL}}/static/images/zhou-jinxin-executive.jpg">
+  <meta property="og:image" content="{{.BaseURL}}{{asset "images/zhou-jinxin-executive.jpg"}}">
   <link rel="canonical" href="{{.BaseURL}}{{localePath .Locale "/"}}">
   <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}/">
   <link rel="alternate" hreflang="en" href="{{.BaseURL}}/en">
   <link rel="alternate" hreflang="x-default" href="{{.BaseURL}}/">
-  <link rel="preload" as="image" href="/static/images/zhou-jinxin-executive.avif" type="image/avif" fetchpriority="high">
-  <link rel="stylesheet" href="/static/assets/style.css">
+  <link rel="preload" as="image" href="{{asset "images/zhou-jinxin-executive.avif"}}" type="image/avif" fetchpriority="high">
+  <link rel="stylesheet" href="{{asset "assets/style.css"}}">
   <title>{{tr .Content.Profile.Name .Locale}} · {{tr .Content.Profile.Title .Locale}}</title>
   <script type="application/ld+json">{{.StructuredData}}</script>
 </head>
@@ -50,9 +50,9 @@
         </div>
       </div>
       <picture class="hero-portrait reveal">
-        <source srcset="/static/images/zhou-jinxin-executive.avif" type="image/avif">
-        <source srcset="/static/images/zhou-jinxin-executive.webp" type="image/webp">
-        <img src="/static/images/zhou-jinxin-executive.jpg" alt="{{tr .Content.Profile.Name .Locale}}" width="1200" height="1500" fetchpriority="high">
+        <source srcset="{{asset "images/zhou-jinxin-executive.avif"}}" type="image/avif">
+        <source srcset="{{asset "images/zhou-jinxin-executive.webp"}}" type="image/webp">
+        <img src="{{asset "images/zhou-jinxin-executive.jpg"}}" alt="{{tr .Content.Profile.Name .Locale}}" width="1200" height="1500" fetchpriority="high">
       </picture>
       <div class="hero-steps" data-hero-steps>
         {{range .Content.Hero}}
@@ -149,7 +149,7 @@
     </section>
   </main>
   <footer><span>© {{.Year}} {{tr .Content.Profile.Name .Locale}}</span><span>EMBEDDED · CONNECTED · DELIVERED</span><a href="#main">{{if eq .Locale "en"}}Back to top{{else}}返回顶部{{end}} ↑</a></footer>
-  <script type="module" src="/static/assets/public.js"></script>
+  <script type="module" src="{{asset "assets/public.js"}}"></script>
 </body>
 </html>
 {{end}}
