@@ -4,11 +4,18 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#090b0f"><meta name="description" content="{{tr .Project.Summary .Locale}}">
+  <meta property="og:title" content="{{tr .Project.Title .Locale}} · {{tr .Content.Profile.Name .Locale}}">
+  <meta property="og:description" content="{{tr .Project.Summary .Locale}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{.BaseURL}}{{projectPath .Locale .Project.Slug}}">
+  <meta property="og:locale" content="{{if eq .Locale "en"}}en_US{{else}}zh_CN{{end}}">
+  <meta property="og:image" content="{{.BaseURL}}{{asset "images/zhou-jinxin-executive.jpg"}}">
   <link rel="canonical" href="{{.BaseURL}}{{projectPath .Locale .Project.Slug}}">
   <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}{{projectPath "zh" .Project.Slug}}">
   <link rel="alternate" hreflang="en" href="{{.BaseURL}}{{projectPath "en" .Project.Slug}}">
   <link rel="stylesheet" href="{{asset "assets/style.css"}}">
   <title>{{tr .Project.Title .Locale}} · {{tr .Content.Profile.Name .Locale}}</title>
+  <script type="application/ld+json">{{.StructuredData}}</script>
 </head>
 <body class="project-page">
   <a class="skip-link" href="#main">{{if eq .Locale "en"}}Skip to content{{else}}跳到主要内容{{end}}</a>

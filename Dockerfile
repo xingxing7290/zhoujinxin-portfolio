@@ -17,7 +17,8 @@ COPY --from=web /src/internal/site/dist ./internal/site/dist
 RUN --mount=type=cache,target=/root/.cache/go-build CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio ./cmd/server \
   && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio-backup ./cmd/backup \
   && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio-migrate ./cmd/migrate \
-  && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio-import-document ./cmd/import-document
+  && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio-import-document ./cmd/import-document \
+  && CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags="-s -w" -o /out/portfolio-publish-seed ./cmd/publish-seed
 
 FROM alpine:3.20@sha256:d9e853e87e55526f6b2917df91a2115c36dd7c696a35be12163d44e6e2a4b6bc
 RUN apk add --no-cache ca-certificates tzdata ffmpeg \
@@ -25,7 +26,7 @@ RUN apk add --no-cache ca-certificates tzdata ffmpeg \
   && adduser -D -H -u 10001 -G portfolio portfolio \
   && install -d -o portfolio -g portfolio -m 0750 /app/data
 WORKDIR /app
-COPY --from=go /out/portfolio /out/portfolio-backup /out/portfolio-migrate /out/portfolio-import-document /app/
+COPY --from=go /out/portfolio /out/portfolio-backup /out/portfolio-migrate /out/portfolio-import-document /out/portfolio-publish-seed /app/
 USER portfolio
 EXPOSE 8080
 VOLUME ["/app/data"]

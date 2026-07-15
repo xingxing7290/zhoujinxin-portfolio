@@ -47,6 +47,17 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
+## 生成可编辑简历 PDF
+
+PDF 与网站共用 `internal/seed/content.json`，修改结构化内容后可重新生成两页 A4 简历。手机号只在生成时通过环境变量注入，生成的 HTML 预览和 PDF 默认写入被 Git 忽略的 `data/generated/`：
+
+```powershell
+$env:RESUME_PHONE='<私人手机号>'
+npm run resume:pdf
+```
+
+可在浏览器中编辑/打印 `data/generated/zhou-jinxin-resume.html`，也可以在管理后台直接替换线上 PDF。详细流程见 [docs/CONTENT.md](docs/CONTENT.md)。
+
 ## 内容与隐私
 
 公开源码、HTML 和接口中不保存完整手机号；手机号仅存在于管理员上传到持久卷的简历 PDF。原始证件照不在仓库中，仓库只包含身份保持后生成的网页肖像和 AVIF/WebP/JPEG 响应式版本。数据库、上传文件、备份和环境变量均被 Git 忽略。
