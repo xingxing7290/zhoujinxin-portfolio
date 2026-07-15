@@ -157,7 +157,7 @@ jobs:
           curl --fail --silent --head "http://127.0.0.1:18080/static/assets/style.css?v=${version}" | grep -i -F 'cache-control: public, max-age=31536000, immutable'
       - name: Attest image provenance
         if: github.event_name != 'pull_request'
-        uses: actions/attest-build-provenance@v2
+        uses: actions/attest-build-provenance@v4
         with:
           subject-name: ${{ env.REGISTRY_IMAGE }}
           subject-digest: ${{ steps.build.outputs.digest }}
