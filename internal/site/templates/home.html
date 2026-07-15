@@ -9,6 +9,9 @@
   <meta property="og:title" content="{{tr .Content.Profile.Name .Locale}} · {{tr .Content.Profile.Title .Locale}}">
   <meta property="og:description" content="{{tr .Content.Profile.Summary .Locale}}">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="{{.BaseURL}}{{localePath .Locale "/"}}">
+  <meta property="og:locale" content="{{if eq .Locale "en"}}en_US{{else}}zh_CN{{end}}">
+  <meta property="og:locale:alternate" content="{{if eq .Locale "en"}}zh_CN{{else}}en_US{{end}}">
   <meta property="og:image" content="{{.BaseURL}}{{asset "images/zhou-jinxin-executive.jpg"}}">
   <link rel="canonical" href="{{.BaseURL}}{{localePath .Locale "/"}}">
   <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}/">
