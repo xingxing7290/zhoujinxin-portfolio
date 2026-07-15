@@ -5,6 +5,12 @@ import { describe, expect, it } from "vitest";
 const content = JSON.parse(readFileSync(resolve("internal/seed/content.json"), "utf8"));
 
 describe("public resume content", () => {
+  it("leads with the embedded connectivity position", () => {
+    expect(content.profile.title.zh).toBe("嵌入式软件工程师｜C / Linux / 设备通信");
+    expect(content.profile.summary.zh).toContain("MCU/RTOS");
+    expect(content.profile.summary.zh).toContain("交付闭环");
+  });
+
   it("contains the six selected systems and an English variant", () => {
     const featured = content.projects.filter((project: { featured: boolean }) => project.featured);
     expect(featured).toHaveLength(6);
