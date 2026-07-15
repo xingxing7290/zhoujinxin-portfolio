@@ -22,6 +22,29 @@
 
 已经被任何发布快照引用的媒体不能直接删除。要清理它，先从项目中解除引用并发布新版本；历史快照仍引用的素材应继续保留，以保证历史可恢复。
 
+## 从仓库发布结构化内容
+
+版本发布时可将 `internal/seed/content.json` 原子发布为新的不可变快照。该命令先校验双语字段和项目结构，再更新草稿并发布；公开页面始终只读取当前发布版本：
+
+```bash
+APP_IMAGE="$(cat .current-image)" docker compose run --rm --no-deps \
+  --entrypoint /app/portfolio-publish-seed app '简历内容与项目详情 V2'
+```
+
+执行前应先运行 `portfolio-backup`，执行后检查中英文首页、精选项目与归档项目详情。
+
+## 生成两页简历 PDF
+
+网站内容和 PDF 共用同一份结构化数据，避免两处履历长期漂移。生成器会同时输出 PDF 与可直接在浏览器查看、另存或二次排版的 HTML；文件默认进入被 Git 忽略的 `data/generated/`。
+
+```powershell
+$env:RESUME_PHONE='<私人手机号>'
+$env:RESUME_WEBSITE='https://xstar.cc.cd'
+npm run resume:pdf
+```
+
+手机号是必填的运行时变量，生成器不会打印它，也不会把它写入源码。确认页数、文字和版式后，通过后台“简历 PDF”上传，或按 `docs/OPERATIONS.md` 的私有导入流程替换线上文件。
+
 ## 上传限制
 
 - JPEG、PNG、WebP、AVIF：单文件 15MB。
