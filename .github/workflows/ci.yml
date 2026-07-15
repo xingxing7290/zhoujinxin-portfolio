@@ -49,6 +49,12 @@ jobs:
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npx playwright install --with-deps chromium
+      - name: Render and validate editable resume PDF
+        run: |
+          export RESUME_PHONE="$(printf '%s%s%s' 139 0000 0000)"
+          export RESUME_OUTPUT="$RUNNER_TEMP/zhou-jinxin-resume.pdf"
+          npm run resume:pdf
+          test "$(head -c 5 "$RESUME_OUTPUT")" = '%PDF-'
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
