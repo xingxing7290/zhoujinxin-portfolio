@@ -105,7 +105,7 @@ const documentHTML = `<!doctype html>
     .sidebar-block + .sidebar-block { margin-top: 7mm; }
     .skill-group + .skill-group { margin-top: 4.3mm; }
     .skill-group h3 { margin: 0 0 1.3mm; color: var(--ink); font-size: 7.7pt; line-height: 1.25; }
-    .skill-group p { margin: 0; color: var(--muted); font-size: 6.65pt; line-height: 1.6; }
+    .skill-group p { margin: 0; color: var(--muted); font-size: 6.85pt; line-height: 1.58; }
     .education h3 { margin: 0; font-size: 9pt; }
     .education p { margin: 1.3mm 0 0; color: var(--blue); font-size: 7pt; font-weight: 650; }
     .education small { display: block; margin-top: 1.3mm; color: var(--muted); font-size: 6.5pt; line-height: 1.5; }
@@ -116,24 +116,24 @@ const documentHTML = `<!doctype html>
     .experience-head h2 { margin: 0; font-size: 12pt; }
     .experience-head h3 { margin: 1.2mm 0 0; color: var(--blue); font-size: 8pt; font-weight: 650; }
     .experience-head time { color: var(--muted); font-size: 7pt; }
-    .experience-summary { margin: 3mm 0 2mm; font-size: 7.2pt; line-height: 1.55; }
+    .experience-summary { margin: 3mm 0 2mm; font-size: 7.5pt; line-height: 1.55; }
     ul { margin: 1.8mm 0 0; padding: 0; list-style: none; }
-    li { position: relative; margin: 0 0 1.25mm; padding-left: 3mm; color: #47535e; font-size: 6.85pt; line-height: 1.45; }
+    li { position: relative; margin: 0 0 1.25mm; padding-left: 3mm; color: #47535e; font-size: 7.05pt; line-height: 1.45; }
     li::before { content: ""; position: absolute; left: .2mm; top: 1.15mm; width: 1mm; height: 1mm; border-radius: 50%; background: var(--blue); }
     .selected { margin-top: 7mm; }
     .project-card { padding: 3.5mm 0 3.1mm; border-top: .2mm solid var(--line); }
     .project-card:first-of-type { border-top: 0; padding-top: 0; }
     .project-head { display: flex; justify-content: space-between; gap: 4mm; align-items: flex-start; }
-    .project-head h3 { margin: .7mm 0 0; font-size: 8.8pt; line-height: 1.25; }
+    .project-head h3 { margin: .7mm 0 0; font-size: 9.1pt; line-height: 1.25; }
     .project-period { color: var(--blue); font-size: 6.2pt; font-weight: 700; letter-spacing: .04em; }
     .project-role { flex: none; padding: 1mm 1.7mm; color: var(--blue); background: var(--blue-soft); font-size: 5.9pt; border-radius: .7mm; }
-    .project-summary { margin: 1.3mm 0 0; font-size: 6.85pt; line-height: 1.45; }
+    .project-summary { margin: 1.3mm 0 0; font-size: 7.1pt; line-height: 1.45; }
     .project-card ul { margin-top: 1.4mm; }
-    .project-card li { margin-bottom: .75mm; font-size: 6.55pt; line-height: 1.38; }
-    .result { margin-top: 1.4mm; color: #3f4b55; font-size: 6.45pt; line-height: 1.35; }
+    .project-card li { margin-bottom: .75mm; font-size: 6.8pt; line-height: 1.4; }
+    .result { margin-top: 1.4mm; color: #3f4b55; font-size: 6.7pt; line-height: 1.38; }
     .result b { margin-right: 1.5mm; color: var(--blue); }
     .stack { display: flex; flex-wrap: wrap; gap: 1mm; margin-top: 1.6mm; }
-    .stack span { padding: .75mm 1.3mm; border: .2mm solid #c7d1d5; color: #52616b; font: 5.6pt/1 Arial, sans-serif; border-radius: .5mm; }
+    .stack span { padding: .75mm 1.3mm; border: .2mm solid #c7d1d5; color: #52616b; font: 5.8pt/1 Arial, sans-serif; border-radius: .5mm; }
     .page-two-header { height: 34mm; padding: 8mm 13mm 6mm; color: #f4f2ec; background: var(--dark); display: flex; justify-content: space-between; align-items: flex-end; }
     .page-two-header p { margin: 0 0 1mm; color: #91adbd; font: 700 6.5pt/1 Arial, sans-serif; letter-spacing: .2em; }
     .page-two-header h2 { margin: 0; font-size: 17pt; font-weight: 600; }
@@ -151,8 +151,8 @@ const documentHTML = `<!doctype html>
     .archive-item { display: grid; grid-template-columns: 19mm 1fr; gap: 2.5mm; padding-bottom: 2.2mm; border-bottom: .2mm solid var(--line); }
     .archive-item time { color: var(--blue); font-size: 5.9pt; font-weight: 650; }
     .archive-item h3 { margin: 0; font-size: 7.1pt; }
-    .archive-item p { margin: .8mm 0 0; color: var(--muted); font-size: 6pt; line-height: 1.35; }
-    .archive-item .archive-result { color: #43515b; font-size: 5.7pt; }
+    .archive-item p { margin: .8mm 0 0; color: var(--muted); font-size: 6.25pt; line-height: 1.38; }
+    .archive-item .archive-result { color: #43515b; font-size: 5.95pt; }
     .archive-item .archive-result b { margin-right: 1mm; color: var(--blue); }
     .archive-item small { display: block; margin-top: .7mm; color: #7b858d; font-size: 5.35pt; }
     .closing { display: grid; grid-template-columns: 1.2fr .8fr; gap: 8mm; margin-top: 6mm; }
@@ -202,16 +202,16 @@ const documentHTML = `<!doctype html>
       </aside>
       <main class="main-column">
         <section>
-          <p class="section-label">工作经历</p>
+          <p class="section-label">近年工作经历</p>
           <div class="experience-head">
             <div><h2>${text(experience.company)}</h2><h3>${text(experience.role)}</h3></div>
             <time>${text(experience.period)}</time>
           </div>
           <p class="experience-summary">${text(experience.summary)}</p>
-          ${bullets(experience.bullets, 5)}
+          ${bullets(experience.bullets, 4)}
         </section>
         <section class="selected">
-          <p class="section-label">代表项目</p>
+          <p class="section-label">代表项目 · 已交付</p>
           ${featured.slice(0, 3).map((project) => projectCard(project, { actionLimit: 2, resultLimit: 1, stackLimit: 6 })).join("")}
         </section>
       </main>
@@ -222,12 +222,12 @@ const documentHTML = `<!doctype html>
   <section class="page">
     <div class="topline"></div>
     <header class="page-two-header">
-      <div><p>SELECTED SYSTEMS · CONTINUED</p><h2>从底层通信到产品交付</h2></div>
+      <div><p>SELECTED SYSTEMS · CONTINUED</p><h2>从通信链路到完整交付</h2></div>
       <span>项目内容仅保留可验证职责与成果</span>
     </header>
     <main class="page-two-body">
       <section>
-        <p class="section-label">代表项目 · 续</p>
+        <p class="section-label">代表项目 · 补充</p>
         <div class="project-grid">
           ${featured.slice(3).map((project, index) => projectCard(project, { actionLimit: index === 2 ? 3 : 2, resultLimit: 2, stackLimit: 6 })).join("")}
         </div>
@@ -245,12 +245,12 @@ const documentHTML = `<!doctype html>
       </section>
       <section class="closing">
         <article>
-          <h3>工程方法</h3>
-          <p>从需求、协议与系统边界出发，借助示波器、逻辑分析仪、抓包和调试器定位问题；以版本管理、测试记录和技术文档保证方案可复现、可维护。</p>
+          <h3>工程工作方式</h3>
+          <p>从需求、协议与系统边界出发，借助示波器、逻辑分析仪、抓包和调试器定位问题；通过版本管理、测试记录和技术文档让方案可复现、可维护。</p>
         </article>
         <article class="value">
-          <h3>职业定位</h3>
-          <p>面向嵌入式软件、设备通信、4G 网关与物联网产品岗位，能够跨 MCU、Linux、移动端、Web 与桌面端推动完整交付。</p>
+          <h3>求职方向</h3>
+          <p>嵌入式软件、设备通信、4G 网关与物联网产品开发；可跨 MCU、Linux、移动端、Web 与桌面端推进联调和交付。</p>
         </article>
       </section>
     </main>
