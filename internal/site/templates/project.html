@@ -7,7 +7,7 @@
   <link rel="canonical" href="{{.BaseURL}}{{projectPath .Locale .Project.Slug}}">
   <link rel="alternate" hreflang="zh-CN" href="{{.BaseURL}}{{projectPath "zh" .Project.Slug}}">
   <link rel="alternate" hreflang="en" href="{{.BaseURL}}{{projectPath "en" .Project.Slug}}">
-  <link rel="stylesheet" href="/static/assets/style.css">
+  <link rel="stylesheet" href="{{asset "assets/style.css"}}">
   <title>{{tr .Project.Title .Locale}} · {{tr .Content.Profile.Name .Locale}}</title>
 </head>
 <body class="project-page">
@@ -31,6 +31,6 @@
       <nav class="case-next"><a href="{{projectPath .Locale .Next.Slug}}"><span>{{if eq .Locale "en"}}Next case study{{else}}下一个项目{{end}}</span><strong>{{tr .Next.Title .Locale}}</strong><i aria-hidden="true">→</i></a></nav>
     </article>
   </main>
-  <script type="module" src="/static/assets/public.js"></script>
+  <script type="module" src="{{asset "assets/public.js"}}"></script>
 </body></html>
 {{end}}
