@@ -7,6 +7,7 @@ import (
 	"errors"
 	"html/template"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -138,7 +139,23 @@ func (s *Server) project(w http.ResponseWriter, r *http.Request) {
 			media = append(media, asset)
 		}
 	}
-	data := pageData{Locale: localeFromPath(r.URL.Path), BaseURL: s.config.BaseURL, Content: pageContent{content}, Project: project, Next: next, Media: media, Year: time.Now().Year()}
+	locale := localeFromPath(r.URL.Path)
+	projectURL := strings.TrimRight(s.config.BaseURL, "/") + projectPagePath(locale, project.Slug)
+	structured, _ := json.Marshal(map[string]any{
+		"@context":    "https://schema.org",
+		"@type":       "CreativeWork",
+		"name":        project.Title.Value(locale),
+		"description": project.Summary.Value(locale),
+		"url":         projectURL,
+		"inLanguage":  map[string]string{"zh": "zh-CN", "en": "en"}[locale],
+		"keywords":    project.Stack,
+		"creator": map[string]any{
+			"@type": "Person",
+			"name":  content.Profile.Name.Value(locale),
+			"url":   strings.TrimRight(s.config.BaseURL, "/") + localizedHome(locale),
+		},
+	})
+	data := pageData{Locale: locale, BaseURL: s.config.BaseURL, Content: pageContent{content}, Project: project, Next: next, Media: media, Year: time.Now().Year(), StructuredData: templateJS(structured)}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := s.templates.ExecuteTemplate(w, "project", data); err != nil {
 		s.logger.Error("render project", "error", err)
@@ -249,6 +266,14 @@ func localizedHome(locale string) string {
 		return "/en"
 	}
 	return "/"
+}
+
+func projectPagePath(locale, slug string) string {
+	prefix := ""
+	if locale == "en" {
+		prefix = "/en"
+	}
+	return prefix + "/projects/" + url.PathEscape(slug)
 }
 
 func templateJS(value []byte) template.JS { return template.JS(value) }
