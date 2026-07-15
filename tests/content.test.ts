@@ -17,6 +17,18 @@ describe("public resume content", () => {
     expect(slugs.every((slug: string) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))).toBe(true);
   });
 
+  it("keeps every published case study complete in both languages", () => {
+    for (const project of content.projects) {
+      for (const field of ["title", "summary", "role", "period", "background", "actions", "results"] as const) {
+        expect(project[field].zh, `${project.slug}.${field}.zh`).toBeTruthy();
+        expect(project[field].en, `${project.slug}.${field}.en`).toBeTruthy();
+      }
+      expect(project.stack.length, `${project.slug}.stack`).toBeGreaterThan(0);
+      expect(project.status ?? "published", `${project.slug}.status`).toBe("published");
+      expect(project.visible, `${project.slug}.visible`).toBe(true);
+    }
+  });
+
   it("does not publish a full mobile number in source content", () => {
     expect(JSON.stringify(content)).not.toMatch(/1[3-9][0-9]{9}/);
     expect(content.profile.email).toBe("zhoujx158@163.com");
