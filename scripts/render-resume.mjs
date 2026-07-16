@@ -142,10 +142,6 @@ const documentHTML = `<!doctype html>
     .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
     .project-grid .project-card { min-height: 52mm; }
     .project-grid .project-card:nth-child(1), .project-grid .project-card:nth-child(2) { border-top: 0; padding-top: 0; }
-    .project-grid .project-card:nth-child(3) { grid-column: 1 / -1; min-height: auto; display: grid; grid-template-columns: 1.15fr 1fr; column-gap: 7mm; }
-    .project-grid .project-card:nth-child(3) .project-head, .project-grid .project-card:nth-child(3) .project-summary { grid-column: 1; }
-    .project-grid .project-card:nth-child(3) ul, .project-grid .project-card:nth-child(3) .result, .project-grid .project-card:nth-child(3) .stack { grid-column: 2; }
-    .project-grid .project-card:nth-child(3) ul { grid-row: 1 / span 2; margin-top: 0; padding-top: 4mm; }
     .archive-section { margin-top: 6mm; padding-top: 5mm; border-top: .5mm solid #aebbc1; }
     .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
     .archive-item { display: grid; grid-template-columns: 19mm 1fr; gap: 2.5mm; padding-bottom: 2.2mm; border-bottom: .2mm solid var(--line); }
@@ -229,7 +225,7 @@ const documentHTML = `<!doctype html>
       <section>
         <p class="section-label">代表项目 · 补充</p>
         <div class="project-grid">
-          ${featured.slice(3).map((project, index) => projectCard(project, { actionLimit: index === 2 ? 3 : 2, resultLimit: 2, stackLimit: 6 })).join("")}
+          ${featured.slice(3).map((project) => projectCard(project, { actionLimit: 2, resultLimit: 1, stackLimit: 6 })).join("")}
         </div>
       </section>
       <section class="archive-section">
