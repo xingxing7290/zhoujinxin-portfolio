@@ -86,7 +86,7 @@ const projectCard = (project, options = {}) => {
   `;
 };
 
-const documentHTML = `<!doctype html>
+const renderDocument = (contactPhone) => `<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
@@ -201,7 +201,7 @@ const documentHTML = `<!doctype html>
       <div class="portrait-wrap"><img src="${portraitData}" alt=""></div>
     </header>
     <div class="contact-strip">
-      <span>${htmlEscape(phone)}</span><i class="dot"></i>
+      <span>${contactPhone}</span><i class="dot"></i>
       <span>${htmlEscape(content.profile.email)}</span><i class="dot"></i>
       <span>${htmlEscape(website.replace(/^https?:\/\//, ""))}</span><i class="dot"></i>
       <span>${text(content.profile.location)}</span>
@@ -284,12 +284,14 @@ const documentHTML = `<!doctype html>
 
 await mkdir(dirname(output), { recursive: true });
 const htmlOutput = output.replace(/\.pdf$/i, ".html");
-await writeFile(htmlOutput, documentHTML, "utf8");
+const pdfHTML = renderDocument(htmlEscape(phone));
+const editableHTML = renderDocument("手机号仅保留在 PDF");
+await writeFile(htmlOutput, editableHTML, "utf8");
 
 const browser = await chromium.launch({ headless: true });
 try {
   const page = await browser.newPage({ viewport: { width: 1240, height: 1754 }, deviceScaleFactor: 1 });
-  await page.setContent(documentHTML, { waitUntil: "load" });
+  await page.setContent(pdfHTML, { waitUntil: "load" });
   await page.emulateMedia({ media: "print" });
   const pageCount = await page.locator(".page").count();
   const overflow = await page.locator(".page").evaluateAll((pages) => pages.map((item) => item.scrollHeight - item.clientHeight));
