@@ -17,6 +17,19 @@ describe("public resume content", () => {
     expect(featured.every((project: { title: { zh: string; en: string } }) => project.title.zh && project.title.en)).toBe(true);
   });
 
+  it("preserves the verified timeline and delivery scope from monthly reports", () => {
+    const experience = content.experiences[0];
+    expect(experience.summary.zh).toContain("客户部署");
+    expect(experience.bullets.zh).toContain("Air780E");
+    expect(experience.bullets.zh).toContain("HarmonyOS");
+
+    const projects = new Map<string, any>(content.projects.map((project: any) => [project.slug, project]));
+    expect(projects.get("embedded-4g-gateway")!.period.zh).toBe("2024.05 — 至今");
+    expect(projects.get("iot-control-platform")!.period.zh).toBe("2024.01 — 至今");
+    expect(projects.get("4g-single-lamp-control-platform")!.actions.zh).toContain("控制器模拟器");
+    expect(projects.get("device-management-app")!.results.zh).toContain("鸿蒙应用市场");
+  });
+
   it("uses unique stable slugs", () => {
     const slugs = content.projects.map((project: { slug: string }) => project.slug);
     expect(new Set(slugs).size).toBe(slugs.length);

@@ -7,8 +7,8 @@
     },
     "eyebrow": { "zh": "从芯片到云端", "en": "From silicon to cloud" },
     "summary": {
-      "zh": "3 年以上嵌入式与物联网研发经验，聚焦 C、Linux、MCU/RTOS 与设备通信。具备从通信协议、4G 网关到跨端 APP、Web 平台及上位机工具的工程实践，能够推进联调、问题定位、现场适配与交付闭环。",
-      "en": "Embedded and IoT engineer with 3+ years of experience focused on C, Linux, MCU/RTOS, and device connectivity. Hands-on across communication protocols, 4G gateways, cross-platform apps, web platforms, and desktop tools, with experience driving integration, diagnosis, field adaptation, and delivery closure."
+      "zh": "3 年以上嵌入式与物联网研发经验，聚焦 C、Linux、MCU/RTOS 与设备通信。已形成从 Air780E/HC32 底层调试、4G 网关和多协议接入，到 Flutter 跨端 APP、物联网平台与客户部署的完整实践；能够承担协议设计、功能开发、联调诊断、稳定性优化和交付闭环。",
+      "en": "Embedded and IoT engineer with 3+ years of experience focused on C, Linux, MCU/RTOS, and device connectivity. Hands-on from Air780E/HC32 debugging and multi-protocol 4G gateways through Flutter apps, IoT platforms, and customer deployments, covering protocol design, implementation, integration, reliability work, and delivery closure."
     },
     "availability": { "zh": "寻求嵌入式软件、设备通信与物联网方向机会", "en": "Seeking embedded software, device connectivity, and IoT opportunities" },
     "email": "zhoujx158@163.com",
@@ -73,10 +73,10 @@
       "company": { "zh": "北京软石智控科技有限公司", "en": "Beijing Softstone Intelligent Control Technology" },
       "role": { "zh": "嵌入式软件开发工程师", "en": "Embedded Software Engineer" },
       "period": { "zh": "2023.02 — 至今", "en": "Feb 2023 — Present" },
-      "summary": { "zh": "负责嵌入式设备、4G 网关和物联网产品的软件开发与交付，覆盖 MCU/RTOS、嵌入式 Linux、通信协议、跨端 APP、Web 平台和上位机工具。", "en": "Develop and deliver embedded devices, 4G gateways, and IoT products across MCU/RTOS, embedded Linux, communication protocols, cross-platform apps, web platforms, and desktop tools." },
+      "summary": { "zh": "围绕嵌入式控制器、4G 网关、跨端 APP 与集中控制平台持续研发，职责由底层通信和设备联调扩展到平台功能、跨端发布、客户部署与长期运维，覆盖产品从方案设计到交付迭代的完整周期。", "en": "Develop embedded controllers, 4G gateways, cross-platform apps, and centralized control systems. Responsibilities have grown from low-level connectivity and device integration into platform features, multi-platform releases, customer deployments, and long-term operations across the full product lifecycle." },
       "bullets": {
-        "zh": "- 设计并维护设备侧与平台侧 JSON 通信协议，覆盖指令下发、状态采集、文件传输与远程控制。\n- 完成 4G、USB、BLE、SPP、TCP、UDP、MQTT、RS485 等通信通道的适配、联调与问题定位。\n- 开展 Air780E、HC32、FreeRTOS、RT-Thread、LWIP、USART、DMA 的移植与调试。\n- 参与 Vue 3 + TypeScript、Go 与 Flutter 相关开发，完成 Android、iOS、HarmonyOS 多平台打包及上架。\n- 推进部署、客户现场适配、性能优化、问题闭环与技术文档沉淀。",
-        "en": "- Designed and maintained JSON protocols between devices and platforms for commands, telemetry, file transfer, and remote control.\n- Integrated, verified, and diagnosed 4G, USB, BLE, SPP, TCP, UDP, MQTT, and RS485 communication paths.\n- Performed porting and debugging work for Air780E, HC32, FreeRTOS, RT-Thread, LWIP, USART, and DMA.\n- Contributed to Vue 3 + TypeScript, Go, and Flutter development and completed multi-platform packaging and store releases for Android, iOS, and HarmonyOS.\n- Drove deployment, field adaptation, performance tuning, issue closure, and technical documentation."
+        "zh": "- 负责 Air780E、HC32 与 Linux 网关相关开发调试，完成 RTOS / LWIP、USART / DMA、FOTA 及多任务、内存问题定位。\n- 实现并维护 MQTT、TCP/UDP、RS485、USB、BLE/SPP 等链路，覆盖接入、指令/状态、文件传输、定时与远控，并处理重连、粘包、断点续传和内存泄漏。\n- 参与集中控制平台与 Flutter APP 核心功能开发，打通网关、强电设备、移动端和平台的端到端交互。\n- 完成 Android / iOS / HarmonyOS 适配发布及多个客户环境部署升级，承担问题闭环、销售培训和中英文协议/说明书沉淀。",
+        "en": "- Developed and debugged Air780E, HC32, and Linux gateway software, including RTOS/LWIP, USART/DMA, FOTA, multitasking, and memory diagnosis.\n- Implemented and stabilized MQTT, TCP/UDP, RS485, USB, and BLE/SPP paths for onboarding, commands, telemetry, files, schedules, and remote control, resolving reconnect, framing, resumable-transfer, and memory-leak issues.\n- Contributed core features to the centralized platform and Flutter app, connecting gateways, power-control devices, mobile clients, and cloud workflows.\n- Delivered Android, iOS, and HarmonyOS adaptations plus customer deployments/upgrades, issue closure, training, and bilingual protocol/manual documentation."
       },
       "order": 0
     }
@@ -87,11 +87,11 @@
       "slug": "4g-single-lamp-control-platform",
       "title": { "zh": "4G 单灯控制器与云端管控平台", "en": "4G Single-Lamp Controller & Cloud Control Platform" },
       "summary": { "zh": "面向分布式照明设备的 4G 单灯控制与云端管理系统，覆盖设备接入、MQTT 通信、远程控制、状态监测、地图分组、节目下发与运行审计。", "en": "A device-to-cloud management and control platform for distributed 4G single-lamp controllers, covering onboarding, MQTT connectivity, remote control, telemetry, map grouping, program delivery, and operational auditing." },
-      "role": { "zh": "嵌入式设备通信与物联网平台工程师", "en": "Embedded Connectivity & IoT Platform Engineer" },
+      "role": { "zh": "设备通信与物联网平台工程师", "en": "Device Connectivity & IoT Platform Engineer" },
       "period": { "zh": "2026.04 — 至今", "en": "Apr 2026 — Present" },
       "background": { "zh": "分布式单灯设备需要通过 4G 接入云端，实现单灯、分组与广播控制；同时需要统一管理设备激活、GPS 定位、运行状态和节目下发，降低现场维护与控制链路的复杂度。", "en": "Distributed lamp controllers need cloud access over 4G for single-device, group, and broadcast control, while onboarding, GPS location, telemetry, and program delivery must remain manageable through one operational path." },
-      "actions": { "zh": "- 参与设计控制器接入链路，梳理设备号申请、配置确认、dev_id / maindev_id 绑定与主题配置版本管理。\n- 定义 MQTT 上下行主题和消息模型，覆盖上线、心跳、状态上报、单灯/分组/广播控制、定时任务与回执追踪。\n- 建设项目、网关、设备、分组、地图、指令与状态的后台管理能力，支持远程运维和问题追溯。\n- 设计节目下发流程：MQTT 负责任务、进度与结果，设备通过 HTTPS 流式下载，并以 MD5、SHA-256 校验和原子替换保护本地节目。\n- 参与基于 Spring Boot、Vue 3、PostgreSQL/PostGIS、Redis、EMQX、MinIO 的云端部署与运行保障。", "en": "- Contributed to the controller onboarding flow, covering device-number requests, configuration confirmation, dev_id / maindev_id binding, and topic-configuration versioning.\n- Defined MQTT topics and message contracts for online events, heartbeats, telemetry, single-device/group/broadcast control, schedules, and traceable acknowledgements.\n- Built management workflows for projects, gateways, devices, groups, maps, commands, and device state to support remote operations and diagnosis.\n- Designed program delivery so MQTT carries tasks, progress, and results while devices stream files over HTTPS and protect local programs with MD5/SHA-256 verification and atomic replacement.\n- Contributed to cloud deployment and operations using Spring Boot, Vue 3, PostgreSQL/PostGIS, Redis, EMQX, and MinIO." },
-      "results": { "zh": "- 形成“设备激活 → 运行配置 → 控制下发 → 状态回传 → 文件下载 → 审计追踪”的完整设备管控闭环。\n- 覆盖 4G、MQTT、HTTPS、GPS 定位与授时，以及电压、电流、温度、累计电量、亮度、帧率、节目、SIM 和信号强度等状态管理。\n- 完成多角色数据隔离、权限回归、备份与健康检查，为持续交付提供运行保障。", "en": "- Established an end-to-end device-control loop from activation and runtime configuration to command delivery, telemetry, file delivery, and auditable traceability.\n- Covered 4G, MQTT, HTTPS, GPS positioning and time sync, plus management of voltage, current, temperature, accumulated energy, brightness, frame rate, program state, SIM status, and signal strength.\n- Completed role-based data isolation, permission regression, backup, and health-check practices to support continuous delivery." },
+      "actions": { "zh": "- 参与技术选型与系统架构设计，整理 JSON / MQTT 协议，并开发控制器模拟器验证注册、主题分配、指令控制和文件下发流程。\n- 开发项目、网关、设备、分组、地图、MQTT 主题、测试指令、文件与日志等后台主体功能。\n- 参与开发可运行于服务器的网关实例，完成设备列表、分组列表、状态读取以及单设备/分组/全部设备的分主题控制。\n- 设计文件下发链路：MQTT 传递任务、进度与结果，设备通过 HTTP/HTTPS 下载，并结合 MD5、SHA-256 校验与原子替换保护本地文件。\n- 参与 Spring Boot、Vue 3、PostgreSQL/PostGIS、Redis、EMQX 与 MinIO 组成的云端环境部署和运行保障。", "en": "- Contributed to technology selection and system architecture, defined JSON/MQTT contracts, and built a controller simulator for registration, topic assignment, commands, and file-delivery flows.\n- Developed the main management workflows for projects, gateways, devices, groups, maps, MQTT topics, test commands, files, and operational logs.\n- Contributed to a server-hosted gateway instance for device/group lists, state reads, and topic-scoped control of individual, grouped, or all devices.\n- Designed file delivery so MQTT carries tasks, progress, and results while devices download over HTTP/HTTPS with MD5/SHA-256 verification and atomic replacement.\n- Supported deployment and operations across Spring Boot, Vue 3, PostgreSQL/PostGIS, Redis, EMQX, and MinIO." },
+      "results": { "zh": "- 已贯通“注册申请 → 主题分配 → 控制下发 → 状态回传 → 文件下载”的主体流程，并完成单设备与多设备文件下发测试。\n- 模拟器、管理后台与网关实例的核心链路已能够协同运行，项目进入界面与交互持续优化阶段。\n- 覆盖 4G、MQTT、HTTP/HTTPS、GPS，以及电压、电流、温度、电量、亮度、帧率、节目、SIM 与信号强度等状态模型。", "en": "- Connected the main flow from registration and topic assignment through command delivery, telemetry, and file download, including single- and multi-device file-delivery tests.\n- Brought the simulator, management backend, and gateway instance into an integrated core workflow; UI and interaction refinement remain in progress.\n- Covered 4G, MQTT, HTTP/HTTPS, GPS, and state models for voltage, current, temperature, energy, brightness, frame rate, program, SIM, and signal strength." },
       "stack": ["4G", "MQTT", "HTTPS", "C", "Embedded Linux", "GPS", "Spring Boot", "Java", "Vue 3", "TypeScript", "PostgreSQL/PostGIS", "Redis", "EMQX", "MinIO", "Docker Compose", "Nginx"],
       "mediaIds": [],
       "featured": true,
@@ -104,15 +104,15 @@
       "title": { "zh": "物联网集中控制平台", "en": "Centralized IoT Control Platform" },
       "summary": { "zh": "为 Linux 嵌入式设备提供统一接入、集中控制、数据采集与文件下发的管理平台。", "en": "A management platform for unified onboarding, centralized control, telemetry, and file delivery across embedded Linux devices." },
       "role": { "zh": "设备与平台软件工程师", "en": "Device & Platform Software Engineer" },
-      "period": { "zh": "2025.05 — 至今", "en": "May 2025 — Present" },
-      "background": { "zh": "设备型号及强弱电能力持续增加，需要统一接入、控制和资料下发方式，避免现场操作链路分散。", "en": "Growing device models and power-control capabilities required unified onboarding, control, and file delivery instead of fragmented field workflows." },
-      "actions": { "zh": "- 负责 Vue 3 前端、Go 接口及设备控制相关功能开发。\n- 定义平台与下位机之间的 JSON 通信协议和数据交互流程。\n- 梳理指令、状态、文件传输链路，并配合完成强弱电模块测试。", "en": "- Built Vue 3 interfaces, Go APIs, and device-control features.\n- Defined JSON protocols and data flows between the platform and embedded clients.\n- Structured command, state, and file-transfer paths and supported power-module validation." },
-      "results": { "zh": "- 实现多类型设备的统一接入与集中控制。\n- 完成部署与环境适配，并持续维护操作说明。", "en": "- Delivered unified onboarding and centralized control for multiple device types.\n- Completed deployment and environment adaptation and maintained operating documentation." },
+      "period": { "zh": "2024.01 — 至今", "en": "Jan 2024 — Present" },
+      "background": { "zh": "平台需要统一管理网关、强弱电设备、节目与场景，并支撑多客户环境中的部署、升级和持续运营。", "en": "The platform needed unified management of gateways, power-control devices, media, and scenes while remaining deployable and maintainable across multiple customer environments." },
+      "actions": { "zh": "- 参与 Vue 3 前端、Go 接口与设备控制功能开发，完善网关搜索、批量多回路控制、强电回路、节目、权限和场景演绎等能力。\n- 建设节目上传、FTP 下载、视频切割与临时播放链路，持续解决文件丢失、切割失败和设备播放异常。\n- 开发网关信息、开关控制、心跳间隔和能耗数据接口，并实现按小时、日期、分时与分天展示的电量统计。\n- 负责测试环境与客户环境部署升级，处理数据库、SSH、磁盘、设备掉线和新设备接入等运行问题。\n- 整理 API、部署说明和中英文操作手册，配合客户部署、交付支持、销售培训与需求迭代。", "en": "- Contributed Vue 3 frontend, Go APIs, and device-control features for gateway search, batch circuit control, power circuits, media, permissions, and scene orchestration.\n- Built media upload, FTP download, video slicing, and temporary playback flows, resolving lost files, slicing failures, and device playback issues.\n- Implemented gateway, switch-control, heartbeat, and energy APIs with hourly, daily, time-of-use, and per-day energy views.\n- Deployed and upgraded test and customer environments, handling database, SSH, disk, device-offline, and new-device onboarding issues.\n- Maintained APIs, deployment guides, and bilingual operating manuals while supporting customer deployments, delivery, training, and requirements iteration." },
+      "results": { "zh": "- 完成场景演绎、能耗统计、强电回路管理和多设备控制等核心功能的开发与持续交付。\n- 支持多个客户环境完成平台部署、升级与问题闭环，并形成可复用的部署说明和使用资料。\n- 完成场景演绎中英文支持与平台科技主题重构，补充节目缩略图、视频分辨率处理等运营能力。", "en": "- Delivered and iterated core capabilities including scene orchestration, energy analytics, power-circuit management, and multi-device control.\n- Supported deployment, upgrades, and issue closure across multiple customer environments with reusable deployment and operating documentation.\n- Added bilingual scene orchestration, rebuilt the platform's technical visual theme, and added media thumbnails and video-resolution handling." },
       "stack": ["Vue 3", "TypeScript", "Go", "Linux", "JSON Protocol", "4G"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 1
+      "order": 4
     },
     {
       "id": "device-management-app",
@@ -120,15 +120,15 @@
       "title": { "zh": "跨端 4G 设备管理 APP", "en": "Cross-platform 4G Device Management App" },
       "summary": { "zh": "面向远程、本地有线和近场无线场景，提供设备管理、文件传输与远程升级能力。", "en": "Provides device management, file transfer, and remote upgrade workflows across remote, local wired, and nearby wireless scenarios." },
       "role": { "zh": "跨端应用开发工程师", "en": "Cross-platform Application Engineer" },
-      "period": { "zh": "2025.05 — 至今", "en": "May 2025 — Present" },
+      "period": { "zh": "2025.04 — 至今", "en": "Apr 2025 — Present" },
       "background": { "zh": "同一设备需要同时覆盖远程、本地有线和近场无线三类控制场景。", "en": "The same device needed consistent control across remote, local wired, and nearby wireless scenarios." },
-      "actions": { "zh": "- 开发 Flutter 核心功能与原生通信桥接。\n- 接入 4G、USB、SPP、BLE 通信及文件传输能力。\n- 与设备端完成协议联调、异常定位和版本迭代。", "en": "- Built Flutter workflows and native communication bridges.\n- Integrated 4G, USB, SPP, BLE, and file-transfer capabilities.\n- Completed protocol integration, failure diagnosis, and release iterations with embedded teams." },
-      "results": { "zh": "- 完成 Android、iOS、HarmonyOS 多平台打包发布。\n- 应用成功上架 Android 应用商店、Apple App Store 与华为应用商店。", "en": "- Shipped Android, iOS, and HarmonyOS packages.\n- Published releases to Android stores, Apple App Store, and Huawei AppGallery." },
+      "actions": { "zh": "- 接手 Flutter 工程与 Android/iOS 构建环境，适配原生 SDK、动态库和静态库，持续完成版本编译与发布。\n- 开发远程控制、USB 脱机控制、SPP/BLE 通信、文件上传下载、断点续传、一键上传和设备升级流程。\n- 优化 USB 反复插拔、传输中断重连、线程阻塞、Token 过期、页面卡顿和 UI 触摸等稳定性问题。\n- 完成中英文、多域名与自定义地址支持，并针对 Android、iOS、HarmonyOS 的权限、深色模式和系统差异进行适配。", "en": "- Took over the Flutter project and Android/iOS build environments, adapting native SDKs, dynamic libraries, and static libraries for ongoing releases.\n- Built remote control, USB offline control, SPP/BLE communication, upload/download, resumable transfer, one-click upload, and device-upgrade workflows.\n- Improved reliability across repeated USB reconnects, interrupted transfers, thread blocking, token expiry, page stalls, and touch handling.\n- Added bilingual UI, multi-domain/custom-address support, and Android, iOS, and HarmonyOS adaptation for permissions, dark mode, and platform differences." },
+      "results": { "zh": "- 完成 Android、iOS、HarmonyOS 三端适配，并参与 Android 厂商应用商店、Apple App Store 与鸿蒙应用市场发布。\n- 打通远程、USB 与蓝牙脱机三类控制路径，形成包含文件传输、设备升级和异常恢复的完整移动端流程。", "en": "- Completed Android, iOS, and HarmonyOS adaptation and contributed releases to Android vendor stores, Apple App Store, and the HarmonyOS app marketplace.\n- Connected remote, USB, and Bluetooth offline control into a complete mobile workflow with file transfer, device upgrades, and failure recovery." },
       "stack": ["Flutter", "Dart", "Java", "USB", "BLE", "SPP", "4G"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 2
+      "order": 3
     },
     {
       "id": "embedded-4g-gateway",
@@ -136,15 +136,15 @@
       "title": { "zh": "嵌入式 4G 网关", "en": "Embedded 4G Gateway" },
       "summary": { "zh": "面向上位平台与强弱电设备的多协议 Linux 网关，提供通信转发、联动控制和本地管理能力。", "en": "A multi-protocol Linux gateway for cloud platforms and power-control devices, providing communication routing, coordinated control, and local management." },
       "role": { "zh": "嵌入式软件工程师", "en": "Embedded Software Engineer" },
-      "period": { "zh": "2024.03 — 2024.10", "en": "Mar 2024 — Oct 2024" },
+      "period": { "zh": "2024.05 — 至今", "en": "May 2024 — Present" },
       "background": { "zh": "现有硬件需要演进为支持多通信通道、场景联动和本地数据管理的网关产品。", "en": "Existing hardware needed to evolve into a gateway product supporting multiple communication paths, scene coordination, and local data management." },
-      "actions": { "zh": "- 负责需求梳理、架构与协议设计、功能开发和性能优化。\n- 实现 TCP、UDP、MQTT、RS485 指令转发与设备数据读取。\n- 设计基于时间轴的多场景、多事件联动控制。", "en": "- Owned requirements analysis, architecture and protocol design, implementation, and performance tuning.\n- Implemented TCP, UDP, MQTT, and RS485 command routing and device data acquisition.\n- Designed timeline-based coordination across scenes and events." },
-      "results": { "zh": "- 完成网关核心功能与 SQLite 本地管理。\n- 支持客户平台部署、环境适配和现场问题闭环。", "en": "- Delivered gateway core functions and SQLite-backed local management.\n- Supported platform deployment, environment adaptation, and field issue closure." },
+      "actions": { "zh": "- 参与需求梳理、架构和协议设计，在 SD72 / GW01 上实现 MQTT、UDP、RS485、强电控制与设备数据采集。\n- 开发 U 盘与远程升级、进度上报、GPS 授时/定位、定时同步、操作日志、网络与域名设置以及防错误升级。\n- 设计多场景、多时间轴、多事件演绎控制，使 485、UDP、MQTT 和强电事件能够按时间联动执行。\n- 增加电表数据读取/上传、主从网关转发、集中控制接口与远程控制适配，并参与客户协议对接。\n- 排查时区、节日定时、内存泄漏、长期运行通信失效、485 丢包与系统自动重启等稳定性问题。", "en": "- Contributed requirements, architecture, and protocol design and implemented MQTT, UDP, RS485, power control, and device acquisition on SD72/GW01 hardware.\n- Built USB and remote upgrades, progress reporting, GPS time/location, schedule sync, operational logs, network/domain settings, and safeguards against invalid upgrades.\n- Designed multi-scene, multi-timeline orchestration so RS485, UDP, MQTT, and power events execute against a shared timeline.\n- Added meter acquisition/upload, primary-secondary gateway forwarding, centralized-control APIs, and remote-control adaptation while supporting customer protocol integration.\n- Diagnosed timezone, holiday schedule, memory leak, long-running communication, RS485 packet-loss, and automatic-restart issues." },
+      "results": { "zh": "- 在 SD72 / GW01 硬件上完成网关核心功能开发测试，并持续接入集中控制平台和远程 APP。\n- 支持客户网关协议与强电模块对接，完成部署适配、问题定位和长期版本迭代。", "en": "- Delivered and tested gateway core functionality on SD72/GW01 hardware with ongoing integration into the centralized platform and remote app.\n- Supported customer gateway protocols and power-module integration through deployment adaptation, diagnosis, and long-term releases." },
       "stack": ["C", "Linux", "TCP/UDP", "MQTT", "RS485", "SQLite"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 3
+      "order": 1
     },
     {
       "id": "air780e-hc32",
@@ -152,15 +152,15 @@
       "title": { "zh": "Air780E / HC32 通信与 RTOS 调试", "en": "Air780E / HC32 Connectivity & RTOS Debugging" },
       "summary": { "zh": "围绕 Cat.1 联网、MCU 与 4G 模块通信，完成网络能力验证与调试问题闭环。", "en": "Validated Cat.1 networking and MCU-to-4G-module communication, closing the loop on key debugging issues." },
       "role": { "zh": "嵌入式软件工程师", "en": "Embedded Software Engineer" },
-      "period": { "zh": "2023.04 — 2023.07", "en": "Apr 2023 — Jul 2023" },
+      "period": { "zh": "2023.03 — 2023.08", "en": "Mar 2023 — Aug 2023" },
       "background": { "zh": "项目需要验证模块网络能力、FOTA 流程，并解决 HC32 与 Air780E 的 IP 包和多任务调试问题。", "en": "The project required network and FOTA validation while resolving IP packet and multitasking issues between HC32 and Air780E." },
-      "actions": { "zh": "- 验证 TCP 带宽、HTTP/HTTPS、DNS 与 FOTA 等网络能力。\n- 开展 FreeRTOS、RT-Thread、LWIP、USART 与 DMA 的移植与调试。\n- 使用 J-Link、GDB、OpenOCD、Ozone 分析任务切换和内存分布。", "en": "- Validated TCP throughput, HTTP/HTTPS, DNS, FOTA, and related network capabilities.\n- Performed porting and debugging for FreeRTOS, RT-Thread, LWIP, USART, and DMA.\n- Used J-Link, GDB, OpenOCD, and Ozone to analyze scheduling and memory." },
-      "results": { "zh": "- 定位并解决模块间 IP 包通信问题，建立 TCP 通信链路。\n- 完成开发环境、资源使用和调试流程文档。", "en": "- Diagnosed and resolved inter-module IP packet issues and established a TCP communication path.\n- Documented the development environment, resource usage, and debugging workflow." },
+      "actions": { "zh": "- 验证 Air780E 的 TCP/UDP、HTTP/HTTPS、DNS、硬件流控与上下行传输，并配合模块厂商和运营商定位物联网卡链路问题。\n- 设计 Air780E 与 HC32 串口消息结构，在 HC32 侧整合 FreeRTOS、RT-Thread、LWIP、USART 与 DMA，完成 IP/TCP 包处理。\n- 完成 4G 模组 FOTA、电流与内存布局测试，并使用 J-Link、GDB、OpenOCD、Ozone、SysView 分析中断、任务切换和调试异常。", "en": "- Validated Air780E TCP/UDP, HTTP/HTTPS, DNS, hardware flow control, and uplink/downlink behavior while coordinating with module and carrier support on IoT-SIM issues.\n- Designed Air780E-HC32 serial messages and integrated FreeRTOS, RT-Thread, LWIP, USART, and DMA on HC32 for IP/TCP packet handling.\n- Completed FOTA, current, and memory-layout tests and used J-Link, GDB, OpenOCD, Ozone, and SysView to diagnose interrupts, task switches, and debugger failures." },
+      "results": { "zh": "- 使 4G 链路达到测试使用要求，完成 RAW API TCP 通信、FOTA 流程与多块样机验证。\n- 建立模组与 MCU 间的数据交互链路，并解决 J-Link 调试阻塞问题，沉淀开发与调试文档。", "en": "- Brought the 4G path to the required test level and completed RAW API TCP, FOTA, and multi-board validation.\n- Established module-to-MCU data exchange, resolved the J-Link debugging blocker, and documented development and debugging workflows." },
       "stack": ["C", "Air780E", "HC32", "FreeRTOS", "RT-Thread", "LWIP"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 4
+      "order": 2
     },
     {
       "id": "desktop-media-tools",
@@ -168,10 +168,10 @@
       "title": { "zh": "上位机与音视频工具", "en": "Desktop & Media Tooling" },
       "summary": { "zh": "围绕 DXF 处理、音视频同步、实时帧输出和动画控制持续优化上位机工具。", "en": "Continually improved desktop tooling for DXF processing, audio-video synchronization, real-time frame output, and animation control." },
       "role": { "zh": "上位机软件工程师", "en": "Desktop Software Engineer" },
-      "period": { "zh": "2023.06 — 2024.08", "en": "Jun 2023 — Aug 2024" },
+      "period": { "zh": "2023.08 — 2024.11", "en": "Aug 2023 — Nov 2024" },
       "background": { "zh": "旧有工具在图形处理效率、跨平台音视频同步和特定演示控制上需要持续优化。", "en": "Legacy tooling needed improvements in geometry throughput, cross-platform synchronization, and specialized visual control." },
-      "actions": { "zh": "- 使用 VB6 与 Python 优化 DXF 线段分割。\n- 基于 FFmpeg 实现指定帧跳转、实时帧输出和音频同步。\n- 使用 VBDX9 实现旋转过程中图片方向保持不变。", "en": "- Optimized DXF line segmentation with VB6 and Python.\n- Implemented frame seeking, real-time frame output, and audio sync with FFmpeg.\n- Built VBDX9 animation logic that preserves image orientation during rotation." },
-      "results": { "zh": "- 将核心音视频能力封装为支持 Linux 与 Windows 的库。\n- 改善图形处理效率与播放同步一致性。", "en": "- Packaged core media capabilities for Linux and Windows.\n- Improved geometry processing efficiency and playback consistency." },
+      "actions": { "zh": "- 使用 C# 解析 ELF 符号与来源文件，并研究通过 OpenOCD 实现下载和调试工具。\n- 基于 FFmpeg 实现音频输出、音视频同步、指定帧跳转/播放，封装 Windows DLL 并移植 FFplay 至 Linux / SD70。\n- 使用 VB6 与 Python 处理 DXF 线段分割，针对大量布线持续优化执行效率，并解决图像旋转与内存泄漏问题。", "en": "- Parsed ELF symbols and source references in C# and investigated OpenOCD-backed download and debugging tooling.\n- Implemented audio output, A/V sync, and frame seeking/playback with FFmpeg, packaged Windows DLLs, and ported FFplay to Linux/SD70.\n- Built DXF line segmentation with VB6 and Python, tuned large-layout performance, and resolved image-rotation and memory-leak issues." },
+      "results": { "zh": "- 音视频能力完成上位机集成，并解决版本适配、崩溃与播放同步问题。\n- DXF 与图像处理工具经过多轮性能和稳定性优化，可支撑实际工程文件处理。", "en": "- Integrated media capabilities into the desktop product and resolved version, crash, and playback-synchronization issues.\n- Improved DXF and image tooling through multiple performance and reliability iterations for production engineering files." },
       "stack": ["VB6", "Python", "FFmpeg", "VBDX9", "Linux", "Windows"],
       "mediaIds": [],
       "featured": true,
@@ -184,10 +184,10 @@
       "title": { "zh": "产品文档与 Dify 知识库", "en": "Product Documentation & Dify Knowledge Base" },
       "summary": { "zh": "将产品说明书、技术资料和常见问题整合为在线资料平台与智能问答入口。", "en": "An online documentation platform and intelligent Q&A entry built from manuals, technical references, and FAQs." },
       "role": { "zh": "资料平台与知识库工程师", "en": "Documentation Platform & Knowledge Base Engineer" },
-      "period": { "zh": "2024.11 — 2025.01", "en": "Nov 2024 — Jan 2025" },
+      "period": { "zh": "2024.02 — 2025.02", "en": "Feb 2024 — Feb 2025" },
       "background": { "zh": "客户、销售与售后需要更快定位产品资料，减少重复答疑。", "en": "Customers, sales, and support teams needed faster access to product knowledge with less repeated manual assistance." },
-      "actions": { "zh": "- 整合产品说明书、技术支持资料和常见问题。\n- 搭建 Dify 知识库并开发 APP 端接入。\n- 建设支持在线查看和下载的说明书平台。", "en": "- Consolidated manuals, support references, and FAQs.\n- Built a Dify knowledge base and integrated it into the mobile app.\n- Delivered an online platform for viewing and downloading documentation." },
-      "results": { "zh": "- 提供面向客户、销售和售后的智能问答与资料检索入口。\n- 提升用户自助查询能力，减少重复资料答疑工作。", "en": "- Delivered intelligent Q&A and retrieval for customers, sales, and support.\n- Improved self-service access to product information and reduced repeated documentation support work." },
+      "actions": { "zh": "- 建设产品说明书在线/离线平台，整理并上传产品资料，补充文件下载和视频播放能力。\n- 验证 DeepSeek 本地部署与 API，评估云端知识库方案，并基于华为云与 Dify 构建产品说明书知识库。\n- 引入文档处理模型优化资料解析与回答效果，并将知识库 API 接入 Flutter APP。", "en": "- Built online/offline product documentation with organized manuals, file downloads, and video playback.\n- Validated local DeepSeek deployment and APIs, assessed cloud knowledge-base options, and built the product-manual knowledge base with Huawei Cloud and Dify.\n- Added document-processing models to improve ingestion and responses and integrated the knowledge-base API into the Flutter app." },
+      "results": { "zh": "- 形成从在线说明书、资料下载到智能问答的产品知识入口，并完成移动端调用链路。\n- 为客户、销售与售后提供统一的资料检索与问答入口。", "en": "- Created a product-knowledge entry spanning online manuals, downloads, and intelligent Q&A with a completed mobile integration path.\n- Provided a unified retrieval and Q&A entry for customers, sales, and support." },
       "stack": ["Dify", "Knowledge Base", "Mobile Integration", "Documentation"],
       "mediaIds": [],
       "featured": true,
@@ -198,13 +198,13 @@
       "id": "android-device-comms",
       "slug": "android-device-communications",
       "title": { "zh": "Android 与嵌入式设备通信", "en": "Android-to-Device Communications" },
-      "summary": { "zh": "Android 原生 APP 与 Linux 设备之间的 USB、蓝牙和 4G 多通道通信。", "en": "Multi-channel native Android communication with Linux devices over USB, Bluetooth, and 4G." },
+      "summary": { "zh": "核心开发阶段完成 Android 原生 APP、Linux 设备和中继服务之间的 USB、蓝牙与 TCP 多通道通信。", "en": "During the core development phase, connected a native Android app, Linux devices, and relay services over USB, Bluetooth, and TCP." },
       "role": { "zh": "Android 应用与设备通信工程师", "en": "Android & Device Connectivity Engineer" },
-      "period": { "zh": "2023.10 — 2024.02", "en": "Oct 2023 — Feb 2024" },
-      "background": { "zh": "设备需要同时覆盖本地有线、近场无线与 4G 远程控制，并在脱机控制、文件传输和音视频播放场景中保持数据一致。", "en": "The device required local wired, nearby wireless, and remote 4G control while keeping data consistent across offline control, file transfer, and media playback." },
-      "actions": { "zh": "- 使用 Android Studio + Java 开发 USB、BLE、SPP 与 4G 通信。\n- 优化文件传输、UI 数据同步与多通道切换流程。\n- 开发脱机控制、FFmpeg 音频播放与 NFC 读卡功能。", "en": "- Built USB, BLE, SPP, and 4G communication with Android Studio and Java.\n- Improved file transfer, UI synchronization, and channel-switching flows.\n- Developed offline control, FFmpeg audio playback, and NFC card reading." },
-      "results": { "zh": "- 完成 Android APP 与 Linux 设备之间的多通道数据交互。\n- 持续维护脱机控制，并定位通信、播放与页面问题。", "en": "- Delivered multi-channel data exchange between the Android app and Linux devices.\n- Maintained offline control and diagnosed communication, playback, and UI issues." },
-      "stack": ["Android", "Java", "NDK", "USB", "BLE", "FFmpeg", "NFC"],
+      "period": { "zh": "2023.08 — 2024.02", "en": "Aug 2023 — Feb 2024" },
+      "background": { "zh": "设备需要同时覆盖本地有线、近场无线与 TCP 中继控制，并在脱机控制、文件传输和异常恢复场景中保持通信稳定。", "en": "The device needed local wired, nearby wireless, and TCP-relayed control with reliable communication across offline control, file transfer, and failure recovery." },
+      "actions": { "zh": "- 使用 Android Studio + Java 开发 USB CDC、BLE 与 SPP 通信，并实现 Android 端 TCP 中继服务。\n- 将中继代码移植为 Android SO 库，配合 Linux 端 TCP 转 USB 服务打通设备、APP 与中继链路。\n- 处理大文件传输粘包、USB 插拔、断线重连、锁屏、心跳和异常中断等稳定性问题。", "en": "- Built USB CDC, BLE, and SPP communication in Android Studio/Java and implemented an Android-side TCP relay.\n- Ported relay code into an Android shared library and connected it with a Linux TCP-to-USB service across device, app, and relay layers.\n- Stabilized large-file framing, USB hot-plug, reconnects, lock-screen behavior, heartbeats, and interrupted transfers." },
+      "results": { "zh": "- 完成 Android APP、Linux 设备与中继服务之间的多通道数据交互。\n- 解决大文件、插拔、心跳和异常恢复等关键问题，为后续脱机控制迭代建立通信基础。", "en": "- Delivered multi-channel data exchange across the Android app, Linux devices, and relay services.\n- Resolved key large-file, hot-plug, heartbeat, and recovery issues, establishing the communication base for later offline-control iterations." },
+      "stack": ["Android", "Java", "NDK", "USB CDC", "BLE", "SPP", "TCP"],
       "mediaIds": [],
       "featured": false,
       "visible": true,
@@ -216,7 +216,7 @@
       "title": { "zh": "QEMU 虚拟平台", "en": "QEMU Virtual Platforms" },
       "summary": { "zh": "在 Windows 中搭建 Cortex-A9 Linux 与 Cortex-M4 FreeRTOS 虚拟调试环境。", "en": "Cortex-A9 Linux and Cortex-M4 FreeRTOS virtual debugging environments hosted on Windows." },
       "role": { "zh": "嵌入式软件工程师", "en": "Embedded Software Engineer" },
-      "period": { "zh": "2024.03 — 2024.04", "en": "Mar 2024 — Apr 2024" },
+      "period": { "zh": "2024.04 — 2024.05", "en": "Apr 2024 — May 2024" },
       "background": { "zh": "需要在 Windows 环境中验证 ARM Linux 与 Cortex-M FreeRTOS 的启动、图形和调试能力。", "en": "ARM Linux and Cortex-M FreeRTOS startup, graphics, and debugging capabilities needed validation in a Windows-hosted environment." },
       "actions": { "zh": "- 使用 QEMU 搭建 Cortex-A9 Linux 虚拟机并配置 SSH。\n- 搭建 Cortex-M4 + FreeRTOS 环境，执行 Framebuffer 图像与任务启动测试。\n- 配置 GDB 调试并验证运行流程。", "en": "- Built a Cortex-A9 Linux virtual machine in QEMU and configured SSH.\n- Created a Cortex-M4 + FreeRTOS environment for framebuffer and task-start tests.\n- Configured GDB and validated runtime behavior." },
       "results": { "zh": "完成两类处理器虚拟平台的运行、调试与验证。", "en": "Completed runtime, debugging, and validation for two processor-family virtual platforms." },
@@ -311,6 +311,6 @@
       "order": 3
     }
   ],
-  "updatedAt": "2026-07-16T04:00:00Z"
+  "updatedAt": "2026-07-16T08:00:00Z"
 }
 

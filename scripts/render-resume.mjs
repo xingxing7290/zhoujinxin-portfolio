@@ -29,24 +29,49 @@ const bulletItems = (value) => zh(value)
   .filter(Boolean);
 const bullets = (value, limit = 99) => `<ul>${bulletItems(value).slice(0, limit).map((item) => `<li>${htmlEscape(item)}</li>`).join("")}</ul>`;
 const stack = (items, limit = 7) => `<div class="stack">${items.slice(0, limit).map((item) => `<span>${htmlEscape(item)}</span>`).join("")}</div>`;
-const featured = content.projects.filter((project) => project.featured).sort((a, b) => a.order - b.order);
-const archived = content.projects.filter((project) => !project.featured).sort((a, b) => a.order - b.order);
+const projectBySlug = new Map(content.projects.map((project) => [project.slug, project]));
+const selectProjects = (slugs) => slugs.map((slug) => {
+  const project = projectBySlug.get(slug);
+  if (!project) throw new Error(`Resume project not found: ${slug}`);
+  return project;
+});
+const featured = selectProjects([
+  "4g-single-lamp-control-platform",
+  "embedded-4g-gateway",
+  "air780e-hc32-connectivity",
+  "device-management-app",
+  "iot-control-platform",
+]);
+const archived = selectProjects([
+  "desktop-media-tools",
+  "android-device-communications",
+  "dify-knowledge-base",
+]);
 const experience = content.experiences[0];
 const education = content.education[0];
 
 const portrait = await readFile(resolve(root, "web/public/images/zhou-jinxin-executive.jpg"));
 const portraitData = `data:image/jpeg;base64,${portrait.toString("base64")}`;
 
+const resumeSkills = {
+  embedded: ["C", "Embedded Linux", "FreeRTOS", "LWIP", "Air780E", "HC32"],
+  connectivity: ["MQTT", "TCP/UDP", "RS485", "USB", "BLE", "SPP", "FOTA"],
+  platform: ["Flutter", "Go", "Vue 3", "TypeScript", "Java", "Python"],
+  delivery: ["J-Link", "GDB", "OpenOCD", "Wireshark", "Git", "Docker", "Technical Documentation"],
+};
 const skillGroups = content.skills.map((group) => `
   <section class="skill-group">
     <h3>${text(group.title)}</h3>
-    <p>${group.items.map(htmlEscape).join(" · ")}</p>
+    <p>${(resumeSkills[group.id] ?? group.items.slice(0, 7)).map(htmlEscape).join(" · ")}</p>
   </section>
 `).join("");
 
 const projectCard = (project, options = {}) => {
   const actionLimit = options.actionLimit ?? 2;
   const resultLimit = options.resultLimit ?? 1;
+  const stageResults = bulletItems(project.results)
+    .slice(0, resultLimit)
+    .map((item) => item.replace(/[。；;]+$/, ""));
   return `
     <article class="project-card ${options.compact ? "compact" : ""}">
       <div class="project-head">
@@ -55,7 +80,7 @@ const projectCard = (project, options = {}) => {
       </div>
       <p class="project-summary">${text(project.summary)}</p>
       ${bullets(project.actions, actionLimit)}
-      <div class="result"><b>成果</b>${bulletItems(project.results).slice(0, resultLimit).map(htmlEscape).join("；")}</div>
+      <div class="result"><b>阶段成果</b>${stageResults.map(htmlEscape).join("；")}。</div>
       ${stack(project.stack, options.stackLimit ?? 6)}
     </article>
   `;
@@ -126,14 +151,14 @@ const documentHTML = `<!doctype html>
     .project-head { display: flex; justify-content: space-between; gap: 4mm; align-items: flex-start; }
     .project-head h3 { margin: .7mm 0 0; font-size: 9.1pt; line-height: 1.25; }
     .project-period { color: var(--blue); font-size: 6.2pt; font-weight: 700; letter-spacing: .04em; }
-    .project-role { flex: none; padding: 1mm 1.7mm; color: var(--blue); background: var(--blue-soft); font-size: 5.9pt; border-radius: .7mm; }
-    .project-summary { margin: 1.3mm 0 0; font-size: 7.1pt; line-height: 1.45; }
+    .project-role { flex: none; padding: 1mm 1.7mm; color: var(--blue); background: var(--blue-soft); font-size: 6.3pt; border-radius: .7mm; }
+    .project-summary { margin: 1.3mm 0 0; font-size: 7.2pt; line-height: 1.45; }
     .project-card ul { margin-top: 1.4mm; }
-    .project-card li { margin-bottom: .75mm; font-size: 6.8pt; line-height: 1.4; }
-    .result { margin-top: 1.4mm; color: #3f4b55; font-size: 6.7pt; line-height: 1.38; }
+    .project-card li { margin-bottom: .75mm; font-size: 7.05pt; line-height: 1.4; }
+    .result { margin-top: 1.4mm; color: #3f4b55; font-size: 6.9pt; line-height: 1.38; }
     .result b { margin-right: 1.5mm; color: var(--blue); }
     .stack { display: flex; flex-wrap: wrap; gap: 1mm; margin-top: 1.6mm; }
-    .stack span { padding: .75mm 1.3mm; border: .2mm solid #c7d1d5; color: #52616b; font: 5.8pt/1 Arial, sans-serif; border-radius: .5mm; }
+    .stack span { padding: .75mm 1.3mm; border: .2mm solid #c7d1d5; color: #52616b; font: 6.1pt/1 Arial, sans-serif; border-radius: .5mm; }
     .page-two-header { height: 34mm; padding: 8mm 13mm 6mm; color: #f4f2ec; background: var(--dark); display: flex; justify-content: space-between; align-items: flex-end; }
     .page-two-header p { margin: 0 0 1mm; color: #91adbd; font: 700 6.5pt/1 Arial, sans-serif; letter-spacing: .2em; }
     .page-two-header h2 { margin: 0; font-size: 17pt; font-weight: 600; }
@@ -142,19 +167,21 @@ const documentHTML = `<!doctype html>
     .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8mm; }
     .project-grid .project-card { min-height: 52mm; }
     .project-grid .project-card:nth-child(1), .project-grid .project-card:nth-child(2) { border-top: 0; padding-top: 0; }
+    .project-grid .project-card:nth-child(3) { grid-column: 1 / -1; min-height: 44mm; }
     .archive-section { margin-top: 6mm; padding-top: 5mm; border-top: .5mm solid #aebbc1; }
     .archive-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5mm 6mm; }
     .archive-item { display: grid; grid-template-columns: 19mm 1fr; gap: 2.5mm; padding-bottom: 2.2mm; border-bottom: .2mm solid var(--line); }
-    .archive-item time { color: var(--blue); font-size: 5.9pt; font-weight: 650; }
-    .archive-item h3 { margin: 0; font-size: 7.1pt; }
-    .archive-item p { margin: .8mm 0 0; color: var(--muted); font-size: 6.25pt; line-height: 1.38; }
-    .archive-item .archive-result { color: #43515b; font-size: 5.95pt; }
+    .archive-item:nth-child(3) { grid-column: 1 / -1; }
+    .archive-item time { color: var(--blue); font-size: 6.2pt; font-weight: 650; }
+    .archive-item h3 { margin: 0; font-size: 7.4pt; }
+    .archive-item p { margin: .8mm 0 0; color: var(--muted); font-size: 6.5pt; line-height: 1.38; }
+    .archive-item .archive-result { color: #43515b; font-size: 6.3pt; }
     .archive-item .archive-result b { margin-right: 1mm; color: var(--blue); }
-    .archive-item small { display: block; margin-top: .7mm; color: #7b858d; font-size: 5.35pt; }
+    .archive-item small { display: block; margin-top: .7mm; color: #7b858d; font-size: 6.1pt; }
     .closing { display: grid; grid-template-columns: 1.2fr .8fr; gap: 8mm; margin-top: 6mm; }
     .closing article { padding: 4mm 4.5mm; background: #e8eceb; border-left: 1mm solid var(--blue); }
     .closing h3 { margin: 0 0 1.5mm; font-size: 7.5pt; }
-    .closing p { margin: 0; color: #4f5b63; font-size: 6.4pt; line-height: 1.52; }
+    .closing p { margin: 0; color: #4f5b63; font-size: 6.6pt; line-height: 1.52; }
     .closing .value { background: #1d2b36; border-left-color: #8aafc3; color: white; }
     .closing .value h3 { color: #a9c5d3; }
     .closing .value p { color: #d2dadd; }
@@ -207,8 +234,8 @@ const documentHTML = `<!doctype html>
           ${bullets(experience.bullets, 4)}
         </section>
         <section class="selected">
-          <p class="section-label">代表项目 · 已交付</p>
-          ${featured.slice(0, 3).map((project) => projectCard(project, { actionLimit: 2, resultLimit: 1, stackLimit: 6 })).join("")}
+          <p class="section-label">代表项目 · 核心</p>
+          ${featured.slice(0, 2).map((project) => projectCard(project, { actionLimit: 3, resultLimit: 2, stackLimit: 6 })).join("")}
         </section>
       </main>
     </div>
@@ -223,13 +250,13 @@ const documentHTML = `<!doctype html>
     </header>
     <main class="page-two-body">
       <section>
-        <p class="section-label">代表项目 · 补充</p>
+        <p class="section-label">核心项目 · 续</p>
         <div class="project-grid">
-          ${featured.slice(3).map((project) => projectCard(project, { actionLimit: 2, resultLimit: 1, stackLimit: 6 })).join("")}
+          ${featured.slice(2).map((project) => projectCard(project, { actionLimit: 2, resultLimit: 1, stackLimit: 5 })).join("")}
         </div>
       </section>
       <section class="archive-section">
-        <p class="section-label">更多工程实践</p>
+        <p class="section-label">相关工程实践</p>
         <div class="archive-grid">
           ${archived.map((project) => `
             <article class="archive-item">
