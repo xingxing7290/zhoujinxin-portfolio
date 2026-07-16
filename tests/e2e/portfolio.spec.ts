@@ -7,16 +7,17 @@ test("Chinese home exposes content before motion code", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "精选项目" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "让设备通信从“能连上”，走向“可验证、可交付”。" })).toBeVisible();
   await expect(page.locator("body")).not.toContainText(/1[3-9][0-9]{9}/);
-  await expect(page.getByRole("link", { name: /物联网集中控制平台/ })).toBeVisible();
+  await expect(page.getByRole("link", { name: /4G 单灯控制器与云端管控平台/ })).toBeVisible();
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", "http://127.0.0.1:8098/");
 });
 
 test("English route and project detail are localized", async ({ page }) => {
   await page.goto("/en");
   await expect(page.getByRole("heading", { name: "Selected projects" })).toBeVisible();
-  await page.locator('a[href="/en/projects/iot-control-platform"]').click();
-  await expect(page).toHaveURL(/\/en\/projects\/iot-control-platform/);
+  await page.locator('a[href="/en/projects/4g-single-lamp-control-platform"]').click();
+  await expect(page).toHaveURL(/\/en\/projects\/4g-single-lamp-control-platform/);
   await expect(page.getByRole("heading", { name: "Background" })).toBeVisible();
+  await expect(page.locator(".case-body")).toContainText("Distributed lamp controllers");
   await expect(page.locator('meta[property="og:type"]')).toHaveAttribute("content", "article");
   const structuredData = await page.locator('script[type="application/ld+json"]').textContent();
   expect(structuredData).toContain("CreativeWork");

@@ -83,6 +83,22 @@
   ],
   "projects": [
     {
+      "id": "4g-single-lamp-control-platform",
+      "slug": "4g-single-lamp-control-platform",
+      "title": { "zh": "4G 单灯控制器与云端管控平台", "en": "4G Single-Lamp Controller & Cloud Control Platform" },
+      "summary": { "zh": "面向分布式照明设备的 4G 单灯控制与云端管理系统，覆盖设备接入、MQTT 通信、远程控制、状态监测、地图分组、节目下发与运行审计。", "en": "A device-to-cloud management and control platform for distributed 4G single-lamp controllers, covering onboarding, MQTT connectivity, remote control, telemetry, map grouping, program delivery, and operational auditing." },
+      "role": { "zh": "嵌入式设备通信与物联网平台工程师", "en": "Embedded Connectivity & IoT Platform Engineer" },
+      "period": { "zh": "2026.04 — 至今", "en": "Apr 2026 — Present" },
+      "background": { "zh": "分布式单灯设备需要通过 4G 接入云端，实现单灯、分组与广播控制；同时需要统一管理设备激活、GPS 定位、运行状态和节目下发，降低现场维护与控制链路的复杂度。", "en": "Distributed lamp controllers need cloud access over 4G for single-device, group, and broadcast control, while onboarding, GPS location, telemetry, and program delivery must remain manageable through one operational path." },
+      "actions": { "zh": "- 参与设计控制器接入链路，梳理设备号申请、配置确认、dev_id / maindev_id 绑定与主题配置版本管理。\n- 定义 MQTT 上下行主题和消息模型，覆盖上线、心跳、状态上报、单灯/分组/广播控制、定时任务与回执追踪。\n- 建设项目、网关、设备、分组、地图、指令与状态的后台管理能力，支持远程运维和问题追溯。\n- 设计节目下发流程：MQTT 负责任务、进度与结果，设备通过 HTTPS 流式下载，并以 MD5、SHA-256 校验和原子替换保护本地节目。\n- 参与基于 Spring Boot、Vue 3、PostgreSQL/PostGIS、Redis、EMQX、MinIO 的云端部署与运行保障。", "en": "- Contributed to the controller onboarding flow, covering device-number requests, configuration confirmation, dev_id / maindev_id binding, and topic-configuration versioning.\n- Defined MQTT topics and message contracts for online events, heartbeats, telemetry, single-device/group/broadcast control, schedules, and traceable acknowledgements.\n- Built management workflows for projects, gateways, devices, groups, maps, commands, and device state to support remote operations and diagnosis.\n- Designed program delivery so MQTT carries tasks, progress, and results while devices stream files over HTTPS and protect local programs with MD5/SHA-256 verification and atomic replacement.\n- Contributed to cloud deployment and operations using Spring Boot, Vue 3, PostgreSQL/PostGIS, Redis, EMQX, and MinIO." },
+      "results": { "zh": "- 形成“设备激活 → 运行配置 → 控制下发 → 状态回传 → 文件下载 → 审计追踪”的完整设备管控闭环。\n- 覆盖 4G、MQTT、HTTPS、GPS 定位与授时，以及电压、电流、温度、累计电量、亮度、帧率、节目、SIM 和信号强度等状态管理。\n- 完成多角色数据隔离、权限回归、备份与健康检查，为持续交付提供运行保障。", "en": "- Established an end-to-end device-control loop from activation and runtime configuration to command delivery, telemetry, file delivery, and auditable traceability.\n- Covered 4G, MQTT, HTTPS, GPS positioning and time sync, plus management of voltage, current, temperature, accumulated energy, brightness, frame rate, program state, SIM status, and signal strength.\n- Completed role-based data isolation, permission regression, backup, and health-check practices to support continuous delivery." },
+      "stack": ["4G", "MQTT", "HTTPS", "C", "Embedded Linux", "GPS", "Spring Boot", "Java", "Vue 3", "TypeScript", "PostgreSQL/PostGIS", "Redis", "EMQX", "MinIO", "Docker Compose", "Nginx"],
+      "mediaIds": [],
+      "featured": true,
+      "visible": true,
+      "order": 0
+    },
+    {
       "id": "iot-control-platform",
       "slug": "iot-control-platform",
       "title": { "zh": "物联网集中控制平台", "en": "Centralized IoT Control Platform" },
@@ -96,7 +112,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 0
+      "order": 1
     },
     {
       "id": "device-management-app",
@@ -112,7 +128,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 1
+      "order": 2
     },
     {
       "id": "embedded-4g-gateway",
@@ -128,7 +144,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 2
+      "order": 3
     },
     {
       "id": "air780e-hc32",
@@ -144,7 +160,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 3
+      "order": 4
     },
     {
       "id": "desktop-media-tools",
@@ -160,7 +176,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 4
+      "order": 5
     },
     {
       "id": "dify-knowledge-base",
@@ -176,7 +192,7 @@
       "mediaIds": [],
       "featured": true,
       "visible": true,
-      "order": 5
+      "order": 6
     },
     {
       "id": "android-device-comms",
@@ -192,7 +208,7 @@
       "mediaIds": [],
       "featured": false,
       "visible": true,
-      "order": 6
+      "order": 7
     },
     {
       "id": "qemu-platform",
@@ -208,7 +224,7 @@
       "mediaIds": [],
       "featured": false,
       "visible": true,
-      "order": 7
+      "order": 8
     },
     {
       "id": "lora-ranch",
@@ -224,7 +240,7 @@
       "mediaIds": [],
       "featured": false,
       "visible": true,
-      "order": 8
+      "order": 9
     },
     {
       "id": "winter-olympics-test",
@@ -240,7 +256,7 @@
       "mediaIds": [],
       "featured": false,
       "visible": true,
-      "order": 9
+      "order": 10
     },
     {
       "id": "smart-warehouse",
@@ -256,7 +272,7 @@
       "mediaIds": [],
       "featured": false,
       "visible": true,
-      "order": 10
+      "order": 11
     }
   ],
   "education": [
@@ -295,6 +311,6 @@
       "order": 3
     }
   ],
-  "updatedAt": "2026-07-15T04:00:00Z"
+  "updatedAt": "2026-07-16T04:00:00Z"
 }
 

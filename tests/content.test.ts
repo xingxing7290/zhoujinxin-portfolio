@@ -11,9 +11,9 @@ describe("public resume content", () => {
     expect(content.profile.summary.zh).toContain("交付闭环");
   });
 
-  it("contains the six selected systems and an English variant", () => {
+  it("contains the seven selected systems and an English variant", () => {
     const featured = content.projects.filter((project: { featured: boolean }) => project.featured);
-    expect(featured).toHaveLength(6);
+    expect(featured).toHaveLength(7);
     expect(featured.every((project: { title: { zh: string; en: string } }) => project.title.zh && project.title.en)).toBe(true);
   });
 
