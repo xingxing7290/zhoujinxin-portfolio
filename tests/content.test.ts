@@ -17,7 +17,7 @@ describe("public resume content", () => {
     expect(featured.every((project: { title: { zh: string; en: string } }) => project.title.zh && project.title.en)).toBe(true);
   });
 
-  it("preserves the verified timeline and delivery scope from monthly reports", () => {
+  it("locks the timeline and delivery scope verified manually against monthly reports", () => {
     const experience = content.experiences[0];
     expect(experience.summary.zh).toContain("客户部署");
     expect(experience.bullets.zh).toContain("Air780E");
