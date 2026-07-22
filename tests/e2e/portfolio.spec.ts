@@ -27,7 +27,7 @@ test("archived work remains a complete case study", async ({ page }) => {
   await page.goto("/projects/qemu-virtual-platform");
   await expect(page.getByRole("heading", { name: "项目背景" })).toBeVisible();
   await expect(page.locator(".case-body")).toContainText("Cortex-A9 Linux");
-  await expect(page.locator(".case-body")).toContainText("完成两类处理器虚拟平台的运行、调试与验证");
+  await expect(page.locator(".case-body")).toContainText("完成两类处理器虚拟平台的构建与运行验证");
 });
 
 test("keyboard navigation and reduced-motion fallback remain usable", async ({ page }) => {

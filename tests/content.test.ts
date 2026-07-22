@@ -8,7 +8,7 @@ describe("public resume content", () => {
   it("leads with the embedded connectivity position", () => {
     expect(content.profile.title.zh).toBe("嵌入式软件工程师｜C / Linux / 设备通信");
     expect(content.profile.summary.zh).toContain("MCU/RTOS");
-    expect(content.profile.summary.zh).toContain("交付闭环");
+    expect(content.profile.summary.zh).toContain("稳定性闭环");
   });
 
   it("contains the seven selected systems and an English variant", () => {
@@ -19,8 +19,8 @@ describe("public resume content", () => {
 
   it("locks the timeline and delivery scope verified manually against monthly reports", () => {
     const experience = content.experiences[0];
-    expect(experience.summary.zh).toContain("客户部署");
-    expect(experience.bullets.zh).toContain("Air780E");
+    expect(experience.summary.zh).toContain("现场交付");
+    expect(experience.bullets.zh).toContain("Cat.1");
     expect(experience.bullets.zh).toContain("HarmonyOS");
 
     const projects = new Map<string, any>(content.projects.map((project: any) => [project.slug, project]));
@@ -51,5 +51,13 @@ describe("public resume content", () => {
   it("does not publish a full mobile number in source content", () => {
     expect(JSON.stringify(content)).not.toMatch(/1[3-9][0-9]{9}/);
     expect(content.profile.email).toBe("zhoujx158@163.com");
+  });
+
+  it("keeps private implementation references out of public resume content", () => {
+    const serialized = JSON.stringify(content);
+    expect(serialized).not.toMatch(/gitlab\.ssg-cloud\.com|E:\\\\0000progect/i);
+    expect(serialized).not.toMatch(/github\.com\/xingxing7290\/(?:GW01|iot_flutter|iot_android_shiqi)/i);
+    expect(serialized).not.toMatch(/\b(?:\d{1,3}\.){3}\d{1,3}\b/);
+    expect(serialized).not.toMatch(/SD72|GW01/);
   });
 });
