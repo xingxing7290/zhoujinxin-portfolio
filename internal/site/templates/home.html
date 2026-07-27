@@ -49,7 +49,7 @@
         <p class="hero-summary reveal">{{tr .Content.Profile.Summary .Locale}}</p>
         <div class="hero-actions reveal">
           <a class="button magnetic" href="#projects">{{if eq .Locale "en"}}Explore selected work{{else}}查看精选项目{{end}}</a>
-          <a class="text-link" href="/resume.pdf">{{if eq .Locale "en"}}Download résumé{{else}}下载完整简历{{end}} <span aria-hidden="true">↗</span></a>
+          <a class="text-link" href="/resume.pdf">{{if eq .Locale "en"}}Download IoT full-stack résumé{{else}}下载物联网全栈简历{{end}} <span aria-hidden="true">↗</span></a>
         </div>
       </div>
       <picture class="hero-portrait reveal">
@@ -71,15 +71,15 @@
 
     <section class="statement section-shell reveal" aria-label="{{if eq .Locale "en"}}Positioning{{else}}职业定位{{end}}">
       <p class="section-index">01 / POSITIONING</p>
-      <h2>{{if eq .Locale "en"}}I take device connectivity from “it works” to “it can be verified and shipped.”{{else}}让设备通信从“能连上”，走向“可验证、可交付”。{{end}}</h2>
-      <p>{{if eq .Locale "en"}}From MCU and protocol paths to 4G gateways, apps, and IoT platforms, I work across boundaries to make integration, diagnosis, field adaptation, and delivery traceable.{{else}}从 MCU 与协议链路，到 4G 网关、跨端 APP 和物联网平台；跨越软硬件边界，让联调、定位、现场适配与交付都有清晰闭环。{{end}}</p>
+      <h2>{{if eq .Locale "en"}}Connect device, edge, cloud, and AI into systems that can be verified and shipped.{{else}}贯通设备、边缘、云与 AI，让系统可验证、可交付。{{end}}</h2>
+      <p>{{if eq .Locale "en"}}From MCU and protocol paths to gateways, backend services, web platforms, and cross-platform apps, I own integration and delivery while using AI assistance under architecture review and test validation.{{else}}从 MCU 与协议链路，到网关、服务端、Web 平台和跨端 APP；在架构审查与测试验证下引入 AI 协作，让联调、定位、部署和迭代形成闭环。{{end}}</p>
     </section>
 
     <section id="projects" class="projects section-shell">
       <div class="section-heading reveal">
         <p class="section-index">02 / SELECTED SYSTEMS</p>
         <h2>{{if eq .Locale "en"}}Selected projects{{else}}精选项目{{end}}</h2>
-        <p>{{if eq .Locale "en"}}Six representative systems spanning device, network, application, and platform delivery.{{else}}六个覆盖设备、网络、应用与平台交付的代表项目。{{end}}</p>
+        <p>{{if eq .Locale "en"}}Representative systems spanning device, network, application, platform, and AI-enabled delivery.{{else}}覆盖设备、网络、应用、平台与 AI 应用交付的代表项目。{{end}}</p>
       </div>
       <div class="project-list">
         {{range $i, $project := .Content.FeaturedProjects}}
@@ -146,12 +146,12 @@
     <section id="contact" class="contact section-shell reveal">
       <p class="section-index">06 / CONTACT</p>
       <p>{{tr .Content.Profile.Availability .Locale}}</p>
-      <h2>{{if eq .Locale "en"}}Let’s build the path<br>from chip to cloud.{{else}}让我们一起完成<br>从芯片到云端。{{end}}</h2>
+      <h2>{{if eq .Locale "en"}}Let’s build reliable systems<br>from device to cloud.{{else}}让我们一起构建<br>从设备到云端的可靠系统。{{end}}</h2>
       <a class="contact-email magnetic" href="mailto:{{.Content.Profile.Email}}">{{.Content.Profile.Email}} <span aria-hidden="true">↗</span></a>
       <p class="contact-location">{{tr .Content.Profile.Location .Locale}}</p>
     </section>
   </main>
-  <footer><span>© {{.Year}} {{tr .Content.Profile.Name .Locale}}</span><span>EMBEDDED · CONNECTED · DELIVERED</span><a href="#main">{{if eq .Locale "en"}}Back to top{{else}}返回顶部{{end}} ↑</a></footer>
+  <footer><span>© {{.Year}} {{tr .Content.Profile.Name .Locale}}</span><span>DEVICE · EDGE · CLOUD · AI</span><a href="#main">{{if eq .Locale "en"}}Back to top{{else}}返回顶部{{end}} ↑</a></footer>
   <script type="module" src="{{asset "assets/public.js"}}"></script>
 </body>
 </html>

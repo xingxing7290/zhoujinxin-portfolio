@@ -61,13 +61,28 @@ func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 	}
 	locale := localeFromPath(r.URL.Path)
 	structured, _ := json.Marshal(map[string]any{
-		"@context":   "https://schema.org",
-		"@type":      "Person",
-		"name":       content.Profile.Name.Value(locale),
-		"jobTitle":   content.Profile.Title.Value(locale),
-		"email":      "mailto:" + content.Profile.Email,
-		"url":        s.config.BaseURL + localizedHome(locale),
-		"knowsAbout": []string{"Embedded systems", "4G gateway", "IoT", "C/C++", "Flutter", "Go"},
+		"@context": "https://schema.org",
+		"@type":    "Person",
+		"name":     content.Profile.Name.Value(locale),
+		"jobTitle": content.Profile.Title.Value(locale),
+		"email":    "mailto:" + content.Profile.Email,
+		"url":      s.config.BaseURL + localizedHome(locale),
+		"knowsAbout": []string{
+			"Internet of Things",
+			"Embedded systems",
+			"4G gateways",
+			"Device connectivity",
+			"C/C++",
+			"Go",
+			"Java and Spring Boot",
+			"C# and .NET",
+			"Vue and TypeScript",
+			"Flutter",
+			"AI-assisted software development",
+			"DeepSeek",
+			"Dify",
+			"Retrieval-augmented generation",
+		},
 	})
 	data := pageData{Locale: locale, BaseURL: s.config.BaseURL, Content: pageContent{content}, Year: time.Now().Year(), StructuredData: templateJS(structured)}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")

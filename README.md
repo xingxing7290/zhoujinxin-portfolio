@@ -1,4 +1,4 @@
-# 周金鑫 · 嵌入式软件工程师个人网站
+# 周金鑫 · 物联网全栈工程师个人网站
 
 中英双语的个人简历与项目案例网站。公开页面以服务端渲染保证内容、SEO 和无障碍基础，桌面端在能力允许时按需加载 Three.js/GSAP“芯片到云端”滚动叙事；独立管理后台负责结构化内容、媒体、简历 PDF、发布快照和版本恢复。
 
@@ -47,16 +47,18 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-## 生成可编辑简历 PDF
+## 正式简历版本
 
-PDF 与网站共用 `internal/seed/content.json`，修改结构化内容后可重新生成两页 A4 简历。手机号只在生成时通过环境变量注入，生成的 HTML 预览和 PDF 默认写入被 Git 忽略的 `data/generated/`：
+仓库维护嵌入式、物联网全栈和 AI 原生全栈三份正式投递版，公开内容源位于 `resume/`。网站采用物联网全栈定位，线上 `/resume.pdf` 默认发布物联网全栈版；三版共用同一组可验证事实，但按目标岗位调整技能和项目顺序。
 
 ```powershell
+python -m pip install -r requirements-resume.txt
 $env:RESUME_PHONE='<私人手机号>'
-npm run resume:pdf
+python scripts/generate-resume-docx.py
+Remove-Item Env:RESUME_PHONE
 ```
 
-可在浏览器中编辑/打印 `data/generated/zhou-jinxin-resume.html`，也可以在管理后台直接替换线上 PDF。详细流程见 [docs/CONTENT.md](docs/CONTENT.md)。
+可编辑 DOCX 默认写入被 Git 忽略的 `data/generated/resumes/`，经 Microsoft Word 导出为 PDF；本项目不调用 WPS。`npm run resume:snapshot-pdf` 可从 `internal/seed/content.json` 生成网站内容快照版 HTML/PDF，但不属于三份正式投递版。详细流程见 [resume/README.md](resume/README.md) 与 [docs/CONTENT.md](docs/CONTENT.md)。
 
 ## 内容与隐私
 

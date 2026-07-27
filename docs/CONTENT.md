@@ -33,17 +33,28 @@ APP_IMAGE="$(cat .current-image)" docker compose run --rm --no-deps \
 
 执行前应先运行 `portfolio-backup`，执行后检查中英文首页、精选项目与归档项目详情。
 
-## 生成两页简历 PDF
+## 维护三份正式简历
 
-网站内容和 PDF 共用同一份结构化数据，避免两处履历长期漂移。生成器会同时输出 PDF 与可直接在浏览器查看、另存或二次排版的 HTML；文件默认进入被 Git 忽略的 `data/generated/`。
+`resume/` 维护嵌入式、物联网全栈和 AI 原生全栈三份不含手机号的公开 Markdown 内容源。`internal/seed/content.json` 使用物联网全栈定位作为网站综合版本；更新事实时应同步检查三份简历和网站结构化内容，岗位关键词与项目排序可以不同。
+
+以下命令生成三份可编辑 DOCX，文件默认进入被 Git 忽略的 `data/generated/resumes/`：
+
+```powershell
+python -m pip install -r requirements-resume.txt
+$env:RESUME_PHONE='<私人手机号>'
+python scripts/generate-resume-docx.py
+Remove-Item Env:RESUME_PHONE
+```
+
+手机号是必填的运行时变量，生成器不会打印它，也不会把它写入源码。使用 Microsoft Word 导出两页 A4 PDF；自动生成与检查流程不调用 WPS。网站 `/resume.pdf` 默认发布物联网全栈版，另外两版用于定向投递。确认页数、文字和版式后，通过后台“简历 PDF”上传，或按 `docs/OPERATIONS.md` 的私有导入流程替换线上文件。
+
+如需从网站结构化内容生成浏览器可编辑的 HTML/PDF 快照，可运行：
 
 ```powershell
 $env:RESUME_PHONE='<私人手机号>'
 $env:RESUME_WEBSITE='https://xstar.cc.cd'
-npm run resume:pdf
+npm run resume:snapshot-pdf
 ```
-
-手机号是必填的运行时变量，生成器不会打印它，也不会把它写入源码。确认页数、文字和版式后，通过后台“简历 PDF”上传，或按 `docs/OPERATIONS.md` 的私有导入流程替换线上文件。
 
 ## 上传限制
 

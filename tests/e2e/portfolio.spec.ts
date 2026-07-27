@@ -5,7 +5,8 @@ test("Chinese home exposes content before motion code", async ({ page }) => {
   await expect(page).toHaveTitle(/周金鑫/);
   await expect(page.getByRole("heading", { name: "周金鑫", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "精选项目" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "让设备通信从“能连上”，走向“可验证、可交付”。" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "贯通设备、边缘、云与 AI，让系统可验证、可交付。" })).toBeVisible();
+  await expect(page.getByRole("link", { name: /下载物联网全栈简历/ })).toHaveAttribute("href", "/resume.pdf");
   await expect(page.locator("body")).not.toContainText(/1[3-9][0-9]{9}/);
   await expect(page.getByRole("link", { name: /4G 单灯控制器与云端管控平台/ })).toBeVisible();
   await expect(page.locator('meta[property="og:url"]')).toHaveAttribute("content", "http://127.0.0.1:8098/");

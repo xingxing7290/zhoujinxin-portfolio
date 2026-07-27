@@ -6,11 +6,14 @@
 - `周金鑫-物联网全栈工程师.md`：物联网全栈、设备云平台、设备接入与端—边—云岗位。
 - `周金鑫-AI原生全栈工程师.md`：AI 原生全栈、Vibe Coding、AI 应用/RAG 与物联网交叉岗位。
 
+这三份文件共同构成正式简历 V1。个人网站采用“物联网全栈工程师”作为综合定位，线上 `/resume.pdf` 默认使用物联网全栈版；另外两版作为定向投递版本保留。
+
 ## 生成可编辑文件
 
 生成器不会在源码中保存手机号，必须在运行时通过环境变量注入：
 
 ```powershell
+python -m pip install -r requirements-resume.txt
 $env:RESUME_PHONE='<私人手机号>'
 python scripts/generate-resume-docx.py
 Remove-Item Env:RESUME_PHONE
