@@ -1,13 +1,15 @@
 {
   "name": "zhoujinxin-portfolio",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --config web/vite.config.ts",
     "build": "npm run images && vite build --config web/vite.config.ts",
     "images": "node web/scripts/optimize-images.mjs",
-    "resume:pdf": "node scripts/render-resume.mjs",
+    "resume:docx": "python scripts/generate-resume-docx.py",
+    "resume:snapshot-pdf": "node scripts/render-resume.mjs",
+    "resume:pdf": "npm run resume:snapshot-pdf",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --config vitest.config.ts",
     "test:e2e": "playwright test",

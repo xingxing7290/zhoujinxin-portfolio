@@ -2,15 +2,15 @@
   "profile": {
     "name": { "zh": "周金鑫", "en": "Jinxin Zhou" },
     "title": {
-      "zh": "嵌入式软件工程师｜C / Linux / 设备通信",
-      "en": "Embedded Software Engineer · C / Linux / Device Connectivity"
+      "zh": "物联网全栈工程师｜端 · 边 · 云 · AI",
+      "en": "IoT Full-Stack Engineer · Device · Edge · Cloud · AI"
     },
     "eyebrow": { "zh": "从芯片到云端", "en": "From silicon to cloud" },
     "summary": {
-      "zh": "3 年以上嵌入式与物联网研发经验，主攻 C、Linux、MCU/RTOS 与设备通信。具备从 Cat.1 模组和 MCU 网络栈调试，到多协议 4G 网关、跨端设备 APP、集中控制平台及现场交付的端到端实践；擅长将复杂协议与异常场景收敛为可维护链路，并通过日志、抓包和硬件调试完成稳定性闭环。",
-      "en": "Embedded and IoT engineer with 3+ years of experience focused on C, Linux, MCU/RTOS, and device connectivity. End-to-end experience spans Cat.1 and MCU network-stack debugging, multi-protocol 4G gateways, cross-platform device apps, centralized control platforms, and field delivery. Strong at turning complex protocols and failure modes into maintainable paths, then closing reliability issues through logs, packet analysis, and hardware debugging."
+      "zh": "3 年以上嵌入式与物联网研发经验，具备从 MCU、嵌入式 Linux、4G 网关和多协议设备接入，到服务端、Web 管理平台、Flutter APP 与 Linux 部署的端到端实践。能够承担需求梳理、方案设计、开发联调与交付；既能独立接手既有系统，也能在保证架构判断、代码审查和验证质量的前提下引入 AI 协作提升交付效率。",
+      "en": "IoT engineer with 3+ years of end-to-end experience spanning MCUs, embedded Linux, 4G gateways, multi-protocol device access, backend services, web platforms, Flutter apps, and Linux deployment. Comfortable owning requirements, architecture, implementation, integration, and delivery, including taking over existing systems and using AI-assisted development while retaining human control over architecture, code review, and validation."
     },
-    "availability": { "zh": "寻求嵌入式软件、设备通信与物联网方向机会", "en": "Seeking embedded software, device connectivity, and IoT opportunities" },
+    "availability": { "zh": "寻求物联网、全栈与 AI 应用开发方向机会", "en": "Seeking IoT, full-stack, and AI application engineering opportunities" },
     "email": "resume@example.com",
     "location": { "zh": "中国 · 北京", "en": "Beijing, China" },
     "portraitUrl": "/static/images/zhou-jinxin-executive.avif"
@@ -36,9 +36,9 @@
     },
     {
       "index": 3,
-      "kicker": { "zh": "04 · 平台", "en": "04 · Platform" },
-      "title": { "zh": "把现场方案沉淀为可运营系统", "en": "Turn field solutions into operable systems" },
-      "body": { "zh": "通过 Go、Vue 3、数据存储与部署文档，将设备能力沉淀为可维护、可持续迭代的平台。", "en": "Use Go, Vue 3, data storage, and deployment documentation to turn device capabilities into maintainable platforms." }
+      "kicker": { "zh": "04 · 平台与 AI", "en": "04 · Platform & AI" },
+      "title": { "zh": "让端到云系统持续进化", "en": "Keep device-to-cloud systems evolving" },
+      "body": { "zh": "通过服务端、Web 平台、数据存储与部署体系承接设备能力，并在人工审查与验证下引入 AI 协作加速迭代。", "en": "Carry device capabilities into backend services, web platforms, data systems, and deployment workflows, using AI assistance under human review and validation." }
     }
   ],
   "skills": [
@@ -57,14 +57,20 @@
     {
       "id": "platform",
       "title": { "zh": "应用与平台工程", "en": "Application & Platform Engineering" },
-      "items": ["Go", "Vue 3", "TypeScript", "Flutter", "Dart", "Java", "Python", "SQLite", "MySQL"],
+      "items": ["Go", "Java", "Spring Boot", "C#/.NET 8", "Vue 3", "TypeScript", "Flutter", "Dart", "SQLite", "MySQL", "PostgreSQL/PostGIS", "Redis"],
       "order": 2
+    },
+    {
+      "id": "ai-native",
+      "title": { "zh": "AI 原生研发与知识应用", "en": "AI-Native Delivery & Knowledge Apps" },
+      "items": ["Codex", "AI-assisted Development", "DeepSeek", "Dify", "RAG", "LLM API", "Code Review", "Test Validation"],
+      "order": 3
     },
     {
       "id": "delivery",
       "title": { "zh": "调试、测试与交付", "en": "Debugging, Test & Delivery" },
       "items": ["J-Link", "GDB", "OpenOCD", "Ozone", "Wireshark", "QEMU", "FFmpeg", "Oscilloscope", "Logic Analyzer", "Multimeter", "Git", "Docker", "Technical Documentation"],
-      "order": 3
+      "order": 4
     }
   ],
   "experiences": [
@@ -73,10 +79,10 @@
       "company": { "zh": "北京软石智控科技有限公司", "en": "Beijing Softstone Intelligent Control Technology" },
       "role": { "zh": "嵌入式软件开发工程师", "en": "Embedded Software Engineer" },
       "period": { "zh": "2023.02 — 至今", "en": "Feb 2023 — Present" },
-      "summary": { "zh": "围绕嵌入式控制器、4G 网关、设备管理 APP 与集中控制平台持续研发，职责从底层通信和设备联调扩展到系统设计、跨端发布、环境部署与长期运维，覆盖需求澄清、开发验证、现场交付和版本迭代。", "en": "Develop embedded controllers, 4G gateways, device-management apps, and centralized control platforms. Responsibilities have grown from low-level connectivity and device integration into system design, cross-platform releases, environment deployment, and long-term operations across requirements, implementation, field delivery, and release iteration." },
+      "summary": { "zh": "围绕 4G 控制器、嵌入式 Linux 网关、跨端设备 APP 与集中控制平台持续研发，职责从底层通信扩展到服务端、Web 平台、跨端发布、环境部署与长期运维，并将可审查、可验证的 AI 协作引入新项目与既有系统迭代。", "en": "Develop 4G controllers, embedded Linux gateways, cross-platform device apps, and centralized control platforms. Responsibilities span low-level connectivity, backend and web development, cross-platform releases, deployment, and long-term operations, with reviewable and testable AI-assisted workflows applied to both greenfield and inherited systems." },
       "bullets": {
-        "zh": "- 负责 Cat.1 模组、HC32 MCU 与嵌入式 Linux 网关开发调试，覆盖 RTOS / LWIP、USART / DMA、FOTA、网络接入和多任务问题定位。\n- 设计并维护 MQTT、TCP/UDP、RS485、USB、BLE/SPP 等通信链路，承载设备接入、指令/状态、文件传输、定时与远控，并持续治理重连、粘包、断点续传、内存泄漏和长期运行异常。\n- 参与 4G 网关、Flutter APP 与集中控制平台核心功能建设，贯通设备适配、本地控制、云端管理和状态回传的端到端流程。\n- 完成 Android、iOS、HarmonyOS 适配发布及多个项目环境部署升级，承担现场问题闭环、培训支持和中英文协议/说明书沉淀。",
-        "en": "- Developed and debugged Cat.1 modules, HC32 MCU software, and embedded Linux gateways across RTOS/LWIP, USART/DMA, FOTA, network access, and multitasking diagnosis.\n- Designed and maintained MQTT, TCP/UDP, RS485, USB, and BLE/SPP paths for device onboarding, commands, telemetry, files, schedules, and remote control, continually addressing reconnects, framing, resumable transfers, memory leaks, and long-running faults.\n- Built core capabilities across 4G gateways, Flutter apps, and centralized platforms, connecting device adapters, local control, cloud management, and telemetry into end-to-end workflows.\n- Delivered Android, iOS, and HarmonyOS adaptations plus multiple environment deployments and upgrades, field issue closure, training support, and bilingual protocol/manual documentation."
+        "zh": "- 负责 4G 单灯控制器的软件技术选型、协议与端云架构，从立项起采用 AI 原生协作流程，由本人负责关键判断、代码审查和交付验证，约一个半月形成可联调核心版本。\n- 接手集中控制平台与 Flutter APP 后，先独立梳理 Go、Vue 3、FFI/原生库和设备协议链路，再引入 AI 协作迭代，持续交付设备控制、场景演绎、能耗统计、文件传输、跨端适配及 Android、iOS、HarmonyOS 三平台上架维护。\n- 持续开发 Cat.1/MCU 与嵌入式 Linux 4G 网关，设计并维护 MQTT、TCP/UDP、RS485、USB、BLE/SPP 等链路，治理重连、粘包、断点续传、资源泄漏和长期运行异常。\n- 完成十余家客户现场及多个项目环境的部署升级与问题闭环，沉淀通信协议、API、部署手册和中英文产品文档。",
+        "en": "- Owned technology selection, protocols, and device-to-cloud architecture for a 4G single-lamp controller. Used an AI-native workflow from project inception while retaining responsibility for key decisions, code review, and delivery validation, reaching an integration-ready core in about six weeks.\n- After taking over the centralized platform and Flutter app, independently mapped the Go, Vue 3, FFI/native-library, and device-protocol paths before applying AI assistance to iteration; delivered device control, scene orchestration, energy analytics, file transfer, cross-platform adaptation, and releases across Android, iOS, and HarmonyOS app ecosystems.\n- Continued Cat.1/MCU and embedded Linux 4G gateway development across MQTT, TCP/UDP, RS485, USB, and BLE/SPP, resolving reconnect, framing, resumable-transfer, resource-leak, and long-running reliability issues.\n- Supported deployment, upgrades, and issue closure at more than ten customer sites and across multiple project environments, while maintaining protocols, APIs, deployment guides, and bilingual product documentation."
       },
       "order": 0
     }
@@ -87,12 +93,12 @@
       "slug": "4g-single-lamp-control-platform",
       "title": { "zh": "4G 单灯控制器与云端管控平台", "en": "4G Single-Lamp Controller & Cloud Control Platform" },
       "summary": { "zh": "面向分布式照明设备的端云一体化系统，覆盖 4G 接入、分级控制、状态监测、地图分组、节目下发与运行追踪。", "en": "A device-to-cloud system for distributed lighting devices, covering 4G onboarding, scoped control, telemetry, map-based grouping, program delivery, and operational traceability." },
-      "role": { "zh": "设备通信与物联网平台工程师", "en": "Device Connectivity & IoT Platform Engineer" },
+      "role": { "zh": "设备通信与物联网全栈工程师", "en": "Device Connectivity & IoT Full-Stack Engineer" },
       "period": { "zh": "2026.04 — 至今", "en": "Apr 2026 — Present" },
       "background": { "zh": "分布式单灯设备需要通过不稳定的移动网络统一接入云端，在单设备、分组与广播控制之间保持一致语义，并让激活、定位、遥测和文件任务具备可追踪的运行闭环。", "en": "Distributed lamp controllers need consistent cloud control over variable mobile networks, with the same semantics across individual, group, and broadcast scopes and traceable lifecycle states for onboarding, location, telemetry, and file tasks." },
-      "actions": { "zh": "- 参与技术选型与端云架构设计，以控制器模拟器先行验证注册、主题分配、心跳/状态、指令和文件任务等协议状态。\n- 参与设备侧单灯发现、参数配置、消息交互与定位授时功能，完善文件完整性校验、替换及异常回退。\n- 开发项目、网关、设备、分组、地图、消息主题、测试指令、文件与操作日志等结构化管理能力。\n- 推进服务器侧网关服务，已基本打通设备/分组列表、状态读取以及单设备、分组和广播范围的核心控制。\n- 设计异步文件下发：消息链路承载任务、进度与结果，HTTP/HTTPS 承载文件传输，并参与容器化环境的部署与运行验证。", "en": "- Contributed to device-to-cloud architecture and used a controller simulator first to validate protocol states for registration, topic assignment, heartbeat/telemetry, commands, and file tasks.\n- Contributed device-side lamp discovery, parameter configuration, messaging, and location/time features, adding file-integrity checks, replacement, and failure rollback.\n- Built structured management for projects, gateways, devices, groups, maps, messaging topics, test commands, files, and operational logs.\n- Advanced the server-side gateway service to a working core path for device/group lists, state reads, and control scoped to individual devices, groups, or broadcasts.\n- Designed asynchronous file delivery where messaging carries task state, progress, and results while HTTP/HTTPS carries content, and supported containerized deployment and runtime validation." },
-      "results": { "zh": "- 已贯通“设备注册 → 主题分配 → 控制下发 → 状态回传 → 文件下载”的主体流程，并完成单设备与多设备文件任务验证。\n- 设备侧固件、控制器模拟器、管理后台与服务器侧网关已具备核心联调条件；界面交互与稳定性仍按版本推进。\n- 建立覆盖通信、定位、电气参数、显示状态、节目任务和网络质量的统一状态模型与操作追踪。", "en": "- Connected the main flow from device registration and topic assignment through commands, telemetry, and file download, including single- and multi-device file-task validation.\n- Brought the device firmware, controller simulator, management backend, and server-side gateway to a core integration-ready stage; UI and reliability work continue by release.\n- Established a unified, traceable state model spanning connectivity, location, electrical readings, display state, program tasks, and network quality." },
-      "stack": ["4G", "MQTT", "HTTPS", "C", "Embedded Linux", "GPS", "Spring Boot", "Java", "Vue 3", "TypeScript", "PostgreSQL/PostGIS", "Redis", "EMQX", "MinIO", "Docker Compose", "Nginx"],
+      "actions": { "zh": "- 负责技术选型、端云架构与 JSON/MQTT 协议设计，以控制器模拟器先行验证注册、主题分配、心跳/状态、指令控制、进度回传和文件任务。\n- 参与设备侧单灯发现、参数配置、消息交互与定位授时功能，完善文件完整性校验、替换及异常回退。\n- 开发项目、网关、设备、分组、地图、消息主题、测试指令、文件、操作日志和权限等后台主体能力。\n- 使用 C#/.NET 8 开发 Linux 服务器侧网关实例，打通设备/分组列表、状态读取及单设备、分组和广播控制。\n- 设计 MQTT 任务与 HTTP/HTTPS 文件传输协同链路；从立项起将 AI 协作用于需求拆解、协议分析、编码、问题定位、测试和文档，由本人负责架构取舍、代码审查与联调验收。", "en": "- Owned technology selection, device-to-cloud architecture, and JSON/MQTT protocol design, using a controller simulator to validate registration, topic assignment, heartbeat/telemetry, commands, progress reporting, and file tasks before device integration.\n- Contributed device-side lamp discovery, parameter configuration, messaging, location, and time synchronization, including file-integrity checks, replacement, and failure rollback.\n- Built core management capabilities for projects, gateways, devices, groups, maps, messaging topics, test commands, files, operational logs, and permissions.\n- Developed a Linux server-side gateway instance with C#/.NET 8, connecting device/group lists and state reads with individual, group, and broadcast control.\n- Designed coordinated MQTT task tracking and HTTP/HTTPS file transfer. Applied AI assistance from project inception to requirements, protocol analysis, coding, diagnosis, testing, and documentation while retaining responsibility for architecture, code review, and integration acceptance." },
+      "results": { "zh": "- 约一个半月形成可联调核心版本，贯通“设备注册 → 主题分配 → 控制下发 → 状态回传 → 文件下载”主体流程，并完成多设备模拟、分级控制和文件任务验证。\n- 设备侧固件、控制器模拟器、管理后台与服务器侧网关已部署至联调环境，具备核心联调条件；界面与长期稳定性继续按版本优化。\n- 建立覆盖通信、定位、电气参数、显示状态、节目任务和网络质量的统一状态模型与操作追踪。", "en": "- Reached an integration-ready core in about six weeks, connecting registration, topic assignment, control, telemetry, and file download while validating multi-device simulation, scoped control, and file tasks.\n- Deployed the device firmware, controller simulator, management backend, and server-side gateway to the integration environment; UI and long-running reliability continue to improve by release.\n- Established a unified, traceable state model spanning connectivity, location, electrical readings, display state, program tasks, and network quality." },
+      "stack": ["4G", "MQTT", "HTTPS", "C", "Embedded Linux", "GPS", "C#/.NET 8", "Spring Boot", "Java", "Vue 3", "TypeScript", "PostgreSQL/PostGIS", "Redis", "EMQX", "MinIO", "Docker Compose", "Nginx", "Codex"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
@@ -103,12 +109,12 @@
       "slug": "iot-control-platform",
       "title": { "zh": "物联网集中控制平台", "en": "Centralized IoT Control Platform" },
       "summary": { "zh": "连接 Linux 网关、现场设备与运营端的集中控制平台，统一承载设备接入、场景编排、能耗分析和媒体任务。", "en": "A centralized control platform connecting Linux gateways, field devices, and operators through unified onboarding, scene orchestration, energy analytics, and media workflows." },
-      "role": { "zh": "设备与平台软件工程师", "en": "Device & Platform Software Engineer" },
+      "role": { "zh": "物联网全栈工程师", "en": "IoT Full-Stack Engineer" },
       "period": { "zh": "2024.01 — 至今", "en": "Jan 2024 — Present" },
       "background": { "zh": "网关、强弱电回路、节目和场景原本分散在不同控制路径中，需要形成统一设备模型、可编排业务流程和可持续部署运维的平台。", "en": "Gateways, power circuits, media, and scenes were split across separate control paths and needed a unified device model, orchestrated workflows, and maintainable deployment and operations." },
-      "actions": { "zh": "- 参与 Vue 3 前端、Go 接口和设备控制开发，将网关发现、批量回路控制、权限、节目与场景编排收敛到统一操作流程。\n- 建设节目上传、文件下载、视频切割与临时播放链路，围绕任务状态和异常日志定位文件缺失、处理失败及设备播放问题。\n- 开发网关状态、开关控制、心跳与能耗接口，支持按小时、日期和分时维度查询展示用电数据。\n- 负责测试及项目环境部署升级，通过日志、数据库和网络排查设备掉线、存储空间、服务配置与新设备接入问题。\n- 沉淀 API、部署手册和中英文操作文档，配合交付支持、培训与需求迭代。", "en": "- Contributed Vue 3 frontend, Go APIs, and device control, consolidating gateway discovery, batch circuit control, permissions, media, and scene orchestration into consistent operator workflows.\n- Built media upload, file download, video slicing, and temporary playback paths, using task state and operational logs to diagnose missing files, processing failures, and device playback issues.\n- Implemented gateway status, switch control, heartbeat, and energy APIs with hourly, daily, and time-of-use views.\n- Deployed and upgraded test and project environments, diagnosing device-offline, storage, service-configuration, and new-device onboarding issues through logs, databases, and network checks.\n- Maintained APIs, deployment guides, and bilingual operating manuals while supporting delivery, training, and requirements iteration." },
+      "actions": { "zh": "- 接手既有平台后，先独立完成代码结构、数据模型、设备协议及部署链路梳理，主要负责核心模块的产品功能设计、Go 后端、Vue 3/TypeScript 前端与设备侧联调。\n- 设计并落地项目、区域、网关、节点和设备的分层资源模型，开发网关发现、批量设备/回路控制、权限、心跳配置、场景演绎、节目编排及定时任务。\n- 建设电量采集与能耗分析闭环，以及节目上传、文件下载、视频切割和临时播放链路，通过任务状态和日志定位文件及设备播放异常。\n- 负责测试和多个项目环境的部署升级，通过日志、数据库与网络分析闭环设备掉线、存储空间、服务配置和新设备接入问题。\n- 在独立掌握原有架构并完成核心开发后引入 AI 协作，用于需求拆解、代码定位和迭代验证；本人持续负责业务判断、接口设计及端—边—云联调。", "en": "- After taking over the existing platform, independently mapped its code structure, data model, device protocols, and deployment path, then owned core product design, Go backend work, Vue 3/TypeScript frontend work, and device integration.\n- Designed and implemented a layered resource model for projects, regions, gateways, nodes, and devices, plus gateway discovery, batch device/circuit control, permissions, heartbeat configuration, scene orchestration, media programs, and schedules.\n- Built energy acquisition and analytics as well as media upload, download, video slicing, and temporary playback, diagnosing file and device playback failures through task state and logs.\n- Tested, deployed, and upgraded multiple project environments, closing device-offline, storage, service-configuration, and new-device onboarding issues through logs, databases, and network analysis.\n- Introduced AI assistance for requirement decomposition, code navigation, and iterative validation only after independently mastering the architecture and core implementation, while retaining ownership of business decisions, APIs, and device-edge-cloud integration." },
       "results": { "zh": "- 持续交付场景编排、能耗统计、回路管理、多设备控制和媒体任务等核心能力。\n- 支持多个项目环境完成部署、升级与问题闭环，并形成可复用的部署和操作资料。\n- 完成中英文场景能力与界面主题升级，补充媒体缩略图和分辨率处理等运营功能。", "en": "- Continually delivered core capabilities for scene orchestration, energy analytics, circuit management, multi-device control, and media tasks.\n- Supported deployment, upgrades, and issue closure across multiple project environments with reusable deployment and operating documentation.\n- Added bilingual scene workflows and a visual refresh, plus operational features such as media thumbnails and resolution handling." },
-      "stack": ["Vue 3", "TypeScript", "Go", "Linux", "JSON Protocol", "4G"],
+      "stack": ["Go", "Vue 3", "TypeScript", "Vite", "Linux", "MySQL", "REST API", "JSON Protocol", "4G", "AI-assisted Development"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
@@ -122,9 +128,9 @@
       "role": { "zh": "跨端应用开发工程师", "en": "Cross-platform Application Engineer" },
       "period": { "zh": "2025.04 — 至今", "en": "Apr 2025 — Present" },
       "background": { "zh": "同一设备需要在远程、本地有线和近场无线场景中保持一致操作体验，同时处理不同系统权限、原生库边界和连接生命周期差异。", "en": "The same device needed a consistent operator experience across remote, local wired, and nearby wireless scenarios despite platform permission, native-library, and connection-lifecycle differences." },
-      "actions": { "zh": "- 接手 Flutter 工程及 Android/iOS 构建链路，通过 FFI 与平台原生能力适配 SDK、动态库和静态库，持续维护可发布版本。\n- 将远程控制、USB 脱机、SPP/BLE 的通道差异收敛到一致业务流程，开发上传下载、断点续传、一键上传和设备升级。\n- 围绕连接与传输状态治理 USB 反复插拔、中断重连、线程阻塞、凭据过期、页面卡顿和触摸冲突等问题。\n- 完成中英文、多服务地址与系统差异适配，覆盖 Android、iOS、HarmonyOS 的权限、深色模式和发布要求。", "en": "- Took over the Flutter project and Android/iOS build paths, using FFI and platform-native integration to adapt SDKs, dynamic libraries, and static libraries into maintainable releases.\n- Normalized remote control, USB offline, and SPP/BLE transport differences into consistent workflows for upload/download, resumable transfer, one-click upload, and device upgrades.\n- Stabilized connection and transfer state across repeated USB hot-plug, interrupted reconnects, thread blocking, credential expiry, page stalls, and touch conflicts.\n- Delivered bilingual UI, multiple service endpoints, and Android, iOS, and HarmonyOS adaptation for permissions, dark mode, and release requirements." },
+      "actions": { "zh": "- 接手 Flutter 及 Android/iOS 工程后，先独立搭建多端开发与构建环境，梳理业务流程、FFI、C SDK、原生库和服务端链路，再引入 AI 协作推进跨端迭代与问题定位。\n- 将 4G 远程控制、USB 脱机、SPP/BLE 的通道差异收敛到一致业务流程，开发文件上传下载、断点续传、一键上传和设备升级。\n- 围绕连接与传输状态治理 USB 反复插拔、中断重连、线程阻塞、凭据过期、后台运行、页面卡顿和厂商文件权限差异。\n- 完成中英文、多服务地址及 Android、iOS、HarmonyOS 的权限、深色模式与发布适配，并将 Dify 知识库 API 接入 APP。", "en": "- After taking over the Flutter and Android/iOS projects, independently established multi-platform development and build environments and mapped the business, FFI, C SDK, native-library, and backend paths before applying AI assistance to cross-platform iteration and diagnosis.\n- Normalized 4G remote, USB offline, and SPP/BLE transport differences into consistent workflows for file transfer, resumable transfer, one-click upload, and device upgrades.\n- Stabilized connection and transfer state across repeated USB hot-plug, reconnects, thread blocking, credential expiry, background operation, page stalls, and vendor-specific file permissions.\n- Delivered bilingual UI, multiple service endpoints, and Android, iOS, and HarmonyOS adaptation for permissions, dark mode, and releases, and integrated the Dify knowledge-base API into the app." },
       "results": { "zh": "- 完成 Android、iOS、HarmonyOS 三端适配，并参与 Android 厂商应用商店、Apple App Store 与鸿蒙应用市场发布。\n- 已形成远程与 USB 脱机控制、文件传输、设备升级和异常恢复主流程；Android SPP 基本完成，iOS BLE 脱机能力仍按版本推进。", "en": "- Completed Android, iOS, and HarmonyOS adaptation and contributed releases to Android vendor stores, Apple App Store, and the HarmonyOS app marketplace.\n- Established the main remote and USB-offline workflows for file transfer, upgrades, and recovery; Android SPP was substantially complete while iOS BLE offline capability continued by release." },
-      "stack": ["Flutter", "Dart", "FFI", "Java", "USB", "BLE", "SPP", "4G"],
+      "stack": ["Flutter", "Dart", "FFI", "Java", "C/C++", "REST API", "USB", "BLE", "SPP", "4G", "Dify API", "AI-assisted Development"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
@@ -139,7 +145,7 @@
       "period": { "zh": "2024.05 — 至今", "en": "May 2024 — Present" },
       "background": { "zh": "现场硬件需要演进为可长期运行的边缘节点，在多通信通道、离线数据、定时联动和远程运维之间建立统一的软件边界。", "en": "Field hardware needed to evolve into a long-running edge node with clear software boundaries across multiple transports, offline data, scheduled orchestration, and remote operations." },
       "actions": { "zh": "- 参与需求、架构与协议设计，按网络通信、设备适配、本地数据和业务调度拆分职责，实现 MQTT、UDP、RS485、强电控制与数据采集。\n- 开发 U 盘/远程升级、进度上报、GPS 授时与定位、配置持久化、操作日志及错误升级防护。\n- 设计多场景、多时间轴和多事件联动，让 RS485、UDP、MQTT 与强电动作按统一计划执行。\n- 增加电表数据采集上报、主从网关转发、平台接口和远程控制适配，支撑现场协议接入。\n- 通过心跳、重连、日志与长期运行测试定位时区/节日定时、内存泄漏、通信失效、RS485 丢包和异常重启。", "en": "- Contributed requirements, architecture, and protocol design, separating network communication, device adaptation, local data, and business scheduling while implementing MQTT, UDP, RS485, power control, and acquisition.\n- Built USB/remote upgrades, progress reporting, GPS time and location, persistent configuration, operational logs, and safeguards against invalid upgrades.\n- Designed multi-scene, multi-timeline orchestration so RS485, UDP, MQTT, and power actions execute against one schedule.\n- Added meter acquisition and reporting, primary-secondary gateway forwarding, platform APIs, and remote-control adaptation for field protocol integration.\n- Used heartbeats, reconnects, logs, and long-running tests to diagnose timezone/holiday schedules, memory leaks, communication loss, RS485 packet loss, and abnormal restarts." },
-      "results": { "zh": "- 完成网关核心链路开发测试，形成从多协议接入、本地持久化、场景调度、能耗上报到升级恢复的完整能力，并持续接入集中控制平台与远程 APP。\n- 支持现场网关协议与强电模块适配，完成部署问题定位和长期版本迭代。", "en": "- Delivered and tested the gateway core path spanning multi-protocol access, local persistence, scene scheduling, energy reporting, and upgrade recovery, with continued integration into the centralized platform and remote app.\n- Supported field gateway protocols and power-module adaptation through deployment diagnosis and long-term release iteration." },
+      "results": { "zh": "- 完成网关核心链路开发测试，形成从多协议接入、本地持久化、场景调度、能耗上报到升级恢复的完整能力，并持续接入集中控制平台与远程 APP。\n- 形成稳定发布版本，已在十余家客户现场完成部署并持续运行，长期承担协议适配、版本升级和售后问题闭环。", "en": "- Delivered and tested the gateway core path spanning multi-protocol access, local persistence, scene scheduling, energy reporting, and upgrade recovery, with continued integration into the centralized platform and remote app.\n- Established a stable release deployed and continuously operated at more than ten customer sites, with ongoing protocol adaptation, upgrades, and support issue closure." },
       "stack": ["C", "Linux", "TCP/UDP", "MQTT", "RS485", "SQLite"],
       "mediaIds": [],
       "featured": true,
@@ -181,14 +187,14 @@
     {
       "id": "dify-knowledge-base",
       "slug": "dify-knowledge-base",
-      "title": { "zh": "产品文档与 Dify 知识库", "en": "Product Documentation & Dify Knowledge Base" },
+      "title": { "zh": "DeepSeek 与 Dify 产品知识库", "en": "DeepSeek & Dify Product Knowledge Base" },
       "summary": { "zh": "将分散的产品说明书、技术资料与常见问题整理为在线/离线文档平台，并扩展为可在移动端调用的智能问答入口。", "en": "Consolidated product manuals, technical references, and FAQs into online/offline documentation, then extended them into an intelligent Q&A entry available from the mobile app." },
-      "role": { "zh": "资料平台与知识库工程师", "en": "Documentation Platform & Knowledge Base Engineer" },
+      "role": { "zh": "AI 应用与知识库工程师", "en": "AI Application & Knowledge Base Engineer" },
       "period": { "zh": "2024.02 — 2025.02", "en": "Feb 2024 — Feb 2025" },
       "background": { "zh": "客户、销售与售后需要更快定位产品资料，减少重复答疑。", "en": "Customers, sales, and support teams needed faster access to product knowledge with less repeated manual assistance." },
-      "actions": { "zh": "- 重构产品说明书结构与内容规范，建设在线/离线资料平台，并补充文件下载与视频播放。\n- 验证本地大模型与 API 调用，评估云端方案，基于 Dify 建设产品资料检索与问答链路。\n- 优化文档解析与知识入库效果，并将知识库 API 接入 Flutter APP，形成移动端使用入口。", "en": "- Reworked manual structure and content standards, built online/offline documentation, and added file download and video playback.\n- Validated local language-model deployment and APIs, evaluated cloud options, and built product-document retrieval and Q&A with Dify.\n- Improved document ingestion and knowledge-base quality and integrated the API into the Flutter app as a mobile entry point." },
-      "results": { "zh": "- 形成“规范化说明书 → 在线资料 → 智能检索问答 → 移动端调用”的知识服务链路。\n- 为客户、销售与售后提供统一资料入口，降低重复查找与答疑成本。", "en": "- Established a knowledge-service flow from standardized manuals to online documentation, intelligent retrieval/Q&A, and mobile access.\n- Provided customers, sales, and support with one knowledge entry, reducing repeated searching and manual responses." },
-      "stack": ["Dify", "RAG", "REST API", "Flutter", "Documentation"],
+      "actions": { "zh": "- 重构产品说明书结构与内容规范，建设在线/离线资料平台，并补充文件下载与视频播放。\n- 完成 DeepSeek 本地部署与模型 API 验证，调研云端知识库方案，并在华为云服务器上基于 Dify 构建产品资料检索与问答链路。\n- 引入文档处理能力优化资料解析和知识入库效果，封装并验证知识库 API，将智能问答接入 Flutter APP。", "en": "- Reworked manual structure and content standards, built online/offline documentation, and added file download and video playback.\n- Deployed DeepSeek locally and validated its model API, evaluated cloud knowledge-base options, and built product-document retrieval and Q&A with Dify on a Huawei Cloud server.\n- Improved document parsing and knowledge ingestion, then packaged and validated the knowledge-base API and integrated intelligent Q&A into the Flutter app." },
+      "results": { "zh": "- 完成从模型/API 验证、知识库构建、文档处理到 Flutter 产品接入的 AI 应用闭环。\n- 形成“规范化说明书 → 在线资料 → 智能检索问答 → 移动端调用”的统一知识服务入口。", "en": "- Completed an AI application loop spanning model/API validation, knowledge-base construction, document processing, and Flutter product integration.\n- Established one knowledge-service path from standardized manuals and online documentation to intelligent retrieval/Q&A and mobile access." },
+      "stack": ["DeepSeek", "Dify", "LLM API", "RAG", "Flutter", "Huawei Cloud", "Documentation"],
       "mediaIds": [],
       "featured": true,
       "visible": true,
@@ -311,6 +317,6 @@
       "order": 3
     }
   ],
-  "updatedAt": "2026-07-22T06:00:00Z"
+  "updatedAt": "2026-07-27T08:00:00Z"
 }
 

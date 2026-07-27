@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	appVersion    = "1.3.0"
+	appVersion    = "1.4.0"
 	sessionCookie = "portfolio_session"
 	maxMediaQuota = int64(2 << 30)
 )

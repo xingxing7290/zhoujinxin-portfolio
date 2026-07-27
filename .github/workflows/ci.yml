@@ -46,15 +46,27 @@ jobs:
         with:
           node-version: "18.20.4"
           cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
       - run: npm ci --no-audit --no-fund
       - run: npm run build
       - run: npx playwright install --with-deps chromium
-      - name: Render and validate editable resume PDF
+      - name: Render and validate website snapshot PDF
         run: |
           export RESUME_PHONE="$(printf '%s%s%s' 139 0000 0000)"
           export RESUME_OUTPUT="$RUNNER_TEMP/zhou-jinxin-resume.pdf"
-          npm run resume:pdf
+          npm run resume:snapshot-pdf
           test "$(head -c 5 "$RESUME_OUTPUT")" = '%PDF-'
+      - name: Render and validate three official editable resumes
+        run: |
+          python -m pip install --disable-pip-version-check -r requirements-resume.txt
+          export RESUME_PHONE="$(printf '%s%s%s' 139 0000 0000)"
+          python scripts/generate-resume-docx.py --output-dir "$RUNNER_TEMP/resumes"
+          test "$(find "$RUNNER_TEMP/resumes" -maxdepth 1 -name '*.docx' | wc -l)" -eq 3
+          for file in "$RUNNER_TEMP"/resumes/*.docx; do
+            test "$(head -c 2 "$file")" = 'PK'
+          done
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
         if: failure()
