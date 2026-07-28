@@ -7,6 +7,8 @@ NEW_IMAGE="ghcr.io/xingxing7290/zhoujinxin-portfolio@sha256:bbbbbbbbbbbbbbbbbbbb
 TEMP_ROOT="$(mktemp -d)"
 trap 'rm -rf "$TEMP_ROOT"' EXIT HUP INT TERM
 
+sh -n "$REPOSITORY/scripts/cleanup-server-resources.sh"
+
 make_fake_commands() {
   directory="$1"
   mkdir -p "$directory"

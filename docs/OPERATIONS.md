@@ -115,3 +115,42 @@ docker compose logs --tail=200 app caddy cloudflared
 ```
 
 定期把 `data/` 和 Caddy 卷备份到服务器之外。管理员遗忘密码时，不应直接编辑哈希；应走离线、审计化的账号恢复流程后重启服务。
+
+## 服务器资源维护
+
+资源整理前先执行应用备份，并记录 `.current-image` 与上一可回滚镜像。不要运行
+`docker system prune -a` 或 `docker image prune -a`，否则未被容器引用的回滚镜像也会被删除。
+
+仓库提供保守清理脚本：只回收超过 72 小时的构建缓存、明确属于本项目的旧镜像、
+超过保留上限的 journald 日志、旧部署中转文件和下载缓存。当前镜像及显式传入的上一镜像会保留：
+
+```bash
+APP_IMAGE="$(cat .current-image)" docker compose run --rm --no-deps \
+  --entrypoint /app/portfolio-backup app
+
+ROLLBACK_IMAGE='ghcr.io/xingxing7290/zhoujinxin-portfolio@sha256:<previous-digest>' \
+  CLEAN_NPM_CACHE=1 \
+  sudo -E sh scripts/cleanup-server-resources.sh
+```
+
+安装 journald 容量与保留时间限制：
+
+```bash
+sudo install -D -m 0644 deploy/systemd/journald-storage-limits.conf \
+  /etc/systemd/journald.conf.d/zhoujinxin-storage-limits.conf
+sudo systemctl restart systemd-journald
+```
+
+共享服务器上的 EatWhat 使用单独的 Compose 日志覆盖文件，避免 MongoDB 等服务生成无限增长的
+`json-file` 日志。该文件是服务器本地配置，不修改 EatWhat 功能源码：
+
+```bash
+sudo install -m 0644 deploy/eatwhat/docker-compose.logging.override.yml \
+  /srv/eatwhat/docker-compose.override.yml
+cd /srv/eatwhat
+docker compose config --quiet
+docker compose up -d --no-deps --force-recreate mongodb backend frontend nginx
+```
+
+维护完成后复查 `df -h /`、`docker system df`、全部容器状态、正式网站与
+`3000–3003/8088/8089` 既有服务。业务数据卷、历史文档记录、证书和 Cloudflare 凭据不参与清理。
