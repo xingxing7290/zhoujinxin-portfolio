@@ -63,9 +63,14 @@ jobs:
           python -m pip install --disable-pip-version-check -r requirements-resume.txt
           export RESUME_PHONE="$(printf '%s%s%s' 139 0000 0000)"
           python scripts/generate-resume-docx.py --output-dir "$RUNNER_TEMP/resumes"
+          RESUME_OUTPUT_DIR="$RUNNER_TEMP/resumes" npm run resume:targeted-pdf
           test "$(find "$RUNNER_TEMP/resumes" -maxdepth 1 -name '*.docx' | wc -l)" -eq 3
+          test "$(find "$RUNNER_TEMP/resumes" -maxdepth 1 -name '*.pdf' | wc -l)" -eq 3
           for file in "$RUNNER_TEMP"/resumes/*.docx; do
             test "$(head -c 2 "$file")" = 'PK'
+          done
+          for file in "$RUNNER_TEMP"/resumes/*.pdf; do
+            test "$(head -c 5 "$file")" = '%PDF-'
           done
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4

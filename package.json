@@ -8,6 +8,7 @@
     "build": "npm run images && vite build --config web/vite.config.ts",
     "images": "node web/scripts/optimize-images.mjs",
     "resume:docx": "python scripts/generate-resume-docx.py",
+    "resume:targeted-pdf": "node scripts/generate-targeted-resume-pdf.mjs",
     "resume:snapshot-pdf": "node scripts/render-resume.mjs",
     "resume:pdf": "npm run resume:snapshot-pdf",
     "typecheck": "tsc --noEmit",

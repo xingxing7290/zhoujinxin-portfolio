@@ -77,6 +77,16 @@ describe("public resume content", () => {
     }
   });
 
+  it("keeps personal website and GitHub links out of targeted resume generators", () => {
+    const generators = [
+      readFileSync(resolve("scripts/generate-resume-docx.py"), "utf8"),
+      readFileSync(resolve("scripts/generate-targeted-resume-pdf.mjs"), "utf8"),
+    ].join("\n");
+
+    expect(generators).not.toMatch(/xstar\.cc\.cd|github\.com\/xingxing7290/i);
+    expect(generators).not.toMatch(/RESUME_(?:WEBSITE|GITHUB)/);
+  });
+
   it("keeps private implementation references out of public resume content", () => {
     const serialized = JSON.stringify(content);
     expect(serialized).not.toMatch(/gitlab\.ssg-cloud\.com|E:\\\\0000progect/i);

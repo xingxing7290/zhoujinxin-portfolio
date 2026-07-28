@@ -338,9 +338,7 @@ def add_opening(doc: Document, name: str, role: str, phone: str) -> None:
 
     email = os.getenv("RESUME_EMAIL", "resume@example.com")
     location = os.getenv("RESUME_LOCATION", "北京")
-    website = os.getenv("RESUME_WEBSITE", "https://xstar.cc.cd")
-    github = os.getenv("RESUME_GITHUB", "github.com/xingxing7290")
-    contact = f"{location}  |  {phone}  |  {email}  |  {website}  |  {github}"
+    contact = f"{location}  |  {phone}  |  {email}"
     paragraph = doc.add_paragraph(style="Resume Contact")
     set_keep_with_next(paragraph)
     add_inline_markdown(paragraph, contact, base_color=MUTED)
