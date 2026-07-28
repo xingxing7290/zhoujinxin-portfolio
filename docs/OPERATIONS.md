@@ -142,14 +142,14 @@ sudo systemctl restart systemd-journald
 ```
 
 共享服务器上的 EatWhat 使用单独的 Compose 日志覆盖文件，避免 MongoDB 等服务生成无限增长的
-`json-file` 日志。该文件是服务器本地配置，不修改 EatWhat 功能源码：
+`json-file` 日志。必须加载服务器生产环境文件和服务器 Compose 覆盖文件；不可直接执行仓库默认的
+`docker compose up`，否则会使用开发端口及默认数据库配置，与 AI 简历服务冲突。
+
+仓库提供的维护脚本会把日志配置安装到 `/etc/eatwhat/`，依次重建 MongoDB、后端、前端和 Nginx，
+等待每个服务恢复后再继续，并核对 MongoDB 数据卷路径没有变化：
 
 ```bash
-sudo install -m 0644 deploy/eatwhat/docker-compose.logging.override.yml \
-  /srv/eatwhat/docker-compose.override.yml
-cd /srv/eatwhat
-docker compose config --quiet
-docker compose up -d --no-deps --force-recreate mongodb backend frontend nginx
+sudo sh scripts/apply-eatwhat-log-limits.sh
 ```
 
 维护完成后复查 `df -h /`、`docker system df`、全部容器状态、正式网站与

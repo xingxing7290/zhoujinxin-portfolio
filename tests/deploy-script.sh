@@ -8,6 +8,7 @@ TEMP_ROOT="$(mktemp -d)"
 trap 'rm -rf "$TEMP_ROOT"' EXIT HUP INT TERM
 
 sh -n "$REPOSITORY/scripts/cleanup-server-resources.sh"
+sh -n "$REPOSITORY/scripts/apply-eatwhat-log-limits.sh"
 
 make_fake_commands() {
   directory="$1"
