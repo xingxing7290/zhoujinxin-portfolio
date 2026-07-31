@@ -1,0 +1,5809 @@
+{
+  "snapshot_date": "2026-07-31",
+  "generated_at": "2026-07-31",
+  "title": "VLA / 机器人岗位 100 样本与技术栈",
+  "methodology": {
+    "scope": "70 个中国大陆当前公开岗位用于求职判断，30 个国际企业官方岗位用于数据闭环与部署技术对标。",
+    "verification": "每条岗位均保留公开来源 URL、原始要求摘要和 2026-07-31 核验日期；招聘页面可能下线，本文是时间点快照。",
+    "deduplication": "以规范化后的公司 + 职位名称 + 城市去重，要求 100 条唯一记录。",
+    "platform_boundary": "未登录、未自动化操作 BOSS 直聘；优先使用企业/机构官方招聘页和官方 ATS，少量国内系统岗来自无需登录的公开招聘页。",
+    "interpretation": "岗位技术词频表示在本样本中被明确提及的岗位数，不等于硬性要求率、整个市场占比或候选人已掌握；C/C++、ROS/ROS2 等复合词在资格判断中需保留 any-of 语义。",
+    "sample_bucket_boundary": "algorithm/system/data-deploy 是采样桶，不是互斥的岗位语义分类。",
+    "parts": {
+      "algorithm": {
+        "label": "国内·VLA/具身算法",
+        "count": 35,
+        "methodology": {
+          "scope": "中国境内公开招聘的VLA、机器人学习、具身模型、视觉/音频感知、强化学习、机器人运动控制、具身数据与训练基础设施岗位。本分片聚焦算法、模型和与算法直接相连的工程岗位。",
+          "source_priority": [
+            "公司或研究机构官方招聘详情页",
+            "公司官方职位目录"
+          ],
+          "verification": "逐条打开公开页面核对公司、岗位、城市、职责与任职要求；岗位以“公司+标题+城市”去重。页面未明确给出的发布时间、学历、经验或用工性质统一写“未注明”，不依据常识补写。",
+          "fit_basis": "fit_note以候选人已有嵌入式C、Embedded Linux、MCU/RTOS、4G/物联网通信、设备—APP—平台联调和工程交付经历为基线；现代C++工程能力仍需专项补证，尚无可核验的ROS2、PyTorch模型训练、强化学习、机器人运动学或VLA真机项目时，均明确列为差距。",
+          "limitations": [
+            "岗位页面在快照日期可公开访问不等于招聘方承诺长期开放，投递前需再次确认。",
+            "宇树科技部分官方详情页由前端动态渲染，公开职位目录能核验标题、地点和职责，但学历、经验等未显示字段按“未注明”处理。",
+            "海康威视部分详情页的工作年限与最低学历摘要字段渲染不完整，学历仅在职位要求明确出现时记录。",
+            "本数据不使用BOSS直聘登录态，也未进行自动投递、消息发送或绕过平台风控。"
+          ]
+        }
+      },
+      "system": {
+        "label": "国内·机器人系统工程",
+        "count": 35,
+        "methodology": {
+          "scope": "中国境内具身智能系统、机器人软件、ROS2、Linux/C++、真机集成、仿真与控制相关岗位快照。",
+          "source_priority": [
+            "公司或研究机构官方招聘页",
+            "公司官方使用的公开ATS",
+            "无需登录即可核验的公开招聘平台"
+          ],
+          "verification_rules": [
+            "逐项打开公开岗位详情页并核对公司、岗位、城市、职责与技术要求。",
+            "排除页面明确标记为已过期的职位，不使用搜索摘要替代已失效详情页。",
+            "不登录、不访问或自动化操作BOSS直聘。",
+            "页面未披露的信息统一记为“未注明”，不根据职位级别推测学历、年限或发布日期。",
+            "公司、岗位名称与城市三元组去重；技术栈仅提取页面明确出现的技术或方法。"
+          ],
+          "limitations": "该文件是2026-07-31公开页面快照，岗位可能在快照后下线或更新；fit_note是基于候选人现有C、嵌入式Linux、RTOS、设备通信、物联网全链路与软硬件联调经历所做的匹配判断，现代C++仍需专项补证，不代表用人单位结论。"
+        }
+      },
+      "dataDeploy": {
+        "label": "国际·数据与部署对标",
+        "count": 30,
+        "methodology": "面向机器人数据采集、数据闭环、评测测试、VLA/多模态模型部署优化、Jetson/边缘计算及机器人端云平台岗位进行定向检索；优先采用企业通过 Ashby 或 Greenhouse 发布的官方招聘页面。2026-07-31 对每个链接逐一复核，只有仍可访问且页面仍展示岗位正文或申请入口的岗位才纳入。posted_at 仅记录页面明确展示的发布日期，未展示时统一写“未注明”；学历、年限和用工形式同样不作推断。该清单是用于技能需求分析的定向样本，不代表完整市场统计。"
+      }
+    }
+  },
+  "personal_fit": {
+    "positioning": "机器人软件 / 具身智能应用工程师（数据闭环、VLA 工程化、边云协同与安全控制）",
+    "existing": [
+      "C、Embedded Linux、FreeRTOS/RT-Thread/LWIP 与 MCU/模组联调",
+      "TCP/UDP、MQTT、RS485、Modbus、USB、BLE/SPP、4G 与异常恢复",
+      "Linux 4G 网关、设备接入、端边云链路和长期运行问题治理",
+      "Go/Vue/TypeScript/Flutter/Java/Python、SQLite/MySQL 与跨端交付",
+      "Git、Docker、Wireshark、GDB、QEMU、FFmpeg 与现场问题定位"
+    ],
+    "partial": [
+      "C → 现代 C++：具备系统基础，但缺少 STL、RAII、CMake、并发与机器人生产项目证据",
+      "Python 应用 → PyTorch 工程：有语言基础，没有模型训练、调参与评测闭环",
+      "IoT 遥测、日志和媒体任务 → 机器人数据管线：缺图像—状态—动作同步与机器人数据格式",
+      "Linux/QEMU/早期内核移植 → BSP/驱动：有基础但不能替代量产 BSP 或内核驱动证据",
+      "GPS、电表、红外/雷达协议接入 → 传感器集成：不等于底层驱动或多传感器融合",
+      "异常恢复与长期运行治理 → 机器人安全：不等于功能安全、关节限位或独立急停",
+      "Dify/RAG/API 与 AI 协作开发 → AI 应用：不等于 VLA 模型训练或算法研究",
+      "Docker 与平台部署 → CI/CD、Kubernetes、MLOps：需补 GPU 任务、模型和数据版本治理",
+      "音视频同步经验 → 相机—状态—动作时间同步：概念可迁移，尚无机器人数据验证"
+    ],
+    "gaps": [
+      "现代 C++ 机器人生产代码、CMake 与并发/内存工程证据",
+      "ROS2、tf2、URDF、rosbag2/MCAP、MoveIt 2 与机器人系统诊断",
+      "PyTorch、Transformer、行为克隆、ACT、SmolVLA、IL/RL 与训练评测",
+      "机械臂运动学/动力学、控制频率、相机标定、多模态时间同步",
+      "LeRobot 真机适配、真实数据集、模型微调、泛化评测和安全控制",
+      "CUDA/TensorRT/ONNX/Jetson 等推理优化与边缘部署",
+      "CAN/CANopen、EtherCAT、伺服电机控制与硬件在环",
+      "HDF5/Parquet/RLDS/WebDataset、Kubernetes/SLURM 与分布式训练"
+    ],
+    "doNotClaim": [
+      "职业级现代 C++、CMake 或机器人 C++ 平台经验",
+      "CAN 总线项目经验或 CAN 电机开发经验",
+      "伺服电机控制项目经验",
+      "底层传感器驱动开发经验",
+      "Ubuntu/ARM BSP、Linux 内核驱动或量产 BSP 能力",
+      "ROS2、机械臂运动控制、LeRobot 或 VLA 已完成项目经验",
+      "VLA 算法研究、基础模型预训练或论文级研究成果",
+      "把设备指令/场景编排等同于机械臂运动控制，或把 QEMU 等同于机器人仿真"
+    ]
+  },
+  "statistics": {
+    "total_jobs": 100,
+    "domestic_jobs": 70,
+    "international_benchmark_jobs": 30,
+    "by_sample_group": [
+      {
+        "value": "国内·机器人系统工程",
+        "count": 35
+      },
+      {
+        "value": "国内·VLA/具身算法",
+        "count": 35
+      },
+      {
+        "value": "国际·数据与部署对标",
+        "count": 30
+      }
+    ],
+    "by_application_stage": [
+      {
+        "value": "P2 中长期",
+        "count": 36
+      },
+      {
+        "value": "国际技术对标",
+        "count": 30
+      },
+      {
+        "value": "条件过滤",
+        "count": 17
+      },
+      {
+        "value": "P1 作品/专项补证后",
+        "count": 12
+      },
+      {
+        "value": "P0 近期核验",
+        "count": 5
+      }
+    ],
+    "by_city": [
+      {
+        "value": "杭州",
+        "count": 26
+      },
+      {
+        "value": "上海",
+        "count": 20
+      },
+      {
+        "value": "北京",
+        "count": 18
+      },
+      {
+        "value": "Redwood City, CA",
+        "count": 4
+      },
+      {
+        "value": "San Francisco Bay Area",
+        "count": 3
+      },
+      {
+        "value": "San Francisco, CA",
+        "count": 3
+      },
+      {
+        "value": "Mountain View, CA",
+        "count": 2
+      },
+      {
+        "value": "北京/上海",
+        "count": 1
+      },
+      {
+        "value": "不限",
+        "count": 1
+      },
+      {
+        "value": "青岛",
+        "count": 1
+      },
+      {
+        "value": "苏州",
+        "count": 1
+      },
+      {
+        "value": "天津",
+        "count": 1
+      },
+      {
+        "value": "西安",
+        "count": 1
+      },
+      {
+        "value": "Campbell, CA",
+        "count": 1
+      },
+      {
+        "value": "Fremont, CA",
+        "count": 1
+      },
+      {
+        "value": "Japan",
+        "count": 1
+      },
+      {
+        "value": "Milpitas, CA",
+        "count": 1
+      },
+      {
+        "value": "Mountain View, California",
+        "count": 1
+      },
+      {
+        "value": "New York, NY",
+        "count": 1
+      },
+      {
+        "value": "Palo Alto, CA",
+        "count": 1
+      },
+      {
+        "value": "Prague, Czech Republic",
+        "count": 1
+      },
+      {
+        "value": "San Francisco / New York（页面说明地点具灵活性）",
+        "count": 1
+      },
+      {
+        "value": "San Francisco / Taipei / Trinidad（现场）",
+        "count": 1
+      },
+      {
+        "value": "San Jose, CA",
+        "count": 1
+      },
+      {
+        "value": "San Mateo, CA / Somerville, MA",
+        "count": 1
+      },
+      {
+        "value": "San Mateo, CA（混合办公）",
+        "count": 1
+      },
+      {
+        "value": "Santa Clara, CA",
+        "count": 1
+      },
+      {
+        "value": "Stuttgart, Germany",
+        "count": 1
+      },
+      {
+        "value": "United States Northeast（远程与客户现场）",
+        "count": 1
+      },
+      {
+        "value": "United States（远程，偏中西部）",
+        "count": 1
+      },
+      {
+        "value": "United States（远程）",
+        "count": 1
+      }
+    ],
+    "by_degree_raw": [
+      {
+        "value": "未注明",
+        "count": 39
+      },
+      {
+        "value": "硕士及以上",
+        "count": 18
+      },
+      {
+        "value": "本科及以上",
+        "count": 16
+      },
+      {
+        "value": "本科",
+        "count": 2
+      },
+      {
+        "value": "博士或优秀硕士优先",
+        "count": 2
+      },
+      {
+        "value": "硕士",
+        "count": 2
+      },
+      {
+        "value": "硕士及以上，博士优先",
+        "count": 2
+      },
+      {
+        "value": "硕士及以上，特别优秀者可放宽至本科",
+        "count": 2
+      },
+      {
+        "value": "本科大三及以上或硕士在读",
+        "count": 1
+      },
+      {
+        "value": "本科高年级、硕士或博士在读",
+        "count": 1
+      },
+      {
+        "value": "本科或硕士（或同等经验）",
+        "count": 1
+      },
+      {
+        "value": "本科或硕士（计算机、机器人、工程或相关专业）",
+        "count": 1
+      },
+      {
+        "value": "本科或硕士（计算机、机器人或相关专业）",
+        "count": 1
+      },
+      {
+        "value": "本科或研究生在读",
+        "count": 1
+      },
+      {
+        "value": "工程、计算机或相关专业本科",
+        "count": 1
+      },
+      {
+        "value": "工程或供应链相关本科",
+        "count": 1
+      },
+      {
+        "value": "硕士或博士",
+        "count": 1
+      },
+      {
+        "value": "硕士或博士在读",
+        "count": 1
+      },
+      {
+        "value": "硕士及以上（特别优秀者可放宽至本科）",
+        "count": 1
+      },
+      {
+        "value": "硕士及以上在读",
+        "count": 1
+      },
+      {
+        "value": "相关专业硕士，或本科加同等实战深度",
+        "count": 1
+      },
+      {
+        "value": "研究生在读",
+        "count": 1
+      },
+      {
+        "value": "在读本科生或研究生",
+        "count": 1
+      },
+      {
+        "value": "专科或本科（或同等经历）",
+        "count": 1
+      },
+      {
+        "value": "STEM、运营等相关本科或同等实践经验",
+        "count": 1
+      }
+    ],
+    "by_experience_raw": [
+      {
+        "value": "未注明",
+        "count": 38
+      },
+      {
+        "value": "3年以上",
+        "count": 5
+      },
+      {
+        "value": "2年及以上",
+        "count": 3
+      },
+      {
+        "value": "3-5年",
+        "count": 2
+      },
+      {
+        "value": "3至5年",
+        "count": 2
+      },
+      {
+        "value": "5年以上",
+        "count": 2
+      },
+      {
+        "value": "6个月实习",
+        "count": 2
+      },
+      {
+        "value": "要求大模型项目、复杂Agent架构或大模型微调经验；年限未注明",
+        "count": 2
+      },
+      {
+        "value": "要求真实机器人算法部署、数据采集或实验经验；年限未注明",
+        "count": 2
+      },
+      {
+        "value": "10年以上",
+        "count": 1
+      },
+      {
+        "value": "2026届校招；人形、四足或轮足机器人SLAM经验优先",
+        "count": 1
+      },
+      {
+        "value": "2年及以上C++和Python软件开发经验",
+        "count": 1
+      },
+      {
+        "value": "2至5年项目或项目群管理经验",
+        "count": 1
+      },
+      {
+        "value": "3年以上机器人、自动化设备或工业机械部署经验",
+        "count": 1
+      },
+      {
+        "value": "3年以上机器人相关项目经验者优先",
+        "count": 1
+      },
+      {
+        "value": "3年以上推理优化或ML系统经验",
+        "count": 1
+      },
+      {
+        "value": "3年以上云连接设备支持经验",
+        "count": 1
+      },
+      {
+        "value": "4年以上全职后端系统经验",
+        "count": 1
+      },
+      {
+        "value": "4年以上专业软件项目经验",
+        "count": 1
+      },
+      {
+        "value": "5-10年；岗位正文要求8年以上机器人或AI研发且3年以上系统架构经验",
+        "count": 1
+      },
+      {
+        "value": "5-7年及以上嵌入式Linux或RTOS开发经验",
+        "count": 1
+      },
+      {
+        "value": "5年以上复杂技术系统实操经验",
+        "count": 1
+      },
+      {
+        "value": "5年以上全栈开发经验",
+        "count": 1
+      },
+      {
+        "value": "7年以上",
+        "count": 1
+      },
+      {
+        "value": "8年以上",
+        "count": 1
+      },
+      {
+        "value": "典型3至5年；有高质量实战者2至3年亦可",
+        "count": 1
+      },
+      {
+        "value": "机器视觉AI算法开发或项目应用经验优先；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "可稳定实习6个月及以上；要求丰富的真机部署与系统优化经验",
+        "count": 1
+      },
+      {
+        "value": "可长期实习者优先；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "未注明；机械臂或移动机器人项目经验优先",
+        "count": 1
+      },
+      {
+        "value": "未注明；具身智能、自动驾驶可视化或机器人/无人机调度平台经验优先",
+        "count": 1
+      },
+      {
+        "value": "未注明；具身智能或机器人数据集构建经验优先",
+        "count": 1
+      },
+      {
+        "value": "未注明；协作机械臂、多设备协同或实时控制经验优先",
+        "count": 1
+      },
+      {
+        "value": "未注明；医疗、养老或陪伴类交互产品经验优先",
+        "count": 1
+      },
+      {
+        "value": "相关方向实习/工作经历优先；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "校招；机器人路径规划或开源项目经验优先",
+        "count": 1
+      },
+      {
+        "value": "校招；相关实习或项目经验优先",
+        "count": 1
+      },
+      {
+        "value": "要求机器人、机器狗、无人机、智能设备或AI硬件相关经验，年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求机器人真机实验与控制方案落地经验；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求计算机视觉研究经验；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求强化学习项目和人形机器人核心功能研发经历；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求深度参与人形机器人Sim-to-Real全流程；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求算法仿真、真机调试到现场部署完整项目经历，年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求稳定线下实习6个月及以上",
+        "count": 1
+      },
+      {
+        "value": "要求移动机器人真机开发、部署或系统集成经验；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求有机器人或具身AI数据采集实战，年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求有系统部署与集成经验，年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求运营、实验室或生产管理经验，年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求至少将一种RL策略部署到真实腿足机器人；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "要求Agent框架实际落地经验；年限未注明",
+        "count": 1
+      },
+      {
+        "value": "至少实习3个月",
+        "count": 1
+      }
+    ],
+    "by_employment_type": [
+      {
+        "value": "全职",
+        "count": 65
+      },
+      {
+        "value": "未注明",
+        "count": 19
+      },
+      {
+        "value": "实习",
+        "count": 11
+      },
+      {
+        "value": "合同制",
+        "count": 2
+      },
+      {
+        "value": "校招全职",
+        "count": 2
+      },
+      {
+        "value": "60天临时岗位",
+        "count": 1
+      }
+    ],
+    "eligibility_snapshot": {
+      "degree_not_stated": 39,
+      "experience_not_stated_or_years_missing": 62,
+      "strict_master_gate_heuristic": 25,
+      "student_or_campus_gate_heuristic": 13,
+      "five_plus_year_gate_heuristic": 15,
+      "international_work_authorization_review": 30,
+      "note": "启发式数量只用于初筛，必须回到 requirements_summary 与原始页面人工确认。"
+    },
+    "normalization_coverage": {
+      "raw_token_occurrences": 1000,
+      "mapped_token_occurrences": 617,
+      "unmapped_token_occurrences": 383,
+      "mapped_percent": 61.7,
+      "top_unmapped_terms": [
+        {
+          "value": "多线程",
+          "count": 6
+        },
+        {
+          "value": "ARM",
+          "count": 4
+        },
+        {
+          "value": "DDS",
+          "count": 4
+        },
+        {
+          "value": "GDB",
+          "count": 3
+        },
+        {
+          "value": "IMU",
+          "count": 3
+        },
+        {
+          "value": "PLC",
+          "count": 3
+        },
+        {
+          "value": "Shell",
+          "count": 3
+        },
+        {
+          "value": "伺服控制",
+          "count": 2
+        },
+        {
+          "value": "机器人决策系统",
+          "count": 2
+        },
+        {
+          "value": "模型评测",
+          "count": 2
+        },
+        {
+          "value": "目标跟踪",
+          "count": 2
+        },
+        {
+          "value": "目标检测",
+          "count": 2
+        },
+        {
+          "value": "三维重建",
+          "count": 2
+        },
+        {
+          "value": "数据闭环",
+          "count": 2
+        },
+        {
+          "value": "数据标注",
+          "count": 2
+        },
+        {
+          "value": "四足机器人",
+          "count": 2
+        },
+        {
+          "value": "位姿估计",
+          "count": 2
+        },
+        {
+          "value": "自动化测试",
+          "count": 2
+        },
+        {
+          "value": "AI Coding",
+          "count": 2
+        },
+        {
+          "value": "Apollo",
+          "count": 2
+        },
+        {
+          "value": "Bash",
+          "count": 2
+        },
+        {
+          "value": "Caffe",
+          "count": 2
+        },
+        {
+          "value": "DSP",
+          "count": 2
+        },
+        {
+          "value": "FSM",
+          "count": 2
+        },
+        {
+          "value": "MATLAB",
+          "count": 2
+        },
+        {
+          "value": "MATLAB/Simulink",
+          "count": 2
+        },
+        {
+          "value": "MDP",
+          "count": 2
+        },
+        {
+          "value": "PLCopen",
+          "count": 2
+        },
+        {
+          "value": "POMDP",
+          "count": 2
+        },
+        {
+          "value": "Profinet",
+          "count": 2
+        }
+      ]
+    },
+    "skills": [
+      {
+        "skill": "Python",
+        "count": 59,
+        "domestic_count": 45,
+        "international_count": 14
+      },
+      {
+        "skill": "C++",
+        "count": 51,
+        "domestic_count": 49,
+        "international_count": 2
+      },
+      {
+        "skill": "Linux/Ubuntu",
+        "count": 39,
+        "domestic_count": 31,
+        "international_count": 8
+      },
+      {
+        "skill": "ROS 生态",
+        "count": 32,
+        "domestic_count": 28,
+        "international_count": 4
+      },
+      {
+        "skill": "ROS 2",
+        "count": 25,
+        "domestic_count": 23,
+        "international_count": 2
+      },
+      {
+        "skill": "深度学习",
+        "count": 24,
+        "domestic_count": 21,
+        "international_count": 3
+      },
+      {
+        "skill": "C",
+        "count": 24,
+        "domestic_count": 24,
+        "international_count": 0
+      },
+      {
+        "skill": "强化学习/RL",
+        "count": 22,
+        "domestic_count": 21,
+        "international_count": 1
+      },
+      {
+        "skill": "PyTorch",
+        "count": 20,
+        "domestic_count": 17,
+        "international_count": 3
+      },
+      {
+        "skill": "相机/传感器/标定",
+        "count": 19,
+        "domestic_count": 13,
+        "international_count": 6
+      },
+      {
+        "skill": "机器人仿真",
+        "count": 17,
+        "domestic_count": 17,
+        "international_count": 0
+      },
+      {
+        "skill": "运动控制",
+        "count": 16,
+        "domestic_count": 16,
+        "international_count": 0
+      },
+      {
+        "skill": "模仿学习/IL",
+        "count": 15,
+        "domestic_count": 14,
+        "international_count": 1
+      },
+      {
+        "skill": "VLM/多模态模型",
+        "count": 14,
+        "domestic_count": 11,
+        "international_count": 3
+      },
+      {
+        "skill": "VLA 族",
+        "count": 13,
+        "domestic_count": 11,
+        "international_count": 2
+      },
+      {
+        "skill": "运动规划",
+        "count": 12,
+        "domestic_count": 12,
+        "international_count": 0
+      },
+      {
+        "skill": "边缘推理",
+        "count": 11,
+        "domestic_count": 8,
+        "international_count": 3
+      },
+      {
+        "skill": "数据采集",
+        "count": 11,
+        "domestic_count": 3,
+        "international_count": 8
+      },
+      {
+        "skill": "IPC/网络编程",
+        "count": 11,
+        "domestic_count": 10,
+        "international_count": 1
+      },
+      {
+        "skill": "Isaac",
+        "count": 11,
+        "domestic_count": 11,
+        "international_count": 0
+      },
+      {
+        "skill": "机器人真机/系统集成",
+        "count": 10,
+        "domestic_count": 8,
+        "international_count": 2
+      },
+      {
+        "skill": "嵌入式/MCU/RTOS",
+        "count": 10,
+        "domestic_count": 8,
+        "international_count": 2
+      },
+      {
+        "skill": "数据管线/ETL",
+        "count": 10,
+        "domestic_count": 2,
+        "international_count": 8
+      },
+      {
+        "skill": "CUDA/GPU",
+        "count": 10,
+        "domestic_count": 7,
+        "international_count": 3
+      },
+      {
+        "skill": "MuJoCo",
+        "count": 10,
+        "domestic_count": 10,
+        "international_count": 0
+      },
+      {
+        "skill": "CAN",
+        "count": 8,
+        "domestic_count": 7,
+        "international_count": 1
+      },
+      {
+        "skill": "Gazebo/Webots/PyBullet",
+        "count": 8,
+        "domestic_count": 8,
+        "international_count": 0
+      },
+      {
+        "skill": "LLM/Agent",
+        "count": 8,
+        "domestic_count": 6,
+        "international_count": 2
+      },
+      {
+        "skill": "MPC",
+        "count": 8,
+        "domestic_count": 8,
+        "international_count": 0
+      },
+      {
+        "skill": "EtherCAT",
+        "count": 7,
+        "domestic_count": 7,
+        "international_count": 0
+      },
+      {
+        "skill": "PID",
+        "count": 7,
+        "domestic_count": 7,
+        "international_count": 0
+      },
+      {
+        "skill": "RTOS/实时系统",
+        "count": 7,
+        "domestic_count": 7,
+        "international_count": 0
+      },
+      {
+        "skill": "机器人数据格式",
+        "count": 6,
+        "domestic_count": 2,
+        "international_count": 4
+      },
+      {
+        "skill": "计算机视觉",
+        "count": 6,
+        "domestic_count": 6,
+        "international_count": 0
+      },
+      {
+        "skill": "云平台/对象存储",
+        "count": 6,
+        "domestic_count": 0,
+        "international_count": 6
+      },
+      {
+        "skill": "Diffusion/Flow Policy",
+        "count": 6,
+        "domestic_count": 6,
+        "international_count": 0
+      },
+      {
+        "skill": "Git/CI/CD",
+        "count": 6,
+        "domestic_count": 4,
+        "international_count": 2
+      },
+      {
+        "skill": "SQL/数据库",
+        "count": 6,
+        "domestic_count": 1,
+        "international_count": 5
+      },
+      {
+        "skill": "遥操作/Teleop",
+        "count": 5,
+        "domestic_count": 0,
+        "international_count": 5
+      },
+      {
+        "skill": "Docker/容器",
+        "count": 5,
+        "domestic_count": 2,
+        "international_count": 3
+      },
+      {
+        "skill": "LeRobot",
+        "count": 5,
+        "domestic_count": 4,
+        "international_count": 1
+      },
+      {
+        "skill": "Sim-to-Real/仿真",
+        "count": 5,
+        "domestic_count": 5,
+        "international_count": 0
+      },
+      {
+        "skill": "SLAM/定位导航",
+        "count": 5,
+        "domestic_count": 4,
+        "international_count": 1
+      },
+      {
+        "skill": "TensorRT",
+        "count": 5,
+        "domestic_count": 3,
+        "international_count": 2
+      },
+      {
+        "skill": "JAX",
+        "count": 4,
+        "domestic_count": 2,
+        "international_count": 2
+      },
+      {
+        "skill": "Jetson",
+        "count": 4,
+        "domestic_count": 3,
+        "international_count": 1
+      },
+      {
+        "skill": "Kubernetes",
+        "count": 4,
+        "domestic_count": 0,
+        "international_count": 4
+      },
+      {
+        "skill": "World Model",
+        "count": 4,
+        "domestic_count": 4,
+        "international_count": 0
+      },
+      {
+        "skill": "运动学/动力学",
+        "count": 3,
+        "domestic_count": 3,
+        "international_count": 0
+      },
+      {
+        "skill": "网络/MQTT",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "CMake/Bazel",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "gRPC/服务通信",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "ONNX",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "Transformer",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "W&B/MLflow",
+        "count": 2,
+        "domestic_count": 0,
+        "international_count": 2
+      },
+      {
+        "skill": "WBC",
+        "count": 2,
+        "domestic_count": 2,
+        "international_count": 0
+      },
+      {
+        "skill": "视频/FFmpeg",
+        "count": 1,
+        "domestic_count": 1,
+        "international_count": 0
+      }
+    ]
+  },
+  "jobs": [
+    {
+      "id": "J001",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "VLA 族",
+        "模仿学习/IL",
+        "World Model",
+        "Diffusion/Flow Policy",
+        "SLAM/定位导航",
+        "运动规划"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "移动操作算法工程师",
+      "city": "上海",
+      "category": "具身系统与真机部署",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7659996225454950719?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-08",
+      "degree": "硕士及以上",
+      "experience": "要求移动机器人真机开发、部署或系统集成经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "ROS/ROS2",
+        "C++",
+        "Python",
+        "Linux",
+        "VLA",
+        "Diffusion Policy",
+        "模仿学习",
+        "World Model",
+        "SLAM",
+        "运动规划"
+      ],
+      "requirements_summary": "负责移动操作算法工程实现、数据采集—模型训练—真机部署Pipeline及跨软硬件联调；要求独立完成ROS/ROS2开发部署，并有移动机器人真机经验。",
+      "fit_note": "嵌入式Linux、通信链路、跨端联调和复杂故障定位可迁移到真机工程化；主要缺口是ROS2、机械臂/移动机器人真机、运动规划和VLA部署证据，完成LeRobot真机闭环后再重点投递。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J002",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "ROS 生态",
+        "ROS 2",
+        "VLA 族",
+        "VLM/多模态模型",
+        "强化学习/RL",
+        "RTOS/实时系统",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "MATLAB/Simulink"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "具身智能算法工程师",
+      "city": "上海",
+      "category": "VLA/具身模型",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7617693362335025418?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-16",
+      "degree": "硕士及以上",
+      "experience": "2年及以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "ROS/ROS2",
+        "MATLAB/Simulink",
+        "VLA",
+        "强化学习",
+        "多模态感知",
+        "RTOS",
+        "嵌入式开发",
+        "Isaac Sim",
+        "MuJoCo"
+      ],
+      "requirements_summary": "面向科学实验机器人研发VLA、强化学习与多模态感知算法并完成训练部署和真机性能优化；要求机器人真机、软硬件协同及实时/嵌入式能力。",
+      "fit_note": "RTOS、嵌入式开发和软硬件协同调试与现有经历高度相关，是算法岗位中较好的桥接目标；但需补齐ROS2、PyTorch/强化学习和至少一个可量化的机械臂真机项目。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J003",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "强化学习/RL",
+        "运动控制",
+        "MPC",
+        "WBC",
+        "RTOS/实时系统",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo"
+      ],
+      "unmapped_tech_stack": [
+        "SampleFactory"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "机器人算法工程师",
+      "city": "上海",
+      "category": "强化学习与运动控制",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7651889731673000238?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-16",
+      "degree": "硕士及以上，博士优先",
+      "experience": "要求至少将一种RL策略部署到真实腿足机器人；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "Linux",
+        "ROS2",
+        "强化学习",
+        "RLlib",
+        "Stable-Baselines3",
+        "SampleFactory",
+        "MuJoCo",
+        "Isaac Gym",
+        "MPC",
+        "WBC",
+        "Preempt-RT"
+      ],
+      "requirements_summary": "研发人形/四足机器人全身强化学习控制，进行GPU并行训练、Sim-to-Real、1kHz实时部署并融合MPC/WBC；要求完整腿足机器人RL真机经验。",
+      "fit_note": "已有C、Linux和实时系统基础可迁移至岗位的C++要求，但现代C++仍需补证；该岗算法与学历门槛高，当前缺少动力学、RL框架、MuJoCo/Isaac及腿足真机部署，不宜作为第一阶段主投岗位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J004",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "ROS 生态",
+        "深度学习",
+        "PyTorch",
+        "VLM/多模态模型",
+        "CUDA/GPU",
+        "机器人真机/系统集成",
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "数据清洗与标注"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "上海人工智能实验室",
+      "title": "具身智能系统工程师",
+      "city": "上海",
+      "category": "具身数据与系统框架",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7654035482623789375?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-22",
+      "degree": "本科及以上",
+      "experience": "相关方向实习/工作经历优先；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "CUDA",
+        "ROS",
+        "多模态数据",
+        "数据采集Pipeline",
+        "数据清洗与标注",
+        "真机部署"
+      ],
+      "requirements_summary": "建设具身操作框架、接口标准、数据采集处理闭环和真机部署链路；强调大规模多模态数据质量、Python/PyTorch工程能力以及CUDA/ROS系统优化。",
+      "fit_note": "系统架构、设备接入、数据链路、平台开发和工程交付与候选人优势最接近；需要用LeRobot数据管线、PyTorch训练、ROS2适配和真机评测项目补足机器人专属证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J005",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "VLM/多模态模型",
+        "模仿学习/IL",
+        "World Model",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [
+        "策略学习",
+        "序列建模",
+        "移动操作",
+        "灵巧手"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "上海人工智能实验室",
+      "title": "具身智能操作算法实习生",
+      "city": "上海",
+      "category": "VLA/世界模型实习",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7578761568268994859?keyword=%E5%85%B7%E8%BA%AB%E6%99%BA%E8%83%BD&location=CT_125&mode=campus",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-03",
+      "degree": "硕士及以上在读",
+      "experience": "未注明",
+      "employment_type": "实习",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "World Model",
+        "多模态表征学习",
+        "模仿学习",
+        "策略学习",
+        "序列建模",
+        "移动操作",
+        "灵巧手",
+        "真机部署"
+      ],
+      "requirements_summary": "研究双臂、灵巧手的世界模型与多模态策略，覆盖操作建模、训练调优、真机部署评测和多视角多模态数据体系；要求硕士及以上在读。",
+      "fit_note": "学习内容与目标项目高度一致，但在读学历条件可能构成硬门槛；可把其技术栈作为开源项目验收清单，而不是当前主要投递目标。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J006",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "深度学习",
+        "PyTorch",
+        "VLA 族",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "Diffusion/Flow Policy",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo",
+        "Sim-to-Real/仿真"
+      ],
+      "unmapped_tech_stack": [
+        "WAM"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "上海人工智能实验室",
+      "title": "人形机器人移动操作算法工程师",
+      "city": "上海",
+      "category": "VLA与人形机器人",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7651886032015395122?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-16",
+      "degree": "博士或优秀硕士优先",
+      "experience": "要求真实机器人算法部署、数据采集或实验经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "C++",
+        "Linux",
+        "ROS/ROS2",
+        "VLA",
+        "WAM",
+        "Diffusion Policy",
+        "强化学习",
+        "模仿学习",
+        "Isaac Lab/Gym",
+        "MuJoCo",
+        "Sim-to-Real"
+      ],
+      "requirements_summary": "构建人形机器人System 0/1/2移动操作策略栈，覆盖强化学习运控、VLA/WAM操作、数据闭环和真机实时部署；要求至少两个相关算法方向的深入积累。",
+      "fit_note": "属于中长期冲刺岗位。现有系统工程能力可支撑数据与部署环节，但需显著补强机器人动力学、PyTorch、VLA/RL训练、仿真和真实机械臂/人形平台经验。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J007",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "LLM/Agent"
+      ],
+      "unmapped_tech_stack": [
+        "任务调度",
+        "设备接入",
+        "中间件",
+        "具身系统"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "上海人工智能实验室",
+      "title": "多智能体平台算法工程师",
+      "city": "上海",
+      "category": "Agentic AI与具身平台",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7659997654215264563?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-08",
+      "degree": "未注明",
+      "experience": "要求Agent框架实际落地经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Agent编排",
+        "Multi-Agent",
+        "OpenClaw或同类Agentic工具链",
+        "任务调度",
+        "设备接入",
+        "中间件",
+        "具身系统"
+      ],
+      "requirements_summary": "搭建物理智能平台底座与具身智能体框架，打通机器人、算法、数据、任务调度和设备接入；重视大型平台、中间件及Agentic工具链实战。",
+      "fit_note": "设备平台、通信、任务编排和AI Agent开发经历具有较强迁移价值，是候选人比纯VLA研究岗更现实的交叉方向；仍需用机器人设备接入和真实Agent编排案例证明能力。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J008",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "强化学习/RL",
+        "运动规划",
+        "运动控制",
+        "MPC",
+        "PID",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [
+        "PX4",
+        "四足机器人"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "机器人运控算法工程师",
+      "city": "上海",
+      "category": "机器人规划与控制",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7649605753204279590?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-10",
+      "degree": "硕士及以上",
+      "experience": "要求机器人真机实验与控制方案落地经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "MPC",
+        "PID",
+        "强化学习控制",
+        "路径规划",
+        "PX4",
+        "人形机器人",
+        "四足机器人"
+      ],
+      "requirements_summary": "面向轮式、四足、人形和无人机开发规划控制算法并做真机验证；要求掌握MPC、PID或RL控制中的至少一种及真实机器人实践。",
+      "fit_note": "已有C、嵌入式联调和设备控制经验可迁移至岗位的C++要求，但现代C++仍需补证；当前缺少控制理论深度、路径规划与机器人真机闭环，需通过机械臂控制和仿真实验建立可量化证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J009",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "JAX",
+        "VLA 族",
+        "VLM/多模态模型",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "World Model",
+        "Transformer",
+        "Diffusion/Flow Policy",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "世界模型训练与真机部署研究员/工程师",
+      "city": "上海",
+      "category": "世界模型与VLA",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7659334795419748658?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-06",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "PyTorch/JAX/TensorFlow",
+        "World Model",
+        "VLA/VLM",
+        "Transformer",
+        "Diffusion Model",
+        "Diffusion Policy",
+        "模仿学习",
+        "强化学习",
+        "多模态学习",
+        "真机部署"
+      ],
+      "requirements_summary": "负责世界模型训练评估、多模态机器人数据闭环和真机推理部署，要求机器人学习、深度学习与VLA/扩散模型基础；真机、视觉/三维感知和C++集成为加分项。",
+      "fit_note": "数据闭环、C/Linux系统集成和硬件异常定位可迁移至岗位的C++工程要求，但现代C++仍需补证；核心仍是模型训练，需先完成可复现的ACT/SmolVLA训练、数据集卡和真机失败分析。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J010",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "深度学习",
+        "PyTorch",
+        "JAX",
+        "VLA 族",
+        "VLM/多模态模型",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "World Model",
+        "Diffusion/Flow Policy",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo"
+      ],
+      "unmapped_tech_stack": [
+        "Open X-Embodiment"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "上海人工智能实验室",
+      "title": "物理智能世界模型训练与真机部署实习生",
+      "city": "上海",
+      "category": "世界模型与VLA实习",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7641101415998540083?jobFunction=&jobType=&keyword=&location=&mode=campus&subject=7527241317794023716",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-05-18",
+      "degree": "本科高年级、硕士或博士在读",
+      "experience": "可长期实习者优先；年限未注明",
+      "employment_type": "实习",
+      "tech_stack": [
+        "Python",
+        "PyTorch/JAX/TensorFlow",
+        "World Model",
+        "VLA/VLM",
+        "Diffusion Policy",
+        "Model-Based RL",
+        "MuJoCo",
+        "Isaac Gym/Sim",
+        "Open X-Embodiment",
+        "LIBERO",
+        "C++"
+      ],
+      "requirements_summary": "参与机器人交互世界模型、多模态训练数据、真机部署和Sim-to-Real实验闭环；加分项覆盖主流仿真器、机器人数据集、分布式训练和三维视觉。",
+      "fit_note": "这是很完整的学习路线参照，但在读条件可能不匹配；可逐项复现其公开技术栈，用项目成果申请工程型岗位而非直接对标研究实习。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J011",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "深度学习",
+        "PyTorch",
+        "VLA 族",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "Diffusion/Flow Policy",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo"
+      ],
+      "unmapped_tech_stack": [
+        "WAM",
+        "触觉/力觉"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "上海人工智能实验室",
+      "title": "灵巧手精细操作算法青年研究员",
+      "city": "上海",
+      "category": "灵巧操作与机器人学习",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7651885904365914377?mode=social",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-16",
+      "degree": "博士或优秀硕士优先",
+      "experience": "要求真实机器人算法部署、数据采集或实验经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "C++",
+        "Linux",
+        "ROS/ROS2",
+        "VLA",
+        "WAM",
+        "Diffusion Policy",
+        "强化学习",
+        "模仿学习",
+        "MuJoCo",
+        "Isaac Lab/Gym",
+        "触觉/力觉"
+      ],
+      "requirements_summary": "研发双臂灵巧手强化/模仿学习、VLA/WAM操作策略、触力觉融合和Sim-to-Real，并主导真机部署、数据集与高水平科研产出。",
+      "fit_note": "研究与真机门槛都很高，当前不适合作为主投；可将安全控制、手眼标定、触力反馈和失败恢复纳入开源项目二期，为以后转向灵巧操作积累证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J012",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "VLA 族",
+        "LeRobot",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "CUDA/GPU",
+        "机器人仿真",
+        "Isaac"
+      ],
+      "unmapped_tech_stack": [
+        "World-Action Model",
+        "点云"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "上海人工智能实验室",
+      "title": "机器人操作算法实习生（VLA/World-Action Model方向）",
+      "city": "上海",
+      "category": "VLA/WAM实习",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7650345340306278698?mode=campus",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-15",
+      "degree": "本科或研究生在读",
+      "experience": "要求稳定线下实习6个月及以上",
+      "employment_type": "实习",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "VLA",
+        "World-Action Model",
+        "LeRobot",
+        "OpenPI",
+        "StarVLA",
+        "点云",
+        "模仿学习",
+        "强化学习",
+        "Isaac Sim/Lab",
+        "ManiSkill",
+        "RoboCasa",
+        "CUDA"
+      ],
+      "requirements_summary": "面向VLA/WAM操作基座模型开展算法复现、架构与训练策略改进、真机/仿真评测和数据构建；明确要求熟悉LeRobot、OpenPI或StarVLA等框架。",
+      "fit_note": "岗位要求直接验证了LeRobot项目路线的市场价值，但在读与6个月线下实习是硬约束；应把该JD作为每日学习计划和项目验收的核心参照。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J013",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "深度学习",
+        "计算机视觉",
+        "相机/传感器/标定"
+      ],
+      "unmapped_tech_stack": [
+        "目标检测/分割",
+        "目标跟踪",
+        "位姿估计",
+        "三维重建",
+        "视觉大模型"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "VLA算法工程师",
+      "city": "杭州",
+      "category": "机器人视觉感知/VLA",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=DD28F5DD9578EBE6FD66AE4AB978A35E",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-03-27",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "计算机视觉",
+        "深度学习",
+        "目标检测/分割",
+        "目标跟踪",
+        "位姿估计",
+        "三维重建",
+        "视觉大模型",
+        "激光/相机/3D相机"
+      ],
+      "requirements_summary": "负责机器人环境与操作感知模型设计、训练部署和工程化，要求计算机视觉、深度学习、多类型传感器原理和实物模型部署经验。",
+      "fit_note": "传感器应用、C和设备联调可迁移至岗位的C++要求，但现代C++尚无项目证据；该岗本质偏视觉算法，需补齐PyTorch视觉训练、位姿估计/点云和真实相机标定部署，且硕士门槛需留意。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J014",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "运动学/动力学",
+        "Sim-to-Real/仿真"
+      ],
+      "unmapped_tech_stack": [
+        "位置控制",
+        "力控制"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "算法工程师-智能控制",
+      "city": "杭州",
+      "category": "强化学习与智能控制",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=05B62984F3CBD9D7EBCACFD3FD6C9CF4",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-03-06",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "强化学习",
+        "模仿学习",
+        "机器人运动学",
+        "动力学建模",
+        "位置控制",
+        "力控制",
+        "仿真与实物部署"
+      ],
+      "requirements_summary": "开发机器人运动控制及强化/模仿学习算法，完成仿真验证与实物部署；强调控制理论、运动学动力学以及学习方法训练部署流程。",
+      "fit_note": "嵌入式控制、实时通信和联调经验有一定关联；主要短板是控制理论、机器人建模、RL/IL训练和实物机械臂部署，完成项目后仍属进阶岗位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J015",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "LLM/Agent",
+        "强化学习/RL",
+        "Diffusion/Flow Policy",
+        "运动学/动力学",
+        "运动控制",
+        "MPC",
+        "PID"
+      ],
+      "unmapped_tech_stack": [
+        "MDP",
+        "路径搜索与优化",
+        "轨迹生成"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "算法工程师-决策控制",
+      "city": "杭州",
+      "category": "具身决策与运动规划",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=6086F9DFD8FA9B80EDDFC9A67F9929DA",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2025-08-19",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "MDP",
+        "强化学习",
+        "LLM/LVM",
+        "Diffusion",
+        "PID/LQR/MPC",
+        "路径搜索与优化",
+        "轨迹生成",
+        "运动学/动力学"
+      ],
+      "requirements_summary": "研究移动机器人自主决策、局部路径与轨迹规划、运动控制和仿真；候选人需在决策、具身大模型、控制或运动规划方向至少具备一项深入能力。",
+      "fit_note": "平台调度和设备状态机经验可转化为决策系统叙事，但缺少机器人规划、动力学和深度学习决策项目；适合作为LeRobot项目加入高层任务规划后的进阶目标。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J016",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "深度学习",
+        "PyTorch",
+        "计算机视觉"
+      ],
+      "unmapped_tech_stack": [
+        "CNN",
+        "Caffe",
+        "目标检测",
+        "分割",
+        "OCR"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "算法工程师-机器视觉AI",
+      "city": "杭州",
+      "category": "机器视觉",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=5F698F261BD197F6D6AD4DE3AF2C5285",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-27",
+      "degree": "硕士及以上",
+      "experience": "机器视觉AI算法开发或项目应用经验优先；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "机器视觉",
+        "图像处理",
+        "深度学习",
+        "CNN",
+        "TensorFlow",
+        "Caffe",
+        "PyTorch",
+        "目标检测",
+        "分割",
+        "OCR"
+      ],
+      "requirements_summary": "研发分类、检测、分割和无监督学习算法，负责网络设计、优化部署及缺陷检测、定位引导、OCR落地。",
+      "fit_note": "工程落地和C基础可迁移至岗位的C++要求，但现代C++尚需补证，且简历缺少计算机视觉训练与部署成果；若不单独补做视觉数据集、模型训练和ONNX/TensorRT部署，不建议主投。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J017",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "深度学习",
+        "CUDA/GPU",
+        "边缘推理"
+      ],
+      "unmapped_tech_stack": [
+        "X86",
+        "ARM",
+        "DSP",
+        "多线程",
+        "模型加速"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "算法工程师-高性能计算",
+      "city": "杭州",
+      "category": "模型部署与推理优化",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=890459DF585C28C8EE11AEA07891F836",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-27",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "X86",
+        "ARM",
+        "GPU",
+        "NPU",
+        "DSP",
+        "深度学习推理引擎",
+        "量化",
+        "多线程",
+        "模型加速"
+      ],
+      "requirements_summary": "将视觉/图像算法和深度学习推理引擎移植到GPU、NPU、X86、ARM等平台并加速，要求体系结构、指令集、编译原理和量化优化能力。",
+      "fit_note": "ARM、C、Embedded Linux和边缘设备经历是明显连接点，可迁移至岗位的C++要求但仍需现代C++实证；这是VLA研究岗之外值得发展的部署方向，另需补充ONNX/TensorRT、量化和可复现性能基准。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J018",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "深度学习",
+        "PyTorch",
+        "强化学习/RL",
+        "计算机视觉"
+      ],
+      "unmapped_tech_stack": [
+        "模式识别",
+        "VQA",
+        "Caffe"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康威视研究院",
+      "title": "AI算法工程师",
+      "city": "杭州",
+      "category": "视觉感知与强化学习",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=C8EB9BBE17400810B63B8409D1F54CD5",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-07-16",
+      "degree": "硕士及以上，博士优先",
+      "experience": "要求计算机视觉研究经验；年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "计算机视觉",
+        "模式识别",
+        "深度学习",
+        "强化学习",
+        "VQA",
+        "Caffe",
+        "TensorFlow",
+        "PyTorch"
+      ],
+      "requirements_summary": "研究实现视觉、模式识别、强化学习、VQA及3D人脸等算法；强调数学、视觉科研经验、深度学习框架和论文/竞赛成果。",
+      "fit_note": "与候选人当前工程型画像距离较大，且学历与科研要求较高；可用于理解视觉算法岗位通用要求，不建议作为近期主投。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J019",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "ROS 生态",
+        "强化学习/RL",
+        "运动规划",
+        "运动学/动力学",
+        "运动控制",
+        "MPC",
+        "PID",
+        "机器人仿真",
+        "Gazebo/Webots/PyBullet"
+      ],
+      "unmapped_tech_stack": [
+        "MATLAB/Simulink"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "萤石网络",
+      "title": "系统工程师-机器人",
+      "city": "杭州",
+      "category": "机器人系统与运动控制",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=19BD4F809283D4541A6A804A88FD5039",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-06-12",
+      "degree": "硕士及以上",
+      "experience": "3年以上机器人相关项目经验者优先",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "ROS",
+        "Gazebo",
+        "MATLAB/Simulink",
+        "PID",
+        "MPC",
+        "强化学习",
+        "运动学/动力学",
+        "路径与轨迹规划"
+      ],
+      "requirements_summary": "负责机器人步态、平衡、路径与轨迹控制算法、系统建模仿真及硬件测试调优，要求机器人系统开发调试和运动控制基础。",
+      "fit_note": "系统联调和软硬件协作契合现有能力，但机器人项目年限、ROS、建模与运动控制是关键缺口；可优先寻找同类但更偏系统集成/应用软件的岗位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J020",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "数据采集",
+        "网络/MQTT"
+      ],
+      "unmapped_tech_stack": [
+        "数据清洗",
+        "数据审核与标注",
+        "数据版本控制",
+        "质量评估",
+        "机器人硬件管理"
+      ],
+      "application_stage": "P0 近期核验",
+      "application_stage_reason": "岗位方向与现有 Linux/设备通信/端边云/平台交付存在迁移重合，仍需逐条核验机器人专项技能、年限、学历与用工条件。",
+      "company": "宇树科技",
+      "title": "机器人数据运营工程师",
+      "city": "杭州",
+      "category": "机器人学习数据",
+      "source_url": "https://www.unitree.com/cn/position/2060189838933491712/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "机器人数据采集",
+        "数据清洗",
+        "数据审核与标注",
+        "数据版本控制",
+        "质量评估",
+        "网络通信故障排查",
+        "机器人硬件管理"
+      ],
+      "requirements_summary": "执行机器人数据采集、清洗、标注、归档和资产全生命周期管理，处理硬件、网络、数采软件异常并持续交付高质量数据。",
+      "fit_note": "设备联调、网络通信、故障定位、流程文档和平台经验匹配度较高，是进入具身行业的现实切入口；需补充机器人数据格式、时序同步、标注质检和LeRobotDataset实践。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J021",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "边缘推理",
+        "Jetson",
+        "机器人真机/系统集成",
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "昇腾",
+        "具身模型部署",
+        "机器人软件架构",
+        "异常恢复"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "宇树科技",
+      "title": "具身智能软件工程师",
+      "city": "杭州",
+      "category": "具身系统与边缘部署",
+      "source_url": "https://www.unitree.com/cn/position/2047604504966201344/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Jetson Orin/Thor",
+        "昇腾",
+        "具身模型部署",
+        "机器人软件架构",
+        "低延迟推理",
+        "数据采集与清洗",
+        "异常恢复",
+        "真机测试"
+      ],
+      "requirements_summary": "将具身算法产品化并部署到嵌入式算力平台，优化感知—决策—执行链路，建设数据闭环、异常处理和真机长稳测试体系。",
+      "fit_note": "这是与嵌入式Linux、边缘设备、状态机、异常恢复、通信和端云平台能力最匹配的目标之一；补齐ROS2、Jetson模型部署和LeRobot真机数据闭环后可重点投递。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J022",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "视频/FFmpeg"
+      ],
+      "unmapped_tech_stack": [
+        "高吞吐数据流水线",
+        "数据验证与转换",
+        "对象存储",
+        "元数据索引",
+        "可视化与实验分析"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "宇树科技",
+      "title": "数据管线工程师",
+      "city": "杭州",
+      "category": "具身数据基础设施",
+      "source_url": "https://www.unitree.com/cn/position/2046858311420084224/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "高吞吐数据流水线",
+        "视频/本体状态/动作数据",
+        "数据验证与转换",
+        "对象存储",
+        "元数据索引",
+        "可视化与实验分析"
+      ],
+      "requirements_summary": "建设用于机器人多模态数据摄取、验证、转换、存储和索引的高吞吐流水线，并开发调试、可视化和实验分析工具。",
+      "fit_note": "全栈平台、设备数据接入、日志与存储经验可直接迁移，属于较现实的具身数据工程方向；需补足Python数据工程、对象存储/列式格式、时序对齐和规模化基准。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J023",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "VLM/多模态模型",
+        "CUDA/GPU",
+        "边缘推理"
+      ],
+      "unmapped_tech_stack": [
+        "分布式训练",
+        "数据加载优化",
+        "知识蒸馏",
+        "模型编译"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "宇树科技",
+      "title": "AI Infra工程师",
+      "city": "杭州",
+      "category": "训练与推理基础设施",
+      "source_url": "https://www.unitree.com/cn/position/2046857577249112064/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "分布式训练",
+        "GPU集群",
+        "数据加载优化",
+        "低延迟推理",
+        "量化",
+        "知识蒸馏",
+        "模型编译",
+        "多模态大模型"
+      ],
+      "requirements_summary": "建设大规模GPU集群AI训练系统，优化利用率、显存、吞吐和数据加载，并为机器人实时控制构建量化、蒸馏和编译后的低延迟推理流水线。",
+      "fit_note": "工程与部署思维相关，但当前缺少GPU集群、分布式训练和模型编译经验；应先从单机模型部署与性能剖析做起，不宜直接作为近期主投。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J024",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "VLM/多模态模型"
+      ],
+      "unmapped_tech_stack": [
+        "数据价值评估",
+        "自动化筛选",
+        "难例挖掘",
+        "负样本生成",
+        "模型评测",
+        "数据—模型闭环"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "宇树科技",
+      "title": "具身数据评估工程师",
+      "city": "杭州",
+      "category": "具身数据与评测",
+      "source_url": "https://www.unitree.com/cn/position/2046858623123980288/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "多模态数据建模",
+        "数据价值评估",
+        "自动化筛选",
+        "难例挖掘",
+        "负样本生成",
+        "模型评测",
+        "数据—模型闭环"
+      ],
+      "requirements_summary": "对大规模机器人多模态交互数据进行价值评估，建设自动筛选、难例挖掘、负样本与数据—模型协同进化机制。",
+      "fit_note": "测试验证、问题闭环、日志分析和数据平台经验可转化，但需要具身数据统计、离线评测、失败类型学和模型指标关联实践。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J025",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "强化学习/RL",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [
+        "多自由度机器人",
+        "双足机器人",
+        "四足机器人",
+        "决策规划",
+        "模型训练"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "宇树科技",
+      "title": "深度强化学习算法工程师",
+      "city": "杭州",
+      "category": "强化学习与足式机器人",
+      "source_url": "https://www.unitree.com/cn/position/1692018892890701824/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "深度强化学习",
+        "多自由度机器人",
+        "双足机器人",
+        "四足机器人",
+        "决策规划",
+        "模型训练",
+        "真机验证"
+      ],
+      "requirements_summary": "研发适用于多自由度、双足和四足机器人的深度强化学习决策规划算法，并完成模型开发、调试与真实机器人验证。",
+      "fit_note": "与当前经历差距较大，必须具备RL训练、机器人仿真和足式真机结果；可作为长期方向观察，不应因掌握LeRobot基础就直接投递。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J026",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "运动控制"
+      ],
+      "unmapped_tech_stack": [
+        "控制SDK",
+        "机器人调试",
+        "生产测试",
+        "机电协同"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "宇树科技",
+      "title": "机器人运动控制算法工程师",
+      "city": "杭州",
+      "category": "机器人运动控制",
+      "source_url": "https://www.unitree.com/cn/position/1526050171207548928/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "足式机器人运动控制",
+        "控制SDK",
+        "C/C++",
+        "机器人调试",
+        "生产测试",
+        "机电协同"
+      ],
+      "requirements_summary": "开发、调试和测试足式机器人运动控制算法与SDK，并参与产品规划、硬件设计建议及生产测试程序。",
+      "fit_note": "已有C、SDK、嵌入式调试和生产测试经验具有连接点，可迁移至岗位的C++要求但现代C++仍需补证；同时需补齐足式运动学动力学和控制算法，若以机械臂项目切入，更适合先投机器人软件/系统集成岗位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J027",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "VLM/多模态模型",
+        "LLM/Agent",
+        "Transformer",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [
+        "机器人控制",
+        "预训练与调优",
+        "模型并行",
+        "LoRA",
+        "数据集处理",
+        "RT系列"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "宇树科技",
+      "title": "AI算法工程师（大模型）",
+      "city": "杭州",
+      "category": "机器人多模态大模型",
+      "source_url": "https://www.unitree.com/cn/position/1692021510983647232/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "LLM",
+        "多模态大模型",
+        "机器人控制",
+        "预训练与调优",
+        "模型并行",
+        "FlashAttention",
+        "LoRA",
+        "数据集处理",
+        "真机部署",
+        "RT系列"
+      ],
+      "requirements_summary": "负责语言/多模态大模型预训练调优、基于大模型的机器人控制、数据集与真机部署，并优化模型并行、FlashAttention和LoRA训练效率。",
+      "fit_note": "AI辅助开发和应用集成不足以满足预训练算法岗；需有PyTorch、多卡训练、VLA微调、消融实验与真机指标，属于中长期而非当前主投方向。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J028",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "相机/传感器/标定",
+        "SLAM/定位导航"
+      ],
+      "unmapped_tech_stack": [
+        "IMU",
+        "GNSS",
+        "地形重建",
+        "环境感知",
+        "全局/局部规划",
+        "自主导航"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "宇树科技",
+      "title": "激光SLAM算法工程师",
+      "city": "杭州",
+      "category": "视觉/激光感知与导航",
+      "source_url": "https://www.unitree.com/cn/position/1569900302872608768/",
+      "source_type": "官方招聘详情页/职位目录",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "LiDAR",
+        "Camera",
+        "IMU",
+        "GNSS",
+        "多传感器融合",
+        "SLAM",
+        "地形重建",
+        "环境感知",
+        "全局/局部规划",
+        "自主导航"
+      ],
+      "requirements_summary": "开发激光、相机、IMU、GNSS多传感器标定定位建图、地形感知和人形/四足全局局部规划，并完成自主导航落地。",
+      "fit_note": "有传感器应用和设备联调基础，但缺少SLAM数学、点云、标定和融合定位项目；若选择此方向需另开完整导航项目，不能仅靠VLA项目覆盖。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J029",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "强化学习/RL",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo",
+        "Sim-to-Real/仿真"
+      ],
+      "unmapped_tech_stack": [
+        "动作模仿",
+        "全身控制"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "越伴动力",
+      "title": "运控算法工程师",
+      "city": "北京",
+      "category": "强化学习与人形运控",
+      "source_url": "https://luvbotics.com/careers/locomotion-engineer/",
+      "source_type": "官方招聘详情页",
+      "posted_at": "未注明",
+      "degree": "硕士及以上",
+      "experience": "要求深度参与人形机器人Sim-to-Real全流程；年限未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "Linux",
+        "强化学习",
+        "动作模仿",
+        "全身控制",
+        "Isaac Gym",
+        "Isaac Lab",
+        "MuJoCo",
+        "Sim-to-Real"
+      ],
+      "requirements_summary": "开发基于强化学习的人形机器人拟人行走、动作模仿和全身控制，并在真机部署调试、解决Sim-to-Real差异。",
+      "fit_note": "已有C和Linux基础可迁移至岗位的C++要求，但现代C++仍需补证；该岗要求人形运控与Sim-to-Real深度经验，当前不匹配，建议把它作为12个月以上学习路线的上限参照。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J030",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "深度学习",
+        "PyTorch",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo",
+        "Sim-to-Real/仿真"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "越伴动力",
+      "title": "运控算法实习生",
+      "city": "北京",
+      "category": "强化学习与人形运控实习",
+      "source_url": "https://luvbotics.com/careers/locomotion-engineer-intern/",
+      "source_type": "官方招聘详情页",
+      "posted_at": "未注明",
+      "degree": "硕士及以上",
+      "experience": "要求强化学习项目和人形机器人核心功能研发经历；年限未注明",
+      "employment_type": "实习",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "Linux",
+        "PyTorch",
+        "强化学习",
+        "模仿学习",
+        "Isaac Gym",
+        "Isaac Lab",
+        "MuJoCo",
+        "Sim-to-Real"
+      ],
+      "requirements_summary": "参与人形机器人强化/模仿学习运控、真机模型部署和Sim-to-Real，要求PyTorch、RL开源库、仿真器及系统集成能力。",
+      "fit_note": "技术栈可作为学习清单，但硕士学历和人形机器人经验可能是硬门槛；先做机械臂操作学习，再决定是否追加足式运控路线。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J031",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "LLM/Agent"
+      ],
+      "unmapped_tech_stack": [
+        "机器人决策系统",
+        "AI Coding"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "越伴动力",
+      "title": "AI算法工程师-Agentic AI方向",
+      "city": "北京",
+      "category": "Agentic AI与机器人决策",
+      "source_url": "https://luvbotics.com/careers/ai-algorithm-engineer/",
+      "source_type": "官方招聘详情页",
+      "posted_at": "未注明",
+      "degree": "硕士及以上，特别优秀者可放宽至本科",
+      "experience": "要求大模型项目、复杂Agent架构或大模型微调经验；年限未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "LLM",
+        "Agent/Multi-Agent",
+        "大模型微调",
+        "机器人决策系统",
+        "AI Coding"
+      ],
+      "requirements_summary": "研发大模型家庭陪伴机器人决策系统和多智能体架构，要求复杂Agent项目或微调经验，并明确重视在工作流中使用AI Coding。",
+      "fit_note": "候选人的AI开发效率、端云平台和设备控制经验具备差异化，是AI+机器人交叉岗位中较现实的目标；需公开一个可评测的多Agent机器人任务编排项目，而非只描述使用AI编码。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J032",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "LLM/Agent"
+      ],
+      "unmapped_tech_stack": [
+        "机器人决策系统",
+        "AI Coding"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "越伴动力",
+      "title": "AI算法工程师实习生-Agentic AI方向",
+      "city": "北京",
+      "category": "Agentic AI与机器人决策实习",
+      "source_url": "https://luvbotics.com/careers/ai-algorithm-engineer-intern/",
+      "source_type": "官方招聘详情页",
+      "posted_at": "未注明",
+      "degree": "硕士及以上，特别优秀者可放宽至本科",
+      "experience": "要求大模型项目、复杂Agent架构或大模型微调经验；年限未注明",
+      "employment_type": "实习",
+      "tech_stack": [
+        "Python",
+        "PyTorch",
+        "LLM",
+        "Agent/Multi-Agent",
+        "大模型微调",
+        "机器人决策系统",
+        "AI Coding"
+      ],
+      "requirements_summary": "参与大模型驱动的家庭陪伴机器人决策与多智能体系统，要求Python/PyTorch、Agent架构或大模型微调项目经验。",
+      "fit_note": "本科可放宽使其比多数研究实习更接近，但仍需确认个人是否满足实习身份；技术上应补齐Python/PyTorch微调与具身任务Agent评测。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J033",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "深度学习",
+        "PyTorch",
+        "边缘推理",
+        "Jetson"
+      ],
+      "unmapped_tech_stack": [
+        "FFT/STFT/MFCC",
+        "AEC/ANS/AGC/VAD",
+        "DOA",
+        "Beamforming",
+        "ASR/SER",
+        "RK3588"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "越伴动力",
+      "title": "机器人音频感知算法工程师",
+      "city": "北京",
+      "category": "机器人音频感知",
+      "source_url": "https://luvbotics.com/careers/robot-audio-perception-algorithm-engineer/",
+      "source_type": "官方招聘详情页",
+      "posted_at": "未注明",
+      "degree": "本科及以上",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "PyTorch/TensorFlow",
+        "FFT/STFT/MFCC",
+        "AEC/ANS/AGC/VAD",
+        "DOA",
+        "Beamforming",
+        "ASR/SER",
+        "Jetson",
+        "RK3588"
+      ],
+      "requirements_summary": "研发远场拾音、声源定位、波束形成、语音/情绪识别并在Jetson、RK3588边缘平台部署，要求数字信号处理和深度学习框架。",
+      "fit_note": "边缘平台、音视频工具和C工程经验提供部分关联，可迁移至岗位的C++要求但现代C++仍需补证；同时缺少麦克风阵列与DSP算法项目，除非对音频感知有明确兴趣，否则不应分散VLA主线。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J034",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "ROS 生态",
+        "深度学习",
+        "VLM/多模态模型",
+        "LLM/Agent",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "计算机视觉"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "海尔智家",
+      "title": "具身VLA算法工程师",
+      "city": "北京",
+      "category": "VLA与机器人算法",
+      "source_url": "https://maker.haier.net/client/job/detail/id/10223432/recommend_record/1",
+      "source_type": "官方招聘详情页",
+      "posted_at": "2026-03-25",
+      "degree": "本科及以上",
+      "experience": "3年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C/C++",
+        "Python",
+        "ROS",
+        "LLM",
+        "VLM",
+        "强化学习",
+        "模仿学习",
+        "计算机视觉",
+        "深度学习"
+      ],
+      "requirements_summary": "研发LLM、RL、IL、CV等具身算法并推进ROS机器人算法工程化，要求深度学习背景、C/C++与Python以及算法论文或竞赛成果。",
+      "fit_note": "本科门槛和工程化取向相对友好，已有C、设备联调与交付经验可迁移至岗位的C++要求，但现代C++仍需补证；还需PyTorch、ROS2、VLA/IL真机成果和清晰实验指标，项目完成后再评估。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J035",
+      "sample_bucket": "algorithm",
+      "sample_group": "国内·VLA/具身算法",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "深度学习",
+        "PyTorch",
+        "TensorRT",
+        "ONNX",
+        "边缘推理",
+        "计算机视觉",
+        "相机/传感器/标定"
+      ],
+      "unmapped_tech_stack": [
+        "目标检测/分割/跟踪",
+        "数据闭环"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "算法/研究能力门槛高于当前证据，应在 PyTorch、IL/RL、VLA 和真机评测完成后再评估。",
+      "company": "海尔智家",
+      "title": "具身视觉算法工程师",
+      "city": "青岛",
+      "category": "机器人视觉感知",
+      "source_url": "https://maker.haier.net/client/mobile/socialdetail/id/10223814",
+      "source_type": "官方招聘详情页",
+      "posted_at": "页面仅标注03月30日，年份未注明",
+      "degree": "本科及以上",
+      "experience": "3年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Linux",
+        "Python/C++",
+        "PyTorch",
+        "OpenCV",
+        "ONNX",
+        "TensorRT",
+        "ROS/ROS2",
+        "目标检测/分割/跟踪",
+        "多传感器融合",
+        "数据闭环"
+      ],
+      "requirements_summary": "研发机器人检测、分割、定位、跟踪、场景理解和多传感器融合算法，负责模型部署联调、数据闭环及真实场景失效分析。",
+      "fit_note": "Linux、传感器与系统联调基础可迁移，但现代C++尚无项目证据；本科门槛相对现实，仍需补做相机/点云、PyTorch视觉模型、ONNX/TensorRT与ROS2整机联调项目。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J036",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "ROS 生态",
+        "ROS 2",
+        "Git/CI/CD",
+        "gRPC/服务通信",
+        "IPC/网络编程"
+      ],
+      "unmapped_tech_stack": [
+        "Vue",
+        "React",
+        "Node.js",
+        "Go",
+        "Three.js",
+        "WebGL",
+        "rosbridge",
+        "WebRTC"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "上海人工智能实验室",
+      "title": "软件工程师/Web端开发工程师",
+      "city": "上海",
+      "category": "机器人交互平台与三维可视化",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7649605553270950185?mode=social",
+      "source_type": "机构官方招聘页",
+      "posted_at": "2026-06-10",
+      "degree": "硕士及以上",
+      "experience": "未注明；具身智能、自动驾驶可视化或机器人/无人机调度平台经验优先",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Vue",
+        "React",
+        "Node.js",
+        "Python",
+        "Go",
+        "C++",
+        "Three.js",
+        "WebGL",
+        "ROS",
+        "ROS2",
+        "rosbridge",
+        "WebSocket",
+        "WebRTC",
+        "Git"
+      ],
+      "requirements_summary": "负责异构机器人交互与控制平台全栈开发、多模态图像和3D点云可视化、任务指令接口，以及Web端与ROS/ROS2底层硬件之间的低延迟通信。",
+      "fit_note": "方向高度匹配：Go、Vue/TypeScript、Flutter、设备通信与物联网平台经历可直接迁移；需补ROS2、Three.js/WebGL、WebRTC实证，且硕士学历门槛需要关注。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J037",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "ROS 生态",
+        "ROS 2",
+        "深度学习",
+        "PyTorch",
+        "VLA 族",
+        "LeRobot",
+        "CUDA/GPU",
+        "TensorRT",
+        "ONNX",
+        "边缘推理",
+        "机器人仿真",
+        "Isaac"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "上海人工智能实验室",
+      "title": "机器人操作算法（VLA / World-Action Model 真机部署方向）实习生",
+      "city": "上海",
+      "category": "VLA真机部署与评测",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7658104547239823657?mode=campus&subject=7619221867426433326",
+      "source_type": "机构官方招聘页",
+      "posted_at": "2026-07-03",
+      "degree": "在读本科生或研究生",
+      "experience": "可稳定实习6个月及以上；要求丰富的真机部署与系统优化经验",
+      "employment_type": "实习",
+      "tech_stack": [
+        "ROS2",
+        "Python",
+        "PyTorch",
+        "LeRobot",
+        "OpenPI",
+        "StarVLA",
+        "TensorRT",
+        "ONNX",
+        "CUDA",
+        "Isaac Sim",
+        "Isaac Lab",
+        "ManiSkill",
+        "RoboCasa"
+      ],
+      "requirements_summary": "参与VLA/WAM算法复现、遥操作数据构建、真机与仿真评测、ROS2通信调优及推理加速，强调从模型到真实硬件的端到端落地。",
+      "fit_note": "方向高度契合拟做的LeRobot开源项目；设备通信和系统联调是优势，需补ROS2、PyTorch、LeRobot、VLA复现及机械臂真机成果。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J038",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "运动控制"
+      ],
+      "unmapped_tech_stack": [
+        "Shell",
+        "实时通信",
+        "自动化测试"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "北京原力灵机智能科技有限公司",
+      "title": "机器人系统开发实习生",
+      "city": "北京",
+      "category": "机器人系统集成与测试",
+      "source_url": "https://career.nankai.edu.cn/correcruit/content/id/115086.html",
+      "source_type": "高校公开就业平台",
+      "posted_at": "2026-04-14",
+      "degree": "本科大三及以上或硕士在读",
+      "experience": "未注明；机械臂或移动机器人项目经验优先",
+      "employment_type": "实习",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "ROS",
+        "ROS2",
+        "Linux",
+        "Shell",
+        "传感器集成",
+        "实时通信",
+        "自动化测试",
+        "多传感器数据",
+        "运动控制调试"
+      ],
+      "requirements_summary": "参与传感器与实时通信模块、多传感器数据流水线、运动控制功能测试、自动化测试和多模块系统联调，覆盖机器人软件栈从硬件驱动到系统集成。",
+      "fit_note": "设备通信、协议联调、测试工具和系统交付经验可迁移；需补ROS2和机械臂实践，同时在读身份是实际投递限制，更适合作为项目能力标杆。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J039",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "SLAM/定位导航",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "IMU",
+        "时间同步",
+        "图优化",
+        "EKF",
+        "ESKF",
+        "因子图"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "赛博格机器人",
+      "title": "SLAM算法工程师",
+      "city": "不限",
+      "category": "机器人定位建图与边缘部署",
+      "source_url": "https://career.cuhk.edu.cn/job/view/id/468865",
+      "source_type": "高校公开就业平台",
+      "posted_at": "2026-07-22",
+      "degree": "硕士及以上",
+      "experience": "2026届校招；人形、四足或轮足机器人SLAM经验优先",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Linux",
+        "ROS",
+        "ROS2",
+        "激光SLAM",
+        "LiDAR",
+        "IMU",
+        "多传感器标定",
+        "时间同步",
+        "图优化",
+        "EKF",
+        "ESKF",
+        "因子图",
+        "嵌入式部署"
+      ],
+      "requirements_summary": "负责轮式与双足人形机器人的实时定位建图、里程计/IMU/激光融合、地形地图、多传感器时空同步，以及嵌入式平台上的算法加速与性能调优。",
+      "fit_note": "嵌入式部署和多设备联调能力可迁移，但硕士与2026届校招限制、SLAM算法、融合定位和标定经验都是硬缺口，适合作为长期能力标杆。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J040",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "LeRobot",
+        "相机/传感器/标定",
+        "机器人仿真",
+        "Isaac",
+        "Gazebo/Webots/PyBullet",
+        "数据管线/ETL",
+        "机器人数据格式",
+        "Docker/容器",
+        "Git/CI/CD",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [],
+      "application_stage": "P0 近期核验",
+      "application_stage_reason": "岗位方向与现有 Linux/设备通信/端边云/平台交付存在迁移重合，仍需逐条核验机器人专项技能、年限、学历与用工条件。",
+      "company": "天津小橙集团有限公司",
+      "title": "数据平台工程师",
+      "city": "北京",
+      "category": "机器人多模态数据闭环",
+      "source_url": "https://career.nankai.edu.cn/correcruit/content/id/116186.html",
+      "source_type": "高校公开就业平台",
+      "posted_at": "2026-06-29",
+      "degree": "本科及以上",
+      "experience": "未注明；具身智能或机器人数据集构建经验优先",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Python",
+        "ROS2",
+        "rosbag2",
+        "Ubuntu",
+        "Linux",
+        "Docker",
+        "SQL",
+        "Git",
+        "LeRobot",
+        "HDF5",
+        "RLDS",
+        "数据Pipeline",
+        "多传感器时间同步",
+        "Isaac Sim",
+        "Gazebo"
+      ],
+      "requirements_summary": "建设机器人多模态数据采集、存储、时空对齐、质检、标注与版本治理流程，定义动作/观测空间并支撑规模化训练数据生产。",
+      "fit_note": "是很现实的转型方向：数据库、物联网平台、设备数据链路和工程交付可直接迁移；需用EdgeVLA项目补齐LeRobot、ROS2/rosbag2、时间同步与数据集版本治理。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J041",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "机器人仿真",
+        "Gazebo/Webots/PyBullet"
+      ],
+      "unmapped_tech_stack": [
+        "Qt",
+        "QML",
+        "React",
+        "Vue",
+        "Electron",
+        "RViz",
+        "ASR",
+        "TTS",
+        "Whisper",
+        "Paraformer"
+      ],
+      "application_stage": "P0 近期核验",
+      "application_stage_reason": "岗位方向与现有 Linux/设备通信/端边云/平台交付存在迁移重合，仍需逐条核验机器人专项技能、年限、学历与用工条件。",
+      "company": "天津小橙集团有限公司",
+      "title": "前端 / 嵌入式交互工程师",
+      "city": "北京",
+      "category": "机器人HMI与设备端集成",
+      "source_url": "https://career.nankai.edu.cn/correcruit/content/id/116185.html",
+      "source_type": "高校公开就业平台",
+      "posted_at": "2026-06-29",
+      "degree": "本科及以上",
+      "experience": "未注明；医疗、养老或陪伴类交互产品经验优先",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "ROS2",
+        "Ubuntu",
+        "Linux",
+        "Qt",
+        "QML",
+        "React",
+        "Vue",
+        "Electron",
+        "C++",
+        "RViz",
+        "Gazebo",
+        "ASR",
+        "TTS",
+        "Whisper",
+        "Paraformer"
+      ],
+      "requirements_summary": "负责机器人触屏HMI、状态与动作可视化、语音交互、分级安全交互逻辑和设备端集成，并通过ROS2完成界面与控制链路联调。",
+      "fit_note": "当前匹配度较高：Vue、Flutter、嵌入式和设备端联调可形成组合优势；主要补项是ROS2、Qt/QML、语音链路和机器人可视化工具。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J042",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "计算机视觉",
+        "相机/传感器/标定",
+        "机器人仿真",
+        "Gazebo/Webots/PyBullet",
+        "CMake/Bazel"
+      ],
+      "unmapped_tech_stack": [
+        "GDB",
+        "URDF",
+        "TF",
+        "RViz",
+        "rqt",
+        "AirSim",
+        "网口",
+        "串口"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "完成 ROS2、LeRobot 真机或仿真闭环和现代 C++ 证据后再重点投递。",
+      "company": "海康机器人",
+      "title": "软件开发工程师",
+      "city": "杭州",
+      "category": "机器人应用软件与系统集成",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=A0EA0DB52FA4429C62644E92AB5B2D8A",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2025-11-03",
+      "degree": "本科及以上",
+      "experience": "2年及以上C++和Python软件开发经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "Linux",
+        "GDB",
+        "CMake",
+        "ROS",
+        "ROS2",
+        "URDF",
+        "TF",
+        "RViz",
+        "rqt",
+        "Gazebo",
+        "AirSim",
+        "OpenCV",
+        "网口",
+        "串口",
+        "激光雷达",
+        "双目相机",
+        "红外传感器"
+      ],
+      "requirements_summary": "负责机器人软件系统需求、架构、模块开发测试、跨团队联调和业务系统集成，强调Linux C++、Python、ROS2、通信接口、仿真与多传感器经验。",
+      "fit_note": "属于较现实目标：C/Linux、串口和网络通信、红外/雷达应用、跨端软件与项目交付均可迁移；需强化现代C++、GDB/CMake、ROS2与机器人仿真项目。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J043",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "运动控制",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "ARM",
+        "DSP",
+        "IMU",
+        "双目视觉",
+        "TOF",
+        "Board Bring-up"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "需另行完成与岗位一致的驱动、CAN/伺服、板级或平台 C++ 实证；EdgeVLA 作品本身不能替代该专项经验。",
+      "company": "上海人工智能实验室",
+      "title": "嵌入式软件工程师",
+      "city": "上海",
+      "category": "机器人嵌入式与边缘部署",
+      "source_url": "https://www.shlab.org.cn/joinus/detail/7649604717500893481?mode=social",
+      "source_type": "机构官方招聘页",
+      "posted_at": "2026-06-10",
+      "degree": "硕士及以上（特别优秀者可放宽至本科）",
+      "experience": "要求机器人、机器狗、无人机、智能设备或AI硬件相关经验，年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "ARM",
+        "DSP",
+        "ROS",
+        "ROS2",
+        "IMU",
+        "激光雷达",
+        "双目视觉",
+        "TOF",
+        "FOC",
+        "嵌入式边缘部署",
+        "Board Bring-up"
+      ],
+      "requirements_summary": "负责机器人等智能硬件的底层驱动、ARM/DSP系统联调、传感器和执行器接口、运动控制或AI模型边缘部署及技术文档。",
+      "fit_note": "已有C、ARM、RTOS和通信联调经验可迁移至岗位的C++要求，但现代C++仍需补证；还需补Board Bring-up、驱动、ROS2、传感器融合和FOC实证。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J044",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "RTOS/实时系统",
+        "CAN",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "STM32",
+        "Renesas",
+        "ARM",
+        "I2C",
+        "SPI",
+        "UART",
+        "底层驱动",
+        "硬件板卡",
+        "伺服驱动器"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "需另行完成与岗位一致的驱动、CAN/伺服、板级或平台 C++ 实证；EdgeVLA 作品本身不能替代该专项经验。",
+      "company": "海康机器人",
+      "title": "嵌入式软件开发工程师-驱动",
+      "city": "杭州",
+      "category": "机器人驱动与实时控制",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=96EE10F1A5D710CAB01B1A808269BF2F",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-05-19",
+      "degree": "本科",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "STM32",
+        "Renesas",
+        "ARM",
+        "I2C",
+        "SPI",
+        "UART",
+        "CAN",
+        "FreeRTOS",
+        "底层驱动",
+        "硬件板卡",
+        "伺服驱动器"
+      ],
+      "requirements_summary": "负责自研硬件板卡和伺服驱动器软件开发维护，要求ARM MCU、常见外设、FreeRTOS、芯片手册阅读和底层驱动适配能力。",
+      "fit_note": "C、MCU、UART、FreeRTOS和软硬件联调经验较匹配；CAN与伺服目前仅接触但无项目证据，需通过真实驱动适配和电机接口项目补强后再投递。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J045",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "机器人仿真",
+        "MuJoCo",
+        "Gazebo/Webots/PyBullet",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "MoveIt",
+        "ros2_control",
+        "阻抗控制",
+        "导纳控制",
+        "CoppeliaSim",
+        "看门狗",
+        "急停"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "天津小橙集团有限公司",
+      "title": "机械臂控制 / 力控工程师",
+      "city": "北京",
+      "category": "机械臂控制与安全系统",
+      "source_url": "https://career.nankai.edu.cn/correcruit/content/id/116184.html",
+      "source_type": "高校公开就业平台",
+      "posted_at": "2026-06-29",
+      "degree": "本科及以上",
+      "experience": "未注明；协作机械臂、多设备协同或实时控制经验优先",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "ROS2",
+        "MoveIt",
+        "ros2_control",
+        "Ubuntu",
+        "Linux",
+        "EtherCAT",
+        "阻抗控制",
+        "导纳控制",
+        "六维力传感器",
+        "Gazebo",
+        "MuJoCo",
+        "CoppeliaSim",
+        "PyBullet",
+        "看门狗",
+        "急停"
+      ],
+      "requirements_summary": "负责协作机械臂集成和二次开发、阻抗/导纳力控、力传感器标定、多设备时序同步，并建立看门狗与急停等实时安全机制。",
+      "fit_note": "设备集成、通信与可靠性设计可迁移，但机械臂、力控、EtherCAT、ROS2/MoveIt和伺服控制都是核心缺口，适合作为EdgeVLA真机阶段的进阶目标。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J046",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "RTOS/实时系统",
+        "IPC/网络编程",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "多线程",
+        "网卡驱动",
+        "Profinet",
+        "Bash"
+      ],
+      "application_stage": "P0 近期核验",
+      "application_stage_reason": "岗位方向与现有 Linux/设备通信/端边云/平台交付存在迁移重合，仍需逐条核验机器人专项技能、年限、学历与用工条件。",
+      "company": "海康机器人",
+      "title": "Linux软件开发工程师",
+      "city": "杭州",
+      "category": "工业机器人Linux应用",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=B5364D0B030C22EAF7AB6C4E5116EC17",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-03-18",
+      "degree": "本科及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Linux",
+        "Socket",
+        "多线程",
+        "进程间通信",
+        "Xenomai",
+        "Preempt-RT",
+        "Linux内核",
+        "网卡驱动",
+        "EtherCAT",
+        "Profinet",
+        "Python",
+        "Bash"
+      ],
+      "requirements_summary": "开发维护Linux应用并支持现场调试，重点考察C/C++、网络、多线程、IPC，实时Linux、内核/网卡驱动和工业总线经验优先。",
+      "fit_note": "当前匹配度较高：嵌入式Linux应用、网络通信和现场联调可直接迁移；需强化现代C++、IPC、实时Linux与EtherCAT实践。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J047",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "IPC/网络编程",
+        "网络/MQTT"
+      ],
+      "unmapped_tech_stack": [
+        "STL",
+        "多线程",
+        "GDB",
+        "反汇编",
+        "性能分析",
+        "FPGA",
+        "ISP",
+        "SoC"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含 5 年及以上或资深年限门槛，需先核验是否有放宽空间。",
+      "company": "海康机器人",
+      "title": "嵌入式软件开发工程师（机器视觉）",
+      "city": "杭州",
+      "category": "机器视觉嵌入式应用",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=B893A288712CB9D717F31EEA5CB74AE4",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-27",
+      "degree": "本科及以上",
+      "experience": "3-5年",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "C++11",
+        "STL",
+        "Linux",
+        "TCP/IP",
+        "Socket",
+        "多线程",
+        "进程间通信",
+        "GDB",
+        "反汇编",
+        "性能分析",
+        "FPGA",
+        "ISP",
+        "SoC"
+      ],
+      "requirements_summary": "负责智能硬件软件开发、复杂模块优化、算法集成与性能调优，要求Linux C++、网络/并发及疑难问题定位能力。",
+      "fit_note": "岗位方向与现有Linux应用、通信和产品交付经历相近；需补C++11/STL深度、GDB/性能工具、ISP与SoC接入案例。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J048",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "相机/传感器/标定",
+        "RTOS/实时系统",
+        "IPC/网络编程",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "多线程",
+        "Bash",
+        "uC/OS-II"
+      ],
+      "application_stage": "P0 近期核验",
+      "application_stage_reason": "岗位方向与现有 Linux/设备通信/端边云/平台交付存在迁移重合，仍需逐条核验机器人专项技能、年限、学历与用工条件。",
+      "company": "海康机器人",
+      "title": "嵌入式软件开发工程师（AGV）",
+      "city": "杭州",
+      "category": "AGV嵌入式应用",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=FA94C95524B488D2A90D7B4328B38752",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-01",
+      "degree": "本科及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Linux",
+        "RTOS",
+        "Socket",
+        "多线程",
+        "进程间通信",
+        "Python",
+        "Bash",
+        "FreeRTOS",
+        "uC/OS-II",
+        "工业相机",
+        "图像Sensor"
+      ],
+      "requirements_summary": "设计维护AGV相关Linux或RTOS应用，完成需求实现、文档、测试和现场支持，工业相机与图像Sensor调试经验优先。",
+      "fit_note": "现有MCU/RTOS、Linux通信、设备管理和现场交付经验较匹配；补充ROS2/AGV基础与工业相机接入可提升竞争力。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J049",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "IPC/网络编程"
+      ],
+      "unmapped_tech_stack": [
+        "多线程",
+        "多进程",
+        "Windows驱动",
+        "NDIS",
+        "macOS",
+        "Android",
+        "C#",
+        "Java",
+        "GenICam",
+        "GigE Vision"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "需另行完成与岗位一致的驱动、CAN/伺服、板级或平台 C++ 实证；EdgeVLA 作品本身不能替代该专项经验。",
+      "company": "海康机器人",
+      "title": "应用软件开发工程师（C++）",
+      "city": "杭州",
+      "category": "机器人C++平台软件",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=B9FBE7DEFCCF0F52D1AEF3A309D55236",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-27",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "多线程",
+        "多进程",
+        "网络编程",
+        "Windows驱动",
+        "NDIS",
+        "Linux",
+        "macOS",
+        "Android",
+        "C#",
+        "Python",
+        "Java",
+        "GenICam",
+        "GigE Vision"
+      ],
+      "requirements_summary": "负责服务程序和底层组件设计开发、性能优化与核心问题攻关，强调C++并发网络、跨平台、设备驱动及机器视觉协议。",
+      "fit_note": "网络通信和跨端开发经验可迁移；但岗位强调高级C++公共组件、Windows驱动和机器视觉协议，需要专项补强。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J050",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "运动控制",
+        "CAN",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "伺服控制",
+        "PLC",
+        "三环控制",
+        "Profinet"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含 5 年及以上或资深年限门槛，需先核验是否有放宽空间。",
+      "company": "海康机器人",
+      "title": "运控架构专家（工控）",
+      "city": "杭州",
+      "category": "运动控制系统架构",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=F309CA7D76A3CF8EF6D0E10079DFFF31",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-27",
+      "degree": "未注明",
+      "experience": "10年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "运动控制",
+        "伺服控制",
+        "PLC",
+        "三环控制",
+        "EtherCAT",
+        "Profinet",
+        "CAN"
+      ],
+      "requirements_summary": "负责整体运动控制软件架构、控制策略和PLC/伺服链路，要求十年以上运控产品、伺服调优及工业总线经验。",
+      "fit_note": "不适合当前直接投递，但清晰揭示控制专家路线的核心壁垒：伺服、PLC、三环调优、EtherCAT/CAN与长期产品经验。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J051",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "运动控制",
+        "PID",
+        "CAN",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "SVPWM",
+        "MATLAB",
+        "Simulink",
+        "PLC",
+        "伺服控制"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "海康机器人",
+      "title": "电机控制算法工程师（工控）",
+      "city": "杭州",
+      "category": "伺服电机控制",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=9C28D893C7A9ED62AC0911608B3B17D2",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-15",
+      "degree": "本科及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "PID",
+        "FOC",
+        "SVPWM",
+        "MATLAB",
+        "Simulink",
+        "EtherCAT",
+        "CANopen",
+        "PLC",
+        "伺服控制"
+      ],
+      "requirements_summary": "研发伺服电机电流环、自适应、观测器和补偿算法，进行MATLAB/Simulink建模仿真并涉及EtherCAT/CANopen。",
+      "fit_note": "与现有经历差距较大；CAN仅有接触不能替代电机控制项目，需要先完成FOC/PID仿真和真实电机闭环实验。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J052",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "运动规划",
+        "运动控制",
+        "PID",
+        "CAN",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "自动化测试",
+        "PLCopen",
+        "IEC 61131",
+        "自适应控制",
+        "MATLAB"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "运动控制算法工程师（工控）",
+      "city": "杭州",
+      "category": "运动控制与路径规划",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=34D120423CCEE750C1A0E1E5ECC540F8",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-27",
+      "degree": "硕士及以上",
+      "experience": "3年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "运动控制",
+        "路径规划",
+        "自动化测试",
+        "PLCopen",
+        "IEC 61131",
+        "PID",
+        "自适应控制",
+        "MATLAB",
+        "EtherCAT",
+        "CANopen"
+      ],
+      "requirements_summary": "负责控制端架构、路径规划、算法仿真测试平台，要求三年以上控制算法经验及PLCopen、PID、MATLAB和工业总线能力。",
+      "fit_note": "属于算法控制路线的进阶岗；现有软件工程能力可支撑测试平台部分，但学历、控制理论和运控项目经验不足。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J053",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Linux/Ubuntu",
+        "运动规划",
+        "RTOS/实时系统",
+        "EtherCAT",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "PLC",
+        "PLCopen",
+        "CiA402",
+        "单轴控制",
+        "多轴协同",
+        "电子齿轮",
+        "电子凸轮",
+        "插补"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含 5 年及以上或资深年限门槛，需先核验是否有放宽空间。",
+      "company": "海康机器人",
+      "title": "嵌入式软件工程师-工控PLC",
+      "city": "西安",
+      "category": "工业控制实时软件与运动控制",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=AD87E4F5FF5B9FD26CCAE0FAE76C178F",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-27",
+      "degree": "未注明",
+      "experience": "5-7年及以上嵌入式Linux或RTOS开发经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Linux",
+        "RTOS",
+        "PLC",
+        "PLCopen",
+        "EtherCAT",
+        "CiA402",
+        "实时系统",
+        "单轴控制",
+        "多轴协同",
+        "电子齿轮",
+        "电子凸轮",
+        "插补",
+        "轨迹规划"
+      ],
+      "requirements_summary": "负责工业控制系统架构、核心组件移植维护和PLCopen运动控制功能块实现，覆盖单轴、多轴协同、插补、轨迹规划及实时性能优化。",
+      "fit_note": "Linux/RTOS和嵌入式架构经验可部分迁移，但年限、EtherCAT/CiA402、PLCopen和多轴运动控制均是明显缺口，适合作为工业机器人实时控制路线的进阶标杆。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J054",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "深度学习",
+        "相机/传感器/标定"
+      ],
+      "unmapped_tech_stack": [
+        "目标检测",
+        "语义分割",
+        "目标跟踪",
+        "位姿估计",
+        "三维重建"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "海康机器人",
+      "title": "具身算法工程师",
+      "city": "杭州",
+      "category": "机器人感知与部署",
+      "source_url": "https://talent.hikvision.com/home/socity/position?postId=27F6A082B7E6C850E7DA0CD3324A37BF",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-20",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "深度学习",
+        "目标检测",
+        "语义分割",
+        "目标跟踪",
+        "位姿估计",
+        "三维重建",
+        "激光雷达",
+        "3D相机"
+      ],
+      "requirements_summary": "为机器人任务、导航和操作规划开发环境及操作感知算法，完成感知模型训练、部署和传感器调试。",
+      "fit_note": "传感器应用和设备集成经历有一定关联，但岗位核心是视觉/3D感知算法与硕士背景，需以RGB-D/点云真机项目补齐。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J055",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "CUDA/GPU",
+        "边缘推理"
+      ],
+      "unmapped_tech_stack": [
+        "自动驾驶OS",
+        "通信中间件",
+        "推理框架",
+        "性能调优"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "百度",
+      "title": "自动驾驶系统架构工程师（J85775）",
+      "city": "北京",
+      "category": "实时系统与中间件",
+      "source_url": "https://talent.baidu.com/jobs/detail/SOCIAL/a79cc583-6f9a-41dc-b77c-544b93d91a4b",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Linux",
+        "自动驾驶OS",
+        "通信中间件",
+        "推理框架",
+        "GPU",
+        "模型量化",
+        "性能调优"
+      ],
+      "requirements_summary": "研发车规自动驾驶OS、通信中间件和推理框架，优化调度、资源管理和GPU异构计算，满足实时性与高稳定性。",
+      "fit_note": "通信、Linux应用和稳定性排障可迁移，但该岗需要大型系统架构、性能调优和异构推理框架经验。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J056",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "运动规划",
+        "IPC/网络编程"
+      ],
+      "unmapped_tech_stack": [
+        "多线程",
+        "图论",
+        "高并发"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "百度",
+      "title": "自动驾驶路径规划算法工程师（J92977）",
+      "city": "北京",
+      "category": "路径规划与高并发系统",
+      "source_url": "https://talent.baidu.com/jobs/detail/SOCIAL/117c2c73-2c2a-4b3c-9723-62e42ca2591b",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "本科及以上",
+      "experience": "2年及以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Linux",
+        "网络编程",
+        "多线程",
+        "路径规划",
+        "图论",
+        "高并发"
+      ],
+      "requirements_summary": "开发全局路径规划与ETA模块，优化规划策略和系统瓶颈，要求Linux C++、网络、多线程、图算法与高并发系统经验。",
+      "fit_note": "Linux网络编程与设备平台经验有部分匹配；主要缺口是图论、路径规划算法和大规模高并发工程证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J057",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "VLA 族",
+        "VLM/多模态模型",
+        "强化学习/RL",
+        "模仿学习/IL"
+      ],
+      "unmapped_tech_stack": [
+        "Neural Planner",
+        "生成模型",
+        "车端部署",
+        "数据闭环"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "百度",
+      "title": "自动驾驶端到端模型算法工程师（J92529）",
+      "city": "北京/上海",
+      "category": "VLA与端到端规划",
+      "source_url": "https://talent.baidu.com/jobs/detail/SOCIAL/fa8b1120-168a-49c5-83d4-ad91c03eaec8",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "VLM",
+        "VLA",
+        "Neural Planner",
+        "深度强化学习",
+        "模仿学习",
+        "生成模型",
+        "车端部署",
+        "数据闭环"
+      ],
+      "requirements_summary": "研发预测、VLM/VLA和Neural Planner模型，覆盖数据生成、离线评测、车端部署和数据闭环。",
+      "fit_note": "属于算法型VLA岗位，当前不宜主投；可通过LeRobot真机项目建立模仿学习、数据闭环和推理部署的第一份证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J058",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "运动规划",
+        "运动控制",
+        "MPC",
+        "PID",
+        "Sim-to-Real/仿真"
+      ],
+      "unmapped_tech_stack": [
+        "GDB",
+        "DP",
+        "QP",
+        "Apollo"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "百度",
+      "title": "生态研发组_实习PNC规控算法工程师（J71278）",
+      "city": "北京",
+      "category": "规划控制与实车调试",
+      "source_url": "https://talent.baidu.com/jobs/detail/INTERN/35e63a50-5df8-4024-b0e6-93ab676efd06",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "未注明",
+      "experience": "至少实习3个月",
+      "employment_type": "实习",
+      "tech_stack": [
+        "C++",
+        "Linux",
+        "ROS",
+        "GDB",
+        "DP",
+        "QP",
+        "Hybrid A*",
+        "RRT",
+        "MPC",
+        "PID",
+        "Apollo",
+        "仿真测试"
+      ],
+      "requirements_summary": "开发Apollo L4决策、路径规划和运动控制算法，进行仿真、实车调试与迭代，要求C++/Linux/ROS及常见规控算法。",
+      "fit_note": "可作为机器人规控学习清单；GDB、Linux和工程调试可迁移，但规控算法、ROS和Apollo仍需系统学习。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J059",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "深度学习",
+        "PyTorch",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "运动规划",
+        "运动控制",
+        "MPC",
+        "PID"
+      ],
+      "unmapped_tech_stack": [
+        "EM Planner",
+        "iLQR",
+        "FSM",
+        "MDP",
+        "POMDP",
+        "LQR"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "百度",
+      "title": "自动驾驶决策规划控制算法实习生（J91869）",
+      "city": "北京",
+      "category": "决策规划控制与系统集成",
+      "source_url": "https://talent.baidu.com/jobs/detail/INTERN/ba2a6909-e613-414c-9f79-feef5c3e88cf",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "研究生在读",
+      "experience": "未注明",
+      "employment_type": "实习",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "Linux",
+        "Hybrid A*",
+        "EM Planner",
+        "iLQR",
+        "FSM",
+        "MDP",
+        "POMDP",
+        "PID",
+        "MPC",
+        "LQR",
+        "PyTorch",
+        "TensorFlow",
+        "强化学习",
+        "模仿学习"
+      ],
+      "requirements_summary": "覆盖决策、规划、控制模块架构、算法迭代、上线部署和上下游系统集成，兼顾传统规控与学习型方法。",
+      "fit_note": "完整技术栈体现了VLA系统岗仍需传统机器人基础；现有系统集成能力有帮助，但在读学历和算法深度不匹配。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J060",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "相机/传感器/标定",
+        "SLAM/定位导航"
+      ],
+      "unmapped_tech_stack": [
+        "BEV",
+        "高精地图",
+        "数据自动化"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "岗位含算法、控制、SLAM 或系统架构专项门槛，112 天作品不能替代相应理论、真机和年限证据。",
+      "company": "百度",
+      "title": "云端建图工程师（J81082）",
+      "city": "北京",
+      "category": "SLAM与多传感器建图",
+      "source_url": "https://talent.baidu.com/jobs/detail/SOCIAL/862ac37f-c7ab-4e4b-87c6-893ebbf01b13",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "SLAM",
+        "BEV",
+        "多传感器融合",
+        "高精地图",
+        "数据自动化"
+      ],
+      "requirements_summary": "开发BEV感知、SLAM优化与多传感器融合算法，建设海量数据自动化高精建图并推进量产交付。",
+      "fit_note": "传感器应用经历不足以覆盖SLAM算法；如走移动机器人方向，应补ROS2 Nav2、激光SLAM和真实地图评测。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J061",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "ROS 生态",
+        "强化学习/RL",
+        "运动规划",
+        "运动控制"
+      ],
+      "unmapped_tech_stack": [
+        "CarSim",
+        "CarMaker"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "百度",
+      "title": "上海-自动驾驶端到端决策规划控制算法工程师（J100785）",
+      "city": "上海",
+      "category": "端到端决策规划控制",
+      "source_url": "https://talent.baidu.com/jobs/detail/GRADUATE/26589494-be28-4d0e-8ceb-727e998c0867",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "硕士及以上",
+      "experience": "校招；相关实习或项目经验优先",
+      "employment_type": "校招全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "强化学习",
+        "A*",
+        "RRT",
+        "ROS",
+        "CarSim",
+        "CarMaker",
+        "轨迹规划",
+        "控制理论"
+      ],
+      "requirements_summary": "研发端到端或分层决策、预测和轨迹规划模型，要求机器学习、强化学习、控制理论、C++/Python及仿真工具。",
+      "fit_note": "作为算法校招岗位门槛较高；其技能要求可用于规划每日学习中的ROS2、规划控制和仿真实验模块。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J062",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "深度学习",
+        "PyTorch",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "运动规划",
+        "运动控制",
+        "MPC"
+      ],
+      "unmapped_tech_stack": [
+        "POMDP",
+        "Apollo",
+        "Autoware"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "百度",
+      "title": "2027AIDU-端到端系统架构师（J99978）",
+      "city": "北京",
+      "category": "端到端系统与机器人规划",
+      "source_url": "https://talent.baidu.com/jobs/detail/GRADUATE/cd7d5159-6779-4298-abe4-1a97ccdcea35",
+      "source_type": "公司官方招聘页",
+      "posted_at": "2026-07-21",
+      "degree": "硕士或博士在读",
+      "experience": "校招；机器人路径规划或开源项目经验优先",
+      "employment_type": "校招全职",
+      "tech_stack": [
+        "Python",
+        "C++",
+        "Linux",
+        "PyTorch",
+        "深度强化学习",
+        "模仿学习",
+        "POMDP",
+        "A*",
+        "RRT*",
+        "MPC",
+        "Apollo",
+        "Autoware"
+      ],
+      "requirements_summary": "构建自动驾驶端到端系统及数据迭代方法，要求强化学习、模仿学习、Linux/PyTorch和经典规划控制，机械臂或无人机规划经验加分。",
+      "fit_note": "研究型门槛较高，但证明开源机器人项目确实能增加跨域价值；应重点产出可运行代码、数据集、评测和贡献记录。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J063",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "运动规划",
+        "运动控制",
+        "机器人仿真",
+        "Gazebo/Webots/PyBullet",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "Matlab",
+        "Simulink"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "博世力士乐",
+      "title": "行走机械系统与软件开发工程师_DC",
+      "city": "上海",
+      "category": "移动装备控制系统",
+      "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000125026049--dc",
+      "source_type": "公司官方ATS（SmartRecruiters）",
+      "posted_at": "未注明",
+      "degree": "硕士及以上",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Linux",
+        "嵌入式系统",
+        "ROS",
+        "ROS2",
+        "Matlab",
+        "Simulink",
+        "Gazebo",
+        "PyBullet",
+        "路径规划",
+        "运动控制"
+      ],
+      "requirements_summary": "开发非道路移动设备控制算法与系统软件，打通感知、决策和控制闭环，并完成建模、仿真、测试与真实设备调试。",
+      "fit_note": "嵌入式Linux、传感器通信和软硬件联调经验可迁移；硕士门槛及动力学、路径规划、运动控制、ROS2是主要差距。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J064",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "运动规划",
+        "运动控制",
+        "MPC",
+        "WBC",
+        "机器人仿真",
+        "Isaac",
+        "MuJoCo",
+        "Gazebo/Webots/PyBullet"
+      ],
+      "unmapped_tech_stack": [
+        "PRM",
+        "行为树",
+        "FSM"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "博世中国",
+      "title": "机器人规控算法研究员_CR",
+      "city": "上海",
+      "category": "工业机器人规划控制",
+      "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000106997136--cr",
+      "source_type": "公司官方ATS（SmartRecruiters）",
+      "posted_at": "未注明",
+      "degree": "硕士或博士",
+      "experience": "要求算法仿真、真机调试到现场部署完整项目经历，年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++",
+        "Python",
+        "Linux",
+        "ROS",
+        "ROS2",
+        "RRT",
+        "PRM",
+        "CHOMP",
+        "TrajOpt",
+        "MPC",
+        "WBC",
+        "DWA",
+        "TEB",
+        "行为树",
+        "FSM",
+        "Gazebo",
+        "Isaac Sim",
+        "MuJoCo"
+      ],
+      "requirements_summary": "面向工业机器人研发机械臂规划控制、人形全身控制、移动导航和任务决策，并要求完成仿真、真机与产线部署闭环。",
+      "fit_note": "属于研究与工程并重的高门槛岗位；现有工业物联网交付可支持现场部分，但需补研究生背景和完整机器人规控项目。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J065",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "数据管线/ETL",
+        "Git/CI/CD"
+      ],
+      "unmapped_tech_stack": [
+        "Shell",
+        "DDS",
+        "H.264",
+        "H.265"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "现有端边云、数据平台或 AI 应用经验可迁移，但需先补齐与岗位一致的机器人数据、ROS2 或 Agent 可复现作品。",
+      "company": "博世创新软件开发",
+      "title": "数据闭环算法开发_BCSC",
+      "city": "上海",
+      "category": "机器人数据闭环与ROS2中间件",
+      "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000119529670--bcsc",
+      "source_type": "公司官方ATS（SmartRecruiters）",
+      "posted_at": "未注明",
+      "degree": "本科及以上",
+      "experience": "2年及以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "C++",
+        "Linux",
+        "Shell",
+        "Git",
+        "CI/CD",
+        "ROS2",
+        "DDS",
+        "LiDAR",
+        "Camera",
+        "H.264",
+        "H.265",
+        "数据Pipeline"
+      ],
+      "requirements_summary": "建设自动驾驶传感器数据采集、清洗、送标、训练和评测闭环，开发高吞吐工具链并使用ROS2/DDS处理中间件数据。",
+      "fit_note": "较适合“端云数据与机器人系统工具链”转型：通信、平台和全链路经验可复用；需补Python数据工程、ROS2/DDS和传感器数据格式。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J066",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "机器人数据格式",
+        "Docker/容器",
+        "Git/CI/CD",
+        "CMake/Bazel",
+        "gRPC/服务通信",
+        "IPC/网络编程",
+        "CAN"
+      ],
+      "unmapped_tech_stack": [
+        "Shell",
+        "REST"
+      ],
+      "application_stage": "P1 作品/专项补证后",
+      "application_stage_reason": "需另行完成与岗位一致的驱动、CAN/伺服、板级或平台 C++ 实证；EdgeVLA 作品本身不能替代该专项经验。",
+      "company": "博世创新软件开发",
+      "title": "ADAS仿真回放开发_BCSC",
+      "city": "苏州",
+      "category": "仿真回放与软硬件测试",
+      "source_url": "https://jobs.smartrecruiters.com/BoschGroup/744000127357684-adas-bcsc",
+      "source_type": "公司官方ATS（SmartRecruiters）",
+      "posted_at": "未注明",
+      "degree": "本科及以上",
+      "experience": "3年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++11",
+        "Python",
+        "Shell",
+        "Linux",
+        "ROS",
+        "ROS2",
+        "ROS bag",
+        "CAN",
+        "CAN FD",
+        "Ethernet",
+        "REST",
+        "gRPC",
+        "CMake",
+        "Git",
+        "Docker",
+        "CI/CD"
+      ],
+      "requirements_summary": "开发ADAS硬件回灌和数据上传工具链，对接ECU与传感器，处理ROS bag/CAN数据并完成云端接口、CI/CD和故障定位。",
+      "fit_note": "与现有上位机、通信、云端平台和设备联调经历高度接近，是比纯VLA算法更现实的机器人/智驾系统岗位；需补ROS bag、CAN实战与现代C++工具链。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J067",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "VLA 族",
+        "LeRobot",
+        "机器人仿真",
+        "MuJoCo",
+        "Gazebo/Webots/PyBullet",
+        "机器人真机/系统集成"
+      ],
+      "unmapped_tech_stack": [
+        "OpenVLA",
+        "Sim2Real"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "北京华晟经世信息技术股份有限公司",
+      "title": "具身智能（Embodied AI）算法开发实习生",
+      "city": "北京",
+      "category": "LeRobot与VLA应用",
+      "source_url": "https://www.zhaopin.com/jobdetail/CC427414310J40752598806.htm",
+      "source_type": "公开招聘平台（智联招聘）",
+      "posted_at": "未注明",
+      "degree": "本科",
+      "experience": "6个月实习",
+      "employment_type": "实习",
+      "tech_stack": [
+        "Python",
+        "C++",
+        "Linux",
+        "ROS2",
+        "LeRobot",
+        "VLA",
+        "OpenVLA",
+        "X-VLA",
+        "Pi0",
+        "MuJoCo",
+        "Gazebo",
+        "Sim2Real",
+        "机械臂"
+      ],
+      "requirements_summary": "基于ROS2和LeRobot开发控制感知框架，建设遥操作数据Pipeline，适配VLA模型并在机械臂、四足或人形机器人上部署。",
+      "fit_note": "与计划中的LeRobot开源项目几乎同构，说明项目方向有效；完成数据采集、ACT/VLA微调、真机评测和文档即可覆盖大量要求。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J068",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "CUDA/GPU",
+        "TensorRT",
+        "边缘推理",
+        "Jetson",
+        "IPC/网络编程",
+        "CAN"
+      ],
+      "unmapped_tech_stack": [
+        "设备树",
+        "ARM",
+        "DDS"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含在读、实习或校招条件，2022 届社会招聘候选人需先核验资格。",
+      "company": "经纬恒润",
+      "title": "具身智能软件实习生（SOC嵌入式软件工程师方向）",
+      "city": "天津",
+      "category": "机器人SoC与ROS2",
+      "source_url": "https://www.zhaopin.com/jobdetail/CC000571490J40845909411.htm",
+      "source_type": "公开招聘平台（智联招聘）",
+      "posted_at": "未注明",
+      "degree": "硕士",
+      "experience": "6个月实习",
+      "employment_type": "实习",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "Linux内核",
+        "设备树",
+        "ARM",
+        "Jetson",
+        "ROS2",
+        "DDS",
+        "CAN",
+        "以太网",
+        "CUDA",
+        "TensorRT",
+        "NPU"
+      ],
+      "requirements_summary": "负责机器人SoC平台、Linux内核驱动、ROS2/DDS通信、传感器接口和AI推理优化，兼顾功耗、热管理与可靠性。",
+      "fit_note": "技术方向与ARM、嵌入式Linux和设备通信背景接近，但学历要求及内核驱动、设备树、ROS2/DDS和TensorRT是关键缺口。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J069",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "RTOS/实时系统",
+        "IPC/网络编程",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "DDS",
+        "Fast DDS",
+        "Cyclone DDS",
+        "Zenoh",
+        "组播",
+        "QoS"
+      ],
+      "application_stage": "条件过滤",
+      "application_stage_reason": "页面包含 5 年及以上或资深年限门槛，需先核验是否有放宽空间。",
+      "company": "北京汽车研究总院有限公司",
+      "title": "机器人软件开发工程师（ROS2 / 通信中间件方向）（J13521）",
+      "city": "北京",
+      "category": "ROS2通信中间件",
+      "source_url": "https://www.zhaopin.com/jobdetail/CC211593410J40874431209.htm",
+      "source_type": "公开招聘平台（智联招聘）",
+      "posted_at": "未注明",
+      "degree": "本科及以上",
+      "experience": "3-5年",
+      "employment_type": "全职",
+      "tech_stack": [
+        "ROS2",
+        "DDS",
+        "Fast DDS",
+        "Cyclone DDS",
+        "Zenoh",
+        "Linux",
+        "C++",
+        "Python",
+        "RTOS",
+        "IPC",
+        "TCP",
+        "UDP",
+        "组播",
+        "QoS"
+      ],
+      "requirements_summary": "设计机器人ROS2软件架构和通信调度框架，优化DDS QoS、跨节点数据同步、系统部署和软硬件联调。",
+      "fit_note": "是最值得重点转型的系统软件岗之一：TCP/UDP、RTOS、设备通信与联调经验直接相关；集中补ROS2、DDS/QoS和C++中间件项目即可形成针对性。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J070",
+      "sample_bucket": "system",
+      "sample_group": "国内·机器人系统工程",
+      "market_scope": "中国大陆",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "C",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "ROS 2",
+        "VLA 族",
+        "VLM/多模态模型",
+        "强化学习/RL",
+        "模仿学习/IL",
+        "IPC/网络编程",
+        "CAN",
+        "EtherCAT"
+      ],
+      "unmapped_tech_stack": [
+        "DDS",
+        "USB",
+        "OTA",
+        "远程诊断"
+      ],
+      "application_stage": "P2 中长期",
+      "application_stage_reason": "当前本科学历不满足页面显示的严格硕士门槛。",
+      "company": "浪潮集团",
+      "title": "具身智能算法工程师",
+      "city": "上海",
+      "category": "具身机器人系统架构",
+      "source_url": "https://www.zhaopin.com/jobdetail/CC120143600J40954521515.htm",
+      "source_type": "公开招聘平台（智联招聘）",
+      "posted_at": "未注明",
+      "degree": "硕士",
+      "experience": "5-10年；岗位正文要求8年以上机器人或AI研发且3年以上系统架构经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C",
+        "C++",
+        "Python",
+        "Linux",
+        "ROS",
+        "ROS2",
+        "DDS",
+        "CAN",
+        "EtherCAT",
+        "USB",
+        "Ethernet",
+        "VLA",
+        "多模态大模型",
+        "强化学习",
+        "模仿学习",
+        "OTA",
+        "远程诊断"
+      ],
+      "requirements_summary": "统筹具身机器人感知、决策、规划、控制、云边与运维全链路，主导软硬件集成、真机交付、测试、远程诊断和OTA体系。",
+      "fit_note": "岗位职责与现有物联网全链路思维高度相关，但属于资深架构岗；可把它作为三到五年路线图，先从机器人系统集成和ROS2中间件切入。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J071",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "深度学习",
+        "PyTorch",
+        "JAX",
+        "强化学习/RL",
+        "数据管线/ETL",
+        "机器人数据格式",
+        "W&B/MLflow",
+        "云平台/对象存储"
+      ],
+      "unmapped_tech_stack": [
+        "UMI/GELLO"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "RoboForce",
+      "title": "Senior / Staff AI Research Engineer, Data Infrastructure",
+      "city": "Milpitas, CA",
+      "category": "机器人数据基础设施",
+      "source_url": "https://job-boards.greenhouse.io/roboforce/jobs/5030138008",
+      "source_type": "企业官方招聘系统（Greenhouse）",
+      "posted_at": "未注明",
+      "degree": "本科或硕士（计算机、机器人或相关专业）",
+      "experience": "5年以上",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Python",
+        "ETL",
+        "S3/GCS",
+        "HDF5",
+        "WebDataset",
+        "Zarr",
+        "PyTorch/JAX",
+        "PPO/DPO",
+        "Weights & Biases/MLflow",
+        "UMI/GELLO"
+      ],
+      "requirements_summary": "负责遥操作与 UMI 多模态数据从采集、同步、版本管理、去重和质量过滤，到分布式存储、SFT/RL 后训练、真机 rollout 评测及失败数据回流的完整闭环；要求生产级数据管线经验，并能与 VLA/机器人策略研究团队协作。",
+      "fit_note": "与候选人的设备通信、端云系统和工程交付思路相通，但该岗位是高级数据/学习基础设施岗；当前需重点补齐 Python 数据工程、PyTorch、机器人数据格式、模仿学习及真机 VLA 评测。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J072",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "Linux/Ubuntu",
+        "云平台/对象存储",
+        "Kubernetes",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [
+        "Elasticsearch",
+        "Redis",
+        "Ansible/Terraform"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Figure",
+      "title": "Helix AI Engineer, Data Infrastructure",
+      "city": "San Jose, CA",
+      "category": "机器人数据基础设施",
+      "source_url": "https://job-boards.greenhouse.io/figureai/jobs/4345915006",
+      "source_type": "企业官方招聘系统（Greenhouse）",
+      "posted_at": "未注明",
+      "degree": "本科或硕士（计算机、机器人、工程或相关专业）",
+      "experience": "4年以上全职后端系统经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "Linux",
+        "PostgreSQL/MySQL",
+        "Elasticsearch",
+        "Redis",
+        "AWS/Azure/GCP",
+        "SLURM/Kubernetes/LSF",
+        "Ansible/Terraform"
+      ],
+      "requirements_summary": "建设 Helix 的机器人数据卸载、存储、加工和访问组件，管理本地与云端算力/存储，并优化从机器人记录到神经网络训练的数据传输与存储；要求可靠后端系统、Linux、Python和数据存储经验。",
+      "fit_note": "候选人的嵌入式 Linux、设备联网和集中控制平台经历可支撑端侧理解；要达到该岗位还需形成可展示的机器人数据湖、云端编排、数据集管理和大规模后端工程证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J073",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "数据管线/ETL",
+        "云平台/对象存储",
+        "Docker/容器",
+        "Kubernetes"
+      ],
+      "unmapped_tech_stack": [
+        "机器人遥测与日志"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Intrinsic",
+      "title": "Software Engineer, Data Infrastructure",
+      "city": "Mountain View, California",
+      "category": "机器人数据基础设施",
+      "source_url": "https://job-boards.greenhouse.io/intrinsicrobotics/jobs/5741158004",
+      "source_type": "企业官方招聘系统（Greenhouse）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "4年以上专业软件项目经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "C++/Go/Python",
+        "AWS/GCP/Azure",
+        "Docker",
+        "Kubernetes",
+        "机器学习数据管线",
+        "机器人遥测与日志"
+      ],
+      "requirements_summary": "构建收集、处理和存储传感器、遥测及日志的机器人数据管线，连接 Kubernetes 云服务与设备端服务，并为机器人模型训练、评估、探索和可视化提供基础设施。",
+      "fit_note": "这是候选人从物联网端云全栈转向机器人平台较匹配的中长期方向；现有 Go/设备平台/通信经验可迁移，需补 Kubernetes、云数据服务及真实机器人数据管线项目。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J074",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "ROS 生态",
+        "相机/传感器/标定",
+        "数据管线/ETL",
+        "机器人数据格式"
+      ],
+      "unmapped_tech_stack": [
+        "NumPy",
+        "pandas",
+        "Matplotlib/Plotly",
+        "3D几何与坐标变换",
+        "时序分析"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "XDOF",
+      "title": "Robotics Data Engineer",
+      "city": "San Mateo, CA（混合办公）",
+      "category": "数据采集与质量闭环",
+      "source_url": "https://jobs.ashbyhq.com/xdof/73ac48fd-1c6d-4ff5-b16e-87c9f6ec382d/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "本科或硕士（或同等经验）",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "NumPy",
+        "pandas",
+        "Matplotlib/Plotly",
+        "Protobuf/HDF5/ROS bag",
+        "3D几何与坐标变换",
+        "时序分析",
+        "传感器融合"
+      ],
+      "requirements_summary": "分析遥操作、第一视角和 UMI 等多模态机器人数据，检查关节速度、相机位姿、夹爪编码器及异常采集会话；建立质量工具，并将问题追溯到硬件标定、传感器漂移或操作流程。",
+      "fit_note": "岗位强调工程直觉和数据质量，较纯算法岗更适合作为转型目标；候选人需用 LeRobot 项目证明 Python 数据分析、时间同步、坐标系、ROS bag/MCAP 和可视化能力。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J075",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据管线/ETL"
+      ],
+      "unmapped_tech_stack": [
+        "数据标注工作流",
+        "云基础设施",
+        "大规模存储",
+        "机器人训练与评估数据"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Mind Robotics",
+      "title": "Data Architect, Robotics",
+      "city": "Palo Alto, CA",
+      "category": "机器人数据基础设施",
+      "source_url": "https://jobs.ashbyhq.com/mindrobotics/105d9f55-9914-49a3-a622-1565dcde5f01",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "数据管线",
+        "数据标注工作流",
+        "云基础设施",
+        "大规模存储",
+        "机器人训练与评估数据"
+      ],
+      "requirements_summary": "面向大规模机器人 AI 训练建设数据系统，端到端负责数据管线、标注工作流、存储及云基础设施，把海量原始数据整理成可复用、高质量的数据集，并支持研究团队快速训练与评估。",
+      "fit_note": "属于架构级目标岗位，短期不宜主投；可把候选人的端云平台经验升级为机器人数据版本、质量检查、对象存储和实验追踪系统，逐步积累数据架构证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J076",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "数据管线/ETL",
+        "云平台/对象存储",
+        "Kubernetes"
+      ],
+      "unmapped_tech_stack": [
+        "Spark",
+        "Kafka",
+        "Terraform",
+        "批处理与流处理"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Genesis",
+      "title": "Data Infrastructure",
+      "city": "San Francisco Bay Area",
+      "category": "机器人数据基础设施",
+      "source_url": "https://jobs.ashbyhq.com/genesis/9e3c06f0-109b-42d2-b69c-8f0e33ee3b8c/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "8年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python/Go",
+        "Spark",
+        "Kafka",
+        "S3/数据湖/数据仓库",
+        "Kubernetes",
+        "Terraform",
+        "批处理与流处理"
+      ],
+      "requirements_summary": "为机器人基础模型训练和评估构建 PB 级批流一体数据管线，统一真实遥操作与合成仿真数据模型，负责存储、摄取、转换和编排等生产基础设施。",
+      "fit_note": "候选人的 Go、物联网数据链路和平台建设是可迁移基础，但本岗位资历和分布式数据规模要求高；应视作技术栈标杆，而非当前直接投递目标。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J077",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "模仿学习/IL",
+        "数据采集",
+        "遥操作/Teleop"
+      ],
+      "unmapped_tech_stack": [
+        "数据质量指标",
+        "数据筛选与增强",
+        "Open X-Embodiment/DROID",
+        "VR/动作捕捉"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Rhoda AI",
+      "title": "Research Member of Technical Staff - Robot Learning Data",
+      "city": "Mountain View, CA",
+      "category": "数据采集与质量闭环",
+      "source_url": "https://jobs.ashbyhq.com/rhoda-ai/98fed52a-b6c8-42f8-a88e-f4ed24bcf57f?embed=js",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "遥操作",
+        "示教数据采集",
+        "数据质量指标",
+        "数据筛选与增强",
+        "Open X-Embodiment/DROID",
+        "VR/动作捕捉",
+        "模仿学习"
+      ],
+      "requirements_summary": "制定机器人学习数据策略，建设遥操作和示教采集系统、质量指标、筛选工具及合成/跨本体数据增强方案，并衡量采集决策对策略性能的实际影响。",
+      "fit_note": "研究属性较强，候选人现阶段更适合先做工程型 LeRobot 数据闭环；若能完成真实机械臂数据采集、质量分析和 ACT/SmolVLA 对照实验，可显著缩小差距。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J078",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "深度学习",
+        "PyTorch",
+        "JAX",
+        "CUDA/GPU",
+        "TensorRT",
+        "边缘推理"
+      ],
+      "unmapped_tech_stack": [
+        "vLLM/TorchServe",
+        "剪枝/蒸馏"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Rhoda AI",
+      "title": "Senior Inference Optimization ML Engineer",
+      "city": "Mountain View, CA",
+      "category": "VLA推理与部署优化",
+      "source_url": "https://jobs.ashbyhq.com/rhoda-ai/5fbe9c15-342b-4d46-b1bf-34d99d2f243c",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "3年以上推理优化或ML系统经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "PyTorch/JAX",
+        "TensorRT",
+        "Triton",
+        "CUDA",
+        "torch.compile/XLA",
+        "vLLM/TorchServe",
+        "INT8/FP8量化",
+        "剪枝/蒸馏"
+      ],
+      "requirements_summary": "负责多模态基础模型在云端和机器人端的延迟、吞吐、显存与 I/O 优化，使用量化、剪枝、蒸馏、算子融合、编译和 CUDA/Triton 内核，并建设基准及性能回归检测。",
+      "fit_note": "属于高级 ML Systems 岗，与候选人当前经历距离较大；可先在 Jetson 上完成 ACT/SmolVLA 的 ONNX/TensorRT 部署和可复现实测，再决定是否深挖该方向。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J079",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "深度学习",
+        "PyTorch",
+        "CUDA/GPU",
+        "TensorRT",
+        "边缘推理",
+        "数据管线/ETL",
+        "机器人数据格式",
+        "云平台/对象存储",
+        "Kubernetes"
+      ],
+      "unmapped_tech_stack": [
+        "DeepSpeed/Accelerate",
+        "ZeRO/FSDP"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Dyna Robotics",
+      "title": "ML Infrastructure Engineer, Training",
+      "city": "Redwood City, CA",
+      "category": "VLA训练与推理基础设施",
+      "source_url": "https://jobs.ashbyhq.com/dyna-robotics/ec8f09de-ee26-4117-9b41-d317b074c2dc/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "7年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "PyTorch",
+        "DeepSpeed/Accelerate",
+        "ZeRO/FSDP",
+        "Kubernetes/SLURM",
+        "AWS/GCP",
+        "TensorRT/Triton",
+        "CUDA/NCCL",
+        "MCAP/Protobuf"
+      ],
+      "requirements_summary": "端到端负责机器人多模态模型的分布式训练、任务调度、高吞吐数据加载和低延迟生产推理，处理 GPU 利用率、I/O、显存及通信瓶颈，并以量化、蒸馏和模型编译实现真机部署。",
+      "fit_note": "该岗位可作为理解 VLA 工程上限的参考，不是当前匹配岗位；候选人的第一阶段重点应是单机训练、机器人数据格式和 Jetson 推理，而非直接追求大规模训练集群。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J080",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "VLM/多模态模型",
+        "LLM/Agent",
+        "相机/传感器/标定"
+      ],
+      "unmapped_tech_stack": [
+        "自动标注",
+        "质量评测管线",
+        "2D/3D标注",
+        "模型微调"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Bedrock Robotics",
+      "title": "Agentic Data Understanding",
+      "city": "San Francisco / New York（页面说明地点具灵活性）",
+      "category": "机器人数据自动标注",
+      "source_url": "https://jobs.ashbyhq.com/bedrock-robotics/7ff12ad2-904f-4b3b-9fde-e0cff3632a3a",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Python",
+        "VLM/LLM Agent",
+        "自动标注",
+        "质量评测管线",
+        "2D/3D标注",
+        "LiDAR/相机/IMU",
+        "模型微调"
+      ],
+      "requirements_summary": "为施工机器人原始传感器数据建设 AI 驱动的自动标注、编排、质量校验和 Agent 工作流；要求能定义质量/成本指标，并处理 2D 框、3D 框、分割和事件语义等标注模态。",
+      "fit_note": "候选人的 AI Agent 开发兴趣与平台能力可迁移，但必须增加计算机视觉、传感器数据和标注质量评测；适合做成 LeRobot 数据质检/自动失败分类的进阶模块。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J081",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "ROS 生态",
+        "ROS 2",
+        "LeRobot",
+        "数据管线/ETL",
+        "机器人数据格式",
+        "W&B/MLflow",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [
+        "Kafka/Pub/Sub",
+        "Airflow/dbt/Spark",
+        "BigQuery/Snowflake/Redshift",
+        "Grafana/Looker"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Omakase Robotics",
+      "title": "Robotics Data Engineer",
+      "city": "Japan",
+      "category": "机器人数据基础设施",
+      "source_url": "https://job-boards.greenhouse.io/omakaserobotics/jobs/6101308004",
+      "source_type": "企业官方招聘系统（Greenhouse）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "3年以上",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "Python/SQL",
+        "ROS/ROS2",
+        "LeRobot/MCAP/RLDS",
+        "MLflow/Kubeflow/Weights & Biases",
+        "Kafka/Pub/Sub",
+        "Airflow/dbt/Spark",
+        "BigQuery/Snowflake/Redshift",
+        "Grafana/Looker"
+      ],
+      "requirements_summary": "建设 VLA 与 SLAM 所需的机器人多模态数据采集、清洗、质量验证、版本管理和实时遥测管线，连接现场部署、实验追踪、模型评估、数据仓库及机器人舰队监控。",
+      "fit_note": "这是与候选人规划最吻合的样本：LeRobot、机器人数据、IoT 遥测和端云平台形成交叉；短板是 3 年机器人数据经验、ROS2、传感器数据和 MLOps，可据此反推开源项目模块。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J082",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "VLM/多模态模型",
+        "数据管线/ETL",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [
+        "主动学习",
+        "视觉基础模型"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Serve Robotics",
+      "title": "Senior Data Scientist, Machine Learning",
+      "city": "United States（远程）",
+      "category": "机器人数据与机器学习",
+      "source_url": "https://jobs.ashbyhq.com/serverobotics/0d6390d6-f6cf-4f40-87a3-9bb1df699911/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "5年以上",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Python",
+        "SQL",
+        "ETL",
+        "主动学习",
+        "多模态自动标注",
+        "视觉基础模型",
+        "特征与数据管线"
+      ],
+      "requirements_summary": "以数据为中心训练机器人机器学习模型，建设特征提取和 ETL 管线，并使用多模型集成与视觉基础模型自动生成图像语义、意图及轨迹预测真值。",
+      "fit_note": "偏资深数据科学与自动驾驶/配送机器人算法，候选人短期匹配度低；可借鉴其主动学习、自动标注和数据质量闭环理念，不建议作为首批投递岗位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J083",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "React Native",
+        "iOS原生开发",
+        "Backend API",
+        "Web工具",
+        "机器人数据运营工作流"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Mecka AI",
+      "title": "Senior Mobile Engineer",
+      "city": "New York, NY",
+      "category": "机器人数据采集平台",
+      "source_url": "https://jobs.ashbyhq.com/mecka.ai/3d91bf03-9915-4f8c-b1da-7858babdd33a",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "React Native",
+        "iOS原生开发",
+        "移动端数据采集",
+        "Backend API",
+        "Web工具",
+        "机器人数据运营工作流"
+      ],
+      "requirements_summary": "开发用于真实机器人数据捕获和运营流程的移动应用，同时覆盖 React Native、后端 API、Web 工具及必要的原生 iOS 能力，支撑全球数据采集与标注。",
+      "fit_note": "候选人的 Flutter 跨端 APP、设备通信和平台经验具有较强可迁移性；若为 LeRobot 项目增加移动遥控、任务下发、采集状态和视频上传，可形成差异化作品。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J084",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Linux/Ubuntu",
+        "VLA 族",
+        "相机/传感器/标定",
+        "SLAM/定位导航",
+        "机器人真机/系统集成",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "云端感知管线",
+        "ML训练与部署"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Anvil Robotics",
+      "title": "Sr. Software Engineer - Data Collection",
+      "city": "San Francisco / Taipei / Trinidad（现场）",
+      "category": "机器人数据采集系统",
+      "source_url": "https://jobs.ashbyhq.com/anvil-robotics/ce1313a5-e7b8-4a93-ae12-df4e2beeb40d",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "相关专业硕士，或本科加同等实战深度",
+      "experience": "典型3至5年；有高质量实战者2至3年亦可",
+      "employment_type": "全职",
+      "tech_stack": [
+        "嵌入式应用",
+        "Linux/SoC",
+        "云端感知管线",
+        "SLAM/VIO/传感器融合",
+        "ML训练与部署",
+        "VLA策略真机部署"
+      ],
+      "requirements_summary": "端到端整合手持示教数据采集产品，把位姿跟踪、应用、SoC、云管线和模型工作流连接成可重复使用的系统；强调真实机器人/感知产品集成、受限硬件应用可靠性和跨团队技术判断。",
+      "fit_note": "这是非常贴近候选人优势的跨域样本：不要求亲自研究核心模型，而重视嵌入式应用、端云集成和产品落地。补足机器人感知、数据采集及 VLA 真机证据后值得重点关注。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J085",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "VLM/多模态模型",
+        "LLM/Agent",
+        "云平台/对象存储",
+        "Git/CI/CD",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [
+        "React/Vue/Svelte",
+        "Auth0/Firebase Auth",
+        "机器人数据管理"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Dexmate",
+      "title": "Full-Stack Software Developer - Robotics & AI Systems",
+      "city": "Fremont, CA",
+      "category": "机器人端云全栈平台",
+      "source_url": "https://jobs.ashbyhq.com/dexmate/e31fd855-b234-4f07-bea4-a5f08439930d",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "5年以上全栈开发经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "React/Vue/Svelte",
+        "Node.js/Python/Rust",
+        "SQL/PostgreSQL",
+        "Auth0/Firebase Auth",
+        "CI/CD",
+        "AWS/Azure/GCP",
+        "机器人数据管理",
+        "VLM/LLM应用"
+      ],
+      "requirements_summary": "建设机器人管理门户的前后端、认证授权、机器人数据采集管理界面和 AI 模型交互前端，并使用云服务和 CI/CD 交付平台；机器人、IoT、可视化及 VLM/LLM 是加分项。",
+      "fit_note": "与候选人的集中控制平台、Flutter、设备管理和 AI 应用经历高度相关，是具身智能转型中较现实的岗位类型；需补现代 Web 前端、云部署及机器人数据模型。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J086",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集",
+        "遥操作/Teleop"
+      ],
+      "unmapped_tech_stack": [
+        "训练任务执行",
+        "模型评测",
+        "实验分析",
+        "硬件基准搭建",
+        "SOP与复现文档"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Generalist",
+      "title": "Robot Science Ops",
+      "city": "San Mateo, CA / Somerville, MA",
+      "category": "机器人评测与数据闭环",
+      "source_url": "https://jobs.ashbyhq.com/generalist/a9bee1c6-517b-4740-b4c0-10b6675bb07e/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "机器人遥操作",
+        "数据采集",
+        "训练任务执行",
+        "模型评测",
+        "实验分析",
+        "硬件基准搭建",
+        "SOP与复现文档"
+      ],
+      "requirements_summary": "在机器人、数据、模型和评测之间运行高频反馈闭环：设计任务、协调采集、启动训练、执行真机评测、分析结果，并维护机器人及物理基准可重复运行。",
+      "fit_note": "岗位强调实验执行、问题闭环和软硬件动手能力，方向上比纯研究岗更适合候选人；LeRobot 项目必须展示任务定义、训练/测试拆分、指标、失败分类和复现实验文档。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J087",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "遥操作/Teleop"
+      ],
+      "unmapped_tech_stack": [
+        "任务设计",
+        "数据标注",
+        "模型评估",
+        "质量保证",
+        "故障报告",
+        "机器人安全操作"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Genesis",
+      "title": "Robot Data Operations Analyst",
+      "city": "San Francisco Bay Area",
+      "category": "机器人评测与数据运营",
+      "source_url": "https://jobs.ashbyhq.com/genesis/2f2009be-f166-4289-8a49-3c20eb57e011",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "合同制",
+      "tech_stack": [
+        "机器人遥操作",
+        "任务设计",
+        "数据标注",
+        "模型评估",
+        "质量保证",
+        "故障报告",
+        "机器人安全操作"
+      ],
+      "requirements_summary": "兼顾真机遥操作与分析工作，设计采集任务、标注数据集、评估模型、进行质量保证，并将机器人行为、问题和现场反馈闭环给工程及舰队运营团队。",
+      "fit_note": "可作为进入具身智能行业的桥梁岗位类型，算法门槛低于研究工程师；候选人需要用真实机械臂项目证明遥操作、数据质量、测试记录和安全意识。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J088",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "Linux/Ubuntu",
+        "遥操作/Teleop"
+      ],
+      "unmapped_tech_stack": [
+        "任务与SOP设计",
+        "硬件装配与排障",
+        "可靠性测试",
+        "数据质量复核"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Genesis",
+      "title": "Senior Data Collection Operator",
+      "city": "San Francisco Bay Area",
+      "category": "机器人数据采集与可靠性测试",
+      "source_url": "https://jobs.ashbyhq.com/genesis/3804635c-b86b-430f-9314-c9c92c85e6df",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "要求有机器人或具身AI数据采集实战，年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Linux",
+        "Python脚本",
+        "遥操作",
+        "任务与SOP设计",
+        "硬件装配与排障",
+        "可靠性测试",
+        "数据质量复核"
+      ],
+      "requirements_summary": "使用手套、相机和机器人硬件采集高质量示教，从模糊需求搭建任务、道具与 SOP，与模型团队迭代数据请求，并支持真机可靠性测试和现场质量标准化。",
+      "fit_note": "候选人具备设备调试、脚本化和交付意识，但尚无具身数据采集履历；完成可复现的机械臂采集与可靠性测试后，可用于证明从设备到数据的执行能力。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J089",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Linux/Ubuntu",
+        "机器人真机/系统集成",
+        "遥操作/Teleop"
+      ],
+      "unmapped_tech_stack": [
+        "数据标注",
+        "性能报告",
+        "命令行/Bash",
+        "实验室安全"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Dyna Robotics",
+      "title": "Data Collection Operator",
+      "city": "Redwood City, CA",
+      "category": "机器人数据采集",
+      "source_url": "https://jobs.ashbyhq.com/dyna-robotics/3dc6a8a5-98fe-4e33-8a61-08ccff952985",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "专科或本科（或同等经历）",
+      "experience": "未注明",
+      "employment_type": "合同制",
+      "tech_stack": [
+        "机械臂遥操作",
+        "数据标注",
+        "性能报告",
+        "命令行/Bash",
+        "Linux",
+        "实验室安全"
+      ],
+      "requirements_summary": "通过遥操作控制机械臂执行多种任务，确保数据及标注完整，记录机器人表现并反馈任务迭代；重视手部操作、细节、流程执行和基础 Linux/命令行能力。",
+      "fit_note": "技术门槛较低但能积累真实机器人数据经验；对候选人而言更有价值的是在个人项目中覆盖同类职责，而非把它作为长期岗位定位。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J090",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "SOP",
+        "工位与设备搭建",
+        "数据质量检查",
+        "生产率指标",
+        "安全规范"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Dyna Robotics",
+      "title": "Ego Data Collector",
+      "city": "Redwood City, CA",
+      "category": "第一视角数据采集",
+      "source_url": "https://jobs.ashbyhq.com/dyna-robotics/4175832f-27f9-483a-ae74-fbdda2138831",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "60天临时岗位",
+      "tech_stack": [
+        "第一视角数据采集",
+        "SOP",
+        "工位与设备搭建",
+        "数据质量检查",
+        "生产率指标",
+        "安全规范"
+      ],
+      "requirements_summary": "严格按 SOP 搭建工位、物体和设备，稳定执行第一视角数据采集，报告设备/流程问题，并持续满足准确性、一致性和产量要求。",
+      "fit_note": "该岗位说明具身智能数据生产也需要标准化运营；候选人的项目应提供采集 SOP、校准清单、无效样本规则和日常质量统计，而不仅是展示模型能运行。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J091",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "工位可用性管理",
+        "质量缺陷闭环",
+        "标准作业",
+        "跨班次交接",
+        "安全与持续改进"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Physical Intelligence",
+      "title": "Shift Lead",
+      "city": "San Francisco, CA",
+      "category": "机器人数据运营与质量管理",
+      "source_url": "https://jobs.ashbyhq.com/physicalintelligence/e501e135-9407-4b14-a8e8-c131f89be61d",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "STEM、运营等相关本科或同等实践经验",
+      "experience": "3至5年",
+      "employment_type": "全职",
+      "tech_stack": [
+        "机器人数据采集运营",
+        "工位可用性管理",
+        "质量缺陷闭环",
+        "标准作业",
+        "跨班次交接",
+        "安全与持续改进"
+      ],
+      "requirements_summary": "负责机器人数据采集现场的人员、工位、道具、产量和质量，在中断时调度资源并纠偏缺陷；建立研究、软硬件与现场操作员之间的紧密反馈环。",
+      "fit_note": "这是运营管理而非开发岗位，但揭示了数据闭环对工位可用性、质量、交接和安全的要求；候选人可把这些要素转化为开源项目的运维面板和流程文档。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J092",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "数据质量与吞吐",
+        "标注SOP",
+        "操作员排班",
+        "精益/持续改进",
+        "硬件工具"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Revel Robotics",
+      "title": "Data Collection Operations Lead",
+      "city": "Prague, Czech Republic",
+      "category": "机器人数据运营与质量管理",
+      "source_url": "https://jobs.ashbyhq.com/revelrobotics/404ecab0-1686-4a7c-b610-11c2d02cb68f",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "要求运营、实验室或生产管理经验，年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "穿戴式示教数据采集",
+        "数据质量与吞吐",
+        "标注SOP",
+        "操作员排班",
+        "精益/持续改进",
+        "硬件工具"
+      ],
+      "requirements_summary": "运行穿戴式设备的大规模示教采集，负责采集会话、人员、协议、数据质量、标注 SOP 与吞吐指标，并与机器学习及软件团队对齐数据需求。",
+      "fit_note": "不属于候选人的目标开发岗，但对项目设计很有价值：除技术实现外，应量化每小时有效 episode、拒收率、操作者差异和流程改进效果。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J093",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [],
+      "unmapped_tech_stack": [
+        "机器人数据规格",
+        "采集与标注",
+        "多级质量验证",
+        "时序对齐",
+        "生产追踪系统",
+        "流程自动化",
+        "跨区域交付"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "MaxInsights Corporation",
+      "title": "Technical Project Manager",
+      "city": "Santa Clara, CA",
+      "category": "机器人数据项目与交付",
+      "source_url": "https://jobs.ashbyhq.com/maxinsights/547e967f-6d2e-4337-8a90-6b24000a3d0a",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "2至5年项目或项目群管理经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "机器人数据规格",
+        "采集与标注",
+        "多级质量验证",
+        "时序对齐",
+        "生产追踪系统",
+        "流程自动化",
+        "跨区域交付"
+      ],
+      "requirements_summary": "端到端交付机器人训练数据项目，将传感器、模态和动作空间需求转化为采集、仿真与标注规格，建设生产监控和多级验证，保证数据帧时序、标签准确率及 SLA。",
+      "fit_note": "候选人的跨设备、APP、平台交付经验可迁移到技术项目/解决方案方向；若不走纯算法，可重点强化需求拆解、验收指标、数据质量和跨团队交付叙述。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J094",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "VLA 族",
+        "相机/传感器/标定",
+        "数据采集",
+        "SQL/数据库"
+      ],
+      "unmapped_tech_stack": [
+        "UMI/GoPro/VR采集设备",
+        "数据验收规则",
+        "数据治理",
+        "质量仪表板"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Foundry Robotics",
+      "title": "Strategic Projects Lead",
+      "city": "San Francisco, CA",
+      "category": "机器人数据项目与质量体系",
+      "source_url": "https://jobs.ashbyhq.com/foundry-robotics/1029d615-da36-4cf2-a6a1-6f93b150fa49",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "3至5年",
+      "employment_type": "全职",
+      "tech_stack": [
+        "UMI/GoPro/VR采集设备",
+        "相机与夹爪标定",
+        "数据验收规则",
+        "数据治理",
+        "SQL/Python",
+        "质量仪表板",
+        "VLA训练数据"
+      ],
+      "requirements_summary": "从零建立机器人数据采集项目，管理 UMI、相机及 VR 设备，负责标定漂移、任务规格、拒收规则、SOP、数据治理和可用小时等指标，并连接模型团队与生产现场。",
+      "fit_note": "该岗位把“可展示项目”具体化为设备管理、标定、QA 和指标四部分；候选人的全栈平台能力可用于构建这些工具，但需先获得机械臂和传感器实操证据。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J095",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "数据采集"
+      ],
+      "unmapped_tech_stack": [
+        "机器人工作站",
+        "软硬件故障诊断",
+        "运维工具",
+        "SOP与支持流程",
+        "现场可靠性"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "OpenAI",
+      "title": "Field Engineer",
+      "city": "San Francisco, CA",
+      "category": "机器人数据现场工程",
+      "source_url": "https://jobs.ashbyhq.com/openai/d8ebcb30-c789-4e75-bf9b-a1e3fb09dd2f/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "未注明",
+      "tech_stack": [
+        "机器人工作站",
+        "数据采集运维",
+        "软硬件故障诊断",
+        "运维工具",
+        "SOP与支持流程",
+        "现场可靠性"
+      ],
+      "requirements_summary": "维护大规模真实机器人数据采集环境中工作站的日常技术健康，跨软硬件诊断故障，并建设工具、文档和支持流程，降低停机时间、提升操作员与技术员效率。",
+      "fit_note": "该职责与候选人的设备调试、日志、远程维护和项目交付高度相似，是值得关注的机器人现场/系统工程类型；短板是机械臂工作站和机器人安全实战。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J096",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Linux/Ubuntu",
+        "CUDA/GPU",
+        "Docker/容器",
+        "IPC/网络编程",
+        "CAN"
+      ],
+      "unmapped_tech_stack": [
+        "DHCP/DNS/VLAN/WiFi",
+        "Tailscale/WireGuard",
+        "GStreamer",
+        "Grafana/Datadog"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Dyna Robotics",
+      "title": "Deployment Engineer",
+      "city": "Redwood City, CA",
+      "category": "机器人端云与现场部署",
+      "source_url": "https://jobs.ashbyhq.com/dyna-robotics/869b09e4-33cd-48a7-b937-3f3cbcec6b92",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Linux/systemd/SSH",
+        "Docker",
+        "DHCP/DNS/VLAN/WiFi",
+        "Tailscale/WireGuard",
+        "GPU/nvidia-smi",
+        "CAN/SocketCAN",
+        "GStreamer",
+        "Grafana/Datadog"
+      ],
+      "requirements_summary": "负责在线机器人站点、网络、推理服务器和模型版本的部署/回滚与故障响应，排查容器、GPU、上传队列、CAN 电机、相机及客户网络问题，并沉淀监控、脚本、runbook 和事故复盘。",
+      "fit_note": "这是本样本中与候选人最贴近的目标之一：4G、网络、嵌入式 Linux、设备平台和现场交付均可迁移。应重点补 Docker/systemd、GPU 推理、SocketCAN、相机管线和机器人换件调试。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J097",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "C++",
+        "ROS 生态",
+        "ROS 2",
+        "相机/传感器/标定",
+        "Docker/容器"
+      ],
+      "unmapped_tech_stack": [
+        "六轴机器人/AMR",
+        "机械/电气/软件排障",
+        "现场调试与验收"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Sereact",
+      "title": "Deployment Robotics Engineer (m/f/d)",
+      "city": "Stuttgart, Germany",
+      "category": "机器人现场部署与集成",
+      "source_url": "https://jobs.ashbyhq.com/sereact/a8755452-ace3-4d71-bdf1-4659feb43496",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "3年以上机器人、自动化设备或工业机械部署经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "ROS2",
+        "Python/C++",
+        "Docker",
+        "六轴机器人/AMR",
+        "传感器与布线",
+        "机械/电气/软件排障",
+        "现场调试与验收"
+      ],
+      "requirements_summary": "领导 AI 机器人在客户现场的安装、集成、调试和上线，协调内部团队与客户，跨机械、电气、软件处理问题；要求机器人工作站实操、Python/C++，ROS2 和 Docker 为关键技能。",
+      "fit_note": "候选人的交付和软硬件联调能力有基础，但缺少工业机器人部署年限；可通过同学机械臂项目补 ROS2、六轴臂、传感器布线、安全检查及标准化验收。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J098",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "Linux/Ubuntu",
+        "ROS 生态",
+        "Git/CI/CD"
+      ],
+      "unmapped_tech_stack": [
+        "电气与机械调试",
+        "网络/WiFi/VPN",
+        "数据可视化",
+        "现场测试"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Collaborative Robotics",
+      "title": "Deployment Engineer",
+      "city": "United States（远程，偏中西部）",
+      "category": "机器人现场部署与集成",
+      "source_url": "https://jobs.ashbyhq.com/cobot/d763de1c-079a-4f0a-b903-0ec1f21a2da0",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "工程或供应链相关本科",
+      "experience": "要求有系统部署与集成经验，年限未注明",
+      "employment_type": "全职",
+      "tech_stack": [
+        "Linux",
+        "Python",
+        "Git",
+        "电气与机械调试",
+        "ROS",
+        "网络/WiFi/VPN",
+        "数据可视化",
+        "现场测试"
+      ],
+      "requirements_summary": "在客户现场完成协作机器人部署准备、软硬件测试、故障处理、部件替换和改装，创建流程及培训文档，并以 Linux、Python、Git 和数据分析支撑规模化交付。",
+      "fit_note": "与候选人的系统交付、设备通信和技术文档能力较匹配；需通过开源项目补真实机械臂调试、ROS、基础电气/机械维护和可量化现场测试。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J099",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Python",
+        "Linux/Ubuntu",
+        "边缘推理",
+        "Jetson",
+        "相机/传感器/标定",
+        "嵌入式/MCU/RTOS"
+      ],
+      "unmapped_tech_stack": [
+        "3D视觉/点云",
+        "Fanuc/KUKA/UR/ABB/Omron",
+        "测试工站"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Summer Robotics",
+      "title": "Field Applications Engineer (Mid - Sr. Levels)",
+      "city": "Campbell, CA",
+      "category": "Jetson机器人视觉部署与测试",
+      "source_url": "https://jobs.ashbyhq.com/summer-robotics/6353839f-a8b4-4cca-9eea-f9729d905a11/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "工程、计算机或相关专业本科",
+      "experience": "5年以上复杂技术系统实操经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "NVIDIA Jetson",
+        "Linux",
+        "Python",
+        "3D视觉/点云",
+        "机器人标定",
+        "Fanuc/KUKA/UR/ABB/Omron",
+        "ARM嵌入式系统",
+        "测试工站"
+      ],
+      "requirements_summary": "在客户现场部署和验证 3D 视觉软硬件，确保 NVIDIA Jetson 可靠运行，通过日志和实验排障；搭建测试工站，评估不同材料/工况，并开发机器人配置、标定、路径和 AI 工作流工具。",
+      "fit_note": "岗位把候选人的嵌入式应用、Linux、设备联调与 Jetson/机器人视觉连接起来，路径较合理；需要补点云、相机标定、Jetson 部署和至少一种工业机械臂。",
+      "evidence_checked_at": "2026-07-31"
+    },
+    {
+      "id": "J100",
+      "sample_bucket": "data-deploy",
+      "sample_group": "国际·数据与部署对标",
+      "market_scope": "国际",
+      "normalized_tech_stack": [
+        "Linux/Ubuntu"
+      ],
+      "unmapped_tech_stack": [
+        "WiFi/蜂窝网络",
+        "云应用",
+        "IP网络排障",
+        "REST API",
+        "脚本",
+        "自主无人机/机器人",
+        "远程运维"
+      ],
+      "application_stage": "国际技术对标",
+      "application_stage_reason": "先核验工作许可、所在地、英语和资历，不默认进入直接投递池。",
+      "company": "Skydio",
+      "title": "Deployment Engineer - Northeast",
+      "city": "United States Northeast（远程与客户现场）",
+      "category": "机器人端云联网与部署",
+      "source_url": "https://jobs.ashbyhq.com/skydio/f0013b6c-2389-426e-99d5-58b4ee4b1928/",
+      "source_type": "企业官方招聘系统（Ashby）",
+      "posted_at": "未注明",
+      "degree": "未注明",
+      "experience": "3年以上云连接设备支持经验",
+      "employment_type": "全职",
+      "tech_stack": [
+        "WiFi/蜂窝网络",
+        "Linux",
+        "云应用",
+        "IP网络排障",
+        "REST API",
+        "脚本",
+        "自主无人机/机器人",
+        "远程运维"
+      ],
+      "requirements_summary": "为云连接无人机与机库系统完成企业网络中的安装、配置、测试、维护和软件集成，处理 WiFi/蜂窝/IP 连接问题，建立可规模化部署流程并通过 REST API、脚本及文档支持客户。",
+      "fit_note": "候选人的 4G、网络通信、设备管理平台和远程维护经验匹配度较高；虽非机械臂/VLA 岗，但属于机器人端云部署的现实切入口，可作为转型过渡岗位类型。",
+      "evidence_checked_at": "2026-07-31"
+    }
+  ]
+}
