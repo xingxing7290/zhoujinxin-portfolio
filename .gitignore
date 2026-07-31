@@ -8,7 +8,16 @@ internal/site/dist/**
 !internal/site/dist/assets/
 internal/site/dist/assets/**
 !internal/site/dist/assets/placeholder.txt
-data/
+data/*
+!data/career/
+!data/research/
+data/career/*
+!data/career/vla-plan-*.json
+data/research/*
+!data/research/vla-jobs/
+data/research/vla-jobs/*
+!data/research/vla-jobs/*.json
+!data/research/vla-jobs/*.csv
 storage/
 backups/
 test-results/
