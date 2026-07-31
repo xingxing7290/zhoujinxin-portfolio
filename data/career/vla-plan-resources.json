@@ -1,0 +1,407 @@
+{
+  "snapshot_date": "2026-07-31",
+  "project": {
+    "name": "EdgeVLA Lab",
+    "subtitle": "基于 LeRobot 的机械臂数据采集、VLA 微调、真机评测与边云安全控制平台",
+    "status": "拟建开源作品",
+    "clarification": "EdgeVLA Lab 是本计划拟开发并开源的个人作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 是其上游开源依赖。",
+    "planned_repository": "尚未创建；完成第 5 周硬件与开源边界评审后再创建独立公开仓库",
+    "resume_rule": "未完成并形成可复现证据前，不得作为已完成项目写入正式简历；只可在学习计划中标记为进行中。"
+  },
+  "schedule": {
+    "start_date": "2026-08-03",
+    "end_date": "2026-11-22",
+    "timezone": "Asia/Shanghai",
+    "weekday_hours": 2,
+    "saturday_hours": 4,
+    "sunday_hours": 2,
+    "total_days": 112,
+    "planned_hours": 256,
+    "buffer_days": [28, 56, 84, 112],
+    "buffer_rule": "每四周阶段门的前 1 小时作为可替换缓冲；未发生延期则用于复现审计。若外部依赖超过 1 小时，不压缩安全/评测任务，整体日期顺延并保留 day 序号。"
+  },
+  "environment_rules": [
+    {
+      "name": "ROS 2 Jazzy 系统环境",
+      "rule": "使用原生 Ubuntu 24.04 与 /opt/ros/jazzy 的系统 Python/colcon；不在 LeRobot 的 conda/uv 环境里直接导入二进制 rclpy。"
+    },
+    {
+      "name": "LeRobot v0.6.0 环境",
+      "rule": "使用独立 uv/venv 或容器并固定 tag、commit 与 lockfile；GPU、PyTorch、FFmpeg 版本写入实验产物。"
+    },
+    {
+      "name": "ROS 与 LeRobot 桥接",
+      "rule": "优先通过 ROS topic/service、DDS、socket 或独立进程桥接；若必须同进程，需从源码构建兼容 rclpy 并单独记录，不混用未经验证的 Python ABI。"
+    },
+    {
+      "name": "ACT / ALOHA 仿真环境",
+      "rule": "固定 lerobot/aloha_sim_transfer_cube_human 数据集 revision 和 AlohaTransferCube-v0 环境；先验证 v0.6.0 的 feature/action 兼容性，再训练与评测。"
+    },
+    {
+      "name": "SmolVLA / LIBERO 仿真环境",
+      "rule": "独立 Linux/MuJoCo 环境；固定 HuggingFaceVLA/libero 数据集 revision、libero_10 任务与 observation/action schema，训练和评测必须使用兼容空间。"
+    }
+  ],
+  "fallback_tracks": {
+    "decision_day": 35,
+    "track_real": "R 轨：机械臂授权、示教输入、独立急停和持续可用时段全部满足，继续真机适配、数据采集和评测。",
+    "track_simulation": "S 轨：任一真机前置条件不满足，切换为仿真/回放版；继续完成数据工具、策略训练、异步队列、弱网与平台，但不得写真实机器人结果。",
+    "rules": [
+      {
+        "weeks": "6",
+        "real": "真实 Robot/Teleoperator 适配、低速遥操作与安全联调。",
+        "simulation": "实现 LeRobot mock/replay robot、LIBERO adapter、契约测试和软件安全状态机；不发送真实动作。"
+      },
+      {
+        "weeks": "7",
+        "real": "采集获准的 50 个单任务 episode，并双副本备份。",
+        "simulation": "锁定 HuggingFaceVLA/libero revision，抽取不少于 50 个兼容 episode 作为数据质量与回放测试集，不声称自行采集。"
+      },
+      {
+        "weeks": "8–10",
+        "real": "ACT/SmolVLA 训练、20 次真机基线及五类泛化评测。",
+        "simulation": "在固定 LIBERO 任务上训练/评测，按官方仿真协议报告；所有材料标记 simulation-only。"
+      },
+      {
+        "weeks": "11–12",
+        "real": "Policy Client 控制低速真机，完成故障注入和真实 4G 对比。",
+        "simulation": "以 mock/replay client 注入动作和网络故障；只报告队列、时延、恢复与软件安全状态机，不报告物理安全。"
+      },
+      {
+        "weeks": "13–14",
+        "real": "接入真实设备遥测、视频和人工接管，完成硬件在环与长稳。",
+        "simulation": "接入回放数据与模拟设备，完成平台、CI、容器、性能和服务恢复测试。"
+      },
+      {
+        "weeks": "15–16",
+        "real": "满足许可与复现门后发布 EdgeVLA Lab v1.0.0 真机实验版。",
+        "simulation": "发布 EdgeVLA Lab v0.1.0 simulation/data-tooling 版；简历只写仿真、数据工具与系统工程，不写真机 VLA。"
+      }
+    ]
+  },
+  "software": [
+    {
+      "id": "R01",
+      "name": "LeRobot v0.6.0 官方仓库",
+      "url": "https://github.com/huggingface/lerobot/tree/v0.6.0",
+      "usage": "固定版本、阅读源码、提交 issue/PR"
+    },
+    {
+      "id": "R02",
+      "name": "LeRobot 安装指南",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/installation",
+      "usage": "Python 3.12、PyTorch、FFmpeg 与可选依赖"
+    },
+    {
+      "id": "R03",
+      "name": "Hugging Face Robot Learning Course",
+      "url": "https://huggingface.co/learn/robotics-course/en/unit0/1",
+      "usage": "机器人学习入门与概念复习"
+    },
+    {
+      "id": "R04",
+      "name": "LeRobotDataset v3",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3",
+      "usage": "多相机视频、状态、动作、时间戳和元数据"
+    },
+    {
+      "id": "R05",
+      "name": "LeRobot 自定义硬件",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware",
+      "usage": "为同学机械臂编写 Robot/Teleoperator 插件"
+    },
+    {
+      "id": "R06",
+      "name": "LeRobot ACT 策略文档",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/act",
+      "usage": "单任务模仿学习基线和 action chunk"
+    },
+    {
+      "id": "R07",
+      "name": "SmolVLA 官方说明",
+      "url": "https://huggingface.co/blog/smolvla",
+      "usage": "VLA 架构、微调与异步推理"
+    },
+    {
+      "id": "R08",
+      "name": "LeRobot LIBERO",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/libero",
+      "usage": "Linux/MuJoCo 仿真训练与标准化评测"
+    },
+    {
+      "id": "R09",
+      "name": "LeRobot 算力指南",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/hardware_guide",
+      "usage": "ACT、SmolVLA 与大型 VLA 的显存和训练时长规划"
+    },
+    {
+      "id": "R10",
+      "name": "LeRobot 异步推理",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/async",
+      "usage": "Policy Server、Robot Client 与动作队列"
+    },
+    {
+      "id": "R11",
+      "name": "LeRobot RTC",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/rtc",
+      "usage": "新旧动作块衔接和实时动作更新"
+    },
+    {
+      "id": "R12",
+      "name": "ROS 2 官方文档",
+      "url": "https://docs.ros.org/en/jazzy/index.html",
+      "usage": "节点、Topic、Service、Action、tf2、rosbag2"
+    },
+    {
+      "id": "R13",
+      "name": "MoveIt 2 Jazzy 入门",
+      "url": "https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html",
+      "usage": "按 Ubuntu 24.04 / ROS 2 Jazzy 安装路径学习运动学、规划场景和安全约束；记录 apt 包版本"
+    },
+    {
+      "id": "R14",
+      "name": "PyTorch Tutorials",
+      "url": "https://docs.pytorch.org/tutorials/",
+      "usage": "Tensor、Autograd、Dataset、训练循环和保存模型"
+    },
+    {
+      "id": "R15",
+      "name": "OpenCV 相机标定",
+      "url": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
+      "usage": "相机内参与畸变标定"
+    },
+    {
+      "id": "R16",
+      "name": "MuJoCo 文档",
+      "url": "https://mujoco.readthedocs.io/en/stable/",
+      "usage": "仿真环境、可视化和故障复现"
+    },
+    {
+      "id": "R17",
+      "name": "Weights & Biases 文档",
+      "url": "https://docs.wandb.ai/",
+      "usage": "训练曲线、实验配置和模型产物追踪"
+    },
+    {
+      "id": "R18",
+      "name": "Hugging Face Dataset Cards",
+      "url": "https://huggingface.co/docs/hub/en/datasets-cards",
+      "usage": "数据来源、任务、划分、许可和限制说明"
+    },
+    {
+      "id": "R19",
+      "name": "Hugging Face Model Cards",
+      "url": "https://huggingface.co/docs/hub/en/model-cards",
+      "usage": "模型配置、指标、适用范围和限制说明"
+    },
+    {
+      "id": "R20",
+      "name": "GitHub Actions 文档",
+      "url": "https://docs.github.com/en/actions",
+      "usage": "测试、格式、容器构建和发布验证"
+    },
+    {
+      "id": "R21",
+      "name": "Docker 文档",
+      "url": "https://docs.docker.com/",
+      "usage": "固定运行环境与一键复现"
+    },
+    {
+      "id": "R22",
+      "name": "Linux tc-netem",
+      "url": "https://man7.org/linux/man-pages/man8/tc-netem.8.html",
+      "usage": "注入延迟、抖动、丢包和乱序"
+    },
+    {
+      "id": "R23",
+      "name": "SO-101 开源硬件",
+      "url": "https://github.com/TheRobotStudio/SO-ARM100",
+      "usage": "同学机械臂不可用时的备选真机平台与 BOM"
+    },
+    {
+      "id": "R24",
+      "name": "LeRobot Policy Rollout",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/inference",
+      "usage": "真机策略部署与同步推理基线"
+    },
+    {
+      "id": "R25",
+      "name": "SmolVLA 官方微调指南",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/smolvla",
+      "usage": "语言条件任务、数据量建议、训练配置与真机评测"
+    },
+    {
+      "id": "R26",
+      "name": "LeRobot Adding a Policy",
+      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/bring_your_own_policies",
+      "usage": "理解自定义策略、可复现训练、checkpoint 与评测要求"
+    },
+    {
+      "id": "R27",
+      "name": "LeRobot 贡献指南",
+      "url": "https://huggingface.co/docs/lerobot/main/en/contributing",
+      "usage": "仅用于遵循当前上游贡献规范；运行时仍固定 v0.6.0，提交真实 issue、测试、文档或硬件插件 PR"
+    },
+    {
+      "id": "R28",
+      "name": "Hugging Face Jobs GPU 价格",
+      "url": "https://huggingface.co/docs/hub/jobs-pricing",
+      "usage": "云 GPU 实验预算、最长运行时间与费用上限"
+    },
+    {
+      "id": "R29",
+      "name": "ROS 2 Jazzy Python 环境指南",
+      "url": "https://docs.ros.org/en/jazzy/How-To-Guides/Using-Python-Packages.html",
+      "usage": "隔离系统 Python、virtualenv 与 LeRobot 环境，避免 Conda 和二进制 rclpy ABI 冲突"
+    },
+    {
+      "id": "R30",
+      "name": "OASIS MQTT 5.0 规范",
+      "url": "https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html",
+      "usage": "设计 QoS、Session Expiry、Message Expiry、幂等和遥测/控制消息边界"
+    },
+    {
+      "id": "R31",
+      "name": "OWASP MASVS 移动端安全标准",
+      "url": "https://mas.owasp.org/MASVS/",
+      "usage": "Flutter HMI 的认证、网络、存储、日志与高风险操作检查"
+    },
+    {
+      "id": "R32",
+      "name": "LeRobot ALOHA 仿真数据集",
+      "url": "https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human",
+      "usage": "ACT 仿真闭环固定数据源；与 AlohaTransferCube-v0 的 observation/action 空间配套使用"
+    },
+    {
+      "id": "R33",
+      "name": "LeRobot ACT ALOHA 模型卡",
+      "url": "https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human",
+      "usage": "核对 ACT/AlohaTransferCube 训练与评测命令、模型配置、基线和限制"
+    },
+    {
+      "id": "R34",
+      "name": "C++ Core Guidelines",
+      "url": "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
+      "usage": "补齐 RAII、所有权、资源安全、错误处理和并发代码审查"
+    },
+    {
+      "id": "R35",
+      "name": "CMake 官方教程",
+      "url": "https://cmake.org/cmake/help/latest/guide/tutorial/",
+      "usage": "构建现代 C++/ROS2 组件、测试、依赖和可安装目标"
+    }
+  ],
+  "hardware": [
+    {
+      "id": "H01",
+      "name": "同学的机械臂与厂商 SDK",
+      "priority": "必须先确认",
+      "requirement": "型号、自由度、控制器、舵机、SDK、协议、ROS/ROS2 支持、允许开源的边界"
+    },
+    {
+      "id": "H02",
+      "name": "Linux 开发主机",
+      "priority": "必须",
+      "requirement": "优先 Ubuntu；至少 32GB 内存、200GB 可用 SSD。具体系统版本服从机械臂 SDK 支持矩阵"
+    },
+    {
+      "id": "H03",
+      "name": "NVIDIA GPU 或按量云 GPU",
+      "priority": "训练阶段必须",
+      "requirement": "ACT 可从 6GB 级开始；SmolVLA 建议 16GB 以上，24GB 更稳妥；显存与耗时会随分辨率、相机数、batch、冻结策略和精度变化，必须先冒烟实测；CPU 仅用于数据检查和轻量推理"
+    },
+    {
+      "id": "H04",
+      "name": "固定机位 RGB 摄像头",
+      "priority": "必须",
+      "requirement": "先 1 个 720p/30fps，真机稳定后扩展到前视+腕部双相机；固定曝光、焦距和支架"
+    },
+    {
+      "id": "H05",
+      "name": "独立急停与安全工作区",
+      "priority": "必须",
+      "requirement": "由熟悉该设备安全回路的人确认厂商停止方式、独立断能/使能急停、复位流程、动作限幅、低速模式和隔离测试区；完成带时间戳测试记录前禁止自动运动，软件急停不能替代物理急停"
+    },
+    {
+      "id": "H06",
+      "name": "标定与任务物料",
+      "priority": "必须",
+      "requirement": "棋盘格、颜色/形状可区分物体、两个容器、固定桌面标记、照明变量和卷尺"
+    },
+    {
+      "id": "H07",
+      "name": "4G 网络与可控网络环境",
+      "priority": "第 12 周使用",
+      "requirement": "4G 路由/热点、Linux netem；4G 仅用于遥测和实验，不进入未经保护的硬实时控制"
+    },
+    {
+      "id": "H08",
+      "name": "可选边缘计算设备",
+      "priority": "可选",
+      "requirement": "Jetson Orin 或同级设备，只在 PC 真机链路稳定且岗位样本证明部署需求后采购"
+    },
+    {
+      "id": "H09",
+      "name": "SO-101 leader+follower",
+      "priority": "备选",
+      "requirement": "仅当同学机械臂无法持续使用或不允许开源时采购；2026-07-31 官方双臂核心 BOM 快照约 ¥1343，不含打印、相机、物流和安全附件，采购前必须重新询价"
+    },
+    {
+      "id": "H10",
+      "name": "示教 / 遥操作输入源",
+      "priority": "真机采集前必须确认",
+      "requirement": "至少一种获准且可稳定使用的输入源：leader arm、厂商示教器、手把手示教、gamepad 或键盘；必须支持 dead-man、低速和人工接管"
+    },
+    {
+      "id": "H11",
+      "name": "原始数据独立备份介质",
+      "priority": "正式采集前必须",
+      "requirement": "至少 500GB 可用空间的独立 SSD/NAS/对象存储；原始 episode 只追加不覆盖，使用校验和和双副本，公开包与私有原始区隔离"
+    }
+  ],
+  "accounts_and_access": [
+    {
+      "id": "A01",
+      "name": "GitHub 账号与独立仓库",
+      "url": "https://github.com/",
+      "requirement": "学习阶段可先私有；第 15 周通过许可、隐私与安全审查后再公开，启用 Issues、Actions 与 Release"
+    },
+    {
+      "id": "A02",
+      "name": "Hugging Face Hub 账号",
+      "url": "https://huggingface.co/",
+      "requirement": "用于获准数据集、模型、Dataset Card 和 Model Card；私有资料不得误上传到公开仓库"
+    },
+    {
+      "id": "A03",
+      "name": "实验跟踪账号",
+      "url": "https://wandb.ai/",
+      "requirement": "W&B 可选；若不用则以本地 MLflow 或结构化日志替代，严禁上传密钥、原始隐私视频和厂商私有数据"
+    },
+    {
+      "id": "A04",
+      "name": "按量 GPU 与预算告警",
+      "url": "https://huggingface.co/docs/hub/jobs",
+      "requirement": "仅在本地冒烟和 ACT 验证通过后使用；每个任务必须设置最长时间、费用上限和自动终止"
+    },
+    {
+      "id": "A05",
+      "name": "机械臂所有者授权与使用排期",
+      "requirement": "书面确认可用时段、设备责任、SDK/日志/视频/适配代码的公开边界，以及损坏与紧急停止处理方式"
+    },
+    {
+      "id": "A06",
+      "name": "独立评审者",
+      "requirement": "至少两名未参与对应文档编写的人，可由机械臂同学、软件同事或目标岗位从业者担任；用于任务判定、README 60 秒测试和发布前复核"
+    }
+  ],
+  "budget_rules": [
+    "第 1–4 周只用现有电脑、仿真和公开数据，不购买机械臂。",
+    "第 5 周完成机械臂接口与开源许可核对后，才决定继续使用同学设备或采购 SO-101。",
+    "下单 SO-101 不等于解锁真机路线；到货、装配、示教输入、独立急停和低速验收全部完成前继续执行 S 轨。",
+    "云 GPU 单次任务必须设置最长运行时间和预算告警；先用 ACT 验证数据，再为 SmolVLA 付费。",
+    "Jetson、深度相机和第二套机械臂都属于可选项，只有当评测结果或目标岗位明确需要时才采购。",
+    "任何涉及真机动作的测试，安全附件和独立急停优先于算力升级。",
+    "若第 16 周真机、安全、许可或复现门未通过，只发布 v0.x simulation/data-tooling 版或延期，不为赶日期强行标记 v1.0.0。"
+  ]
+}

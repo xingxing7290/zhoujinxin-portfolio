@@ -1,0 +1,1612 @@
+{
+  "project_name": "EdgeVLA Lab",
+  "project_status": "拟建开源作品",
+  "version": "1.0",
+  "weeks": [
+    {
+      "week": 1,
+      "theme": "环境、证据边界与 PyTorch 基线",
+      "goal": "建立可复现开发环境，明确转型定位，能独立解释并运行最小训练闭环。",
+      "gate": "环境重建脚本可用；最小模型训练测试通过；完成当前能力、缺口和不可夸大的事实清单。",
+      "days": [
+        {
+          "day": 1,
+          "title": "项目启动与真实性边界",
+          "hours": 2,
+          "tasks": [
+            "阅读 100 岗位报告的分类和高频技能，确定 P0/P1/P2 目标岗位。",
+            "盘点现有 Linux、C/C++、Python、4G、IoT、Flutter 证据，以及 ROS2、VLA、机械臂等缺口。",
+            "建立学习日志、实验编号和“未验证不得写入简历”的证据规则。"
+          ],
+          "resource_ids": ["R01", "R03", "R20"],
+          "deliverable": "docs/positioning.md 与 evidence-ledger.csv 初版",
+          "acceptance": "每项能力均标注“已有证据/学习中/未开始”，且 CAN、伺服、ROS2、VLA 不被写成项目经验。"
+        },
+        {
+          "day": 2,
+          "title": "Linux 与 Python 环境固定",
+          "hours": 2,
+          "tasks": [
+            "确认 Ubuntu、NVIDIA 驱动、CUDA 与磁盘空间；无独显时记录云 GPU 方案。",
+            "为 LeRobot 创建独立 Python 3.12 uv/venv，安装 v0.6.0 tag 并保存 commit 与精确依赖。",
+            "建立 Ubuntu、驱动、CUDA、PyTorch、LeRobot、ROS2 的兼容矩阵；ROS 系统环境与 LeRobot 环境不混用。"
+          ],
+          "resource_ids": ["R01", "R02", "H02", "H03"],
+          "deliverable": "environment.md、依赖锁文件与诊断输出",
+          "acceptance": "在新 shell 中按脚本激活 LeRobot 环境并导入 torch、lerobot、opencv；输出中的 LeRobot commit 与锁定值一致。"
+        },
+        {
+          "day": 3,
+          "title": "仓库、分支与基础 CI",
+          "hours": 2,
+          "tasks": [
+            "建立独立 EdgeVLA Lab 私有学习仓库，标明尚未达到公开发布条件。",
+            "配置 main/feature 分支、提交规范，以及 Python 与 C++17/CMake 的格式、编译和最小单元测试。",
+            "增加禁止提交数据、权重、密钥和原始个人视频的忽略规则。"
+          ],
+          "resource_ids": ["R20", "R21", "R34", "R35", "A01"],
+          "deliverable": "仓库骨架、README 状态声明、首个绿色 CI",
+          "acceptance": "从空目录按 README 可完成安装和测试；仓库中无密钥、权重或隐私数据。"
+        },
+        {
+          "day": 4,
+          "title": "NumPy、Tensor 与维度练习",
+          "hours": 2,
+          "tasks": [
+            "练习 NumPy 与 PyTorch 的 shape、dtype、device、broadcast、batch/time 维度。",
+            "将虚拟关节状态和多相机批数据转换为张量。",
+            "为典型维度错误编写失败测试。"
+          ],
+          "resource_ids": ["R14"],
+          "deliverable": "notebooks/01_tensor_shapes.ipynb 与 5 个维度测试",
+          "acceptance": "能口头解释 B×T×D、B×T×C×H×W，并让所有测试通过。"
+        },
+        {
+          "day": 5,
+          "title": "Autograd 与最小策略网络",
+          "hours": 2,
+          "tasks": [
+            "实现状态到动作的两层 MLP，理解前向、损失、反向传播和优化器。",
+            "记录过拟合 100 条合成样本的 loss 曲线。",
+            "验证保存、加载和固定随机种子。"
+          ],
+          "resource_ids": ["R14", "R17"],
+          "deliverable": "src/baselines/mlp_policy.py 与训练曲线",
+          "acceptance": "CPU 确定性模式下同一随机种子两次最终 loss 绝对差不超过 1e-6；checkpoint 重载输出最大绝对差不超过 1e-6。"
+        },
+        {
+          "day": 6,
+          "title": "Dataset 与训练循环",
+          "hours": 4,
+          "tasks": [
+            "实现合成机器人 Dataset、DataLoader、train/val 划分和归一化。",
+            "增加配置文件、日志、checkpoint 与早停。",
+            "故意制造数据泄漏和归一化错配并记录症状。"
+          ],
+          "resource_ids": ["R14", "R17"],
+          "deliverable": "可配置训练脚本与实验记录 001–003",
+          "acceptance": "训练、验证、恢复、推理四个命令可独立执行，并能解释数据泄漏影响。"
+        },
+        {
+          "day": 7,
+          "title": "周复盘与环境重建",
+          "hours": 2,
+          "tasks": [
+            "从干净环境按文档重建并运行测试。",
+            "完成 PyTorch、数据划分和证据边界自测。",
+            "更新风险清单和下周学习重点。"
+          ],
+          "resource_ids": ["R02", "R14", "R20"],
+          "deliverable": "week-01-review.md 与环境重建记录",
+          "acceptance": "重建流程无隐藏手工步骤；20 道自测正确率不低于 80%。"
+        }
+      ]
+    },
+    {
+      "week": 2,
+      "theme": "机器人学与模仿学习基础",
+      "goal": "能用工程语言解释机器人状态、动作、坐标系、行为克隆、ACT 与 VLA 的边界。",
+      "gate": "完成二维机械臂小实验、行为克隆基线和 ACT/SmolVLA 对比说明。",
+      "days": [
+        {
+          "day": 8,
+          "title": "关节、末端与坐标系",
+          "hours": 2,
+          "tasks": [
+            "学习关节空间、笛卡尔空间、自由度、位姿和齐次变换。",
+            "绘制相机、基座、末端、物体坐标系关系。",
+            "整理 degrees/radians、单位和时间戳约定。"
+          ],
+          "resource_ids": ["R03", "R13"],
+          "deliverable": "docs/robot-frames.md 与坐标系图",
+          "acceptance": "给定三个坐标系能写出变换链，并指出单位混用的风险。"
+        },
+        {
+          "day": 9,
+          "title": "正逆运动学最小实现",
+          "hours": 2,
+          "tasks": [
+            "推导二维双连杆正运动学，并用 C++17/CMake 实现带单元测试的库。",
+            "用数值法求逆运动学目标，通过 Python 小工具可视化误差。",
+            "使用 RAII、明确单位/错误类型，记录奇异位形和不可达目标。"
+          ],
+          "resource_ids": ["R13", "R16", "R34", "R35"],
+          "deliverable": "cpp/kinematics 库、测试与 notebooks/02_kinematics.ipynb",
+          "acceptance": "连杆长度归一化为 1 时，10 个可达目标的末端欧氏误差均不超过 1e-3；5 个不可达目标全部被拒绝。"
+        },
+        {
+          "day": 10,
+          "title": "控制频率与安全约束",
+          "hours": 2,
+          "tasks": [
+            "理解位置、速度、力矩控制的差异及本项目只使用的接口边界。",
+            "定义软限位、最大单步变化、速度上限、超时和看门狗。",
+            "绘制物理急停与软件安全层的责任边界。"
+          ],
+          "resource_ids": ["R13", "H05"],
+          "deliverable": "docs/safety-requirements.md",
+          "acceptance": "安全需求包含触发条件、响应、复位方式和测试方法，且不以软件急停替代物理急停。"
+        },
+        {
+          "day": 11,
+          "title": "行为克隆与分布偏移",
+          "hours": 2,
+          "tasks": [
+            "实现合成轨迹上的行为克隆。",
+            "比较训练分布内与分布外初始状态表现。",
+            "记录误差累积和数据覆盖不足。"
+          ],
+          "resource_ids": ["R03", "R14"],
+          "deliverable": "notebooks/03_behavior_cloning.ipynb",
+          "acceptance": "报告至少一个分布偏移失败案例，并说明增加何种数据可能改善。"
+        },
+        {
+          "day": 12,
+          "title": "ACT 与 Action Chunk",
+          "hours": 2,
+          "tasks": [
+            "阅读 ACT 文档，梳理 observation、action chunk、训练目标和推理流程。",
+            "用时间轴解释 chunk 长度与控制频率、延迟的关系。",
+            "列出 ACT 作为首个真机基线的理由。"
+          ],
+          "resource_ids": ["R06"],
+          "deliverable": "docs/act-notes.md 与时序图",
+          "acceptance": "不看笔记能解释 action chunk、temporal ensembling 和基线选择。"
+        },
+        {
+          "day": 13,
+          "title": "VLA 与 SmolVLA",
+          "hours": 4,
+          "tasks": [
+            "梳理视觉、语言、机器人状态和动作的输入输出链路。",
+            "阅读 SmolVLA 架构、flow matching 与异步推理概念。",
+            "制作 ACT、SmolVLA、传统规则控制的适用场景对比。"
+          ],
+          "resource_ids": ["R07", "R25", "R10", "R11"],
+          "deliverable": "docs/policy-comparison.md",
+          "acceptance": "比较表覆盖数据量、算力、语言条件、实时性、可解释性和风险。"
+        },
+        {
+          "day": 14,
+          "title": "概念答辩与阶段门",
+          "hours": 2,
+          "tasks": [
+            "录制 10 分钟讲解：数据如何变为动作，以及安全层位于何处。",
+            "回答坐标系、行为克隆、ACT、VLA、分布偏移问题。",
+            "修正无法解释的术语，更新词汇表。"
+          ],
+          "resource_ids": ["R03", "R06", "R07"],
+          "deliverable": "week-02-review.md、讲解视频与术语表",
+          "acceptance": "自拟 25 问正确率不低于 80%，讲解中不把模型输出等同于安全控制。"
+        }
+      ]
+    },
+    {
+      "week": 3,
+      "theme": "ROS 2、相机与系统接口",
+      "goal": "补齐目标岗位高频的 ROS2、tf2、rosbag2、相机标定和系统诊断基础。",
+      "gate": "完成一个可回放、可诊断、包含相机和虚拟关节状态的 ROS2 小系统。",
+      "days": [
+        {
+          "day": 15,
+          "title": "ROS 2 Jazzy 安装与工作区",
+          "hours": 2,
+          "tasks": [
+            "在原生 Ubuntu 24.04 使用系统 Python 安装 ROS 2 Jazzy 和 colcon 工作区，禁止直接复用 LeRobot Conda/uv 解释器。",
+            "创建 rclpy 与 rclcpp 两个最小 package，C++ 使用可安装 CMake target 和测试。",
+            "验证 ROS 与 LeRobot 通过 topic/独立进程桥接，并记录两个环境的启动脚本。"
+          ],
+          "resource_ids": ["R12", "R29", "R34", "R35", "H02"],
+          "deliverable": "ros2_ws 与 docs/ros2-environment.md",
+          "acceptance": "全新终端中可构建并运行两个 package；ROS 与 LeRobot 分别使用独立启动脚本，`python3` 路径和 rclpy ABI 检查写入日志。"
+        },
+        {
+          "day": 16,
+          "title": "Node、Topic、Service、Action",
+          "hours": 2,
+          "tasks": [
+            "使用 rclcpp 实现关节状态 publisher，使用 rclpy 实现状态 monitor subscriber。",
+            "实现校准 service 与长任务 action 示例。",
+            "比较三种通信语义和错误处理。"
+          ],
+          "resource_ids": ["R12", "R34", "R35"],
+          "deliverable": "ros2_ws/src/edgevla_interfaces_demo",
+          "acceptance": "节点可互通；service/action 的取消、超时和失败路径均被测试。"
+        },
+        {
+          "day": 17,
+          "title": "URDF 与 tf2",
+          "hours": 2,
+          "tasks": [
+            "创建简化机械臂 URDF。",
+            "发布 base、camera、end_effector 的 tf2。",
+            "用可视化检查坐标轴方向和树结构。"
+          ],
+          "resource_ids": ["R12", "R13"],
+          "deliverable": "robot_description 与 tf 树截图",
+          "acceptance": "tf 树无环、时间戳有效，能查询相机到末端的变换。"
+        },
+        {
+          "day": 18,
+          "title": "rosbag2、MCAP 与时间戳",
+          "hours": 2,
+          "tasks": [
+            "录制图像、关节状态和命令 topic。",
+            "回放并计算消息频率、丢帧和时间偏差。",
+            "定义跨进程使用单调时钟与墙上时钟的规则。"
+          ],
+          "resource_ids": ["R12", "R04"],
+          "deliverable": "sample.mcap 与 tools/bag_quality_report.py",
+          "acceptance": "质量报告能输出每个 topic 的数量、频率、时间范围和最大间隔。"
+        },
+        {
+          "day": 19,
+          "title": "OpenCV 相机标定",
+          "hours": 2,
+          "tasks": [
+            "准备棋盘格并采集不同姿态标定图。",
+            "计算内参与畸变参数，保存 YAML。",
+            "可视化去畸变前后结果并记录重投影误差。"
+          ],
+          "resource_ids": ["R15", "H04", "H06"],
+          "deliverable": "calibration/camera.yaml 与标定报告",
+          "acceptance": "标定样本覆盖画面各区域；误差与失败样本均写入报告。"
+        },
+        {
+          "day": 20,
+          "title": "Lifecycle、参数与诊断",
+          "hours": 4,
+          "tasks": [
+            "给 rclcpp 虚拟机器人节点增加 configure/activate/deactivate 生命周期和 RAII 资源管理。",
+            "增加参数校验、心跳、频率和错误状态诊断。",
+            "模拟设备断开和恢复。"
+          ],
+          "resource_ids": ["R12", "R34", "R35"],
+          "deliverable": "可诊断的 virtual_robot_node 与故障测试",
+          "acceptance": "断开后进入安全非活动状态，恢复必须显式重新激活。"
+        },
+        {
+          "day": 21,
+          "title": "ROS 2 周项目验收",
+          "hours": 2,
+          "tasks": [
+            "一键启动相机、虚拟机器人、记录器和诊断面板。",
+            "回放上一轮数据并复现状态。",
+            "更新 ROS2 技术问答和岗位匹配表。"
+          ],
+          "resource_ids": ["R12", "R15", "R20"],
+          "deliverable": "week-03-demo.md 与启动脚本",
+          "acceptance": "陌生环境按文档 20 分钟内跑通；断线、回放、诊断三条验收通过。"
+        }
+      ]
+    },
+    {
+      "week": 4,
+      "theme": "LeRobot 数据与仿真基线",
+      "goal": "无硬件条件下跑通 LeRobot 数据读取、训练、仿真评测和可复现记录。",
+      "gate": "固定版本的 ACT 仿真基线可重复训练和评测，并有失败分析。",
+      "days": [
+        {
+          "day": 22,
+          "title": "LeRobot 版本冻结与源码地图",
+          "hours": 2,
+          "tasks": [
+            "固定 LeRobot v0.6.0 tag 对应 commit 并建立独立环境。",
+            "定位 robot、camera、teleoperator、dataset、policy、train、eval 模块。",
+            "绘制调用关系，注明哪些是上游代码、哪些将自行开发。"
+          ],
+          "resource_ids": ["R01", "R02"],
+          "deliverable": "docs/lerobot-source-map.md",
+          "acceptance": "运行时依赖和文档引用对应 v0.6.0 tag/commit；只有上游贡献指南使用 main，文档明确 EdgeVLA Lab 并非上游现有项目。"
+        },
+        {
+          "day": 23,
+          "title": "LeRobotDataset v3 解剖",
+          "hours": 2,
+          "tasks": [
+            "固定 `lerobot/aloha_sim_transfer_cube_human` 的 revision，并查看 Parquet、MP4 与元数据。",
+            "记录 AlohaTransferCube-v0 对应的 observation、action、相机键、fps、episode、timestamp 和归一化统计。",
+            "编写数据集完整性与训练/环境 feature 兼容检查器雏形。"
+          ],
+          "resource_ids": ["R04", "R18", "R32", "R33", "A02"],
+          "deliverable": "tools/inspect_lerobot_dataset.py",
+          "acceptance": "manifest 固定 repo/revision/AlohaTransferCube-v0/schema；检查器能发现缺帧、时间倒退、字段缺失、视频不可读和动作空间不兼容五类错误。"
+        },
+        {
+          "day": 24,
+          "title": "数据可视化与回放",
+          "hours": 2,
+          "tasks": [
+            "同步显示多相机、关节状态和动作曲线。",
+            "实现 episode/时间点跳转和异常标记。",
+            "记录 observation 与 action 对齐方式。"
+          ],
+          "resource_ids": ["R04"],
+          "deliverable": "最小数据回放工具",
+          "acceptance": "同一时间点可同时查看图像、状态与动作，时间误差可见。"
+        },
+        {
+          "day": 25,
+          "title": "ACT 仿真训练冒烟",
+          "hours": 2,
+          "tasks": [
+            "使用 Day 23 固定的 ALOHA 数据集 revision 与 AlohaTransferCube-v0 feature/action schema 完成 ACT 小步数兼容性冒烟。",
+            "记录显存、耗时、loss、checkpoint 和精确命令。",
+            "验证输入键、动作维度、归一化和中断恢复；以官方 ACT ALOHA 模型卡作为配套基线。"
+          ],
+          "resource_ids": ["R06", "R09", "R17", "R32", "R33", "A03"],
+          "deliverable": "experiments/sim-act-smoke",
+          "acceptance": "训练数据与 AlohaTransferCube-v0 的图像键、状态和动作维度完全一致；checkpoint 恢复和一次 rollout 均成功。"
+        },
+        {
+          "day": 26,
+          "title": "标准化仿真评测",
+          "hours": 2,
+          "tasks": [
+            "只在与 Day 25 同一 AlohaTransferCube-v0 observation/action 空间运行评测。",
+            "固定数据 revision、环境包版本、种子、至少 20 个 episode 和官方成功判定。",
+            "保存逐 episode 结果而非只保留均值。"
+          ],
+          "resource_ids": ["R24", "R32", "R33"],
+          "deliverable": "experiments/sim-act-eval/results.csv",
+          "acceptance": "结果包含每轮种子、初始条件、成功、耗时和失败原因。"
+        },
+        {
+          "day": 27,
+          "title": "失败分析与可复现性",
+          "hours": 4,
+          "tasks": [
+            "抽查成功与失败视频，建立视觉、动作、环境和评测错误分类。",
+            "重复训练或复评一次，比较方差。",
+            "生成自动实验摘要。"
+          ],
+          "resource_ids": ["R08", "R17", "R20"],
+          "deliverable": "reports/sim-baseline.md 与生成脚本",
+          "acceptance": "报告包含负面结果、复现差异和至少三条下一步假设。"
+        },
+        {
+          "day": 28,
+          "title": "仿真阶段门与硬件预约",
+          "hours": 2,
+          "tasks": [
+            "从空环境重跑数据检查、训练冒烟和评测。",
+            "取得机械臂型号、SDK/协议、示教输入、可用时段、公开许可和安全停止方案；只发出请求不视为取得。",
+            "若任一必要信息未取得，登记 S 轨并继续仿真；暂不购买 SO-101。"
+          ],
+          "resource_ids": ["R01", "R08", "H01", "H05"],
+          "deliverable": "week-04-review.md 与 hardware-questionnaire.md",
+          "acceptance": "仿真链路通过；六项真机信息全部已取得，或已明确切换 S 轨。不得以“已发请求”解锁真机。"
+        }
+      ]
+    },
+    {
+      "week": 5,
+      "theme": "机械臂摸底、接口契约与采购门",
+      "goal": "确认同学机械臂是否适合接入和开源，先用 mock 固定适配接口再决定硬件投入。",
+      "gate": "接口与安全评审通过；明确继续借用、只开源通用层或采购 SO-101 的选择。",
+      "days": [
+        {
+          "day": 29,
+          "title": "机械臂与 SDK 资产盘点",
+          "hours": 2,
+          "tasks": [
+            "记录型号、自由度、控制器、舵机/电机、通信方式和 SDK 版本。",
+            "核实 ROS/ROS2、Python/C++、Linux 版本和许可证。",
+            "确认代码、协议截图、日志和视频的公开边界。"
+          ],
+          "resource_ids": ["R05", "H01", "H10", "H11", "A05"],
+          "deliverable": "hardware-inventory.md 与 license-boundary.md",
+          "acceptance": "所有未知项有负责人和截止日；无授权的厂商源码不会进入公开仓库。"
+        },
+        {
+          "day": 30,
+          "title": "Robot I/O 契约",
+          "hours": 2,
+          "tasks": [
+            "定义 connect、calibrate、get_observation、send_action、disconnect。",
+            "固定关节顺序、单位、范围、fps、timestamp 和错误码。",
+            "用 JSON 示例描述 observation/action。"
+          ],
+          "resource_ids": ["R05", "R04"],
+          "deliverable": "docs/robot-io-contract.md",
+          "acceptance": "契约可在不知道厂商内部实现的情况下编写 mock 和测试。"
+        },
+        {
+          "day": 31,
+          "title": "通信跟踪与时序预算",
+          "hours": 2,
+          "tasks": [
+            "只使用公开/获准接口记录一次读取与控制调用时序。",
+            "测量典型调用延迟、抖动、丢帧和重连时间。",
+            "建立端到端时延预算。"
+          ],
+          "resource_ids": ["H01", "H02"],
+          "deliverable": "reports/hardware-latency-baseline.csv",
+          "acceptance": "至少 1000 次读取样本，包含 P50/P95/P99 和错误数。"
+        },
+        {
+          "day": 32,
+          "title": "安全风险评审",
+          "hours": 2,
+          "tasks": [
+            "按启动、校准、遥操作、策略控制、断线、恢复分阶段做风险分析。",
+            "确认物理急停、低速模式、工作区和人工看护。",
+            "定义禁止自动测试的危险条件。"
+          ],
+          "resource_ids": ["H05", "H06"],
+          "deliverable": "safety/risk-assessment.md",
+          "acceptance": "每个高风险项都有预防、检测、响应和责任人；未满足 H05 则禁止上电动作。"
+        },
+        {
+          "day": 33,
+          "title": "适配器骨架",
+          "hours": 2,
+          "tasks": [
+            "基于 LeRobot 扩展方式创建独立 robot 插件。",
+            "隔离通用接口、厂商薄适配层和配置。",
+            "使用假数据完成注册与 CLI 加载。"
+          ],
+          "resource_ids": ["R01", "R05", "R20"],
+          "deliverable": "packages/lerobot_robot_edgevla 骨架",
+          "acceptance": "不修改 LeRobot 上游源码即可发现插件；默认配置不连接真实硬件。"
+        },
+        {
+          "day": 34,
+          "title": "Mock、契约测试与故障注入",
+          "hours": 4,
+          "tasks": [
+            "实现确定性 mock 机械臂。",
+            "覆盖断线、超时、越界、时间倒退和部分关节缺失。",
+            "编写契约测试供真实适配器复用。"
+          ],
+          "resource_ids": ["R05", "R20"],
+          "deliverable": "MockRobot 与 contract test suite",
+          "acceptance": "正常路径和至少五类故障均自动测试，错误不会静默转成动作。"
+        },
+        {
+          "day": 35,
+          "title": "设计评审与硬件决策",
+          "hours": 2,
+          "tasks": [
+            "与同学评审接口、安全、时段和开源边界。",
+            "根据持续可用性选择：R 轨借用、采购 SO-101 但等待到货验收、或 S 轨仿真/回放。",
+            "记录决策理由、预算上限、到货/授权依赖、退出条件和后续周次替代交付物。"
+          ],
+          "resource_ids": ["R23", "H01", "H09", "A05"],
+          "deliverable": "ADR-001-hardware-platform.md",
+          "acceptance": "只有授权、排期、示教输入、独立急停、安全区五项全部通过才能进入 R 轨；其余情况进入 S 轨，采购中设备也不得提前解锁。"
+        }
+      ]
+    },
+    {
+      "week": 6,
+      "theme": "真机适配、遥操作与安全联调",
+      "goal": "R 轨在低速和人工看护下完成真机链路；S 轨完成同接口的 mock/replay、仿真示教和契约测试。",
+      "gate": "R 轨通过连接、标定、低速控制和安全恢复；或 S 轨通过仿真/回放契约并明确 simulation-only。",
+      "days": [
+        {
+          "day": 36,
+          "title": "R 真机连接 / S Mock 连接",
+          "hours": 2,
+          "tasks": [
+            "R 轨实现真实 connect/disconnect 和只读状态；S 轨实现 mock/replay connect/disconnect。",
+            "两轨默认启用 dry-run，不发送真实运动命令。",
+            "验证错误码、资源释放，并在产物元数据写明 real 或 simulation。"
+          ],
+          "resource_ids": ["R05", "H01", "H05"],
+          "deliverable": "R 轨真实适配器只读版本或 S 轨 mock/replay adapter",
+          "acceptance": "连续连接/断开 50 次无句柄增长；未显式解锁时任何真实 action 不执行，S 轨产物标记 simulation-only。"
+        },
+        {
+          "day": 37,
+          "title": "R 真机标定 / S 虚拟映射",
+          "hours": 2,
+          "tasks": [
+            "R 轨建立厂商关节映射与真实标定；S 轨建立 ALOHA/LIBERO 或 mock feature 映射。",
+            "实现标定/映射数据保存、校验和版本化。",
+            "两轨测试异常零位、维度和关节顺序错误。"
+          ],
+          "resource_ids": ["R05", "H01", "H05"],
+          "deliverable": "calibration schema 与标定命令",
+          "acceptance": "标定/映射不可跨设备或环境误用；校验失败时拒绝进入运动或 rollout 状态。"
+        },
+        {
+          "day": 38,
+          "title": "R 实时 Observation / S 回放 Observation",
+          "hours": 2,
+          "tasks": [
+            "R 轨输出实时关节位置和可用状态；S 轨从固定数据 revision 输出回放状态。",
+            "计算采样频率与抖动。",
+            "验证缺字段和 NaN 处理。"
+          ],
+          "resource_ids": ["R04", "R05"],
+          "deliverable": "observation pipeline 与质量报告",
+          "acceptance": "连续 30 分钟无时间倒退；NaN、断线/回放中断和过期状态均被标记并阻断动作消费。"
+        },
+        {
+          "day": 39,
+          "title": "R Action 发送 / S 仿真动作守卫",
+          "hours": 2,
+          "tasks": [
+            "R 轨实现位置动作发送；S 轨只向仿真/mock sink 发送动作。",
+            "增加软限位、最大步长、速率限制和命令超时。",
+            "R 轨低速执行预定义小幅轨迹；S 轨用同样测试向量验证守卫。"
+          ],
+          "resource_ids": ["R05", "H05"],
+          "deliverable": "安全动作层与边界测试",
+          "acceptance": "预置的全部越界命令均被拒绝或裁剪并记录；R 轨小幅轨迹可用物理急停终止，S 轨不得宣称物理安全验证。"
+        },
+        {
+          "day": 40,
+          "title": "R 相机接入 / S 视频回放同步",
+          "hours": 2,
+          "tasks": [
+            "R 轨接入固定 RGB 相机；S 轨使用固定数据 revision 的视频流，锁定分辨率和 fps。",
+            "将图像与实时/回放状态统一时间戳。",
+            "测量 10 分钟帧交付率、帧间隔和图像—状态偏差。"
+          ],
+          "resource_ids": ["R04", "R15", "H04"],
+          "deliverable": "camera adapter 与 sync report",
+          "acceptance": "10 分钟内帧交付率不低于 99%；P95 帧间隔不超过目标周期 1.5 倍，P95 图像—状态偏差不超过 1 个目标帧周期，否则阻断采集。"
+        },
+        {
+          "day": 41,
+          "title": "R 遥操作 / S 仿真示教",
+          "hours": 4,
+          "tasks": [
+            "R 轨接入获准的 leader/示教器/gamepad；S 轨用键盘或脚本在仿真中生成示范。",
+            "两轨增加 dead-man、人工接管/暂停和状态提示。",
+            "完成 10 次标准取放或对应仿真任务演练。"
+          ],
+          "resource_ids": ["R05", "H01", "H05", "H06", "H10"],
+          "deliverable": "teleop adapter 与操作规程",
+          "acceptance": "松开 dead-man 后下一控制周期不再产生新动作；10 次演练无越界，R/S 证据明确分开。"
+        },
+        {
+          "day": 42,
+          "title": "可靠性与阶段验收",
+          "hours": 2,
+          "tasks": [
+            "运行 R 或 S 轨的连接、标定/映射、采集/回放、动作、遥操作完整契约测试。",
+            "做 USB/网络断开、程序崩溃和重新连接演练。",
+            "记录遗留风险。"
+          ],
+          "resource_ids": ["R20", "H05"],
+          "deliverable": "week-06-hardware-acceptance.md",
+          "acceptance": "不少于 25 个契约/故障用例全部通过；任一断线不会继续消费旧动作，恢复需要显式确认。"
+        }
+      ]
+    },
+    {
+      "week": 7,
+      "theme": "数据采集、质量控制与 Dataset Card",
+      "goal": "R 轨形成 50-episode 真机数据集；S 轨形成固定 revision 的 50-episode 公开数据 manifest；两轨均完成自动质量检查。",
+      "gate": "数据集可回放、可划分、质量检查通过，隐私和许可明确。",
+      "days": [
+        {
+          "day": 43,
+          "title": "任务定义与成功标准",
+          "hours": 2,
+          "tasks": [
+            "选择低风险单任务，如多起点抓取并放入盒中。",
+            "定义对象、起点、终点、成功、失败、超时和中止。",
+            "设计位置和演示风格覆盖表。"
+          ],
+          "resource_ids": ["R04", "R18", "H06", "A06"],
+          "deliverable": "dataset/task-spec-v1.md",
+          "acceptance": "两名未参与编写者独立判断 10 个预录案例，至少 9 个案例结论一致；分歧案例在采集前修正规范。"
+        },
+        {
+          "day": 44,
+          "title": "Schema、同步与版本规则",
+          "hours": 2,
+          "tasks": [
+            "固定 feature、单位、fps、相机命名、task 文本和 episode 元数据。",
+            "定义时钟、丢帧、过期动作和中途失败的记录规则。",
+            "建立数据版本与不可变原始区。"
+          ],
+          "resource_ids": ["R04", "R18"],
+          "deliverable": "dataset/schema-v1.json 与 versioning.md",
+          "acceptance": "schema 可机器校验；原始 episode 不被后处理覆盖。"
+        },
+        {
+          "day": 45,
+          "title": "R 试采 / S 公开数据试切片",
+          "hours": 2,
+          "tasks": [
+            "R 轨按标准流程采集 10 个试验 episode；S 轨从固定公开数据 revision 选择 10 个兼容 episode。",
+            "每轮记录起点、操作者、成功、异常和重采原因。",
+            "回放抽查动作与图像同步。"
+          ],
+          "resource_ids": ["R04", "H04", "H05", "H06", "H10", "H11"],
+          "deliverable": "dataset/raw/pilot-10 或 dataset/public-manifest/pilot-10 与日志",
+          "acceptance": "10 个 episode 全部可解码回放；S 轨保留来源/revision，任何中止或坏样本均保留原因。"
+        },
+        {
+          "day": 46,
+          "title": "自动质量检查器",
+          "hours": 2,
+          "tasks": [
+            "检查帧数、fps、时间单调、NaN、关节范围、视频和元数据。",
+            "输出 episode 级 pass/warn/fail 与原因。",
+            "为已知坏样本建立回归测试。"
+          ],
+          "resource_ids": ["R04", "R20"],
+          "deliverable": "tools/validate_dataset.py 与测试夹具",
+          "acceptance": "六类错误各制作 2 个固定夹具，共 12 个坏样本全部检出且错误类型正确；结果可导出 CSV/JSON。"
+        },
+        {
+          "day": 47,
+          "title": "R 第一批采集 / S 第一批兼容样本",
+          "hours": 2,
+          "tasks": [
+            "R 轨按 5 个起始区域各 5 次采集 25 个 episode；S 轨按同一任务/场景层次选择 25 个公开 episode。",
+            "每 5 个 episode 运行质量检查并备份。",
+            "控制示范速度与动作风格一致。"
+          ],
+          "resource_ids": ["R04", "H04", "H05", "H06", "H10", "H11"],
+          "deliverable": "dataset/raw/batch-a-25 或 dataset/public-manifest/batch-a-25",
+          "acceptance": "25 个有效 episode 覆盖 5 个层次且每层 5 个；质量失败样本被隔离并记录来源和原因。"
+        },
+        {
+          "day": 48,
+          "title": "R 第二批采集 / S 第二批兼容样本",
+          "hours": 4,
+          "tasks": [
+            "R 轨补齐另 25 个有效 episode；S 轨选择另一组不重叠的 25 个公开 episode。",
+            "由同一判定规则标注成功、失败与中止。",
+            "生成采集统计和数据备份校验和。"
+          ],
+          "resource_ids": ["R04", "R18", "H04", "H05", "H06", "H10", "H11"],
+          "deliverable": "dataset/raw/batch-b-25 或 dataset/public-manifest/batch-b-25 与 checksums",
+          "acceptance": "累计至少 50 个通过检查的有效 episode；备份校验一致。"
+        },
+        {
+          "day": 49,
+          "title": "划分、Dataset Card 与阶段门",
+          "hours": 2,
+          "tasks": [
+            "按初始条件而非随机帧划分 train/val/test。",
+            "撰写来源、任务、硬件、采集、许可、限制和隐私说明。",
+            "生成只含获准内容的候选发布包。"
+          ],
+          "resource_ids": ["R18", "R04"],
+          "deliverable": "DATASET_CARD.md 与 split manifest",
+          "acceptance": "不同划分无 episode/场景泄漏；未授权视频不进入发布包。"
+        }
+      ]
+    },
+    {
+      "week": 8,
+      "theme": "ACT 训练与 R 真机 / S 仿真评测",
+      "goal": "先用计算成本较低的 ACT 验证数据质量和完整训练评测流程。",
+      "gate": "ACT checkpoint、与所选轨道一致的独立评测和失败报告可复现；R 轨指标只来自真实评测，S 轨只报告仿真结果并明确 simulation-only。",
+      "days": [
+        {
+          "day": 50,
+          "title": "ACT 配置与数据审查",
+          "hours": 2,
+          "tasks": [
+            "确认 observation/action feature 与归一化统计。",
+            "定义 batch、chunk、训练步数、种子和评测协议。",
+            "检查 train/test 泄漏。"
+          ],
+          "resource_ids": ["R04", "R06", "R09"],
+          "deliverable": "configs/act-task-v1.yaml",
+          "acceptance": "配置含精确数据版本、代码 commit、随机种子和硬件信息。"
+        },
+        {
+          "day": 51,
+          "title": "ACT 冒烟训练",
+          "hours": 2,
+          "tasks": [
+            "小步数训练验证显存、数据加载和 checkpoint。",
+            "对一个小 batch 过拟合以检查管线。",
+            "估算完整训练成本。"
+          ],
+          "resource_ids": ["R06", "R09", "R17", "H03"],
+          "deliverable": "experiments/act-smoke",
+          "acceptance": "固定 16-episode 子集训练无 NaN，最终 loss 不高于初始值 20%；checkpoint 重载输出最大绝对差不超过 1e-5。"
+        },
+        {
+          "day": 52,
+          "title": "完整 ACT 训练",
+          "hours": 2,
+          "tasks": [
+            "运行固定预算的完整训练。",
+            "自动保存配置、日志、checkpoint 和环境信息。",
+            "启用最长运行时间与成本保护。"
+          ],
+          "resource_ids": ["R06", "R09", "R17", "R28", "H03", "A04"],
+          "deliverable": "experiments/act-v1 完整产物",
+          "acceptance": "实验配置包含 8 小时硬超时和明确 max_cost；完成或自动终止后，配置、产物哈希、日志、checkpoint/失败原因齐全。",
+          "wall_clock": {
+            "expected": "1–4 小时（以 Day 51 实测速率估算）",
+            "maximum": "8 小时",
+            "cost_rule": "max_cost 写入实验配置，达到上限自动终止"
+          }
+        },
+        {
+          "day": 53,
+          "title": "曲线、过拟合与离线检查",
+          "hours": 2,
+          "tasks": [
+            "比较 train/val loss 和动作预测误差。",
+            "检查不同关节和时间步的误差。",
+            "选择 checkpoint 时不使用真机测试集调参。"
+          ],
+          "resource_ids": ["R17", "R06"],
+          "deliverable": "reports/act-training-analysis.md",
+          "acceptance": "报告明确 checkpoint 选择规则、异常曲线和至少两个风险假设。"
+        },
+        {
+          "day": 54,
+          "title": "R 真机 / S 回放推理预检",
+          "hours": 2,
+          "tasks": [
+            "离线回放 checkpoint 输出并经过安全动作层。",
+            "检查单位、顺序、范围、动作年龄和初始姿态。",
+            "R 轨用低速空载完成 3 次受控预检；S 轨向 mock/replay 分别注入单位、顺序、范围、动作年龄和初始姿态 5 类错误。"
+          ],
+          "resource_ids": ["R24", "H05"],
+          "deliverable": "safety/policy-preflight-v1.md",
+          "acceptance": "正常输出通过安全检查，任一异常均被拒绝而不是临时绕过；R 轨保留 3 次真机预检记录，S 轨 5 类注入均被拒绝并标记 simulation-only。"
+        },
+        {
+          "day": 55,
+          "title": "R 20 次真机 / S 50 次仿真评测",
+          "hours": 4,
+          "tasks": [
+            "R 轨按预注册起点运行 20 个真机 episode；S 轨运行 50 个固定种子仿真 episode。",
+            "逐轮记录成功、耗时、人工接管、安全拦截和视频。",
+            "评测期间不修改模型或成功判定。"
+          ],
+          "resource_ids": ["R24", "H01", "H04", "H05", "H06"],
+          "deliverable": "evaluations/act-v1/results.csv 与 R/S 原始证据",
+          "acceptance": "R 轨 20 轮或 S 轨 50 轮全部可追溯；成功率由冻结规则计算，S 轨不得标记为真机。"
+        },
+        {
+          "day": 56,
+          "title": "失败分类与 ACT 阶段门",
+          "hours": 2,
+          "tasks": [
+            "将失败归为视觉、初态、动作、机械、通信、安全或评测问题。",
+            "计算成功率置信区间、耗时和接管次数。",
+            "确定下一轮优先补数据还是改训练。"
+          ],
+          "resource_ids": ["R17", "R19"],
+          "deliverable": "reports/act-v1-evaluation.md",
+          "acceptance": "所有失败均有证据或标注“根因未知”；未达到目标也如实发布。"
+        }
+      ]
+    },
+    {
+      "week": 9,
+      "theme": "SmolVLA 语言任务与微调",
+      "goal": "设计真正由语言区分的多任务数据，并完成 SmolVLA 微调与初评。",
+      "gate": "模型能接收图像、状态、语言并输出动作；数据、成本和评测记录完整。",
+      "days": [
+        {
+          "day": 57,
+          "title": "SmolVLA 架构与输入输出审计",
+          "hours": 2,
+          "tasks": [
+            "梳理视觉编码、语言、本体状态、动作专家和 flow matching。",
+            "分别打印 R 轨自采或 S 轨 LIBERO batch 的每个 tensor shape。",
+            "对照 ACT 标出共享和不同的管线。"
+          ],
+          "resource_ids": ["R07", "R25", "R04"],
+          "deliverable": "docs/smolvla-dataflow.md",
+          "acceptance": "完成 15 道 shape/归一化/action chunk 自测且正确不少于 12 道；不照抄模型宣传语。"
+        },
+        {
+          "day": 58,
+          "title": "算力、依赖与显存冒烟",
+          "hours": 2,
+          "tasks": [
+            "建立独立 SmolVLA 配置和依赖快照。",
+            "用小 batch 做前向/反向并记录显存。",
+            "设置云任务最大时长与预算。"
+          ],
+          "resource_ids": ["R07", "R09", "R28", "H03", "A04"],
+          "deliverable": "experiments/smolvla-smoke",
+          "acceptance": "冒烟任务 30 分钟内完成或被自动终止；记录峰值显存、step/s，并据此填写 max_runtime 与 max_cost。",
+          "wall_clock": {
+            "expected": "15–30 分钟",
+            "maximum": "30 分钟",
+            "cost_rule": "仅使用最小 batch；超过配置上限自动终止"
+          }
+        },
+        {
+          "day": 59,
+          "title": "语言条件任务设计",
+          "hours": 2,
+          "tasks": [
+            "定义三种必须依靠语言区分、且动作/状态 schema 相同的取放任务。",
+            "每任务冻结训练指令和 10 条未见同义改写，并设计错误/含糊指令边界。",
+            "冻结训练与泛化评测指令集。"
+          ],
+          "resource_ids": ["R07", "R25", "R18", "H06"],
+          "deliverable": "dataset/language-task-spec.md",
+          "acceptance": "如果去掉语言，至少两种场景无法由视觉唯一决定；3×10 条测试改写与训练文本零重叠。"
+        },
+        {
+          "day": 60,
+          "title": "任务 B：50 个 Episode",
+          "hours": 2,
+          "tasks": [
+            "R 轨采集任务 B 的 50 个有效 episode；S 轨从固定 LIBERO revision 选择任务 B 的 50 个兼容 episode。",
+            "每 10 个 episode 检查文本、图像、状态和动作一致性并生成校验和。",
+            "把失败/中止保留在隔离区，不用重采成功样本覆盖。"
+          ],
+          "resource_ids": ["R04", "R08", "R18", "H04", "H05", "H06", "H10", "H11", "A02"],
+          "deliverable": "dataset/multitask-v1/task-b-50 与质量报告",
+          "acceptance": "任务 B 恰有 50 个通过 schema/视频/时间戳检查的有效 episode；50 条任务文本逐条核对无错标。"
+        },
+        {
+          "day": 61,
+          "title": "任务 C：50 个 Episode",
+          "hours": 2,
+          "tasks": [
+            "R 轨采集任务 C 的 50 个有效 episode；S 轨从固定 LIBERO revision 选择任务 C 的 50 个兼容 episode。",
+            "每 10 个 episode 运行质量检查并核对语言标签。",
+            "与 Week 7 任务 A 合并为 3×50 分层 manifest，不复制 episode。"
+          ],
+          "resource_ids": ["R04", "R08", "R18", "H04", "H05", "H06", "H10", "H11", "A02"],
+          "deliverable": "dataset/multitask-v1/task-c-50 与 150-episode manifest",
+          "acceptance": "A/B/C 各 50 个有效 episode、总计 150 个且 ID 不重复；任务标签逐条核对，R/S 来源明确。"
+        },
+        {
+          "day": 62,
+          "title": "数据总审、过拟合与完整微调启动",
+          "hours": 4,
+          "tasks": [
+            "对 150 个 episode 做最终质量、划分和泄漏检查，并在 16-episode 子集上过拟合。",
+            "过拟合门通过后启动预注册配置的完整微调，保存模型、数据 revision、环境、预算和成本。",
+            "设置 max_runtime/max_cost/OOM 自动终止；所有重试生成新 experiment_id。"
+          ],
+          "resource_ids": ["R07", "R25", "R09", "R17", "R28", "H03", "A03", "A04"],
+          "deliverable": "experiments/smolvla-v1",
+          "acceptance": "16-episode 子集 loss 降至初始值 20% 以下且 checkpoint round-trip 输出最大绝对差不超过 1e-5；完整任务有 8 小时硬超时和费用上限。",
+          "wall_clock": {
+            "expected": "3–6 小时（随 GPU、分辨率、batch 与冻结策略变化）",
+            "maximum": "8 小时",
+            "cost_rule": "max_cost 写入实验配置，达到上限自动终止"
+          }
+        },
+        {
+          "day": 63,
+          "title": "训练收尾、Checkpoint 初评与上线门",
+          "hours": 2,
+          "tasks": [
+            "检查训练是否在硬上限内完成；未完成则终止并保留负面结果，不无限续费。",
+            "完成离线输出、动作范围、语言敏感性和 checkpoint 加载检查。",
+            "选择 checkpoint 并冻结真机评测配置。",
+            "更新 R 轨真机或 S 轨仿真预检清单。"
+          ],
+          "resource_ids": ["R07", "R24", "H05"],
+          "deliverable": "safety/smolvla-preflight.md",
+          "acceptance": "checkpoint 可加载、无 NaN、所有测试动作通过守卫；R 轨另需 3 次低速预检。任一失败则阻断第 10 周自动 rollout。"
+        }
+      ]
+    },
+    {
+      "week": 10,
+      "theme": "泛化评测与 ACT/SmolVLA 对比",
+      "goal": "用冻结协议量化位置、语言、光照、物体和相机变化，不做只展示成功案例的 Demo。",
+      "gate": "获得可审计的基线与泛化结果表，并明确能力边界。",
+      "days": [
+        {
+          "day": 64,
+          "title": "未见位置评测",
+          "hours": 2,
+          "tasks": [
+            "在训练集未覆盖的预定义位置运行 ACT 与 SmolVLA。",
+            "每模型使用相同起点和判定。",
+            "记录成功率、耗时和失败类型。"
+          ],
+          "resource_ids": ["R24", "H05", "H06"],
+          "deliverable": "evaluations/generalization/unseen-position.csv",
+          "acceptance": "ACT 与 SmolVLA 各完成 10 个冻结起点 episode；20 轮均有逐轮结果和失败视频索引。"
+        },
+        {
+          "day": 65,
+          "title": "未见指令改写评测",
+          "hours": 2,
+          "tasks": [
+            "使用冻结的同义改写指令测试 SmolVLA。",
+            "加入错误/含糊指令的安全拒绝观察。",
+            "与训练措辞结果比较。"
+          ],
+          "resource_ids": ["R07", "R24", "H05"],
+          "deliverable": "evaluations/generalization/paraphrase.csv",
+          "acceptance": "SmolVLA 完成 3 个任务×10 条未见改写共 30 轮；训练文本零重叠，含糊指令单独报告而不计成功。"
+        },
+        {
+          "day": 66,
+          "title": "光照变化评测",
+          "hours": 2,
+          "tasks": [
+            "设置可重复的正常、较暗和较亮条件。",
+            "固定其他变量进行双模型评测。",
+            "记录相机曝光和环境参数。"
+          ],
+          "resource_ids": ["R15", "R24", "H04", "H06"],
+          "deliverable": "evaluations/generalization/lighting.csv",
+          "acceptance": "正常/较暗/较亮三条件下每模型各 5 轮，共 30 轮；曝光或照度设置可复现，评测中不补训练数据。"
+        },
+        {
+          "day": 67,
+          "title": "对象变化评测",
+          "hours": 2,
+          "tasks": [
+            "选择形状、颜色或材质变化的测试对象。",
+            "运行相同任务并记录抓取与放置阶段。",
+            "分析视觉泛化和机械摩擦的混淆。"
+          ],
+          "resource_ids": ["R24", "H06"],
+          "deliverable": "evaluations/generalization/object-shift.csv",
+          "acceptance": "两个冻结未见对象下每模型各 5 轮，共 20 轮；机械失败和策略失败分别标注。"
+        },
+        {
+          "day": 68,
+          "title": "相机轻微扰动评测",
+          "hours": 2,
+          "tasks": [
+            "在安全范围内设置可测量的小角度/位移扰动。",
+            "重新验证标定假设并运行评测。",
+            "评估模型对固定机位的依赖。"
+          ],
+          "resource_ids": ["R15", "R24", "H04"],
+          "deliverable": "evaluations/generalization/camera-shift.csv",
+          "acceptance": "两个预注册扰动幅度下每模型各 5 轮，共 20 轮；位移/角度有测量记录并标注是否超出训练分布。"
+        },
+        {
+          "day": 69,
+          "title": "ACT 与 SmolVLA 汇总对比",
+          "hours": 4,
+          "tasks": [
+            "统一计算成功率、置信区间、完成时间、推理耗时和安全拦截。",
+            "比较单任务、语言任务和各类分布偏移。",
+            "生成表格与失败样本索引。"
+          ],
+          "resource_ids": ["R17", "R19"],
+          "deliverable": "reports/act-vs-smolvla.md",
+          "acceptance": "所有汇总数字可追溯至逐 episode 原始记录，不删除不利结果。"
+        },
+        {
+          "day": 70,
+          "title": "泛化阶段门与数据决策",
+          "hours": 2,
+          "tasks": [
+            "根据失败分布决定是否补数据、改任务或保留限制。",
+            "冻结进入边云实验的最佳可用模型。",
+            "更新简历证据账本，但仍不正式写入未发布项目。"
+          ],
+          "resource_ids": ["R19", "R20"],
+          "deliverable": "ADR-002-policy-selection.md",
+          "acceptance": "选择理由包含指标、成本和风险；不以单一最好视频作结论。"
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "theme": "异步推理、动作队列与安全降级",
+      "goal": "建立可测试的 Policy Server/Robot Client 和独立安全层；ACT 使用同步/通用异步队列，只有 flow-matching policy 才比较 RTC。",
+      "gate": "延迟、旧动作、断线和模型异常均能被测量并触发可预测的安全响应。",
+      "days": [
+        {
+          "day": 71,
+          "title": "Policy Server 与 Robot Client",
+          "hours": 2,
+          "tasks": [
+            "按 D70 选择分支：ACT 使用同步/通用 async queue；SmolVLA 等 flow-matching policy 才启用 RTC。",
+            "记录 observation 请求、动作 chunk 返回和消费时序。",
+            "隔离推理通道与安全控制通道。"
+          ],
+          "resource_ids": ["R10", "R11", "R24"],
+          "deliverable": "async/local-baseline 与时序图",
+          "acceptance": "局域网连续运行 30 分钟无未处理异常；停止 server 后 2 个控制周期内停止接收新动作，超时后旧动作执行数为 0。"
+        },
+        {
+          "day": 72,
+          "title": "端到端时延可观测性",
+          "hours": 2,
+          "tasks": [
+            "在采集、发送、排队、推理、接收、执行各处增加时间戳。",
+            "计算 P50/P95/P99 和时钟偏差。",
+            "建立 trace_id 关联日志。"
+          ],
+          "resource_ids": ["R10", "R22"],
+          "deliverable": "observability/latency_metrics.py",
+          "acceptance": "单个动作可追溯完整链路；指标能区分网络、排队和推理耗时。"
+        },
+        {
+          "day": 73,
+          "title": "动作年龄与队列水位",
+          "hours": 2,
+          "tasks": [
+            "记录动作生成时间、消费时间、队列水位和欠载。",
+            "实现 stale action 丢弃与最小/最大队列阈值。",
+            "通过人工延迟验证。"
+          ],
+          "resource_ids": ["R10", "R11"],
+          "deliverable": "safety/action_queue_guard.py",
+          "acceptance": "超过阈值的旧动作不会执行；每次丢弃都有原因和计数。"
+        },
+        {
+          "day": 74,
+          "title": "限位、看门狗与状态机",
+          "hours": 2,
+          "tasks": [
+            "将软限位、步长、速度、心跳和状态新鲜度统一进安全状态机。",
+            "定义 SAFE_IDLE、READY、RUNNING、FAULT、ESTOP。",
+            "覆盖非法状态转换。"
+          ],
+          "resource_ids": ["H05", "R20"],
+          "deliverable": "safety/supervisor_state_machine.py",
+          "acceptance": "所有危险状态只能进入 FAULT/ESTOP；复位需要显式操作且不能跳过标定。"
+        },
+        {
+          "day": 75,
+          "title": "断线与恢复策略",
+          "hours": 2,
+          "tasks": [
+            "分别模拟相机、机器人、Policy Server 和网络断开。",
+            "定义停止、保持、安全姿态与重连行为。",
+            "测量检测和恢复时间。"
+          ],
+          "resource_ids": ["R10", "R22", "H05"],
+          "deliverable": "tests/fault_disconnect_matrix.md",
+          "acceptance": "四类断线均不会消费旧动作；恢复必须通过健康检查和人工确认。"
+        },
+        {
+          "day": 76,
+          "title": "R 物理急停 / S 软件安全状态机",
+          "hours": 4,
+          "tasks": [
+            "实现策略控制到人工控制的明确交接。",
+            "R 轨验证物理急停不依赖 Policy Server 或网络；S 轨验证 mock 的 ESTOP/FAULT 不依赖推理进程，并声明不能证明物理安全。",
+            "R 轨演练接管、急停、断电和复位；S 轨演练接管、ESTOP、进程终止和显式复位。"
+          ],
+          "resource_ids": ["H05", "H01"],
+          "deliverable": "safety/takeover-estop-test.md",
+          "acceptance": "R 轨由测试人员按单页规程完成独立物理急停且系统只记录不控制急停；S 轨四类状态转换测试全部通过，并在结论中明确“未验证物理急停”。"
+        },
+        {
+          "day": 77,
+          "title": "故障注入阶段验收",
+          "hours": 2,
+          "tasks": [
+            "自动注入延迟、丢包、旧动作、NaN、超界和 server 崩溃。",
+            "统计检测率、误报和响应时延。",
+            "修复未覆盖路径。"
+          ],
+          "resource_ids": ["R22", "R20", "H05"],
+          "deliverable": "reports/safety-fault-injection-v1.md",
+          "acceptance": "预注册危险故障检测率 100%；未达标则禁止真实 4G 自动控制。"
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "theme": "4G 弱网与边云协同实验",
+      "goal": "量化弱网对 VLA 动作队列和任务的影响，证明安全控制留在本地。",
+      "gate": "局域网、netem 与真实 4G 三组结果可复现，结论不超出样本。",
+      "days": [
+        {
+          "day": 78,
+          "title": "边云责任边界",
+          "hours": 2,
+          "tasks": [
+            "定义本地执行/安全、边缘采集、云端训练/推理和平台管理边界。",
+            "建立数据流、控制流和故障域图。",
+            "明确 4G 不承载无保护硬实时闭环；R 轨标出独立物理急停，S 轨标出 mock 安全状态机及其物理验证缺口。"
+          ],
+          "resource_ids": ["R10", "H05", "H07"],
+          "deliverable": "docs/edge-cloud-architecture.md",
+          "acceptance": "断云后 R 轨的物理急停、安全限位和停止逻辑仍有效；S 轨的 mock 限位与停止逻辑仍有效，且架构图明确物理急停尚未验证。"
+        },
+        {
+          "day": 79,
+          "title": "MQTT 遥测与消息模型",
+          "hours": 2,
+          "tasks": [
+            "设计设备、任务、网络、队列、安全和模型版本遥测 topic。",
+            "配置 QoS、保留、过期和幂等规则。",
+            "实现本地缓存与断线重传的非控制数据。"
+          ],
+          "resource_ids": ["R30", "H07"],
+          "deliverable": "platform/telemetry-schema.md 与 publisher",
+          "acceptance": "重复和乱序消息不破坏状态；控制命令不与普通遥测混用。"
+        },
+        {
+          "day": 80,
+          "title": "日志、指标与实验记录",
+          "hours": 2,
+          "tasks": [
+            "统一 trace、episode、model、dataset、network_profile ID。",
+            "记录 RTT、抖动、丢包、推理、动作年龄、队列和成功率。",
+            "实现实验结束自动汇总。"
+          ],
+          "resource_ids": ["R17", "R20"],
+          "deliverable": "observability/experiment_reporter",
+          "acceptance": "任一结果行可定位模型、数据、网络配置和原始日志。"
+        },
+        {
+          "day": 81,
+          "title": "模型与数据版本 API",
+          "hours": 2,
+          "tasks": [
+            "建立只读模型/数据集清单和兼容性检查。",
+            "禁止 feature、关节顺序或归一化不兼容模型上线。",
+            "记录部署与回滚事件。"
+          ],
+          "resource_ids": ["R18", "R19", "R26"],
+          "deliverable": "platform/registry-api 与兼容性测试",
+          "acceptance": "不兼容模型被部署前阻断；回滚不覆盖历史证据。"
+        },
+        {
+          "day": 82,
+          "title": "netem 网络矩阵",
+          "hours": 2,
+          "tasks": [
+            "定义延迟、抖动、丢包、乱序和带宽组合。",
+            "自动应用/清理 netem，保存实际测量。",
+            "在无真机或低速安全条件下跑预实验。"
+          ],
+          "resource_ids": ["R22", "H07", "H05"],
+          "deliverable": "network/profiles.yaml 与运行脚本",
+          "acceptance": "每个 profile 可重复应用且退出后完全恢复；实测参数进入报告。"
+        },
+        {
+          "day": 83,
+          "title": "局域网、弱网与真实 4G 对比",
+          "hours": 4,
+          "tasks": [
+            "按冻结协议运行三类网络条件。",
+            "记录任务成功、完成时间、P95 时延、欠载、旧动作和安全拦截。",
+            "R 轨在真实 4G 环境保持人工看护与独立急停；S 轨让 mock/replay 经过相同网络链路并明确不做物理安全声明。"
+          ],
+          "resource_ids": ["R10", "R11", "R22", "H05", "H07"],
+          "deliverable": "evaluations/network-v1/results.csv",
+          "acceptance": "三类条件使用同一模型和任务；每轮原始日志、网络测量和视频可追溯；结果列明确 R-real 或 S-simulation，禁止混合汇总。"
+        },
+        {
+          "day": 84,
+          "title": "弱网结论与安全阶段门",
+          "hours": 2,
+          "tasks": [
+            "计算指标和置信区间，分析动作队列阈值。",
+            "明确哪些网络条件只允许遥测、哪些可低速实验。",
+            "形成边云安全限制声明。"
+          ],
+          "resource_ids": ["R19", "H05"],
+          "deliverable": "reports/network-and-safety-v1.md",
+          "acceptance": "报告不宣称 4G 是硬实时控制；所有建议都由测量或安全原则支持。"
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "theme": "实验平台、Web 面板与 Flutter HMI",
+      "goal": "把既有 IoT/全栈优势转化为机器人数据、实验、告警和人工接管平台。",
+      "gate": "设备到平台、实验到证据、告警到接管的端到端链路可演示。",
+      "days": [
+        {
+          "day": 85,
+          "title": "实验注册表后端",
+          "hours": 2,
+          "tasks": [
+            "用 Go 或 Python 实现设备、数据、模型、实验和评测元数据 API。",
+            "采用不可变实验记录和显式状态转换。",
+            "增加输入校验和最小权限。"
+          ],
+          "resource_ids": ["R20", "R21"],
+          "deliverable": "platform/api 与 OpenAPI 文档",
+          "acceptance": "实验记录不可被静默改写；错误输入和未授权请求有测试。"
+        },
+        {
+          "day": 86,
+          "title": "Web 实验与健康面板",
+          "hours": 2,
+          "tasks": [
+            "展示设备健康、网络、动作队列、模型版本和任务结果。",
+            "支持按 experiment_id 定位日志和视频。",
+            "显式区分实时值、延迟值和离线统计。"
+          ],
+          "resource_ids": ["R20"],
+          "deliverable": "platform/web-dashboard",
+          "acceptance": "超过 2 个预期遥测周期即显示 STALE；断网、过期、FAULT 三类快照测试全部标红且不显示“实时正常”。"
+        },
+        {
+          "day": 87,
+          "title": "Flutter 移动 HMI",
+          "hours": 2,
+          "tasks": [
+            "复用现有 Flutter 能力实现状态查看、采集控制和人工接管入口。",
+            "高风险动作要求二次确认并受服务端状态机约束。",
+            "离线时只读并提示过期。"
+          ],
+          "resource_ids": ["R31", "H07"],
+          "deliverable": "apps/edgevla_hmi 最小版本",
+          "acceptance": "覆盖离线、三种角色、二次确认、服务端拒绝共不少于 12 个测试；所有非法场景的动作请求数为 0。"
+        },
+        {
+          "day": 88,
+          "title": "视频、日志与轨迹同步",
+          "hours": 2,
+          "tasks": [
+            "在面板中对齐 episode 视频、状态、动作和网络事件。",
+            "支持跳转失败时间点。",
+            "用同一时钟基准展示误差。"
+          ],
+          "resource_ids": ["R04", "R20"],
+          "deliverable": "platform/timeline-viewer",
+          "acceptance": "从失败结果一键定位到对应视频帧、动作、日志和网络事件。"
+        },
+        {
+          "day": 89,
+          "title": "失败标注与数据闭环",
+          "hours": 2,
+          "tasks": [
+            "增加失败类别、严重度、根因置信度和处理建议。",
+            "从评测选择待补采场景，不直接修改原始数据。",
+            "导出下一轮采集清单。"
+          ],
+          "resource_ids": ["R18", "R20"],
+          "deliverable": "platform/failure-review 与采集清单",
+          "acceptance": "标注有审计记录；新数据与原评测测试集隔离。"
+        },
+        {
+          "day": 90,
+          "title": "认证、配置与安全审查",
+          "hours": 4,
+          "tasks": [
+            "区分观察者、操作者和管理员权限。",
+            "将密钥、设备配置和模型配置外置。",
+            "审查上传、日志隐私和远程控制入口。"
+          ],
+          "resource_ids": ["R20", "R21"],
+          "deliverable": "platform/security-review.md",
+          "acceptance": "无默认弱密码、硬编码密钥或匿名控制接口；高风险操作均可审计。"
+        },
+        {
+          "day": 91,
+          "title": "平台端到端阶段门",
+          "hours": 2,
+          "tasks": [
+            "演练采集、训练登记、部署、评测、失败标注和告警。",
+            "模拟设备和网络断开。",
+            "录制未经剪辑的端到端演示。"
+          ],
+          "resource_ids": ["R20", "H07"],
+          "deliverable": "week-13-e2e-report.md 与原始演示视频",
+          "acceptance": "采集、登记、部署、评测、标注、告警六条主链路及设备/网络两条故障链路共 8 项全部通过；平台停止后本地安全状态机测试仍通过。"
+        }
+      ]
+    },
+    {
+      "week": 14,
+      "theme": "容器化、测试、CI 与可靠性",
+      "goal": "把实验代码提升为可复现、可测试、可恢复的工程作品。",
+      "gate": "新环境一键运行核心链路，CI 绿色，完成压力和恢复记录。",
+      "days": [
+        {
+          "day": 92,
+          "title": "容器与依赖分层",
+          "hours": 2,
+          "tasks": [
+            "为 CPU 工具、GPU 训练和平台服务分别设计镜像。",
+            "固定基础镜像与依赖哈希。",
+            "排除数据、权重和设备私有 SDK。"
+          ],
+          "resource_ids": ["R21", "R20"],
+          "deliverable": "containers/ 与 compose.yaml",
+          "acceptance": "CPU 镜像可在无 GPU 环境运行测试；镜像不含隐私数据或许可证不明文件。"
+        },
+        {
+          "day": 93,
+          "title": "配置、密钥与环境校验",
+          "hours": 2,
+          "tasks": [
+            "建立分层配置和 schema 校验。",
+            "增加启动前硬件、端口、模型和数据兼容性检查。",
+            "提供安全示例配置。"
+          ],
+          "resource_ids": ["R20", "R21"],
+          "deliverable": "config schema 与 preflight 命令",
+          "acceptance": "缺失密钥、错误关节数、错误模型或危险参数均在运动前失败。"
+        },
+        {
+          "day": 94,
+          "title": "单元测试补齐",
+          "hours": 2,
+          "tasks": [
+            "覆盖 Python 与 C++ 的接口映射、归一化、时间戳、动作限幅、状态机和报告统计。",
+            "加入边界值和性质测试。",
+            "设置覆盖率基线但不以覆盖率代替场景测试。"
+          ],
+          "resource_ids": ["R20", "R34", "R35"],
+          "deliverable": "unit test suite 与覆盖率报告",
+          "acceptance": "所有安全关键分支有直接测试；测试不依赖真实机械臂。"
+        },
+        {
+          "day": 95,
+          "title": "R 硬件在环 / S 模拟集成测试",
+          "hours": 2,
+          "tasks": [
+            "R 轨建立 mock、回放和低速真机三层测试；S 轨建立 mock、回放和仿真设备三层测试，不称为硬件在环。",
+            "覆盖启动、运行、断线、恢复和急停。",
+            "仅为 R 轨真实硬件测试设置显式 opt-in；S 轨默认测试不得探测或驱动物理设备。"
+          ],
+          "resource_ids": ["R20", "H05"],
+          "deliverable": "integration test matrix",
+          "acceptance": "默认 CI 不驱动真机；R 轨人工真机套件有安全清单和记录，S 轨三层测试全部标记 simulation/mock 且无 HIL 声称。"
+        },
+        {
+          "day": 96,
+          "title": "GitHub Actions CI",
+          "hours": 2,
+          "tasks": [
+            "配置 lint、typecheck、unit、dataset fixture、容器构建和文档链接检查。",
+            "固定 action 版本和最小权限。",
+            "生成可下载测试产物。"
+          ],
+          "resource_ids": ["R20", "R21"],
+          "deliverable": ".github/workflows/ci.yml",
+          "acceptance": "全新 commit 的 CI 全绿；失败能定位具体阶段且无密钥泄漏。"
+        },
+        {
+          "day": 97,
+          "title": "性能分析与瓶颈",
+          "hours": 4,
+          "tasks": [
+            "测量采集、编码、网络、推理、动作消费、平台写入的 CPU/GPU/内存。",
+            "识别一个真实瓶颈并优化。",
+            "保留优化前后相同负载数据。"
+          ],
+          "resource_ids": ["R17", "R21"],
+          "deliverable": "reports/performance-v1.md",
+          "acceptance": "优化结论由同一基准支持，不用不同配置制造提升。"
+        },
+        {
+          "day": 98,
+          "title": "长稳与恢复验收",
+          "hours": 2,
+          "tasks": [
+            "运行至少 2 小时采集/回放或安全的闭环 soak test。",
+            "期间注入网络中断和服务重启。",
+            "检查内存、句柄、队列、数据完整性和恢复时间。"
+          ],
+          "resource_ids": ["R20", "R22", "H05"],
+          "deliverable": "reports/soak-and-recovery.md",
+          "acceptance": "2 小时测试中，30 分钟预热后 RSS 增长不超过 10%、句柄/文件描述符净增不超过 5、全部数据校验和一致；故障与恢复均有时间戳。",
+          "wall_clock": {
+            "expected": "2 小时",
+            "maximum": "2.5 小时",
+            "cost_rule": "使用本地或已批准资源，不开启无人看护真机运动"
+          }
+        }
+      ]
+    },
+    {
+      "week": 15,
+      "theme": "开源发布、数据/模型卡与上游贡献",
+      "goal": "形成招聘方能够审查、复现和质疑的公开证据，而不泄露厂商或个人隐私。",
+      "gate": "公开候选版本通过许可、安全、复现和内容审查，至少产生一个真实上游互动。",
+      "days": [
+        {
+          "day": 99,
+          "title": "README 与快速开始",
+          "hours": 2,
+          "tasks": [
+            "说明问题、架构、状态、硬件、安装、仿真和真机安全。",
+            "区分上游项目与 EdgeVLA Lab 自研模块。",
+            "提供 30 分钟内可运行的无硬件路径。"
+          ],
+          "resource_ids": ["R01", "R20", "R21", "A06"],
+          "deliverable": "README.md 候选版",
+          "acceptance": "在干净容器中仅按 README，30 分钟内完成 mock/回放且命令退出码为 0；全文检索无把 EdgeVLA Lab 写成官方项目的表述。"
+        },
+        {
+          "day": 100,
+          "title": "架构与威胁边界图",
+          "hours": 2,
+          "tasks": [
+            "绘制设备、相机、安全层、Policy Server、平台和 HMI。",
+            "标注实时/非实时、信任边界和故障域。",
+            "链接对应代码和测试。"
+          ],
+          "resource_ids": ["R10", "H05"],
+          "deliverable": "docs/architecture.md",
+          "acceptance": "每个关键组件有责任、输入输出和失败响应，不存在“云端急停”误导。"
+        },
+        {
+          "day": 101,
+          "title": "Dataset Card 定稿",
+          "hours": 2,
+          "tasks": [
+            "补充采集协议、分布、质量指标、划分、许可、隐私和限制。",
+            "增加已知失败和不适用用途。",
+            "执行发布包去隐私检查。"
+          ],
+          "resource_ids": ["R18", "R04", "A02"],
+          "deliverable": "公开 DATASET_CARD.md 与 manifest",
+          "acceptance": "数据来源和许可可证明；无面部、手机号、密钥或厂商私有内容。"
+        },
+        {
+          "day": 102,
+          "title": "Model Card 与评测证据",
+          "hours": 2,
+          "tasks": [
+            "记录模型基座、数据版本、训练配置、算力、指标和限制。",
+            "链接逐 episode 结果与失败视频。",
+            "明确不能用于无人看护或安全关键控制。"
+          ],
+          "resource_ids": ["R19", "R17", "R26", "A02"],
+          "deliverable": "MODEL_CARD_ACT.md 与 MODEL_CARD_SMOLVLA.md",
+          "acceptance": "每个数字可追溯；未完成或失败实验不会被省略。"
+        },
+        {
+          "day": 103,
+          "title": "成功与失败演示视频",
+          "hours": 2,
+          "tasks": [
+            "制作 3–5 分钟技术演示，包含架构、数据、训练、真机、弱网与安全。",
+            "保留至少一个典型失败和恢复过程。",
+            "为全部画面去除隐私与密钥。"
+          ],
+          "resource_ids": ["R18", "R19"],
+          "deliverable": "demo/video-v1 与旁白稿",
+          "acceptance": "视频中的指标与报告一致，不用剪辑掩盖评测轮次或危险行为。"
+        },
+        {
+          "day": 104,
+          "title": "上游 Issue 或 PR",
+          "hours": 4,
+          "tasks": [
+            "从真实使用中选择文档、测试、硬件插件或异步指标问题。",
+            "先检索重复 issue，再提交最小复现和解决方案。",
+            "遵守 LeRobot 贡献规范并响应 review。"
+          ],
+          "resource_ids": ["R01", "R05", "R20", "R27", "A01"],
+          "deliverable": "至少一个公开 issue 或 PR 链接",
+          "acceptance": "互动基于真实问题且可复现；不以无意义格式改动凑贡献。"
+        },
+        {
+          "day": 105,
+          "title": "开源、安全与发布阶段门",
+          "hours": 2,
+          "tasks": [
+            "检查许可证、依赖、密钥、隐私、模型与数据使用条件。",
+            "由同学确认厂商/机械臂相关公开边界。",
+            "R 轨门槛全过创建 v1.0.0-rc；否则创建 v0.x simulation/data-tooling rc 或延期。"
+          ],
+          "resource_ids": ["R20", "R21", "H01", "A01", "A05"],
+          "deliverable": "release-checklist.md 与条件化 release candidate",
+          "acceptance": "复现、安全、许可、隐私四项均签字/记录；任何未决高风险项阻止公开。"
+        }
+      ]
+    },
+    {
+      "week": 16,
+      "theme": "岗位转换、简历证据与正式发布",
+      "goal": "把真实项目证据映射到 100 个岗位，形成可投递材料和后续迭代路线。",
+      "gate": "按 R/S 实际范围条件发布、简历只写已验证事实、完成首批高匹配岗位申请。",
+      "days": [
+        {
+          "day": 106,
+          "title": "可写入简历的指标审计",
+          "hours": 2,
+          "tasks": [
+            "从实验产物提取 episode、成功率、P95 时延、恢复和安全指标。",
+            "逐项链接证据并标注样本和条件。",
+            "删除无法证明的数字和“熟练”表述。"
+          ],
+          "resource_ids": ["R18", "R19"],
+          "deliverable": "career/resume-evidence-v1.csv",
+          "acceptance": "每个简历要点都有公开或可提供的证据路径，无提前虚构成果。"
+        },
+        {
+          "day": 107,
+          "title": "GitHub 与作品集页面",
+          "hours": 2,
+          "tasks": [
+            "优化仓库简介、topic、README 首屏和导航。",
+            "在个人作品集中加入架构、责任、结果、限制和链接。",
+            "保留“拟建”到“已发布”的状态变更记录。"
+          ],
+          "resource_ids": ["R20", "A06"],
+          "deliverable": "公开项目页与作品集草稿",
+          "acceptance": "两名未参与项目者各浏览首页 60 秒后，能正确回答问题、个人贡献、一个真实指标、限制、复现入口 5 问中的至少 4 问。"
+        },
+        {
+          "day": 108,
+          "title": "三类定向简历",
+          "hours": 2,
+          "tasks": [
+            "生成机器人软件/系统、数据闭环/部署、VLA 应用工程三类版本。",
+            "按岗位高频栈排序，不改事实。",
+            "将核心研究岗列为后续目标而非当前主投。"
+          ],
+          "resource_ids": ["R20"],
+          "deliverable": "career/resume-robot-system.md、resume-data-deploy.md、resume-vla-application.md",
+          "acceptance": "三个版本事实一致、侧重点不同；不声称论文、BSP、CAN 或伺服项目经验。"
+        },
+        {
+          "day": 109,
+          "title": "项目面试故事与技术深挖",
+          "hours": 2,
+          "tasks": [
+            "准备架构、数据、模型、安全、弱网、失败和取舍七段 STAR/技术故事。",
+            "整理 tensor shape、归一化、chunk、时延和断线追问。",
+            "准备诚实回答个人与同学分工。"
+          ],
+          "resource_ids": ["R06", "R07", "R10"],
+          "deliverable": "career/interview-story-bank.md",
+          "acceptance": "能在 2 分钟概述并在 20 分钟深挖；所有回答可指向代码或数据。"
+        },
+        {
+          "day": 110,
+          "title": "模拟面试与缺口修正",
+          "hours": 2,
+          "tasks": [
+            "完成一次 C++/Linux/ROS2 和一次 PyTorch/VLA/系统设计模拟面试。",
+            "将不会的问题分为概念、实践和证据缺口。",
+            "只修正高频且与目标岗位相关的前三项。"
+          ],
+          "resource_ids": ["R12", "R14"],
+          "deliverable": "career/mock-interview-review.md",
+          "acceptance": "两次面试均有录音/评分；前三缺口各有具体练习或修复提交。"
+        },
+        {
+          "day": 111,
+          "title": "100 岗位分层与首批申请",
+          "hours": 4,
+          "tasks": [
+            "按硬门槛、技能重合、地点和兴趣给 100 岗位打分。",
+            "优先选择 P0 机器人系统/数据部署及少量 P1 VLA 应用岗位。",
+            "完成 10–15 个高匹配定向申请并记录版本。"
+          ],
+          "resource_ids": ["R20"],
+          "deliverable": "career/application-tracker.csv",
+          "acceptance": "每个申请有岗位快照、匹配理由、简历版本和跟进日期；不盲投博士研究岗。"
+        },
+        {
+          "day": 112,
+          "title": "条件发布与 90 天迭代",
+          "hours": 2,
+          "tasks": [
+            "完成最终复现、安全、许可和链接检查。",
+            "R 轨全部门通过才发布 v1.0.0；否则发布 v0.x simulation/data-tooling 版或延期。",
+            "复盘 112 天，依据申请反馈制定下一轮 90 天计划。"
+          ],
+          "resource_ids": ["R20", "R21", "A01", "A02"],
+          "deliverable": "条件化 release、retrospective.md 与 next-90-days.md",
+          "acceptance": "所发布范围可从干净环境复现；Git 工作区干净；版本号、简历和 R/S 公开证据一致。"
+        }
+      ]
+    }
+  ]
+}
