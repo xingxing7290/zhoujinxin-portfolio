@@ -4,7 +4,7 @@ import "testing"
 
 func TestContentNormalizeAndValidate(t *testing.T) {
 	content := SiteContent{
-		Profile:  SiteProfile{Name: LocalizedText{ZH: "周金鑫", EN: "Zhou Jinxin"}, Email: "zhou@example.com"},
+		Profile:  SiteProfile{Name: LocalizedText{ZH: "周金鑫", EN: "Zhou Jinxin"}},
 		Projects: []Project{{Slug: "embedded-4g-gateway", Title: LocalizedText{ZH: "4G 网关", EN: "4G Gateway"}, Visible: true}},
 	}
 	content.Normalize()
@@ -13,6 +13,16 @@ func TestContentNormalizeAndValidate(t *testing.T) {
 	}
 	if err := content.Validate(); err != nil {
 		t.Fatalf("valid content rejected: %v", err)
+	}
+}
+
+func TestContentAllowsPrivateContactToRemainUnpublished(t *testing.T) {
+	content := SiteContent{
+		Profile:  SiteProfile{Name: LocalizedText{ZH: "周金鑫", EN: "Zhou Jinxin"}},
+		Projects: []Project{{Slug: "private-contact", Title: LocalizedText{ZH: "隐私保护", EN: "Privacy"}, Status: "draft"}},
+	}
+	if err := content.Validate(); err != nil {
+		t.Fatalf("content without a public email rejected: %v", err)
 	}
 }
 

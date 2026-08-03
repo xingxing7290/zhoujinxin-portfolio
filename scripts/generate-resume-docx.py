@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Generate the three private, editable resume variants from public Markdown.
 
-The Markdown sources intentionally contain no phone number. A phone number must
-be supplied at runtime through RESUME_PHONE, and generated files are written
-under the Git-ignored data/generated directory.
+The Markdown sources intentionally contain no phone number or private email.
+Both values must be supplied at runtime through RESUME_PHONE and RESUME_EMAIL;
+generated files are written under the Git-ignored data/generated directory.
 """
 
 from __future__ import annotations
@@ -327,7 +327,7 @@ def extract_identity(lines: list[str], fallback_title: str) -> tuple[str, str]:
     return "周金鑫", fallback_title
 
 
-def add_opening(doc: Document, name: str, role: str, phone: str) -> None:
+def add_opening(doc: Document, name: str, role: str, phone: str, email: str, location: str) -> None:
     paragraph = doc.add_paragraph(style="Resume Title")
     set_keep_with_next(paragraph)
     add_inline_markdown(paragraph, name, base_color=NAVY)
@@ -336,8 +336,6 @@ def add_opening(doc: Document, name: str, role: str, phone: str) -> None:
     set_keep_with_next(paragraph)
     add_inline_markdown(paragraph, role, base_color=BLUE)
 
-    email = os.getenv("RESUME_EMAIL", "resume@example.com")
-    location = os.getenv("RESUME_LOCATION", "北京")
     contact = f"{location}  |  {phone}  |  {email}"
     paragraph = doc.add_paragraph(style="Resume Contact")
     set_keep_with_next(paragraph)
@@ -370,7 +368,7 @@ def add_subheading(doc: Document, text: str) -> None:
         set_run_font(run, size=8.25, color=MUTED)
 
 
-def build_resume(source: Path, output_dir: Path, phone: str) -> Path:
+def build_resume(source: Path, output_dir: Path, phone: str, email: str, location: str) -> Path:
     lines = source.read_text(encoding="utf-8").splitlines()
     name, role = extract_identity(lines, source.stem.split("-", 1)[-1])
 
@@ -378,7 +376,7 @@ def build_resume(source: Path, output_dir: Path, phone: str) -> Path:
     configure_styles(doc)
     bullet_num_id = add_bullet_numbering(doc)
     configure_page(doc, name, role)
-    add_opening(doc, name, role, phone)
+    add_opening(doc, name, role, phone, email, location)
 
     current_section = ""
     for raw in lines:
@@ -448,6 +446,10 @@ def main() -> None:
     phone = re.sub(r"\s+", "", os.getenv("RESUME_PHONE", ""))
     if not PHONE_RE.fullmatch(phone):
         raise SystemExit("RESUME_PHONE must be a valid private mainland China mobile number.")
+    email = os.getenv("RESUME_EMAIL", "").strip()
+    if not re.fullmatch(r"[^\s@]+@[^\s@]+\.[^\s@]+", email):
+        raise SystemExit("RESUME_EMAIL must be supplied at runtime and contain a valid private email address.")
+    location = os.getenv("RESUME_LOCATION", "北京").strip() or "北京"
 
     sources = tuple(args.source) if args.source else VARIANTS
     missing = [str(path) for path in sources if not path.is_file()]
@@ -455,7 +457,7 @@ def main() -> None:
         raise SystemExit("Missing resume source(s): " + ", ".join(missing))
 
     for source in sources:
-        output = build_resume(source.resolve(), args.output_dir.resolve(), phone)
+        output = build_resume(source.resolve(), args.output_dir.resolve(), phone, email, location)
         print(output)
 
 

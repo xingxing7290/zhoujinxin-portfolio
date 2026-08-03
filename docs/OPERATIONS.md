@@ -28,11 +28,13 @@ chmod 600 .env
 当前机房的域名合规网关会在 Caddy 之前拦截入站域名 Host/SNI，因此正式域名使用 Cloudflare Tunnel 的出站连接；公网 IP 仍使用 Let’s Encrypt 的六天证书作为运维备用入口。Caddy 的 `default_sni` 负责为不发送 SNI 的 IP 客户端选择该证书。首次部署需安装 Certbot 5.3 或更高版本并签发 IP 证书：
 
 ```bash
+read -r -p "ACME contact email: " CADDY_EMAIL
 sudo /opt/certbot-ip/bin/certbot certonly --standalone \
   --preferred-profile shortlived \
   --ip-address 113.44.50.108 \
   --non-interactive --agree-tos \
-  --email resume@example.com --no-eff-email
+  --email "$CADDY_EMAIL" --no-eff-email
+unset CADDY_EMAIL
 sudo cp deploy/systemd/zhoujinxin-portfolio-cert-renew.* /etc/systemd/system/
 sudo systemctl daemon-reload
 sudo systemctl enable --now zhoujinxin-portfolio-cert-renew.timer

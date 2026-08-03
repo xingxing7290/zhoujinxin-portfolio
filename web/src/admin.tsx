@@ -115,7 +115,7 @@ function ProfileEditor({ content, setContent }: EditorProps) {
       <LocalizedField label="定位摘要" value={profile.summary} multiline onChange={(v) => update("summary", v)} />
       <LocalizedField label="求职状态" value={profile.availability} onChange={(v) => update("availability", v)} />
       <LocalizedField label="所在地" value={profile.location} onChange={(v) => update("location", v)} />
-      <label className="field"><span>公开邮箱</span><input type="email" value={profile.email} onChange={(e) => update("email", e.target.value)} /></label>
+      <label className="field"><span>公开邮箱（可留空）</span><input type="email" value={profile.email} onChange={(e) => update("email", e.target.value)} /></label>
       <label className="field"><span>肖像路径</span><input value={profile.portraitUrl} onChange={(e) => update("portraitUrl", e.target.value)} /></label>
     </div></div>
     <Title title="芯片到云端叙事" detail="每段内容对应一个相机关键帧；顺序决定滚动映射。" compact />
@@ -226,7 +226,7 @@ function LivePreview({ content }: { content: Content }) {
         <h1>{copy(content.profile.name)}</h1>
         <h2>{copy(content.profile.title)}</h2>
         <div className="live-preview-copy">{copy(content.profile.summary)}</div>
-        <small>{copy(content.profile.location)} · {content.profile.email}</small>
+        <small>{copy(content.profile.location)}{content.profile.email ? ` · ${content.profile.email}` : ""}</small>
       </header>
       <section className="live-preview-scenes">
         {content.hero.map((step, index) => <div key={step.index}><span>0{index + 1}</span><div><strong>{copy(step.title)}</strong><p>{copy(step.body)}</p></div></div>)}

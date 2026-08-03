@@ -10,14 +10,16 @@
 
 ## 生成可编辑文件
 
-生成器不会在源码中保存手机号，必须在运行时通过环境变量注入：
+生成器不会在源码中保存手机号或私人邮箱，必须在运行时通过环境变量注入：
 
 ```powershell
 python -m pip install -r requirements-resume.txt
 $env:RESUME_PHONE='<私人手机号>'
+$env:RESUME_EMAIL='<私人邮箱>'
 python scripts/generate-resume-docx.py
 npm run resume:targeted-pdf
 Remove-Item Env:RESUME_PHONE
+Remove-Item Env:RESUME_EMAIL
 ```
 
 DOCX 与 PDF 默认输出到被 Git 忽略的 `data/generated/resumes/`。DOCX 可直接在 Word
@@ -29,6 +31,6 @@ DOCX 与 PDF 默认输出到被 Git 忽略的 `data/generated/resumes/`。DOCX �
 ## 内容维护原则
 
 - 三版共用同一组可验证经历，但根据岗位调整技能顺序、项目顺序和篇幅。
-- 不在公开 Markdown、脚本、Git 历史或网页 HTML 中写入完整手机号。
+- 不在公开 Markdown、脚本、Git 历史或默认网页 HTML 中写入完整手机号、私人邮箱、微信号或详细地址。
 - AI 版区分“使用 AI 完成软件交付”和“将大模型能力接入产品”，不把 AI 辅助编码包装成已经完成的 Agent 平台。
 - 未实际完成的 MCP、Function Calling、多 Agent 编排、模型训练或微调能力不写入简历。

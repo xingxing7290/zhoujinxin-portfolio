@@ -147,7 +147,7 @@
       <p class="section-index">06 / CONTACT</p>
       <p>{{tr .Content.Profile.Availability .Locale}}</p>
       <h2>{{if eq .Locale "en"}}Let’s build reliable systems<br>from device to cloud.{{else}}让我们一起构建<br>从设备到云端的可靠系统。{{end}}</h2>
-      <a class="contact-email magnetic" href="mailto:{{.Content.Profile.Email}}">{{.Content.Profile.Email}} <span aria-hidden="true">↗</span></a>
+      {{if .Content.Profile.Email}}<a class="contact-email magnetic" href="mailto:{{.Content.Profile.Email}}">{{.Content.Profile.Email}} <span aria-hidden="true">↗</span></a>{{else}}<p class="contact-email contact-private">{{if eq .Locale "en"}}Contact details are shared only in targeted applications.{{else}}联系方式仅在定向投递材料中提供。{{end}}</p>{{end}}
       <p class="contact-location">{{tr .Content.Profile.Location .Locale}}</p>
     </section>
   </main>

@@ -60,12 +60,11 @@ func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	locale := localeFromPath(r.URL.Path)
-	structured, _ := json.Marshal(map[string]any{
+	person := map[string]any{
 		"@context": "https://schema.org",
 		"@type":    "Person",
 		"name":     content.Profile.Name.Value(locale),
 		"jobTitle": content.Profile.Title.Value(locale),
-		"email":    "mailto:" + content.Profile.Email,
 		"url":      s.config.BaseURL + localizedHome(locale),
 		"knowsAbout": []string{
 			"Internet of Things",
@@ -83,7 +82,11 @@ func (s *Server) home(w http.ResponseWriter, r *http.Request) {
 			"Dify",
 			"Retrieval-augmented generation",
 		},
-	})
+	}
+	if email := strings.TrimSpace(content.Profile.Email); email != "" {
+		person["email"] = "mailto:" + email
+	}
+	structured, _ := json.Marshal(person)
 	data := pageData{Locale: locale, BaseURL: s.config.BaseURL, Content: pageContent{content}, Year: time.Now().Year(), StructuredData: templateJS(structured)}
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if err := s.templates.ExecuteTemplate(w, "home", data); err != nil {

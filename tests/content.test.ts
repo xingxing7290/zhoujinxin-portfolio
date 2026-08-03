@@ -57,9 +57,9 @@ describe("public resume content", () => {
     }
   });
 
-  it("does not publish a full mobile number in source content", () => {
+  it("does not publish personal contact details in source content", () => {
     expect(JSON.stringify(content)).not.toMatch(/1[3-9][0-9]{9}/);
-    expect(content.profile.email).toBe("resume@example.com");
+    expect(content.profile.email).toBe("");
   });
 
   it("keeps exactly three official public resume sources without a mobile number", () => {

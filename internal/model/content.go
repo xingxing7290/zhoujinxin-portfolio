@@ -126,7 +126,7 @@ func (c SiteContent) Validate() error {
 	if strings.TrimSpace(c.Profile.Name.ZH) == "" || strings.TrimSpace(c.Profile.Name.EN) == "" {
 		return errors.New("中英文姓名不能为空")
 	}
-	if strings.TrimSpace(c.Profile.Email) == "" || !strings.Contains(c.Profile.Email, "@") {
+	if email := strings.TrimSpace(c.Profile.Email); email != "" && !strings.Contains(email, "@") {
 		return errors.New("邮箱格式无效")
 	}
 	if len(c.Projects) == 0 {

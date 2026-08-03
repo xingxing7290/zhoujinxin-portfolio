@@ -7,7 +7,7 @@ const root = resolve(fileURLToPath(new URL("..", import.meta.url)));
 const outputDir = resolve(process.env.RESUME_OUTPUT_DIR ?? resolve(root, "data/generated/resumes"));
 const qaDir = process.env.RESUME_QA_DIR ? resolve(process.env.RESUME_QA_DIR) : null;
 const phone = (process.env.RESUME_PHONE ?? "").replace(/[\s-]/g, "");
-const email = process.env.RESUME_EMAIL ?? "resume@example.com";
+const email = (process.env.RESUME_EMAIL ?? "").trim();
 const location = process.env.RESUME_LOCATION ?? "北京";
 const variants = [
   "周金鑫-嵌入式软件工程师.md",
@@ -17,6 +17,9 @@ const variants = [
 
 if (!/^1[3-9]\d{9}$/.test(phone)) {
   throw new Error("RESUME_PHONE must be a valid private mainland China mobile number.");
+}
+if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  throw new Error("RESUME_EMAIL must be supplied at runtime and contain a valid private email address.");
 }
 
 const escapeHTML = (value = "") =>

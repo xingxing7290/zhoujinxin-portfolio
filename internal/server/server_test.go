@@ -65,7 +65,7 @@ func TestPublicAndAdminLifecycle(t *testing.T) {
 	testServer := httptest.NewServer(appServer.Handler())
 	defer testServer.Close()
 
-	assertPage(t, testServer.URL+"/", http.StatusOK, "resume@example.com", false)
+	assertPage(t, testServer.URL+"/", http.StatusOK, "联系方式仅在定向投递材料中提供", false)
 	assertPage(t, testServer.URL+"/en", http.StatusOK, "Selected projects", false)
 	assertPage(t, testServer.URL+"/robots.txt", http.StatusOK, "Sitemap: http://portfolio.test/sitemap.xml", false)
 	assertPage(t, testServer.URL+"/sitemap.xml", http.StatusOK, "/en/projects/iot-control-platform", false)
@@ -222,6 +222,9 @@ func assertPage(t *testing.T, url string, status int, contains string, allowPhon
 	}
 	if !allowPhone && regexpPhone.Match(body) {
 		t.Fatalf("public page %s leaked a full mobile number", url)
+	}
+	if strings.Contains(string(body), "mailto:") {
+		t.Fatalf("public page %s exposed a contact email", url)
 	}
 }
 

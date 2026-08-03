@@ -1,6 +1,6 @@
 # Security
 
-请不要在公开 Issue 中披露漏洞、管理员凭据、个人手机号或未公开简历文件。安全问题请发送到 `resume@example.com`，包含影响范围、复现条件和建议修复方式。
+请不要在公开 Issue 中披露漏洞、管理员凭据、个人联系方式或未公开简历文件。安全问题请通过仓库的 [GitHub 私密漏洞报告](https://github.com/xingxing7290/zhoujinxin-portfolio/security/advisories/new) 提交，并包含影响范围、复现条件和建议修复方式。
 
 管理员密码使用 Argon2id；会话 Cookie 使用 `Secure`、`HttpOnly`、`SameSite=Strict`，8 小时过期。所有管理写请求要求同源 Origin 和 CSRF Token，登录接口按来源 IP 限流。上传采用流式写盘、文件魔数校验、随机文件名、路径隔离和配额限制。
 

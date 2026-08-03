@@ -54,15 +54,17 @@ npm run test:e2e
 ```powershell
 python -m pip install -r requirements-resume.txt
 $env:RESUME_PHONE='<私人手机号>'
+$env:RESUME_EMAIL='<私人邮箱>'
 python scripts/generate-resume-docx.py
 Remove-Item Env:RESUME_PHONE
+Remove-Item Env:RESUME_EMAIL
 ```
 
 可编辑 DOCX 默认写入被 Git 忽略的 `data/generated/resumes/`，经 Microsoft Word 导出为 PDF；本项目不调用 WPS。`npm run resume:snapshot-pdf` 可从 `internal/seed/content.json` 生成网站内容快照版 HTML/PDF，但不属于三份正式投递版。详细流程见 [resume/README.md](resume/README.md) 与 [docs/CONTENT.md](docs/CONTENT.md)。
 
 ## 内容与隐私
 
-公开源码、HTML 和接口中不保存完整手机号；手机号仅存在于管理员上传到持久卷的简历 PDF。原始证件照不在仓库中，仓库只包含身份保持后生成的网页肖像和 AVIF/WebP/JPEG 响应式版本。数据库、上传文件、备份和环境变量均被 Git 忽略。
+公开源码、默认 HTML 和接口中不保存完整手机号、私人邮箱、微信号或详细地址；联系方式只在生成定向投递简历时通过运行时环境变量注入，并仅存在于管理员上传到持久卷的私有简历 PDF。原始证件照不在仓库中，仓库只包含身份保持后生成的网页肖像和 AVIF/WebP/JPEG 响应式版本。数据库、上传文件、备份、文档成品和环境变量均被 Git 忽略。`npm run privacy:check` 会扫描全部 Git 跟踪文件，CI 会阻止隐私联系方式、简历成品、数据库、备份或凭据文件进入后续提交。
 
 内容维护见 [docs/CONTENT.md](docs/CONTENT.md)，生产部署和回滚见 [docs/OPERATIONS.md](docs/OPERATIONS.md)，安全说明见 [SECURITY.md](SECURITY.md)。
 

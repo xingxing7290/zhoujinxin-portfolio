@@ -13,6 +13,7 @@
     "resume:pdf": "npm run resume:snapshot-pdf",
     "career:vla": "node scripts/generate-vla-career-plan.mjs",
     "career:vla:verify": "node scripts/generate-vla-career-plan.mjs --check",
+    "privacy:check": "node scripts/check-public-privacy.mjs",
     "typecheck": "tsc --noEmit",
     "test": "vitest run --config vitest.config.ts",
     "test:e2e": "playwright test",
