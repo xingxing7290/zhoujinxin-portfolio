@@ -11,6 +11,7 @@ permissions:
 
 env:
   REGISTRY_IMAGE: ghcr.io/xingxing7290/zhoujinxin-portfolio
+  DOCKER_BUILD_RECORD_UPLOAD: "false"
 
 jobs:
   checks:
