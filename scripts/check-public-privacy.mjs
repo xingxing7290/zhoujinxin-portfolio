@@ -1,5 +1,5 @@
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { extname } from "node:path";
 
 const trackedFiles = execFileSync("git", ["ls-files", "-z", "--cached", "--others", "--exclude-standard"], { encoding: "utf8" })
@@ -28,6 +28,7 @@ const reportMatches = (file, text, pattern, category, allow = () => false) => {
 };
 
 for (const file of trackedFiles) {
+  if (!existsSync(file)) continue;
   const normalized = file.replaceAll("\\", "/");
   const lower = normalized.toLowerCase();
   const extension = extname(lower);
