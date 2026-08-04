@@ -1,4 +1,11 @@
+/.gitattributes text eol=lf
 *.sh text eol=lf
 Caddyfile text eol=lf
 *.yml text eol=lf
 *.yaml text eol=lf
+/data/career/vla-plan-*.json text eol=lf
+/data/research/vla-jobs/*.json text eol=lf
+/data/research/vla-jobs/*.csv text eol=lf
+/docs/career/*.md text eol=lf
+/docs/career/daily-guides/*.md text eol=lf
+/scripts/generate-vla-career-plan.mjs text eol=lf

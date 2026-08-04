@@ -19,6 +19,7 @@
             "建立学习日志、实验编号和“未验证不得写入简历”的证据规则。"
           ],
           "resource_ids": ["R01", "R03", "R20"],
+          "guide_path": "docs/career/daily-guides/day-001.md",
           "deliverable": "docs/positioning.md 与 evidence-ledger.csv 初版",
           "acceptance": "每项能力均标注“已有证据/学习中/未开始”，且 CAN、伺服、ROS2、VLA 不被写成项目经验。"
         },
@@ -32,6 +33,7 @@
             "建立 Ubuntu、驱动、CUDA、PyTorch、LeRobot、ROS2 的兼容矩阵；ROS 系统环境与 LeRobot 环境不混用。"
           ],
           "resource_ids": ["R01", "R02", "H02", "H03"],
+          "guide_path": "docs/career/daily-guides/day-002.md",
           "deliverable": "environment.md、依赖锁文件与诊断输出",
           "acceptance": "在新 shell 中按脚本激活 LeRobot 环境并导入 torch、lerobot、opencv；输出中的 LeRobot commit 与锁定值一致。"
         },

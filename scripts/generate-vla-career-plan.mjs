@@ -264,6 +264,7 @@ function validatePlan(resources, plan) {
   assert(Array.isArray(plan.weeks) && plan.weeks.length === 16, "逐日计划必须恰好 16 周");
   const days = plan.weeks.flatMap((week) => week.days);
   assert(days.length === 112, `逐日计划必须恰好 112 天，实际 ${days.length}`);
+  const guidePaths = new Set();
 
   let totalHours = 0;
   plan.weeks.forEach((week, weekIndex) => {
@@ -284,6 +285,28 @@ function validatePlan(resources, plan) {
     assert(day.tasks.every((task) => typeof task === "string" && task.trim()), `Day ${day.day} 任务含空值`);
     assert(Array.isArray(day.resource_ids) && day.resource_ids.length > 0, `Day ${day.day} 缺少资源`);
     day.resource_ids.forEach((id) => assert(resourceIds.has(id), `Day ${day.day} 使用未知资源 ${id}`));
+    if (day.guide_path !== undefined) {
+      const dayId = String(day.day).padStart(3, "0");
+      const expectedGuidePath = `docs/career/daily-guides/day-${dayId}.md`;
+      assert(typeof day.guide_path === "string" && day.guide_path, `Day ${day.day}.guide_path 必须为非空字符串`);
+      assert(day.guide_path === expectedGuidePath, `Day ${day.day}.guide_path 应为 ${expectedGuidePath}`);
+      assert(!path.isAbsolute(day.guide_path), `Day ${day.day}.guide_path 不得为绝对路径`);
+      assert(!day.guide_path.split(/[\\/]/).includes(".."), `Day ${day.day}.guide_path 不得包含 ..`);
+      assert(!guidePaths.has(day.guide_path), `详细指南路径重复：${day.guide_path}`);
+      guidePaths.add(day.guide_path);
+
+      const guideFile = path.resolve(rootDir, day.guide_path);
+      assert(fs.existsSync(guideFile), `Day ${day.day} 缺少详细指南：${day.guide_path}`);
+      const guide = fs.readFileSync(guideFile, "utf8");
+      assert(
+        guide.includes(`<!-- career-vla-guide: day-${dayId} -->`),
+        `Day ${day.day} 详细指南身份标记错误`,
+      );
+      assert(
+        guide.includes(`(../VLA-LEROBOT-112-DAY-PLAN.md#day-${dayId})`),
+        `Day ${day.day} 详细指南缺少返回总计划的稳定链接`,
+      );
+    }
     assert(typeof day.deliverable === "string" && day.deliverable, `Day ${day.day} 缺少交付物`);
     assert(typeof day.acceptance === "string" && day.acceptance, `Day ${day.day} 缺少验收标准`);
     if (day.wall_clock) {
@@ -296,6 +319,10 @@ function validatePlan(resources, plan) {
     }
     totalHours += day.hours;
   });
+
+  for (const dayNumber of [1, 2]) {
+    assert(days[dayNumber - 1].guide_path, `Day ${dayNumber} 必须提供详细执行指南`);
+  }
 
   const dualTrackDays = [54, 76, 78, 83, 95];
   for (const dayNumber of dualTrackDays) {
@@ -955,10 +982,20 @@ function buildDailyPlan(resources, plan, planValidation) {
 
     for (const day of week.days) {
       const date = dateForDay(resources.schedule.start_date, day.day - 1);
+      const dayId = String(day.day).padStart(3, "0");
+      const guideUrl = day.guide_path
+        ? path
+            .relative(path.dirname(outputPaths.dailyPlan), path.resolve(rootDir, day.guide_path))
+            .split(path.sep)
+            .join("/")
+        : null;
       sections.push(
         [
-          `#### Day ${String(day.day).padStart(3, "0")}｜${date.iso} ${date.weekday}｜${day.hours} 小时｜${day.title}`,
+          `<a id="day-${dayId}"></a>`,
           "",
+          `#### Day ${dayId}｜${date.iso} ${date.weekday}｜${day.hours} 小时｜${day.title}`,
+          "",
+          ...(guideUrl ? [`**详细执行指南：** [Day ${dayId} 详细执行指南](${guideUrl})`, ""] : []),
           "**当天任务**",
           "",
           ...day.tasks.map((task) => `- [ ] ${task}`),
@@ -1010,7 +1047,11 @@ function writeOrCheck(filePath, content) {
   if (checkOnly) {
     assert(fs.existsSync(filePath), `缺少生成文件：${path.relative(rootDir, filePath)}`);
     const current = fs.readFileSync(filePath, "utf8");
-    assert(current === content, `生成文件已过期：${path.relative(rootDir, filePath)}，请执行 npm run career:vla`);
+    const normalizeEol = (value) => value.replace(/\r\n/g, "\n");
+    assert(
+      normalizeEol(current) === normalizeEol(content),
+      `生成文件已过期：${path.relative(rootDir, filePath)}，请执行 npm run career:vla`,
+    );
     return;
   }
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
