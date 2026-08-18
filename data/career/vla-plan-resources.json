@@ -8,6 +8,17 @@
     "planned_repository": "Day 3 只创建私有学习仓库；第 15 周通过许可证、证据和隐私审查后，才按真实完成范围创建或开放独立公开仓库",
     "resume_rule": "未完成并形成可复现证据前，不得作为已完成项目写入正式简历；只可在学习计划中标记为进行中。"
   },
+  "completed_course": {
+    "title": "黑马程序员零基础具身智能机械臂实战项目开发全套视频课程",
+    "platform": "哔哩哔哩",
+    "bvid": "BV1nz6KBHEc9",
+    "url": "https://www.bilibili.com/video/BV1nz6KBHEc9",
+    "published_parts": 115,
+    "status": "已完整观看一遍",
+    "completed_on": "2026-08-18",
+    "evidence_type": "用户自述学习记录",
+    "resume_boundary": "可记录为课程学习完成；在完成对应代码、硬件、测试与可复现证据前，不等同于机械臂、ROS2、运动控制、视觉或VLA项目经验。"
+  },
   "schedule": {
     "start_date": "2026-08-24",
     "end_date": "2026-12-13",

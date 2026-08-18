@@ -239,6 +239,9 @@ function validatePlan(resources, plan) {
   assert(resources.snapshot_date === "2026-08-18", "资源快照日期错误");
   assert(resources.project?.status === "拟建开源作品", "项目状态必须明确为“拟建开源作品”");
   assert(resources.project?.clarification?.includes("不是"), "项目说明必须明确不是现有同名仓库");
+  assert(resources.completed_course?.bvid === "BV1nz6KBHEc9", "课程学习记录 BV 号错误");
+  assert(resources.completed_course?.status === "已完整观看一遍", "课程学习状态必须使用用户确认的事实");
+  assert(resources.completed_course?.resume_boundary?.includes("不等同于"), "课程记录必须声明项目经验边界");
   assert(resources.schedule?.start_date === "2026-08-24", "计划开始日期错误");
   assert(resources.schedule?.end_date === "2026-12-13", "计划结束日期错误");
   assert(resources.schedule?.total_days === 112, "资源配置的总天数必须为 112");
