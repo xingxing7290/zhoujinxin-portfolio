@@ -251,8 +251,8 @@ function validatePlan(resources, plan) {
     "每四周必须设置一个阶段缓冲日",
   );
   assert(Array.isArray(resources.environment_rules) && resources.environment_rules.length >= 4, "环境隔离规则不足");
-  assert(resources.fallback_tracks?.decision_day === 49, "真机/仿真分支必须在 Day 49 决策");
-  assert(Array.isArray(resources.fallback_tracks?.rules) && resources.fallback_tracks.rules.length >= 6, "真机不可用的后续分支不完整");
+  assert(resources.fallback_tracks?.decision_day === 112, "真机扩展决策必须在仿真主线完成后的 Day 112");
+  assert(Array.isArray(resources.fallback_tracks?.rules) && resources.fallback_tracks.rules.length >= 5, "仿真主线与真机扩展边界不完整");
 
   assert(Array.isArray(resources.accounts_and_access) && resources.accounts_and_access.length > 0, "缺少账号与授权资源");
   const allResources = [...resources.software, ...resources.hardware, ...resources.accounts_and_access];
@@ -328,10 +328,13 @@ function validatePlan(resources, plan) {
     assert(days[dayNumber - 1].guide_path, `Day ${dayNumber} 必须提供详细执行指南`);
   }
 
-  const postDecisionPlan = JSON.stringify(plan.weeks.slice(7));
+  const fullPlan = JSON.stringify(plan.weeks);
+  for (const required of ["MuJoCo", "游戏手柄", "LeRobot", "ACT", "SmolVLA", "4核8GB云服务器"]) {
+    assert(fullPlan.includes(required), `仿真优先完整项目缺少主线：${required}`);
+  }
   assert(
-    postDecisionPlan.includes("R 轨") && postDecisionPlan.includes("S 轨"),
-    "Day 49 后计划必须同时保留 R 真机和 S 仿真路径",
+    JSON.stringify([plan.assumptions, resources.project, resources.fallback_tracks]).includes("simulation-only"),
+    "计划必须明确仿真成果的 simulation-only 边界",
   );
 
   assert(totalHours === 256, `计划总工时应为 256，实际 ${totalHours}`);
@@ -936,21 +939,21 @@ function buildDailyPlan(resources, plan, planValidation) {
   );
   sections.push(`### 预算与采购门`);
   sections.push(markdownList(resources.budget_rules));
-  sections.push(`## Day ${resources.fallback_tracks.decision_day} 后的双轨执行`);
+  sections.push(`## 仿真主线与 Day ${resources.fallback_tracks.decision_day} 后的可选真机扩展`);
   sections.push(
     [
-      `- **决策日：Day ${resources.fallback_tracks.decision_day}。**`,
+      `- **真机扩展决策日：Day ${resources.fallback_tracks.decision_day}。仿真主线本身可以完成 v1.0。**`,
       `- **${resources.fallback_tracks.track_real}**`,
       `- **${resources.fallback_tracks.track_simulation}**`,
       "",
-      "| 周次 | R 轨：真机条件满足 | S 轨：真机条件不满足 |",
+      "| 周次 | 可选 R 轨：未来真机扩展 | 主 S 轨：当前仿真完整项目 |",
       "|---|---|---|",
       ...resources.fallback_tracks.rules.map(
         (item) =>
           `| ${escapeMarkdown(item.weeks)} | ${escapeMarkdown(item.real)} | ${escapeMarkdown(item.simulation)} |`,
       ),
       "",
-      "任何时候真机授权、物理急停、示教输入或持续排期失效，都立即从 R 轨降级到 S 轨；可以延后真机里程碑，但不能用仿真结果替代真机结果。",
+      "当前 112 天固定执行 S 轨。只有 Day 112 后获得设备授权、SDK、物理急停、安全区域和持续排期，才能另开 R 轨；仿真结果永远不能替代真机结果。",
     ].join("\n"),
   );
   sections.push(`## 16 周总览`);
@@ -1021,22 +1024,23 @@ function buildDailyPlan(resources, plan, planValidation) {
     [
       "| 里程碑 | 最早时间 | 必须具备的证据 | 简历可写范围 |",
       "|---|---|---|---|",
-      "| M0 工程基线 | 第 1 周 | 私有仓库、证据账本、固定环境、C/C++与Python最小测试 | 只能写既有能力；新项目仍是学习计划 |",
-      "| M1 MCU/CAN 实证 | 第 4 周 | 真实I2C/SPI/UART/CAN、FreeRTOS测量、Bootloader与故障测试 | 只能按真实硬件、测试条件和个人实现范围描述 |",
-      "| M2 Linux 边缘系统 | 第 6 周 | Buildroot/启动链/设备树配置、C++ daemon、存储转发、回滚和长稳 | 可写系统构建与应用工程；未写内核驱动时不得称完整BSP |",
-      "| M3 机器人数据闭环 | 第 10 周 | R/S轨明确、25个小样本、ACT checkpoint、冻结评测与失败报告 | R轨可写真实样本；S轨只能写仿真/公开数据工具 |",
-      "| M4 VLA 与弱网安全 | 第 12 周 | SmolVLA smoke/小微调、三类泛化、异步队列、故障注入和网络对比 | 只写实际完成范围；4G不描述为硬实时安全控制 |",
-      "| M5 条件开源 | 第 16 周 | CI、复现、许可、隐私和证据门通过；按实际范围发布v0.x/v1.0或延期 | 简历内容必须逐条链接证据，S轨不得写真机成果 |",
+      "| M0 工程基线 | 第 1 周 | 私有仓库、证据账本、固定LeRobot commit、Python/C++测试和MuJoCo CPU smoke | 只能写环境与工程基线；新项目仍在建设 |",
+      "| M1 仿真与遥操作 | 第 4 周 | Franka模型、MuJoCo场景、键盘/手柄dead-man、Robot I/O契约、LeRobotDataset回放 | 可写MuJoCo仿真与遥操作工具；不得写真机控制 |",
+      "| M2 数据与ROS2闭环 | 第 7 周 | 50个以上有效仿真Episode、质量检查、Dataset Card、ROS2桥接、tf与MCAP | 可写仿真数据工具和ROS2系统集成；不得写真实机械臂驱动 |",
+      "| M3 ACT 基线 | 第 9 周 | 自采数据、ACT checkpoint、恢复、冻结评测、失败分类和鲁棒性报告 | 可写ACT仿真训练/评测；所有数字标记simulation-only |",
+      "| M4 SmolVLA与云端 | 第 13 周 | SmolVLA微调/负面结论、同口径对比、异步推理、4核8GB控制平面和Web闭环 | 只写实际跑通范围；云端不得描述为实时伺服控制 |",
+      "| M5 仿真项目v1.0 | 第 16 周 | CI、快速开始、Cards、成功/失败视频、许可、隐私、恢复和证据门通过 | 可发布完整仿真作品；没有真机就不得写Franka/SO-101/GELLO物理部署 |",
     ].join("\n"),
   );
   sections.push(`## 偏航处理`);
   sections.push(
     [
-      "- 同学机械臂不可持续使用：继续 mock/仿真，并在第 5 周采购门后决定 SO-101；不要临时把他人项目包装成自己的。",
-      "- GPU 不足：先用 ACT 和小数据验证，再租按量 GPU；每个任务设置最长时长和成本上限。",
-      "- SDK 不允许开源：只公开通用接口、mock、测试和经授权的薄适配示例，不提交厂商源码或协议材料。",
-      "- 真机安全门不通过：停止自动控制，只做回放、数据工具和仿真；安全不因进度而降级。",
+      "- 个人电脑图形或手柄不稳定：先用键盘与低分辨率MuJoCo完成闭环，再单独解决输入映射；不要改用云服务器做实时交互。",
+      "- 4核8GB云服务器资源不足：关闭渲染、任务并发固定为1、外置大文件；云端只保留控制平面和headless smoke。",
+      "- GPU 不足：先做ACT小样本和CPU数据检查，再租按量GPU；每个任务设置最长时长和成本上限。",
+      "- LeRobot主分支变化：选择包含官方仿真入口的公开版本并固定commit；不要持续浮动追main。",
       "- SmolVLA 结果不佳：如实保留负面结果，从数据覆盖、归一化、同步、任务设计和模型基线逐项排查。",
+      "- 真机机会提前出现：仍需另建授权、急停、SDK和安全计划；不得把MuJoCo评测直接改名为迁移成功。",
       "- 求职压力增加：P0 岗位继续投递；本计划是能力升级路线，不要求暂停现有求职。",
     ].join("\n"),
   );

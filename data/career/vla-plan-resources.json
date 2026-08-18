@@ -1,12 +1,12 @@
 {
   "snapshot_date": "2026-08-18",
   "project": {
-    "name": "EdgeVLA Embedded-to-Robot Lab",
-    "subtitle": "从 MCU、CAN 与嵌入式 Linux 边缘网关延伸到 ROS2、LeRobot 数据闭环和边云安全控制",
+    "name": "EdgeVLA Simulation-to-Cloud Lab",
+    "subtitle": "用MuJoCo Franka、键盘/游戏手柄、LeRobotDataset、ACT/SmolVLA和4核8GB云端控制平面完成仿真到云端闭环",
     "status": "拟建开源作品",
-    "clarification": "EdgeVLA Embedded-to-Robot Lab 是本计划拟开发的个人学习作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 仅作为后半程上游依赖。",
-    "planned_repository": "Day 3 只创建私有学习仓库；第 15 周通过许可证、证据和隐私审查后，才按真实完成范围创建或开放独立公开仓库",
-    "resume_rule": "未完成并形成可复现证据前，不得作为已完成项目写入正式简历；只可在学习计划中标记为进行中。"
+    "clarification": "这是个人拟开发作品，不是上游官方同名项目。当前没有真实机械臂，主线以MuJoCo simulation-only完成；真机、SO-101、GELLO或Franka物理设备均不得提前声称。",
+    "planned_repository": "Day 3创建独立私有edgevla-lab仓库；第15周通过证据、隐私和许可证审查后，才按真实完成范围公开。",
+    "resume_rule": "仿真成果可以在证据门通过后明确写为MuJoCo仿真项目；不得写成真实Franka、SO-101或GELLO部署。"
   },
   "completed_course": {
     "title": "黑马程序员零基础具身智能机械臂实战项目开发全套视频课程",
@@ -38,60 +38,55 @@
   },
   "environment_rules": [
     {
-      "name": "ROS 2 Jazzy 系统环境",
-      "rule": "使用原生 Ubuntu 24.04 与 /opt/ros/jazzy 的系统 Python/colcon；不在 LeRobot 的 conda/uv 环境里直接导入二进制 rclpy。"
+      "name": "个人电脑交互环境",
+      "rule": "运行MuJoCo viewer、键盘/游戏手柄遥操作、视觉数据采集和本地回放；固定操作系统、Python、LeRobot commit、MuJoCo和手柄映射。"
     },
     {
-      "name": "LeRobot v0.6.0 环境",
-      "rule": "使用独立 uv/venv 或容器并固定 tag、commit 与 lockfile；GPU、PyTorch、FFmpeg 版本写入实验产物。"
+      "name": "LeRobot 仿真环境",
+      "rule": "选择包含官方 imitation-learning-in-sim/gym_hil 路径的版本并固定tag或commit；使用独立uv环境，禁止浮动main。"
     },
     {
-      "name": "ROS 与 LeRobot 桥接",
-      "rule": "优先通过 ROS topic/service、DDS、socket 或独立进程桥接；若必须同进程，需从源码构建兼容 rclpy 并单独记录，不混用未经验证的 Python ABI。"
+      "name": "ROS2 Jazzy 环境",
+      "rule": "使用Ubuntu 24.04系统ROS2和独立ros2_ws；通过进程/消息桥连接LeRobot环境，不直接混用不兼容rclpy。"
     },
     {
-      "name": "ACT / ALOHA 仿真环境",
-      "rule": "固定 lerobot/aloha_sim_transfer_cube_human 数据集 revision 和 AlohaTransferCube-v0 环境；先验证 v0.6.0 的 feature/action 兼容性，再训练与评测。"
+      "name": "4核8GB云服务器",
+      "rule": "只运行API、数据库、MQTT、静态Web、OSMesa/无渲染MuJoCo smoke；容器限额、任务并发1、日志轮转，不安装GPU训练栈。"
     },
     {
-      "name": "SmolVLA / LIBERO 仿真环境",
-      "rule": "独立 Linux/MuJoCo 环境；固定 HuggingFaceVLA/libero 数据集 revision、libero_10 任务与 observation/action schema，训练和评测必须使用兼容空间。"
+      "name": "按需GPU训练",
+      "rule": "ACT/SmolVLA先本地CPU小smoke，再以固定镜像和预算/时间上限运行；训练配置、数据revision、模型revision和checkpoint必须归档。"
     }
   ],
   "fallback_tracks": {
-    "decision_day": 49,
-    "track_real": "R 轨：只有机械臂书面授权、SDK许可、独立急停、示教输入和未来 6 周排期全部满足，才进行低速真机任务。",
-    "track_simulation": "S 轨：任一真机条件不满足即使用 mock/replay/公开仿真数据；完成接口、数据、策略、弱网和平台工程，但材料必须标记 simulation-only。",
+    "decision_day": 112,
+    "track_real": "可选R轨：112天仿真作品完成后，只有获得真实机械臂授权、SDK许可、物理急停、安全区域和连续排期，才另开真机迁移计划。",
+    "track_simulation": "主S轨：全112天使用MuJoCo Franka、键盘/游戏手柄和仿真摄像头完成数据、训练、评测、ROS2、异步推理和云端平台。S轨本身可以完成v1.0。",
     "rules": [
       {
-        "weeks": "1–6",
-        "real": "两轨共同完成 MCU、CAN、Linux 网关；不接机械臂。",
-        "simulation": "同左；机器人硬件不可用不阻塞嵌入式主线。"
+        "weeks": "1–4",
+        "real": "不需要真机；只建立环境、MuJoCo、遥操作和LeRobot接口。",
+        "simulation": "个人电脑完成viewer与手柄；云服务器完成headless smoke。"
       },
       {
-        "weeks": "7",
-        "real": "完成 ROS2 基础并核验机械臂五项前置条件。",
-        "simulation": "完成相同 ROS2 基础，默认准备 mock/replay。"
+        "weeks": "5–7",
+        "real": "不进行真机采集。",
+        "simulation": "冻结Pick-Cube协议，采集并发布仿真Dataset v1，完成ROS2桥接。"
       },
       {
-        "weeks": "8",
-        "real": "低速真机适配、物理急停与人工看护遥操作。",
-        "simulation": "Mock/replay适配、契约测试和软件安全状态机。"
+        "weeks": "8–11",
+        "real": "不声称真机推理。",
+        "simulation": "按需GPU训练ACT/SmolVLA，在MuJoCo冻结评测并建立异步Policy链路。"
       },
       {
-        "weeks": "9–12",
-        "real": "25个小规模真机样本、ACT/SmolVLA小基线和逐轮评测。",
-        "simulation": "固定公开数据revision和仿真协议，所有结果标记simulation-only。"
-      },
-      {
-        "weeks": "13–14",
-        "real": "真实设备遥测、受限接管、硬件在环和长稳。",
-        "simulation": "回放数据、模拟设备、CI、性能和服务恢复。"
+        "weeks": "12–14",
+        "real": "公网不承担真机实时控制。",
+        "simulation": "4核8GB服务器部署轻量控制平面、headless worker、Web平台和恢复测试。"
       },
       {
         "weeks": "15–16",
-        "real": "满足全部证据门后可发布真机实验范围。",
-        "simulation": "发布embedded/simulation/data-tooling范围，不写真机或VLA生产经验。"
+        "real": "真机只作为下一90天候选。",
+        "simulation": "公开仿真全链路证据并定向求职。"
       }
     ]
   },
@@ -124,7 +119,7 @@
       "id": "R05",
       "name": "LeRobot 自定义硬件",
       "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware",
-      "usage": "为同学机械臂编写 Robot/Teleoperator 插件"
+      "usage": "理解Robot/Teleoperator插件边界，为112天后的可选真机适配预留接口"
     },
     {
       "id": "R06",
@@ -137,12 +132,6 @@
       "name": "SmolVLA 官方说明",
       "url": "https://huggingface.co/blog/smolvla",
       "usage": "VLA 架构、微调与异步推理"
-    },
-    {
-      "id": "R08",
-      "name": "LeRobot LIBERO",
-      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/libero",
-      "usage": "Linux/MuJoCo 仿真训练与标准化评测"
     },
     {
       "id": "R09",
@@ -179,12 +168,6 @@
       "name": "PyTorch Tutorials",
       "url": "https://docs.pytorch.org/tutorials/",
       "usage": "Tensor、Autograd、Dataset、训练循环和保存模型"
-    },
-    {
-      "id": "R15",
-      "name": "OpenCV 相机标定",
-      "url": "https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html",
-      "usage": "相机内参与畸变标定"
     },
     {
       "id": "R16",
@@ -232,7 +215,7 @@
       "id": "R23",
       "name": "SO-101 开源硬件",
       "url": "https://github.com/TheRobotStudio/SO-ARM100",
-      "usage": "同学机械臂不可用时的备选真机平台与 BOM"
+      "usage": "112天仿真v1.0完成后的可选低成本真机平台；当前不采购"
     },
     {
       "id": "R24",
@@ -245,18 +228,6 @@
       "name": "SmolVLA 官方微调指南",
       "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/smolvla",
       "usage": "语言条件任务、数据量建议、训练配置与真机评测"
-    },
-    {
-      "id": "R26",
-      "name": "LeRobot Adding a Policy",
-      "url": "https://huggingface.co/docs/lerobot/v0.6.0/en/bring_your_own_policies",
-      "usage": "理解自定义策略、可复现训练、checkpoint 与评测要求"
-    },
-    {
-      "id": "R27",
-      "name": "LeRobot 贡献指南",
-      "url": "https://huggingface.co/docs/lerobot/main/en/contributing",
-      "usage": "仅用于遵循当前上游贡献规范；运行时仍固定 v0.6.0，提交真实 issue、测试、文档或硬件插件 PR"
     },
     {
       "id": "R28",
@@ -277,24 +248,6 @@
       "usage": "设计 QoS、Session Expiry、Message Expiry、幂等和遥测/控制消息边界"
     },
     {
-      "id": "R31",
-      "name": "OWASP MASVS 移动端安全标准",
-      "url": "https://mas.owasp.org/MASVS/",
-      "usage": "Flutter HMI 的认证、网络、存储、日志与高风险操作检查"
-    },
-    {
-      "id": "R32",
-      "name": "LeRobot ALOHA 仿真数据集",
-      "url": "https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human",
-      "usage": "ACT 仿真闭环固定数据源；与 AlohaTransferCube-v0 的 observation/action 空间配套使用"
-    },
-    {
-      "id": "R33",
-      "name": "LeRobot ACT ALOHA 模型卡",
-      "url": "https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human",
-      "usage": "核对 ACT/AlohaTransferCube 训练与评测命令、模型配置、基线和限制"
-    },
-    {
       "id": "R34",
       "name": "C++ Core Guidelines",
       "url": "https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines",
@@ -307,139 +260,102 @@
       "usage": "构建现代 C++/ROS2 组件、测试、依赖和可安装目标"
     },
     {
-      "id": "R36",
-      "name": "Linux tracing 与性能工具文档",
-      "url": "https://docs.kernel.org/trace/index.html",
-      "purpose": "strace/perf/ftrace 与系统诊断参考"
-    },
-    {
-      "id": "R37",
-      "name": "Arm CMSIS 与 Cortex-M 文档",
-      "url": "https://arm-software.github.io/CMSIS_6/latest/General/index.html",
-      "purpose": "MCU启动、内核与通用外设软件边界"
-    },
-    {
-      "id": "R38",
-      "name": "FreeRTOS 官方文档",
-      "url": "https://www.freertos.org/Documentation/00-Overview",
-      "purpose": "任务、队列、中断和内核行为"
-    },
-    {
-      "id": "R39",
-      "name": "Linux SocketCAN 官方文档",
-      "url": "https://docs.kernel.org/networking/can.html",
-      "purpose": "CAN用户态、过滤、错误帧和虚拟接口"
-    },
-    {
-      "id": "R40",
-      "name": "Buildroot 官方手册",
-      "url": "https://buildroot.org/downloads/manual/manual.html",
-      "purpose": "可复现嵌入式Linux镜像"
-    },
-    {
-      "id": "R41",
-      "name": "Linux内核设备树文档",
-      "url": "https://docs.kernel.org/devicetree/index.html",
-      "purpose": "设备树与驱动边界"
-    },
-    {
       "id": "R42",
       "name": "GoogleTest 官方入门",
       "url": "https://google.github.io/googletest/primer.html",
       "purpose": "C++单元测试"
+    },
+    {
+      "id": "R43",
+      "name": "LeRobot Imitation Learning in Simulation",
+      "url": "https://huggingface.co/docs/lerobot/main/il_sim",
+      "usage": "MuJoCo Panda、键盘/游戏手柄示教、LeRobotDataset采集、训练和仿真评测"
+    },
+    {
+      "id": "R44",
+      "name": "MuJoCo Menagerie",
+      "url": "https://github.com/google-deepmind/mujoco_menagerie",
+      "usage": "固定Franka Panda高质量MJCF模型、资源与许可证"
+    },
+    {
+      "id": "R45",
+      "name": "GELLO Software",
+      "url": "https://github.com/wuphilipp/gello_software",
+      "usage": "112天后可选低成本遥操作扩展；当前只阅读接口和仿真实现"
+    },
+    {
+      "id": "R46",
+      "name": "SDL Gamepad Documentation",
+      "url": "https://wiki.libsdl.org/SDL3/CategoryGamepad",
+      "usage": "游戏手柄轴、按钮、映射、断连与跨平台输入参考"
+    },
+    {
+      "id": "R47",
+      "name": "FastAPI Documentation",
+      "url": "https://fastapi.tiangolo.com/",
+      "usage": "轻量实验注册表、任务和平台API"
+    },
+    {
+      "id": "R48",
+      "name": "PostgreSQL Documentation",
+      "url": "https://www.postgresql.org/docs/",
+      "usage": "云端实验、模型、数据集与评测元数据"
+    },
+    {
+      "id": "R49",
+      "name": "MinIO Documentation",
+      "url": "https://min.io/docs/minio/linux/index.html",
+      "usage": "可选S3兼容ArtifactStore；资源不足时降级外部对象存储或本地目录"
+    },
+    {
+      "id": "R50",
+      "name": "EMQX Documentation",
+      "url": "https://docs.emqx.com/",
+      "usage": "设备心跳、任务状态与非实时命令；不用于伺服闭环"
+    },
+    {
+      "id": "R52",
+      "name": "MuJoCo Headless Rendering",
+      "url": "https://github.com/google-deepmind/dm_control#rendering",
+      "usage": "EGL、GLFW与OSMesa边界；4核8GB无GPU服务器使用OSMesa或无渲染"
     }
   ],
   "hardware": [
     {
       "id": "H01",
-      "name": "同学的机械臂与厂商 SDK",
-      "priority": "必须先确认",
-      "requirement": "型号、自由度、控制器、舵机、SDK、协议、ROS/ROS2 支持、允许开源的边界"
+      "name": "个人开发电脑",
+      "priority": "必须",
+      "requirement": "运行MuJoCo viewer、手柄、数据采集和本地回放；8GB可做最小CPU仿真，16GB以上更稳；训练是否本地执行取决于NVIDIA GPU。"
     },
     {
       "id": "H02",
-      "name": "Linux 开发主机",
-      "priority": "必须",
-      "requirement": "优先 Ubuntu；至少 32GB 内存、200GB 可用 SSD。具体系统版本服从机械臂 SDK 支持矩阵"
+      "name": "4核8GB云服务器",
+      "priority": "已有",
+      "requirement": "仅运行轻量Web/API/DB/MQTT、OSMesa或无渲染MuJoCo smoke；任务并发1并设置内存、磁盘和日志上限。"
     },
     {
       "id": "H03",
-      "name": "NVIDIA GPU 或按量云 GPU",
-      "priority": "训练阶段必须",
-      "requirement": "ACT 可从 6GB 级开始；SmolVLA 建议 16GB 以上，24GB 更稳妥；显存与耗时会随分辨率、相机数、batch、冻结策略和精度变化，必须先冒烟实测；CPU 仅用于数据检查和轻量推理"
+      "name": "现有游戏手柄",
+      "priority": "必须",
+      "requirement": "普通双摇杆即可控制XYZ/姿态/夹爪；IMU可选；必须实现dead-man、死区、断连停止和校准配置。"
     },
     {
       "id": "H04",
-      "name": "固定机位 RGB 摄像头",
-      "priority": "必须",
-      "requirement": "先 1 个 720p/30fps，真机稳定后扩展到前视+腕部双相机；固定曝光、焦距和支架"
+      "name": "按需GPU",
+      "priority": "第8–11周",
+      "requirement": "ACT/SmolVLA训练前先smoke；设置预算、最长时间和自动终止；不得在CPU云服务器强行训练。"
     },
     {
       "id": "H05",
-      "name": "独立急停与安全工作区",
-      "priority": "必须",
-      "requirement": "由熟悉该设备安全回路的人确认厂商停止方式、独立断能/使能急停、复位流程、动作限幅、低速模式和隔离测试区；完成带时间戳测试记录前禁止自动运动，软件急停不能替代物理急停"
+      "name": "数据与模型存储",
+      "priority": "第5周前",
+      "requirement": "本地至少预留100GB并做校验和；正式训练资产建议独立SSD或对象存储；原始区只追加。"
     },
     {
       "id": "H06",
-      "name": "标定与任务物料",
-      "priority": "必须",
-      "requirement": "棋盘格、颜色/形状可区分物体、两个容器、固定桌面标记、照明变量和卷尺"
-    },
-    {
-      "id": "H07",
-      "name": "4G 网络与可控网络环境",
-      "priority": "第 12 周使用",
-      "requirement": "4G 路由/热点、Linux netem；4G 仅用于遥测和实验，不进入未经保护的硬实时控制"
-    },
-    {
-      "id": "H08",
-      "name": "可选边缘计算设备",
-      "priority": "可选",
-      "requirement": "Jetson Orin 或同级设备，只在 PC 真机链路稳定且岗位样本证明部署需求后采购"
-    },
-    {
-      "id": "H09",
-      "name": "SO-101 leader+follower",
-      "priority": "备选",
-      "requirement": "仅当同学机械臂无法持续使用或不允许开源时采购；2026-07-31 官方双臂核心 BOM 快照约 ¥1343，不含打印、相机、物流和安全附件，采购前必须重新询价"
-    },
-    {
-      "id": "H10",
-      "name": "示教 / 遥操作输入源",
-      "priority": "真机采集前必须确认",
-      "requirement": "至少一种获准且可稳定使用的输入源：leader arm、厂商示教器、手把手示教、gamepad 或键盘；必须支持 dead-man、低速和人工接管"
-    },
-    {
-      "id": "H11",
-      "name": "原始数据独立备份介质",
-      "priority": "正式采集前必须",
-      "requirement": "至少 500GB 可用空间的独立 SSD/NAS/对象存储；原始 episode 只追加不覆盖，使用校验和和双副本，公开包与私有原始区隔离"
-    },
-    {
-      "id": "H12",
-      "name": "可持续使用的 HC32/STM32 开发板",
-      "requirement": "准确型号、原理图、调试器和可重复烧录"
-    },
-    {
-      "id": "H13",
-      "name": "I2C传感器、SPI Flash与基础接线",
-      "requirement": "优先使用有公开datasheet的器件"
-    },
-    {
-      "id": "H14",
-      "name": "CAN收发器与USB-CAN/第二节点",
-      "requirement": "真实CAN验证；仅vcan不能算硬件经验"
-    },
-    {
-      "id": "H15",
-      "name": "逻辑分析仪/示波器与安全供电",
-      "requirement": "保存采样条件，不公开设备序列号"
-    },
-    {
-      "id": "H16",
-      "name": "ARM Linux开发板或QEMU目标",
-      "requirement": "真实板不可用时明确标记QEMU-only"
+      "name": "SO-101、GELLO或其他真实机械臂",
+      "priority": "112天后可选",
+      "requirement": "没有也不阻塞v1.0；采购/借用前必须确认SDK、授权、急停、安全区和公开边界。"
     }
   ],
   "accounts_and_access": [
@@ -468,22 +384,16 @@
       "requirement": "仅在本地冒烟和 ACT 验证通过后使用；每个任务必须设置最长时间、费用上限和自动终止"
     },
     {
-      "id": "A05",
-      "name": "机械臂所有者授权与使用排期",
-      "requirement": "书面确认可用时段、设备责任、SDK/日志/视频/适配代码的公开边界，以及损坏与紧急停止处理方式"
-    },
-    {
       "id": "A06",
       "name": "独立评审者",
       "requirement": "至少两名未参与对应文档编写的人，可由机械臂同学、软件同事或目标岗位从业者担任；用于任务判定、README 60 秒测试和发布前复核"
     }
   ],
   "budget_rules": [
-    "第1周只使用现有电脑；第2周确认开发板、传感器、CAN收发器/USB-CAN和测量工具后才采购缺件。",
-    "MCU/CAN/ARM板采购服务于嵌入式主线；机械臂、Jetson、深度相机不在前6周购买。",
-    "Day49 机械臂五项前置条件任一不满足，自动选择S轨，不因已经投入时间而追加采购。",
-    "云GPU必须先通过CPU/小批smoke，设置预算告警和最长运行时间；训练完成不是2小时人工任务的必达条件。",
-    "真实硬件测试优先购买安全附件、急停和可靠供电，不优先升级算力。",
-    "公开前必须删除公司源码、私有协议、密钥、设备序列号、原始个人视频和联系方式。"
+    "前7周只使用现有个人电脑、游戏手柄和4核8GB云服务器，不购买机械臂、GELLO、Jetson或深度相机。",
+    "云服务器只部署轻量服务和headless smoke；设置容器内存、CPU、磁盘、日志与并发限制，不能影响现有网站。",
+    "ACT/SmolVLA必须先通过本地CPU或小GPU smoke，再启动按需GPU；每个任务设置费用和墙钟上限。",
+    "MuJoCo仿真v1.0可作为完整项目交付；真实硬件是下一阶段加分项，不因求职焦虑虚构迁移。",
+    "公开前删除公司源码、私有协议、密钥、主机信息、联系方式和未授权数据；所有视频醒目标记simulation。"
   ]
 }

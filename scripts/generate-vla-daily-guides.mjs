@@ -72,13 +72,13 @@ function commandChecks(day) {
 function fallbackRules(day) {
   const text = `${day.title} ${day.tasks.join(" ")} ${day.resource_ids.join(" ")}`;
   const rules = [];
-  if (/H12|H13|H14|H15|H16|硬件|MCU|CAN|传感器|开发板|真机/.test(text)) {
-    rules.push("硬件未到、损坏或无授权：保留接口/解析器/mock测试，真实硬件验收标记 `BLOCKED`；写明预计获得日期，不得用 mock 结果替代波形、总线或真机结果。");
+  if (/H06|真实机械臂|真机|SO-101|GELLO/.test(text)) {
+    rules.push("真实机械臂、GELLO或SO-101当前均为可选扩展：没有授权、SDK、物理急停和安全区域时只执行MuJoCo仿真，不得发送真实动作或声称真机迁移。");
   }
-  if (/H01|H05|H10|R 轨|S 轨|机械臂|遥操作/.test(text)) {
-    rules.push("机械臂授权、独立急停、示教输入、SDK许可或持续排期任一缺失：立即执行 S 轨；不得发送真实动作，也不得在简历中使用“真机”“机械臂项目经验”。");
+  if (/H03|游戏手柄|键盘|遥操作/.test(text)) {
+    rules.push("手柄无法识别、漂移或断连：立即回到键盘输入或固定动作测试；dead-man和动作归零仍是必验项，不用云服务器远程桌面替代本地交互采集。");
   }
-  if (/H03|GPU|训练|ACT|SmolVLA|微调/.test(text)) {
+  if (/H04|GPU|训练|ACT|SmolVLA|微调/.test(text)) {
     rules.push("GPU、显存或预算不足：缩小到 1 batch/少量 step 的 smoke，验证数据和恢复链路后停止；完整训练写 `RUNNING` 或 `BLOCKED`，不能因启动成功写成微调完成。");
   }
   if (/上游|Issue|PR|申请|投递|反馈/.test(text)) {
@@ -128,7 +128,7 @@ function taskRecipe(task) {
   }
   if (/实现|编写|配置|创建|建立|接入|增加|封装|转换|适配|开发/.test(task)) {
     steps.push("先固定接口和一个会失败的测试/夹具；实现最小正常路径后立即运行测试，再补超时、非法输入、重复调用、资源耗尽或断连中的至少一个错误路径。");
-    steps.push("把硬件访问、协议解析和业务状态分层；记录关键返回值和错误码，不用无限重试、阻塞延时或全局变量掩盖问题。");
+    steps.push("把仿真器/适配器/外部服务访问、协议转换和业务状态分层；记录关键返回值和错误码，不用无限重试、阻塞延时或全局变量掩盖问题。");
   }
   if (/安装|构建|编译|下载|烧录|启动|重建|clone|环境/.test(task)) {
     steps.push("执行前记录当前版本、磁盘空间和回滚点；只按固定版本/commit操作，命令失败时保留完整 stderr，不连续尝试多个来源的安装方案。");
@@ -136,10 +136,10 @@ function taskRecipe(task) {
   }
   if (/测试|验证|测量|统计|评测|注入|模拟|回放|运行|采样|波形|冒烟/.test(task)) {
     steps.push("在运行前冻结测试对象、版本、环境、样本数、成功/失败定义和停止条件；先做 1 次 pilot 检查记录格式，再批量执行。");
-    steps.push("保存全部轮次而非最好结果；同时记录中位数/最大值或成功/失败数量，并把异常轮次链接到原始日志、波形、视频或数据行。");
+    steps.push("保存全部轮次而非最好结果；同时记录中位数/最大值或成功/失败数量，并把异常轮次链接到原始日志、轨迹、视频或数据行。");
   }
   if (/采集|Episode|episode|数据集|样本/.test(task)) {
-    steps.push("每批开始前锁定 task/spec 与数据 schema；每个样本生成唯一 ID，记录来源、R/S轨、时间、操作者/上游、有效性和失败原因。");
+    steps.push("每批开始前锁定 task/spec 与数据 schema；每个样本生成唯一 ID，记录MuJoCo/真实设备来源、时间、操作者/上游、有效性和失败原因。");
     steps.push("每完成一小批立即跑质量检查和 checksum；原始数据只追加不静默改写，无效样本保留在 manifest 并标明排除原因。");
   }
   if (/训练|微调|checkpoint|Checkpoint|模型/.test(task)) {
@@ -147,7 +147,7 @@ function taskRecipe(task) {
     steps.push("观察首个训练/验证周期并主动验证一次 checkpoint 恢复；训练仍在运行时写 RUNNING，不把开始训练、下载权重或官方 demo 当成完成微调。");
   }
   if (/发布|提交|Issue|issue|PR|申请|投递|公开|简历|README|报告|文档/.test(task)) {
-    steps.push("发布/提交前逐条核对证据 ID、个人贡献、上游来源、R/S轨和禁用表述；运行隐私检查并人工搜索联系方式、设备标识、密钥和公司材料。");
+    steps.push("发布/提交前逐条核对证据 ID、个人贡献、上游来源、simulation-only/真实设备边界和禁用表述；运行隐私检查并人工搜索联系方式、设备标识、密钥和公司材料。");
     steps.push("记录实际提交版本、目标链接和时间；外部是否回复、合并或录用是后续状态，不在当天伪造成果，也不高频自动化操作网站。");
   }
   if (!steps.length) {
@@ -166,7 +166,7 @@ function renderTask(day, task, index) {
     "",
     `1. 在 \`logs/day-${dayId}.md\` 的 \`task_${taskId}\` 下先写：输入、预期现象、一个正常用例、一个失败/边界用例。没写预期前不要开始调参。`,
     ...recipe.map((step, recipeIndex) => `${recipeIndex + 2}. ${step}`),
-    `${recipe.length + 2}. 每条实际执行命令连同退出码追加到 \`evidence/day-${dayId}/task-${taskId}-commands.txt\`；硬件操作同时记录接线、固件 hash、测试次数和测量工具采样条件。`,
+    `${recipe.length + 2}. 每条实际执行命令连同退出码追加到 \`evidence/day-${dayId}/task-${taskId}-commands.txt\`；仿真记录模型/场景commit、seed和配置，只有实际涉及硬件时才追加接线、设备版本与安全条件。`,
     `${recipe.length + 3}. 将代码/文档写入当天交付物对应路径；如果使用上游示例，记录上游 URL、tag/commit、原始文件和本人修改范围。`,
     `${recipe.length + 4}. 运行正常与失败用例，把结果记为 \`PASS\`、\`PARTIAL\` 或 \`BLOCKED\`。失败记录必须保留，禁止只截取最好的一次。`,
   ].join("\n");
