@@ -183,21 +183,21 @@
 
 <a id="day-001"></a>
 
-#### Day 001｜2026-08-24 星期一｜2 小时｜项目启动与真实性边界
+#### Day 001｜2026-08-24 星期一｜2 小时｜简历预填的职业与能力基线
 
 **详细执行指南：** [Day 001 详细执行指南](daily-guides/day-001.md)
 
 **当天任务**
 
-- [ ] 阅读 100 岗位报告的分类和高频技能，确定 P0/P1/P2 目标岗位。
-- [ ] 盘点现有 Linux、C/C++、Python、4G、IoT、Flutter 证据，以及 ROS2、VLA、机械臂等缺口。
-- [ ] 建立学习日志、实验编号和“未验证不得写入简历”的证据规则。
+- [ ] 核对已根据三版简历预填的岗位定位、项目证据与能力边界，只纠正不准确项。
+- [ ] 确认仍无法从简历判断的处理器型号、Python/C++ 证据、传感器接口、机械臂条件和求职约束。
+- [ ] 将单页基线保存到私有学习区；Day 003 建仓时再由该基线生成结构化证据账本。
 
 **所需资源：** [R01 LeRobot v0.6.0 官方仓库](https://github.com/huggingface/lerobot/tree/v0.6.0)；[R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
 
-**当天交付物：** docs/positioning.md 与 evidence-ledger.csv 初版
+**当天交付物：** 一份预填并经本人核对的 D001-baseline.md
 
-**完成验收：** 每项能力均标注“已有证据/学习中/未开始”，且 CAN、伺服、ROS2、VLA 不被写成项目经验。
+**完成验收：** 既有项目、岗位分层和能力边界已核对；无法确认项保留“待确认”，且 CAN、伺服、ROS2、LeRobot、VLA 不被写成既有项目经验。
 
 <a id="day-002"></a>
 
@@ -225,15 +225,15 @@
 
 **当天任务**
 
-- [ ] 建立独立私有 EdgeVLA/Embedded 学习仓库，写明当前是学习与作品建设阶段，不复制任何公司源码。
+- [ ] 建立独立私有 EdgeVLA/Embedded 学习仓库，导入 D001-baseline.md，并由其中的预填表生成 positioning.md 与 evidence-ledger.csv 初版；不复制任何公司源码。
 - [ ] 配置 Python、C++17/CMake 的格式检查、构建和最小单元测试；CI 只跑小型、无硬件任务。
 - [ ] 加入密钥、数据、模型、原始视频、设备标识和本机诊断文件的忽略与隐私检查规则。
 
 **所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R21 Docker 文档](https://docs.docker.com/)；[R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)；[A01 GitHub 账号与独立仓库](https://github.com/)
 
-**当天交付物：** 仓库骨架、README 状态声明、首个绿色 CI
+**当天交付物：** 仓库骨架、D001 基线、结构化证据账本、README 状态声明与首个绿色 CI
 
-**完成验收：** 从空目录按 README 可完成安装和测试；仓库中无密钥、权重或隐私数据。
+**完成验收：** 从空目录按 README 可完成安装和测试；D001 预填证据已转入账本且保留范围边界；仓库中无密钥、权重或隐私数据。
 
 <a id="day-004"></a>
 
