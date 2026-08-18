@@ -1,24 +1,29 @@
 {
-  "snapshot_date": "2026-07-31",
+  "snapshot_date": "2026-08-18",
   "project": {
-    "name": "EdgeVLA Lab",
-    "subtitle": "基于 LeRobot 的机械臂数据采集、VLA 微调、真机评测与边云安全控制平台",
+    "name": "EdgeVLA Embedded-to-Robot Lab",
+    "subtitle": "从 MCU、CAN 与嵌入式 Linux 边缘网关延伸到 ROS2、LeRobot 数据闭环和边云安全控制",
     "status": "拟建开源作品",
-    "clarification": "EdgeVLA Lab 是本计划拟开发并开源的个人作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 是其上游开源依赖。",
-    "planned_repository": "尚未创建；完成第 5 周硬件与开源边界评审后再创建独立公开仓库",
+    "clarification": "EdgeVLA Embedded-to-Robot Lab 是本计划拟开发的个人学习作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 仅作为后半程上游依赖。",
+    "planned_repository": "Day 3 只创建私有学习仓库；第 15 周通过许可证、证据和隐私审查后，才按真实完成范围创建或开放独立公开仓库",
     "resume_rule": "未完成并形成可复现证据前，不得作为已完成项目写入正式简历；只可在学习计划中标记为进行中。"
   },
   "schedule": {
-    "start_date": "2026-08-03",
-    "end_date": "2026-11-22",
+    "start_date": "2026-08-24",
+    "end_date": "2026-12-13",
     "timezone": "Asia/Shanghai",
     "weekday_hours": 2,
     "saturday_hours": 4,
     "sunday_hours": 2,
     "total_days": 112,
     "planned_hours": 256,
-    "buffer_days": [28, 56, 84, 112],
-    "buffer_rule": "每四周阶段门的前 1 小时作为可替换缓冲；未发生延期则用于复现审计。若外部依赖超过 1 小时，不压缩安全/评测任务，整体日期顺延并保留 day 序号。"
+    "buffer_days": [
+      28,
+      56,
+      84,
+      112
+    ],
+    "buffer_rule": "Day 28/56/84/112 的前 60 分钟只用于补失败项或复现；没有延期时用于隐私与证据审计。外部依赖卡住超过当日人工时间盒，标记 PARTIAL/BLOCKED 并执行降级轨，不挤占安全和测试。"
   },
   "environment_rules": [
     {
@@ -43,39 +48,39 @@
     }
   ],
   "fallback_tracks": {
-    "decision_day": 35,
-    "track_real": "R 轨：机械臂授权、示教输入、独立急停和持续可用时段全部满足，继续真机适配、数据采集和评测。",
-    "track_simulation": "S 轨：任一真机前置条件不满足，切换为仿真/回放版；继续完成数据工具、策略训练、异步队列、弱网与平台，但不得写真实机器人结果。",
+    "decision_day": 49,
+    "track_real": "R 轨：只有机械臂书面授权、SDK许可、独立急停、示教输入和未来 6 周排期全部满足，才进行低速真机任务。",
+    "track_simulation": "S 轨：任一真机条件不满足即使用 mock/replay/公开仿真数据；完成接口、数据、策略、弱网和平台工程，但材料必须标记 simulation-only。",
     "rules": [
       {
-        "weeks": "6",
-        "real": "真实 Robot/Teleoperator 适配、低速遥操作与安全联调。",
-        "simulation": "实现 LeRobot mock/replay robot、LIBERO adapter、契约测试和软件安全状态机；不发送真实动作。"
+        "weeks": "1–6",
+        "real": "两轨共同完成 MCU、CAN、Linux 网关；不接机械臂。",
+        "simulation": "同左；机器人硬件不可用不阻塞嵌入式主线。"
       },
       {
         "weeks": "7",
-        "real": "采集获准的 50 个单任务 episode，并双副本备份。",
-        "simulation": "锁定 HuggingFaceVLA/libero revision，抽取不少于 50 个兼容 episode 作为数据质量与回放测试集，不声称自行采集。"
+        "real": "完成 ROS2 基础并核验机械臂五项前置条件。",
+        "simulation": "完成相同 ROS2 基础，默认准备 mock/replay。"
       },
       {
-        "weeks": "8–10",
-        "real": "ACT/SmolVLA 训练、20 次真机基线及五类泛化评测。",
-        "simulation": "在固定 LIBERO 任务上训练/评测，按官方仿真协议报告；所有材料标记 simulation-only。"
+        "weeks": "8",
+        "real": "低速真机适配、物理急停与人工看护遥操作。",
+        "simulation": "Mock/replay适配、契约测试和软件安全状态机。"
       },
       {
-        "weeks": "11–12",
-        "real": "Policy Client 控制低速真机，完成故障注入和真实 4G 对比。",
-        "simulation": "以 mock/replay client 注入动作和网络故障；只报告队列、时延、恢复与软件安全状态机，不报告物理安全。"
+        "weeks": "9–12",
+        "real": "25个小规模真机样本、ACT/SmolVLA小基线和逐轮评测。",
+        "simulation": "固定公开数据revision和仿真协议，所有结果标记simulation-only。"
       },
       {
         "weeks": "13–14",
-        "real": "接入真实设备遥测、视频和人工接管，完成硬件在环与长稳。",
-        "simulation": "接入回放数据与模拟设备，完成平台、CI、容器、性能和服务恢复测试。"
+        "real": "真实设备遥测、受限接管、硬件在环和长稳。",
+        "simulation": "回放数据、模拟设备、CI、性能和服务恢复。"
       },
       {
         "weeks": "15–16",
-        "real": "满足许可与复现门后发布 EdgeVLA Lab v1.0.0 真机实验版。",
-        "simulation": "发布 EdgeVLA Lab v0.1.0 simulation/data-tooling 版；简历只写仿真、数据工具与系统工程，不写真机 VLA。"
+        "real": "满足全部证据门后可发布真机实验范围。",
+        "simulation": "发布embedded/simulation/data-tooling范围，不写真机或VLA生产经验。"
       }
     ]
   },
@@ -289,6 +294,48 @@
       "name": "CMake 官方教程",
       "url": "https://cmake.org/cmake/help/latest/guide/tutorial/",
       "usage": "构建现代 C++/ROS2 组件、测试、依赖和可安装目标"
+    },
+    {
+      "id": "R36",
+      "name": "Linux tracing 与性能工具文档",
+      "url": "https://docs.kernel.org/trace/index.html",
+      "purpose": "strace/perf/ftrace 与系统诊断参考"
+    },
+    {
+      "id": "R37",
+      "name": "Arm CMSIS 与 Cortex-M 文档",
+      "url": "https://arm-software.github.io/CMSIS_6/latest/General/index.html",
+      "purpose": "MCU启动、内核与通用外设软件边界"
+    },
+    {
+      "id": "R38",
+      "name": "FreeRTOS 官方文档",
+      "url": "https://www.freertos.org/Documentation/00-Overview",
+      "purpose": "任务、队列、中断和内核行为"
+    },
+    {
+      "id": "R39",
+      "name": "Linux SocketCAN 官方文档",
+      "url": "https://docs.kernel.org/networking/can.html",
+      "purpose": "CAN用户态、过滤、错误帧和虚拟接口"
+    },
+    {
+      "id": "R40",
+      "name": "Buildroot 官方手册",
+      "url": "https://buildroot.org/downloads/manual/manual.html",
+      "purpose": "可复现嵌入式Linux镜像"
+    },
+    {
+      "id": "R41",
+      "name": "Linux内核设备树文档",
+      "url": "https://docs.kernel.org/devicetree/index.html",
+      "purpose": "设备树与驱动边界"
+    },
+    {
+      "id": "R42",
+      "name": "GoogleTest 官方入门",
+      "url": "https://google.github.io/googletest/primer.html",
+      "purpose": "C++单元测试"
     }
   ],
   "hardware": [
@@ -357,6 +404,31 @@
       "name": "原始数据独立备份介质",
       "priority": "正式采集前必须",
       "requirement": "至少 500GB 可用空间的独立 SSD/NAS/对象存储；原始 episode 只追加不覆盖，使用校验和和双副本，公开包与私有原始区隔离"
+    },
+    {
+      "id": "H12",
+      "name": "可持续使用的 HC32/STM32 开发板",
+      "requirement": "准确型号、原理图、调试器和可重复烧录"
+    },
+    {
+      "id": "H13",
+      "name": "I2C传感器、SPI Flash与基础接线",
+      "requirement": "优先使用有公开datasheet的器件"
+    },
+    {
+      "id": "H14",
+      "name": "CAN收发器与USB-CAN/第二节点",
+      "requirement": "真实CAN验证；仅vcan不能算硬件经验"
+    },
+    {
+      "id": "H15",
+      "name": "逻辑分析仪/示波器与安全供电",
+      "requirement": "保存采样条件，不公开设备序列号"
+    },
+    {
+      "id": "H16",
+      "name": "ARM Linux开发板或QEMU目标",
+      "requirement": "真实板不可用时明确标记QEMU-only"
     }
   ],
   "accounts_and_access": [
@@ -396,12 +468,11 @@
     }
   ],
   "budget_rules": [
-    "第 1–4 周只用现有电脑、仿真和公开数据，不购买机械臂。",
-    "第 5 周完成机械臂接口与开源许可核对后，才决定继续使用同学设备或采购 SO-101。",
-    "下单 SO-101 不等于解锁真机路线；到货、装配、示教输入、独立急停和低速验收全部完成前继续执行 S 轨。",
-    "云 GPU 单次任务必须设置最长运行时间和预算告警；先用 ACT 验证数据，再为 SmolVLA 付费。",
-    "Jetson、深度相机和第二套机械臂都属于可选项，只有当评测结果或目标岗位明确需要时才采购。",
-    "任何涉及真机动作的测试，安全附件和独立急停优先于算力升级。",
-    "若第 16 周真机、安全、许可或复现门未通过，只发布 v0.x simulation/data-tooling 版或延期，不为赶日期强行标记 v1.0.0。"
+    "第1周只使用现有电脑；第2周确认开发板、传感器、CAN收发器/USB-CAN和测量工具后才采购缺件。",
+    "MCU/CAN/ARM板采购服务于嵌入式主线；机械臂、Jetson、深度相机不在前6周购买。",
+    "Day49 机械臂五项前置条件任一不满足，自动选择S轨，不因已经投入时间而追加采购。",
+    "云GPU必须先通过CPU/小批smoke，设置预算告警和最长运行时间；训练完成不是2小时人工任务的必达条件。",
+    "真实硬件测试优先购买安全附件、急停和可靠供电，不优先升级算力。",
+    "公开前必须删除公司源码、私有协议、密钥、设备序列号、原始个人视频和联系方式。"
   ]
 }

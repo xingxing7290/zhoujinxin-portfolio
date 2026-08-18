@@ -9,3 +9,5 @@ Caddyfile text eol=lf
 /docs/career/*.md text eol=lf
 /docs/career/daily-guides/*.md text eol=lf
 /scripts/generate-vla-career-plan.mjs text eol=lf
+/scripts/generate-vla-daily-guides.mjs text eol=lf
+/package.json text eol=lf

@@ -1,14 +1,14 @@
-# EdgeVLA Lab：112 天逐日学习与开源项目计划
+# EdgeVLA Embedded-to-Robot Lab：112 天逐日学习与开源项目计划
 
 > 项目状态：**拟建开源作品**。
-> EdgeVLA Lab 是本计划拟开发并开源的个人作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 是其上游开源依赖。
-> 计划周期：2026-08-03 至 2026-11-22，共 16 周 / 112 天 / 256 小时。
+> EdgeVLA Embedded-to-Robot Lab 是本计划拟开发的个人学习作品，不是 Hugging Face、LeRobot 或其他组织已经发布的同名仓库。LeRobot、SO-101 与 LIBERO 仅作为后半程上游依赖。
+> 计划周期：2026-08-24 至 2026-12-13，共 16 周 / 112 天 / 256 小时。
 
 ## 项目定义与真实性边界
 
-- 项目名称：**EdgeVLA Lab**
-- 副标题：基于 LeRobot 的机械臂数据采集、VLA 微调、真机评测与边云安全控制平台
-- 仓库状态：尚未创建；完成第 5 周硬件与开源边界评审后再创建独立公开仓库
+- 项目名称：**EdgeVLA Embedded-to-Robot Lab**
+- 副标题：从 MCU、CAN 与嵌入式 Linux 边缘网关延伸到 ROS2、LeRobot 数据闭环和边云安全控制
+- 仓库状态：Day 3 只创建私有学习仓库；第 15 周通过许可证、证据和隐私审查后，才按真实完成范围创建或开放独立公开仓库
 - 简历规则：未完成并形成可复现证据前，不得作为已完成项目写入正式简历；只可在学习计划中标记为进行中。
 - 现有上游：LeRobot、SO-101/SO-ARM100、LIBERO、ROS2、PyTorch 等；它们不是你的个人项目。
 - 个人作品：硬件适配、数据质量、训练评测、安全层、弱网实验、实验平台和公开证据；只有实际完成的部分才能写入简历。
@@ -17,16 +17,23 @@
 
 | 项目 | 设置 |
 |---|---|
-| 开始 / 结束 | 2026-08-03 / 2026-11-22 |
+| 开始 / 结束 | 2026-08-24 / 2026-12-13 |
 | 周一至周五 | 每天 2 小时 |
 | 周六 | 4 小时 |
 | 周日 | 2 小时 |
 | 总投入 | 256 小时 |
 | 工时口径 | 256 小时为主动学习/开发时间；GPU 训练和 soak 的机器墙钟时间单独列出，不等于持续人工值守 |
-| 缓冲规则 | 每四周阶段门的前 1 小时作为可替换缓冲；未发生延期则用于复现审计。若外部依赖超过 1 小时，不压缩安全/评测任务，整体日期顺延并保留 day 序号。 |
+| 缓冲规则 | Day 28/56/84/112 的前 60 分钟只用于补失败项或复现；没有延期时用于隐私与证据审计。外部依赖卡住超过当日人工时间盒，标记 PARTIAL/BLOCKED 并执行降级轨，不挤占安全和测试。 |
 | 进度原则 | 每天以可检查的交付物结束；连续卡住 30 分钟就记录问题并切换到 mock/仿真路径 |
 | 真实性原则 | 指标必须来自冻结协议和原始记录；未完成不得写成简历成果 |
 | 安全原则 | 真机必须有人看护、低速、独立物理急停；4G 不承担无保护硬实时控制 |
+
+### 本版执行前提
+
+- 每周投入 16 小时：周一至周五各 2 小时、周六 4 小时、周日 2 小时。
+- 默认只有 Windows/WSL 或 Ubuntu 主机；MCU、CAN、ARM Linux 板和机械臂都必须通过阶段门确认，未确认时执行 mock/QEMU/S 轨。
+- 训练和长稳的墙钟时间可在后台运行，但人工排障单次不超过 2 小时；达到硬上限必须停止并记录。
+- 所有真实指标必须带代码版本、硬件/环境、样本量和原始证据；公司源码、私有协议和个人隐私永不进入公开仓库。
 
 ## 资源总表
 
@@ -79,6 +86,13 @@
 | R33 | [LeRobot ACT ALOHA 模型卡](https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human) | 核对 ACT/AlohaTransferCube 训练与评测命令、模型配置、基线和限制 |
 | R34 | [C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines) | 补齐 RAII、所有权、资源安全、错误处理和并发代码审查 |
 | R35 | [CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/) | 构建现代 C++/ROS2 组件、测试、依赖和可安装目标 |
+| R36 | [Linux tracing 与性能工具文档](https://docs.kernel.org/trace/index.html) | strace/perf/ftrace 与系统诊断参考 |
+| R37 | [Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html) | MCU启动、内核与通用外设软件边界 |
+| R38 | [FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview) | 任务、队列、中断和内核行为 |
+| R39 | [Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html) | CAN用户态、过滤、错误帧和虚拟接口 |
+| R40 | [Buildroot 官方手册](https://buildroot.org/downloads/manual/manual.html) | 可复现嵌入式Linux镜像 |
+| R41 | [Linux内核设备树文档](https://docs.kernel.org/devicetree/index.html) | 设备树与驱动边界 |
+| R42 | [GoogleTest 官方入门](https://google.github.io/googletest/primer.html) | C++单元测试 |
 
 ### 硬件与现场资源
 
@@ -95,6 +109,11 @@
 | H09 | SO-101 leader+follower | 备选 | 仅当同学机械臂无法持续使用或不允许开源时采购；2026-07-31 官方双臂核心 BOM 快照约 ¥1343，不含打印、相机、物流和安全附件，采购前必须重新询价 |
 | H10 | 示教 / 遥操作输入源 | 真机采集前必须确认 | 至少一种获准且可稳定使用的输入源：leader arm、厂商示教器、手把手示教、gamepad 或键盘；必须支持 dead-man、低速和人工接管 |
 | H11 | 原始数据独立备份介质 | 正式采集前必须 | 至少 500GB 可用空间的独立 SSD/NAS/对象存储；原始 episode 只追加不覆盖，使用校验和和双副本，公开包与私有原始区隔离 |
+| H12 | 可持续使用的 HC32/STM32 开发板 | 阶段门前准备 | 准确型号、原理图、调试器和可重复烧录 |
+| H13 | I2C传感器、SPI Flash与基础接线 | 阶段门前准备 | 优先使用有公开datasheet的器件 |
+| H14 | CAN收发器与USB-CAN/第二节点 | 阶段门前准备 | 真实CAN验证；仅vcan不能算硬件经验 |
+| H15 | 逻辑分析仪/示波器与安全供电 | 阶段门前准备 | 保存采样条件，不公开设备序列号 |
+| H16 | ARM Linux开发板或QEMU目标 | 阶段门前准备 | 真实板不可用时明确标记QEMU-only |
 
 ### 账号、权限与协作资源
 
@@ -109,28 +128,27 @@
 
 ### 预算与采购门
 
-- 第 1–4 周只用现有电脑、仿真和公开数据，不购买机械臂。
-- 第 5 周完成机械臂接口与开源许可核对后，才决定继续使用同学设备或采购 SO-101。
-- 下单 SO-101 不等于解锁真机路线；到货、装配、示教输入、独立急停和低速验收全部完成前继续执行 S 轨。
-- 云 GPU 单次任务必须设置最长运行时间和预算告警；先用 ACT 验证数据，再为 SmolVLA 付费。
-- Jetson、深度相机和第二套机械臂都属于可选项，只有当评测结果或目标岗位明确需要时才采购。
-- 任何涉及真机动作的测试，安全附件和独立急停优先于算力升级。
-- 若第 16 周真机、安全、许可或复现门未通过，只发布 v0.x simulation/data-tooling 版或延期，不为赶日期强行标记 v1.0.0。
+- 第1周只使用现有电脑；第2周确认开发板、传感器、CAN收发器/USB-CAN和测量工具后才采购缺件。
+- MCU/CAN/ARM板采购服务于嵌入式主线；机械臂、Jetson、深度相机不在前6周购买。
+- Day49 机械臂五项前置条件任一不满足，自动选择S轨，不因已经投入时间而追加采购。
+- 云GPU必须先通过CPU/小批smoke，设置预算告警和最长运行时间；训练完成不是2小时人工任务的必达条件。
+- 真实硬件测试优先购买安全附件、急停和可靠供电，不优先升级算力。
+- 公开前必须删除公司源码、私有协议、密钥、设备序列号、原始个人视频和联系方式。
 
-## Day 35 后的双轨执行
+## Day 49 后的双轨执行
 
-- **决策日：Day 35。**
-- **R 轨：机械臂授权、示教输入、独立急停和持续可用时段全部满足，继续真机适配、数据采集和评测。**
-- **S 轨：任一真机前置条件不满足，切换为仿真/回放版；继续完成数据工具、策略训练、异步队列、弱网与平台，但不得写真实机器人结果。**
+- **决策日：Day 49。**
+- **R 轨：只有机械臂书面授权、SDK许可、独立急停、示教输入和未来 6 周排期全部满足，才进行低速真机任务。**
+- **S 轨：任一真机条件不满足即使用 mock/replay/公开仿真数据；完成接口、数据、策略、弱网和平台工程，但材料必须标记 simulation-only。**
 
 | 周次 | R 轨：真机条件满足 | S 轨：真机条件不满足 |
 |---|---|---|
-| 6 | 真实 Robot/Teleoperator 适配、低速遥操作与安全联调。 | 实现 LeRobot mock/replay robot、LIBERO adapter、契约测试和软件安全状态机；不发送真实动作。 |
-| 7 | 采集获准的 50 个单任务 episode，并双副本备份。 | 锁定 HuggingFaceVLA/libero revision，抽取不少于 50 个兼容 episode 作为数据质量与回放测试集，不声称自行采集。 |
-| 8–10 | ACT/SmolVLA 训练、20 次真机基线及五类泛化评测。 | 在固定 LIBERO 任务上训练/评测，按官方仿真协议报告；所有材料标记 simulation-only。 |
-| 11–12 | Policy Client 控制低速真机，完成故障注入和真实 4G 对比。 | 以 mock/replay client 注入动作和网络故障；只报告队列、时延、恢复与软件安全状态机，不报告物理安全。 |
-| 13–14 | 接入真实设备遥测、视频和人工接管，完成硬件在环与长稳。 | 接入回放数据与模拟设备，完成平台、CI、容器、性能和服务恢复测试。 |
-| 15–16 | 满足许可与复现门后发布 EdgeVLA Lab v1.0.0 真机实验版。 | 发布 EdgeVLA Lab v0.1.0 simulation/data-tooling 版；简历只写仿真、数据工具与系统工程，不写真机 VLA。 |
+| 1–6 | 两轨共同完成 MCU、CAN、Linux 网关；不接机械臂。 | 同左；机器人硬件不可用不阻塞嵌入式主线。 |
+| 7 | 完成 ROS2 基础并核验机械臂五项前置条件。 | 完成相同 ROS2 基础，默认准备 mock/replay。 |
+| 8 | 低速真机适配、物理急停与人工看护遥操作。 | Mock/replay适配、契约测试和软件安全状态机。 |
+| 9–12 | 25个小规模真机样本、ACT/SmolVLA小基线和逐轮评测。 | 固定公开数据revision和仿真协议，所有结果标记simulation-only。 |
+| 13–14 | 真实设备遥测、受限接管、硬件在环和长稳。 | 回放数据、模拟设备、CI、性能和服务恢复。 |
+| 15–16 | 满足全部证据门后可发布真机实验范围。 | 发布embedded/simulation/data-tooling范围，不写真机或VLA生产经验。 |
 
 任何时候真机授权、物理急停、示教输入或持续排期失效，都立即从 R 轨降级到 S 轨；可以延后真机里程碑，但不能用仿真结果替代真机结果。
 
@@ -138,34 +156,34 @@
 
 | 周 | 日期 | 主题 | 阶段目标 | 周验收门 | 工时 |
 |---:|---|---|---|---|---:|
-| 1 | 2026-08-03～2026-08-09 | 环境、证据边界与 PyTorch 基线 | 建立可复现开发环境，明确转型定位，能独立解释并运行最小训练闭环。 | 环境重建脚本可用；最小模型训练测试通过；完成当前能力、缺口和不可夸大的事实清单。 | 16 |
-| 2 | 2026-08-10～2026-08-16 | 机器人学与模仿学习基础 | 能用工程语言解释机器人状态、动作、坐标系、行为克隆、ACT 与 VLA 的边界。 | 完成二维机械臂小实验、行为克隆基线和 ACT/SmolVLA 对比说明。 | 16 |
-| 3 | 2026-08-17～2026-08-23 | ROS 2、相机与系统接口 | 补齐目标岗位高频的 ROS2、tf2、rosbag2、相机标定和系统诊断基础。 | 完成一个可回放、可诊断、包含相机和虚拟关节状态的 ROS2 小系统。 | 16 |
-| 4 | 2026-08-24～2026-08-30 | LeRobot 数据与仿真基线 | 无硬件条件下跑通 LeRobot 数据读取、训练、仿真评测和可复现记录。 | 固定版本的 ACT 仿真基线可重复训练和评测，并有失败分析。 | 16 |
-| 5 | 2026-08-31～2026-09-06 | 机械臂摸底、接口契约与采购门 | 确认同学机械臂是否适合接入和开源，先用 mock 固定适配接口再决定硬件投入。 | 接口与安全评审通过；明确继续借用、只开源通用层或采购 SO-101 的选择。 | 16 |
-| 6 | 2026-09-07～2026-09-13 | 真机适配、遥操作与安全联调 | R 轨在低速和人工看护下完成真机链路；S 轨完成同接口的 mock/replay、仿真示教和契约测试。 | R 轨通过连接、标定、低速控制和安全恢复；或 S 轨通过仿真/回放契约并明确 simulation-only。 | 16 |
-| 7 | 2026-09-14～2026-09-20 | 数据采集、质量控制与 Dataset Card | R 轨形成 50-episode 真机数据集；S 轨形成固定 revision 的 50-episode 公开数据 manifest；两轨均完成自动质量检查。 | 数据集可回放、可划分、质量检查通过，隐私和许可明确。 | 16 |
-| 8 | 2026-09-21～2026-09-27 | ACT 训练与 R 真机 / S 仿真评测 | 先用计算成本较低的 ACT 验证数据质量和完整训练评测流程。 | ACT checkpoint、与所选轨道一致的独立评测和失败报告可复现；R 轨指标只来自真实评测，S 轨只报告仿真结果并明确 simulation-only。 | 16 |
-| 9 | 2026-09-28～2026-10-04 | SmolVLA 语言任务与微调 | 设计真正由语言区分的多任务数据，并完成 SmolVLA 微调与初评。 | 模型能接收图像、状态、语言并输出动作；数据、成本和评测记录完整。 | 16 |
-| 10 | 2026-10-05～2026-10-11 | 泛化评测与 ACT/SmolVLA 对比 | 用冻结协议量化位置、语言、光照、物体和相机变化，不做只展示成功案例的 Demo。 | 获得可审计的基线与泛化结果表，并明确能力边界。 | 16 |
-| 11 | 2026-10-12～2026-10-18 | 异步推理、动作队列与安全降级 | 建立可测试的 Policy Server/Robot Client 和独立安全层；ACT 使用同步/通用异步队列，只有 flow-matching policy 才比较 RTC。 | 延迟、旧动作、断线和模型异常均能被测量并触发可预测的安全响应。 | 16 |
-| 12 | 2026-10-19～2026-10-25 | 4G 弱网与边云协同实验 | 量化弱网对 VLA 动作队列和任务的影响，证明安全控制留在本地。 | 局域网、netem 与真实 4G 三组结果可复现，结论不超出样本。 | 16 |
-| 13 | 2026-10-26～2026-11-01 | 实验平台、Web 面板与 Flutter HMI | 把既有 IoT/全栈优势转化为机器人数据、实验、告警和人工接管平台。 | 设备到平台、实验到证据、告警到接管的端到端链路可演示。 | 16 |
-| 14 | 2026-11-02～2026-11-08 | 容器化、测试、CI 与可靠性 | 把实验代码提升为可复现、可测试、可恢复的工程作品。 | 新环境一键运行核心链路，CI 绿色，完成压力和恢复记录。 | 16 |
-| 15 | 2026-11-09～2026-11-15 | 开源发布、数据/模型卡与上游贡献 | 形成招聘方能够审查、复现和质疑的公开证据，而不泄露厂商或个人隐私。 | 公开候选版本通过许可、安全、复现和内容审查，至少产生一个真实上游互动。 | 16 |
-| 16 | 2026-11-16～2026-11-22 | 岗位转换、简历证据与正式发布 | 把真实项目证据映射到 100 个岗位，形成可投递材料和后续迭代路线。 | 按 R/S 实际范围条件发布、简历只写已验证事实、完成首批高匹配岗位申请。 | 16 |
+| 1 | 2026-08-24～2026-08-30 | 真实边界、环境与工程基线 | 建立私有学习仓库、可复现环境和证据账本，并用可运行测试确认当前 C/C++、Linux 与 Python 基线。 | 从新 shell 可重建环境；C/C++ 与 Python 最小测试均通过；定位文档明确哪些是既有经验、学习目标和禁用表述。 | 16 |
+| 2 | 2026-08-31～2026-09-06 | MCU 外设驱动与硬件测量 | 在真实开发板上完成 GPIO、UART DMA、I2C 传感器和 SPI Flash；无板时先用接口测试桩，但第 14 天前必须做硬件获取决策。 | 至少三类外设有可编译驱动、错误路径测试和真实波形/日志；若硬件未到，必须保留 BLOCKED 状态和到货计划，不得用 mock 冒充实测。 | 16 |
+| 3 | 2026-09-07～2026-09-13 | FreeRTOS 多传感器节点 | 把外设驱动组织成可测量的实时系统，形成采集、处理、存储、通信和故障恢复闭环。 | 多任务节点连续运行 24 小时；栈、CPU、周期抖动和异常恢复均有测量；不存在在 ISR 中阻塞或用高优先级掩盖设计问题。 | 16 |
+| 4 | 2026-09-14～2026-09-20 | CAN、Bootloader 与升级回滚 | 完成 MCU CAN 节点、Linux SocketCAN 工具链及可恢复固件升级，补齐求职中最关键的总线和升级证据。 | 真实 CAN 链路可处理心跳、超时和 Bus-Off；升级在正常、损坏和断电场景均有确定结果；阶段产物可脱敏复现。 | 16 |
+| 5 | 2026-09-21～2026-09-27 | Cortex-A7 Linux 系统构建 | 用独立学习板或可公开仿真目标完成 Buildroot、启动链、设备树和服务管理，不把应用层经验夸大成完整 BSP。 | 可从干净配置生成镜像并启动；启动日志、设备树变更、systemd 服务和 C++ daemon 均有可复现证据。 | 16 |
+| 6 | 2026-09-28～2026-10-04 | 边缘网关、可靠性与机器人前置 | 把 MCU/CAN 节点接入 Linux 网关，完成存储转发、升级、观测和长稳，同时补齐机器人坐标系与安全基础。 | 端到端链路在断网、重启、CAN异常和进程崩溃下可恢复；完成至少 48 小时长稳或如实记录 PARTIAL。 | 16 |
+| 7 | 2026-10-05～2026-10-11 | ROS 2、相机与系统接口 | 完成可回放、可诊断、包含相机和虚拟关节状态的 ROS2 小系统，并在周末作正式硬件轨道决策。 | ROS2 工作区可从新 shell 构建运行；MCAP、tf2、标定和 diagnostics 均通过；Day 49 后 R/S 轨选择有书面证据。 | 16 |
+| 8 | 2026-10-12～2026-10-18 | 机器人接口、Mock/真机与安全 | 用同一 Robot I/O 契约完成 S 轨 mock/replay；只有安全门全部通过时才在 R 轨低速接入真机。 | 契约测试、动作限制、超时、状态机和遥操作流程通过；R轨额外要求物理急停与人工看护，S轨材料明确simulation-only。 | 16 |
+| 9 | 2026-10-19～2026-10-25 | 小规模数据采集与质量控制 | 在 R 轨采集 25 个有效 Episode，或在 S 轨固定 25 个公开数据 Episode/窗口；重点验证工具和质量，不追求数量。 | 25 个样本全部有 manifest、校验和、质量报告和明确来源；R/S 轨永久分开。 | 16 |
+| 10 | 2026-10-26～2026-11-01 | ACT 小基线与冻结评测 | 先用小数据和低成本 ACT 验证训练、恢复、推理和评测链路；训练墙钟时间不计入人工工时。 | 训练任务可恢复；R轨完成10次、S轨完成20次冻结评测；成功率带样本量和条件，失败逐条保留。 | 16 |
+| 11 | 2026-11-02～2026-11-08 | SmolVLA 小规模验证与泛化 | 在 ACT 链路稳定后才进行 SmolVLA 冒烟和小规模微调，用三个最有价值的变化维度做冻结评测。 | 微调可恢复；至少完成语言改写、位置和光照三类评测；算力或数据不足时允许停在smoke，不把未完成写成成果。 | 16 |
+| 12 | 2026-11-09～2026-11-15 | 异步推理、弱网与本地安全 | 建立 Policy Server/Robot Client、动作年龄/队列守卫和本地安全状态机，再用 netem/真实4G量化弱网影响。 | 断线、旧动作、队列堆积和进程故障均进入安全状态；报告明确4G不承担硬实时安全控制。 | 16 |
+| 13 | 2026-11-16～2026-11-22 | 实验记录平台与最小 HMI | 只实现支撑实验复现和人工接管的最小平台，不在一周内重造完整IoT产品。 | 能登记实验、查看健康和时间线、标注失败并触发受限人工接管；认证和隐私检查通过。 | 16 |
+| 14 | 2026-11-23～2026-11-29 | 测试、容器、性能与恢复 | 将作品提升为可重建、可测试、可恢复的工程系统，硬件测试与模拟CI分离。 | CI绿色；镜像/环境可重建；48小时长稳或如实PARTIAL；关键故障有恢复证据。 | 16 |
+| 15 | 2026-11-30～2026-12-06 | 脱敏开源、证据与技术表达 | 形成招聘方可复现、可质疑的公开证据，不以必须被上游接受PR作为完成条件。 | README、架构、数据/模型卡、失败演示、许可证和隐私审计完整；外部贡献按真实结果记录。 | 16 |
+| 16 | 2026-12-07～2026-12-13 | 求职材料、投递实验与后续迭代 | 只把已通过证据门的内容同步到简历，完成三类定向材料、面试复盘和首批小规模投递。 | 证据与简历逐条可追溯；完成3～5个高匹配岗位投递和反馈记录；发布范围与R/S轨一致。 | 16 |
 
 ## 112 天逐日执行表
 
-### 第 1 周｜环境、证据边界与 PyTorch 基线｜2026-08-03～2026-08-09
+### 第 1 周｜真实边界、环境与工程基线｜2026-08-24～2026-08-30
 
-**本周目标：** 建立可复现开发环境，明确转型定位，能独立解释并运行最小训练闭环。
+**本周目标：** 建立私有学习仓库、可复现环境和证据账本，并用可运行测试确认当前 C/C++、Linux 与 Python 基线。
 
-**阶段门：** 环境重建脚本可用；最小模型训练测试通过；完成当前能力、缺口和不可夸大的事实清单。
+**阶段门：** 从新 shell 可重建环境；C/C++ 与 Python 最小测试均通过；定位文档明确哪些是既有经验、学习目标和禁用表述。
 
 <a id="day-001"></a>
 
-#### Day 001｜2026-08-03 星期一｜2 小时｜项目启动与真实性边界
+#### Day 001｜2026-08-24 星期一｜2 小时｜项目启动与真实性边界
 
 **详细执行指南：** [Day 001 详细执行指南](daily-guides/day-001.md)
 
@@ -183,7 +201,7 @@
 
 <a id="day-002"></a>
 
-#### Day 002｜2026-08-04 星期二｜2 小时｜Linux 与 Python 环境固定
+#### Day 002｜2026-08-25 星期二｜2 小时｜Linux 与 Python 环境固定
 
 **详细执行指南：** [Day 002 详细执行指南](daily-guides/day-002.md)
 
@@ -201,13 +219,15 @@
 
 <a id="day-003"></a>
 
-#### Day 003｜2026-08-05 星期三｜2 小时｜仓库、分支与基础 CI
+#### Day 003｜2026-08-26 星期三｜2 小时｜仓库、分支与基础 CI
+
+**详细执行指南：** [Day 003 详细执行指南](daily-guides/day-003.md)
 
 **当天任务**
 
-- [ ] 建立独立 EdgeVLA Lab 私有学习仓库，标明尚未达到公开发布条件。
-- [ ] 配置 main/feature 分支、提交规范，以及 Python 与 C++17/CMake 的格式、编译和最小单元测试。
-- [ ] 增加禁止提交数据、权重、密钥和原始个人视频的忽略规则。
+- [ ] 建立独立私有 EdgeVLA/Embedded 学习仓库，写明当前是学习与作品建设阶段，不复制任何公司源码。
+- [ ] 配置 Python、C++17/CMake 的格式检查、构建和最小单元测试；CI 只跑小型、无硬件任务。
+- [ ] 加入密钥、数据、模型、原始视频、设备标识和本机诊断文件的忽略与隐私检查规则。
 
 **所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R21 Docker 文档](https://docs.docker.com/)；[R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)；[A01 GitHub 账号与独立仓库](https://github.com/)
 
@@ -217,195 +237,753 @@
 
 <a id="day-004"></a>
 
-#### Day 004｜2026-08-06 星期四｜2 小时｜NumPy、Tensor 与维度练习
+#### Day 004｜2026-08-27 星期四｜2 小时｜C 与现代 C++ 基线测评
+
+**详细执行指南：** [Day 004 详细执行指南](daily-guides/day-004.md)
 
 **当天任务**
 
-- [ ] 练习 NumPy 与 PyTorch 的 shape、dtype、device、broadcast、batch/time 维度。
-- [ ] 将虚拟关节状态和多相机批数据转换为张量。
-- [ ] 为典型维度错误编写失败测试。
+- [ ] 完成 20 题闭卷自测：指针、生命周期、内存布局、volatile、大小端、对齐、线程安全与 RAII；不会的题原样记录。
+- [ ] 分别用 C11 和 C++17 实现定长环形缓冲区，明确满/空策略、越界行为和所有权，不使用未定义行为。
+- [ ] 为正常写读、回绕、满队列、空队列和并发边界编写测试，并用 AddressSanitizer/UBSan 运行。
 
-**所需资源：** [R14 PyTorch Tutorials](https://docs.pytorch.org/tutorials/)
+**所需资源：** [R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)；[R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)
 
-**当天交付物：** notebooks/01_tensor_shapes.ipynb 与 5 个维度测试
+**当天交付物：** cpp/ring_buffer、tests/ring_buffer_test.cpp 与 docs/c-cpp-baseline.md
 
-**完成验收：** 能口头解释 B×T×D、B×T×C×H×W，并让所有测试通过。
+**完成验收：** Debug/Release 均构建；至少 8 个测试通过；ASan/UBSan 无报告；基线文档列出不少于 5 个真实缺口。
 
 <a id="day-005"></a>
 
-#### Day 005｜2026-08-07 星期五｜2 小时｜Autograd 与最小策略网络
+#### Day 005｜2026-08-28 星期五｜2 小时｜CMake、GoogleTest 与可重复构建
+
+**详细执行指南：** [Day 005 详细执行指南](daily-guides/day-005.md)
 
 **当天任务**
 
-- [ ] 实现状态到动作的两层 MLP，理解前向、损失、反向传播和优化器。
-- [ ] 记录过拟合 100 条合成样本的 loss 曲线。
-- [ ] 验证保存、加载和固定随机种子。
+- [ ] 将环形缓冲区拆为 library、test、example 三个 target，不使用全局 include_directories。
+- [ ] 加入编译告警并在学习代码中按错误处理；生成 compile_commands.json，记录编译器和 CMake 版本。
+- [ ] 写一份从空 build 目录开始的构建脚本，并在第二个干净目录重复执行。
 
-**所需资源：** [R14 PyTorch Tutorials](https://docs.pytorch.org/tutorials/)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)
+**所需资源：** [R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)；[R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
 
-**当天交付物：** src/baselines/mlp_policy.py 与训练曲线
+**当天交付物：** CMakeLists.txt、cmake/、scripts/build-and-test.sh 与构建日志
 
-**完成验收：** CPU 确定性模式下同一随机种子两次最终 loss 绝对差不超过 1e-6；checkpoint 重载输出最大绝对差不超过 1e-6。
+**完成验收：** 两个干净 build 目录均能 configure/build/ctest；脚本无依赖手工修改的绝对路径。
 
 <a id="day-006"></a>
 
-#### Day 006｜2026-08-08 星期六｜4 小时｜Dataset 与训练循环
+#### Day 006｜2026-08-29 星期六｜4 小时｜Linux 调试工具最小闭环
+
+**详细执行指南：** [Day 006 详细执行指南](daily-guides/day-006.md)
 
 **当天任务**
 
-- [ ] 实现合成机器人 Dataset、DataLoader、train/val 划分和归一化。
-- [ ] 增加配置文件、日志、checkpoint 与早停。
-- [ ] 故意制造数据泄漏和归一化错配并记录症状。
+- [ ] 为示例程序制造一次内存越界、一次死锁风险和一次系统调用失败，先记录症状再修复。
+- [ ] 分别使用 gdb、strace、Valgrind 或 Sanitizer 定位问题，保存脱敏命令与关键结论。
+- [ ] 给程序增加退出信号处理、错误码和结构化日志，验证异常退出不会留下临时文件。
 
-**所需资源：** [R14 PyTorch Tutorials](https://docs.pytorch.org/tutorials/)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)
+**所需资源：** [R36 Linux tracing 与性能工具文档](https://docs.kernel.org/trace/index.html)；[R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；H02 Linux 开发主机
 
-**当天交付物：** 可配置训练脚本与实验记录 001–003
+**当天交付物：** labs/linux-debugging、reports/linux-debugging-baseline.md
 
-**完成验收：** 训练、验证、恢复、推理四个命令可独立执行，并能解释数据泄漏影响。
+**完成验收：** 三个故障都有复现步骤、定位证据、修复提交和回归测试；报告中不包含用户名、主机名或公司路径。
 
 <a id="day-007"></a>
 
-#### Day 007｜2026-08-09 星期日｜2 小时｜周复盘与环境重建
+#### Day 007｜2026-08-30 星期日｜2 小时｜第一周复现与能力边界复盘
+
+**详细执行指南：** [Day 007 详细执行指南](daily-guides/day-007.md)
 
 **当天任务**
 
-- [ ] 从干净环境按文档重建并运行测试。
-- [ ] 完成 PyTorch、数据划分和证据边界自测。
-- [ ] 更新风险清单和下周学习重点。
+- [ ] 从新 clone 或干净工作树按 README 重建，计时并记录每个失败点，不复用当前 shell 的隐式环境。
+- [ ] 运行 C/C++、Python、隐私和格式检查；将结果链接回 evidence ledger，而不是只截图。
+- [ ] 更新 P0/P1/P2 定位：主投嵌入式 Linux/设备系统，补强 MCU/RTOS，机器人部署作为中期方向。
 
-**所需资源：** [R02 LeRobot 安装指南](https://huggingface.co/docs/lerobot/v0.6.0/en/installation)；[R14 PyTorch Tutorials](https://docs.pytorch.org/tutorials/)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
+**所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)
 
-**当天交付物：** week-01-review.md 与环境重建记录
+**当天交付物：** reviews/week-01.md、可复现构建日志与更新后的证据账本
 
-**完成验收：** 重建流程无隐藏手工步骤；20 道自测正确率不低于 80%。
+**完成验收：** 干净环境在 30 分钟内完成构建测试；所有失败都有 issue/下一动作；没有把学习代码写成生产项目经验。
 
-### 第 2 周｜机器人学与模仿学习基础｜2026-08-10～2026-08-16
+### 第 2 周｜MCU 外设驱动与硬件测量｜2026-08-31～2026-09-06
 
-**本周目标：** 能用工程语言解释机器人状态、动作、坐标系、行为克隆、ACT 与 VLA 的边界。
+**本周目标：** 在真实开发板上完成 GPIO、UART DMA、I2C 传感器和 SPI Flash；无板时先用接口测试桩，但第 14 天前必须做硬件获取决策。
 
-**阶段门：** 完成二维机械臂小实验、行为克隆基线和 ACT/SmolVLA 对比说明。
+**阶段门：** 至少三类外设有可编译驱动、错误路径测试和真实波形/日志；若硬件未到，必须保留 BLOCKED 状态和到货计划，不得用 mock 冒充实测。
 
 <a id="day-008"></a>
 
-#### Day 008｜2026-08-10 星期一｜2 小时｜关节、末端与坐标系
+#### Day 008｜2026-08-31 星期一｜2 小时｜开发板、原理图与引脚清单
+
+**详细执行指南：** [Day 008 详细执行指南](daily-guides/day-008.md)
 
 **当天任务**
 
-- [ ] 学习关节空间、笛卡尔空间、自由度、位姿和齐次变换。
-- [ ] 绘制相机、基座、末端、物体坐标系关系。
-- [ ] 整理 degrees/radians、单位和时间戳约定。
+- [ ] 选定一块本人可持续使用的 HC32/STM32 开发板，保存准确型号、芯片手册、原理图和调试器版本。
+- [ ] 列出时钟、Flash/RAM、GPIO、UART、I2C、SPI、CAN 与调试引脚，标记电平和复用冲突。
+- [ ] 运行厂商最小工程并保存编译尺寸、下载日志和 LED 现象；失败时只诊断，不同时升级全部工具链。
 
-**所需资源：** [R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R13 MoveIt 2 Jazzy 入门](https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H12 可持续使用的 HC32/STM32 开发板；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** docs/robot-frames.md 与坐标系图
+**当天交付物：** hardware/mcu-inventory.md 与 firmware/board-smoke
 
-**完成验收：** 给定三个坐标系能写出变换链，并指出单位混用的风险。
+**完成验收：** 文档能让他人接对电源和调试器；最小工程可重复编译下载；没有猜测未核验的芯片参数。
 
 <a id="day-009"></a>
 
-#### Day 009｜2026-08-11 星期二｜2 小时｜正逆运动学最小实现
+#### Day 009｜2026-09-01 星期二｜2 小时｜GPIO、按键与去抖状态机
+
+**详细执行指南：** [Day 009 详细执行指南](daily-guides/day-009.md)
 
 **当天任务**
 
-- [ ] 推导二维双连杆正运动学，并用 C++17/CMake 实现带单元测试的库。
-- [ ] 用数值法求逆运动学目标，通过 Python 小工具可视化误差。
-- [ ] 使用 RAII、明确单位/错误类型，记录奇异位形和不可达目标。
+- [ ] 用寄存器/HAL 的明确边界实现 LED 输出与按键输入，记录上拉、有效电平和中断触发方式。
+- [ ] 实现非阻塞去抖状态机，不在中断中延时；加入短按、长按和抖动输入测试。
+- [ ] 用逻辑分析仪测量按键抖动和响应延迟，保存原始采样与结论。
 
-**所需资源：** [R13 MoveIt 2 Jazzy 入门](https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html)；[R16 MuJoCo 文档](https://mujoco.readthedocs.io/en/stable/)；[R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H12 可持续使用的 HC32/STM32 开发板；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** cpp/kinematics 库、测试与 notebooks/02_kinematics.ipynb
+**当天交付物：** firmware/drivers/gpio_button、tests/button_fsm 与波形记录
 
-**完成验收：** 连杆长度归一化为 1 时，10 个可达目标的末端欧氏误差均不超过 1e-3；5 个不可达目标全部被拒绝。
+**完成验收：** 10 次短按和 5 次长按均正确；ISR 无阻塞调用；报告写明采样率、阈值与最大响应时间。
 
 <a id="day-010"></a>
 
-#### Day 010｜2026-08-12 星期三｜2 小时｜控制频率与安全约束
+#### Day 010｜2026-09-02 星期三｜2 小时｜UART DMA 环形缓冲区
+
+**详细执行指南：** [Day 010 详细执行指南](daily-guides/day-010.md)
 
 **当天任务**
 
-- [ ] 理解位置、速度、力矩控制的差异及本项目只使用的接口边界。
-- [ ] 定义软限位、最大单步变化、速度上限、超时和看门狗。
-- [ ] 绘制物理急停与软件安全层的责任边界。
+- [ ] 配置 UART RX DMA 或空闲中断，使用定长环形缓冲区接收分段数据。
+- [ ] 实现长度校验、超时、溢出计数和错误恢复；协议解析器与硬件收发分层。
+- [ ] 用脚本发送粘包、拆包、超长帧和随机字节，统计处理与丢弃结果。
 
-**所需资源：** [R13 MoveIt 2 Jazzy 入门](https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html)；H05 独立急停与安全工作区
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H12 可持续使用的 HC32/STM32 开发板；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** docs/safety-requirements.md
+**当天交付物：** firmware/drivers/uart_dma、tools/uart_fuzzer.py 与测试报告
 
-**完成验收：** 安全需求包含触发条件、响应、复位方式和测试方法，且不以软件急停替代物理急停。
+**完成验收：** 连续发送不少于 1000 帧无死锁；所有非法帧被计数；缓冲区越界测试通过。
 
 <a id="day-011"></a>
 
-#### Day 011｜2026-08-13 星期四｜2 小时｜行为克隆与分布偏移
+#### Day 011｜2026-09-03 星期四｜2 小时｜I2C 传感器独立驱动
+
+**详细执行指南：** [Day 011 详细执行指南](daily-guides/day-011.md)
 
 **当天任务**
 
-- [ ] 实现合成轨迹上的行为克隆。
-- [ ] 比较训练分布内与分布外初始状态表现。
-- [ ] 记录误差累积和数据覆盖不足。
+- [ ] 根据传感器 datasheet 写寄存器表、上电时序和量程配置，不直接复制不明来源驱动。
+- [ ] 实现设备 ID 检查、读写、超时、NACK 与重初始化路径，将原始值和物理量转换分开。
+- [ ] 用逻辑分析仪核对地址、ACK、时钟频率和一次完整采样事务。
 
-**所需资源：** [R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R14 PyTorch Tutorials](https://docs.pytorch.org/tutorials/)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H13 I2C传感器、SPI Flash与基础接线；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** notebooks/03_behavior_cloning.ipynb
+**当天交付物：** firmware/drivers/i2c_sensor、docs/i2c-timing.md 与波形
 
-**完成验收：** 报告至少一个分布偏移失败案例，并说明增加何种数据可能改善。
+**完成验收：** 冷启动 20 次均识别设备；拔掉传感器后在限定时间内报错且任务不阻塞；物理量转换有边界测试。
 
 <a id="day-012"></a>
 
-#### Day 012｜2026-08-14 星期五｜2 小时｜ACT 与 Action Chunk
+#### Day 012｜2026-09-04 星期五｜2 小时｜SPI Flash 与掉电安全参数区
+
+**详细执行指南：** [Day 012 详细执行指南](daily-guides/day-012.md)
 
 **当天任务**
 
-- [ ] 阅读 ACT 文档，梳理 observation、action chunk、训练目标和推理流程。
-- [ ] 用时间轴解释 chunk 长度与控制频率、延迟的关系。
-- [ ] 列出 ACT 作为首个真机基线的理由。
+- [ ] 依据 JEDEC ID 确认 Flash，完成读 ID、页编程、扇区擦除和忙状态轮询。
+- [ ] 设计双副本参数页，包含版本、长度、序号和 CRC；写入流程避免覆盖最后一份有效配置。
+- [ ] 在写入不同阶段模拟复位，验证启动后选择最新有效副本。
 
-**所需资源：** [R06 LeRobot ACT 策略文档](https://huggingface.co/docs/lerobot/v0.6.0/en/act)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H13 I2C传感器、SPI Flash与基础接线；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** docs/act-notes.md 与时序图
+**当天交付物：** firmware/drivers/spi_flash、firmware/storage/config_store 与掉电测试表
 
-**完成验收：** 不看笔记能解释 action chunk、temporal ensembling 和基线选择。
+**完成验收：** 跨页读写和擦除测试通过；至少 6 个复位注入点均能恢复一个有效配置；不把仿真复位写成真实断电。
 
 <a id="day-013"></a>
 
-#### Day 013｜2026-08-15 星期六｜4 小时｜VLA 与 SmolVLA
+#### Day 013｜2026-09-05 星期六｜4 小时｜外设故障注入与波形复核
+
+**详细执行指南：** [Day 013 详细执行指南](daily-guides/day-013.md)
 
 **当天任务**
 
-- [ ] 梳理视觉、语言、机器人状态和动作的输入输出链路。
-- [ ] 阅读 SmolVLA 架构、flow matching 与异步推理概念。
-- [ ] 制作 ACT、SmolVLA、传统规则控制的适用场景对比。
+- [ ] 建立 I2C NACK、UART 噪声、SPI 超时和按键抖动四类故障用例。
+- [ ] 逐项运行并记录故障检测时间、恢复动作、错误计数和是否需要人工重启。
+- [ ] 整理关键波形、固件版本、测试接线和复现命令，剔除没有测试条件的漂亮截图。
 
-**所需资源：** [R07 SmolVLA 官方说明](https://huggingface.co/blog/smolvla)；[R25 SmolVLA 官方微调指南](https://huggingface.co/docs/lerobot/v0.6.0/en/smolvla)；[R10 LeRobot 异步推理](https://huggingface.co/docs/lerobot/v0.6.0/en/async)；[R11 LeRobot RTC](https://huggingface.co/docs/lerobot/v0.6.0/en/rtc)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H12 可持续使用的 HC32/STM32 开发板；H13 I2C传感器、SPI Flash与基础接线；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** docs/policy-comparison.md
+**当天交付物：** reports/peripheral-fault-matrix.csv 与 evidence/peripheral-waveforms
 
-**完成验收：** 比较表覆盖数据量、算力、语言条件、实时性、可解释性和风险。
+**完成验收：** 四类故障均有预期/实际结果；至少一项负面结论被保留；同一固件版本可重复复现。
 
 <a id="day-014"></a>
 
-#### Day 014｜2026-08-16 星期日｜2 小时｜概念答辩与阶段门
+#### Day 014｜2026-09-06 星期日｜2 小时｜第二周阶段门与硬件采购决策
+
+**详细执行指南：** [Day 014 详细执行指南](daily-guides/day-014.md)
 
 **当天任务**
 
-- [ ] 录制 10 分钟讲解：数据如何变为动作，以及安全层位于何处。
-- [ ] 回答坐标系、行为克隆、ACT、VLA、分布偏移问题。
-- [ ] 修正无法解释的术语，更新词汇表。
+- [ ] 从清空 build 目录开始重新编译下载，逐项执行 GPIO/UART/I2C/SPI 冒烟。
+- [ ] 检查硬件是否足以进入 FreeRTOS 与 CAN；缺 CAN 时确定收发器/USB-CAN 的具体获取方式和最晚日期。
+- [ ] 用 10 分钟口述解释四种总线的电气、时序和典型失败差异，记录答不上来的问题。
 
-**所需资源：** [R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R06 LeRobot ACT 策略文档](https://huggingface.co/docs/lerobot/v0.6.0/en/act)；[R07 SmolVLA 官方说明](https://huggingface.co/blog/smolvla)
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；[R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H12 可持续使用的 HC32/STM32 开发板；H14 CAN收发器与USB-CAN/第二节点；H15 逻辑分析仪/示波器与安全供电
 
-**当天交付物：** week-02-review.md、讲解视频与术语表
+**当天交付物：** reviews/week-02.md、硬件决策记录与复现日志
 
-**完成验收：** 自拟 25 问正确率不低于 80%，讲解中不把模型输出等同于安全控制。
+**完成验收：** 真实硬件项按 PASS/PARTIAL/BLOCKED 标注；不存在用仿真波形替代实测的条目；下周依赖已落实。
 
-### 第 3 周｜ROS 2、相机与系统接口｜2026-08-17～2026-08-23
+### 第 3 周｜FreeRTOS 多传感器节点｜2026-09-07～2026-09-13
 
-**本周目标：** 补齐目标岗位高频的 ROS2、tf2、rosbag2、相机标定和系统诊断基础。
+**本周目标：** 把外设驱动组织成可测量的实时系统，形成采集、处理、存储、通信和故障恢复闭环。
 
-**阶段门：** 完成一个可回放、可诊断、包含相机和虚拟关节状态的 ROS2 小系统。
+**阶段门：** 多任务节点连续运行 24 小时；栈、CPU、周期抖动和异常恢复均有测量；不存在在 ISR 中阻塞或用高优先级掩盖设计问题。
 
 <a id="day-015"></a>
 
-#### Day 015｜2026-08-17 星期一｜2 小时｜ROS 2 Jazzy 安装与工作区
+#### Day 015｜2026-09-07 星期一｜2 小时｜任务模型与周期预算
+
+**详细执行指南：** [Day 015 详细执行指南](daily-guides/day-015.md)
+
+**当天任务**
+
+- [ ] 画出采集、解析、存储、通信和监控任务及数据流。
+- [ ] 为每个任务定义周期、截止时间、优先级、栈预算和最坏阻塞点。
+- [ ] 先建立空任务与运行时统计，测量空载 CPU 和调度基线。
+
+**所需资源：** [R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** docs/rtos-task-design.md 与 firmware/app/task_skeleton
+
+**完成验收：** 任务表包含周期/优先级/栈/阻塞资源；空载统计可重复；没有凭感觉填写性能数字。
+
+<a id="day-016"></a>
+
+#### Day 016｜2026-09-08 星期二｜2 小时｜Queue、Semaphore 与所有权
+
+**详细执行指南：** [Day 016 详细执行指南](daily-guides/day-016.md)
+
+**当天任务**
+
+- [ ] 用 Queue 传递传感器样本，定义值拷贝或对象池所有权。
+- [ ] 用二值信号量连接 ISR 与任务，互斥锁只保护共享外设且设置超时。
+- [ ] 构造队列满、消费者暂停和资源竞争测试，观察丢弃策略。
+
+**所需资源：** [R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** firmware/app/pipeline 与 tests/rtos_queue_cases.md
+
+**完成验收：** 队列满不会覆盖未消费数据；所有等待都有上限；测试能解释 semaphore、mutex 和 queue 的选择。
+
+<a id="day-017"></a>
+
+#### Day 017｜2026-09-09 星期三｜2 小时｜ISR 到任务与 DMA 完成路径
+
+**详细执行指南：** [Day 017 详细执行指南](daily-guides/day-017.md)
+
+**当天任务**
+
+- [ ] 将 UART/I2C/SPI 完成事件统一转交任务处理，ISR 只做清标志和通知。
+- [ ] 测量中断到任务被唤醒的延迟，并记录测试频率、优化级别和测量点。
+- [ ] 加入中断风暴或重复完成事件，确认系统仍可响应看门狗任务。
+
+**所需资源：** [R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H12 可持续使用的 HC32/STM32 开发板；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** firmware/platform/isr_bridge 与 reports/isr-latency.csv
+
+**完成验收：** 至少 1000 个样本；报告给出中位数/最大值而非单次最好值；ISR 路径无动态分配和阻塞日志。
+
+<a id="day-018"></a>
+
+#### Day 018｜2026-09-10 星期四｜2 小时｜多传感器采样与时间戳
+
+**详细执行指南：** [Day 018 详细执行指南](daily-guides/day-018.md)
+
+**当天任务**
+
+- [ ] 统一样本结构：source、sequence、monotonic timestamp、quality 和 raw value。
+- [ ] 按各传感器速率采样并在处理层转换单位，不把协议接入描述成底层传感器融合。
+- [ ] 模拟一类传感器延迟和一类掉线，验证其他采集通道继续工作。
+
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；[R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H13 I2C传感器、SPI Flash与基础接线
+
+**当天交付物：** firmware/app/sensor_pipeline 与 sample-log.csv
+
+**完成验收：** 序号可检测丢样；时间戳单调；单设备掉线不阻塞整个采集任务。
+
+<a id="day-019"></a>
+
+#### Day 019｜2026-09-11 星期五｜2 小时｜看门狗、故障状态与受控恢复
+
+**详细执行指南：** [Day 019 详细执行指南](daily-guides/day-019.md)
+
+**当天任务**
+
+- [ ] 定义启动、运行、降级、故障和恢复状态，列出每个状态允许的动作。
+- [ ] 为关键任务设置心跳窗口，只有全部健康才喂硬件看门狗。
+- [ ] 注入任务卡死、队列堵塞和传感器故障，分别验证重启或降级路径。
+
+**所需资源：** [R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** firmware/safety/supervisor 与 reports/recovery-matrix.csv
+
+**完成验收：** 至少三类故障有真实触发记录；看门狗不会被单一高优先级任务无条件喂；恢复原因可追溯。
+
+<a id="day-020"></a>
+
+#### Day 020｜2026-09-12 星期六｜4 小时｜设备协议与主机模拟器
+
+**详细执行指南：** [Day 020 详细执行指南](daily-guides/day-020.md)
+
+**当天任务**
+
+- [ ] 定义版本化二进制或 JSON 测试协议，包含设备 ID、序号、时间、状态和 CRC/长度。
+- [ ] 实现 MCU 编解码器和 Python 主机模拟器，生成正常、边界和畸形帧。
+- [ ] 用 golden vectors 验证两端一致，明确大小端和升级兼容策略。
+
+**所需资源：** [R30 OASIS MQTT 5.0 规范](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)；[R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H02 Linux 开发主机；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** protocol/device-v1.md、firmware/protocol 与 tools/device_simulator.py
+
+**完成验收：** 至少 20 个 golden vectors 双端通过；未知字段/版本行为明确；fuzzer 不导致 MCU 崩溃。
+
+<a id="day-021"></a>
+
+#### Day 021｜2026-09-13 星期日｜2 小时｜24 小时运行与第三周复盘
+
+**详细执行指南：** [Day 021 详细执行指南](daily-guides/day-021.md)
+
+**当天任务**
+
+- [ ] 冻结固件、接线和测试脚本版本，启动不少于 24 小时运行。
+- [ ] 采集复位次数、错误计数、最小剩余栈、CPU 占用和采样缺口。
+- [ ] 不等待墙钟空转：运行期间整理架构、问题单和下周 CAN 前置知识。
+
+**所需资源：** [R38 FreeRTOS 官方文档](https://www.freertos.org/Documentation/00-Overview)；H11 原始数据独立备份介质；H12 可持续使用的 HC32/STM32 开发板；H15 逻辑分析仪/示波器与安全供电
+
+**机器墙钟时间：** 预计 24 小时后台运行；硬上限 36 小时；超过上限停止并保留日志；不能因未满时长伪造 PASS。
+
+**当天交付物：** reports/rtos-soak-24h.md、原始统计与 week-03-review.md
+
+**完成验收：** 完成真实 24 小时或明确写 PARTIAL 并继续后台运行；所有指标带固件 commit 和采样条件。
+
+### 第 4 周｜CAN、Bootloader 与升级回滚｜2026-09-14～2026-09-20
+
+**本周目标：** 完成 MCU CAN 节点、Linux SocketCAN 工具链及可恢复固件升级，补齐求职中最关键的总线和升级证据。
+
+**阶段门：** 真实 CAN 链路可处理心跳、超时和 Bus-Off；升级在正常、损坏和断电场景均有确定结果；阶段产物可脱敏复现。
+
+<a id="day-022"></a>
+
+#### Day 022｜2026-09-14 星期一｜2 小时｜CAN 2.0 与 SocketCAN 基线
+
+**详细执行指南：** [Day 022 详细执行指南](daily-guides/day-022.md)
+
+**当天任务**
+
+- [ ] 整理仲裁、标准/扩展帧、DLC、错误计数、Bus-Off 和终端电阻。
+- [ ] 在 Linux 建立 vcan0，用 candump/cansend 发送、过滤并记录错误输入。
+- [ ] 写最小 SocketCAN 程序，使用 poll/epoll 接收并保留时间戳。
+
+**所需资源：** [R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H02 Linux 开发主机
+
+**当天交付物：** labs/socketcan-baseline 与 docs/can-notes.md
+
+**完成验收：** vcan 测试可重复；程序处理标准帧、扩展帧和无效长度；口述不把 CAN 等同 UART。
+
+<a id="day-023"></a>
+
+#### Day 023｜2026-09-15 星期二｜2 小时｜MCU CAN 收发与过滤
+
+**详细执行指南：** [Day 023 详细执行指南](daily-guides/day-023.md)
+
+**当天任务**
+
+- [ ] 配置波特率、采样点和过滤器，记录时钟推导。
+- [ ] 使用两节点或 USB-CAN 完成收发，给每类报文固定 ID 和周期。
+- [ ] 用示波器/分析仪核对终端电阻、电平和帧周期。
+
+**所需资源：** [R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H12 可持续使用的 HC32/STM32 开发板；H14 CAN收发器与USB-CAN/第二节点；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** firmware/drivers/can、configs/can-matrix.csv 与波形
+
+**完成验收：** 连续 10000 帧统计完成；过滤器拒绝非目标 ID；报告记录真实总线负载和错误计数。
+
+<a id="day-024"></a>
+
+#### Day 024｜2026-09-16 星期三｜2 小时｜心跳、命令确认与超时
+
+**详细执行指南：** [Day 024 详细执行指南](daily-guides/day-024.md)
+
+**当天任务**
+
+- [ ] 设计节点状态、心跳、命令、ACK/NACK 和诊断报文。
+- [ ] 实现序号、重复命令幂等、确认超时和有限重试。
+- [ ] 主机脚本随机丢弃/重复/乱序帧，验证状态机不会重复执行危险动作。
+
+**所需资源：** [R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H12 可持续使用的 HC32/STM32 开发板；H14 CAN收发器与USB-CAN/第二节点
+
+**当天交付物：** protocol/can-v1.md、firmware/protocol/can 与 tools/can_fault_injector.py
+
+**完成验收：** 协议有状态图；重复命令测试通过；所有重试有次数和总时限。
+
+<a id="day-025"></a>
+
+#### Day 025｜2026-09-17 星期四｜2 小时｜Bus-Off 与节点恢复
+
+**详细执行指南：** [Day 025 详细执行指南](daily-guides/day-025.md)
+
+**当天任务**
+
+- [ ] 制造断开终端、电缆拔插或软件错误帧场景，先定义安全预期。
+- [ ] 记录 error-passive/Bus-Off 进入条件、检测方式和恢复策略。
+- [ ] 验证恢复期间输出保持安全状态，避免无限快速重启。
+
+**所需资源：** [R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H12 可持续使用的 HC32/STM32 开发板；H14 CAN收发器与USB-CAN/第二节点；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** reports/can-recovery.csv 与恢复实现
+
+**完成验收：** 至少 5 次真实故障循环；每次检测/恢复时间有记录；无法制造的故障明确标为未验证。
+
+<a id="day-026"></a>
+
+#### Day 026｜2026-09-18 星期五｜2 小时｜Flash 分区与镜像格式
+
+**详细执行指南：** [Day 026 详细执行指南](daily-guides/day-026.md)
+
+**当天任务**
+
+- [ ] 依据真实 Flash 容量画 boot/app-a/app-b/config 分区并核对链接脚本。
+- [ ] 定义镜像头：magic、版本、长度、目标、hash/CRC 和签名预留。
+- [ ] 编写主机打包器和解析测试，拒绝越界、降级或损坏镜像。
+
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** docs/flash-layout.md、tools/firmware_pack.py 与 golden images
+
+**完成验收：** 链接结果不越界；损坏/超长/错误目标镜像均拒绝；版本策略写明。
+
+<a id="day-027"></a>
+
+#### Day 027｜2026-09-19 星期六｜4 小时｜Bootloader、升级与断电恢复
+
+**详细执行指南：** [Day 027 详细执行指南](daily-guides/day-027.md)
+
+**当天任务**
+
+- [ ] 实现最小 Bootloader 验证和跳转，保留回滚计数与启动确认。
+- [ ] 通过 UART 或 CAN 分块写入非活动分区，逐块校验并限制重试。
+- [ ] 在擦除、接收、校验、切换和首次启动阶段做复位注入。
+
+**所需资源：** [R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；[R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H12 可持续使用的 HC32/STM32 开发板；H14 CAN收发器与USB-CAN/第二节点；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** firmware/bootloader、tools/updater 与升级测试矩阵
+
+**完成验收：** 正常升级、损坏镜像和至少 5 个复位点有结果；任一失败不会破坏最后可启动镜像。
+
+<a id="day-028"></a>
+
+#### Day 028｜2026-09-20 星期日｜2 小时｜嵌入式阶段发布门
+
+**详细执行指南：** [Day 028 详细执行指南](daily-guides/day-028.md)
+
+**当天任务**
+
+- [ ] 从 tag 前的干净 clone 构建 application、bootloader 和主机工具。
+- [ ] 重复运行外设、RTOS、CAN、升级及故障测试，汇总未通过项。
+- [ ] 生成脱敏 v0.1.0 候选说明；硬件证据不足时只发布代码/仿真范围。
+
+**所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R37 Arm CMSIS 与 Cortex-M 文档](https://arm-software.github.io/CMSIS_6/latest/General/index.html)；[R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H11 原始数据独立备份介质；H12 可持续使用的 HC32/STM32 开发板
+
+**当天交付物：** releases/mcu-node-v0.1.0-rc.md 与 week-04-review.md
+
+**完成验收：** 阶段门逐项 PASS/PARTIAL/BLOCKED；无公司代码、私有协议、设备序列号和联系方式；缓冲时间只用于复现或补失败项。
+
+### 第 5 周｜Cortex-A7 Linux 系统构建｜2026-09-21～2026-09-27
+
+**本周目标：** 用独立学习板或可公开仿真目标完成 Buildroot、启动链、设备树和服务管理，不把应用层经验夸大成完整 BSP。
+
+**阶段门：** 可从干净配置生成镜像并启动；启动日志、设备树变更、systemd 服务和 C++ daemon 均有可复现证据。
+
+<a id="day-029"></a>
+
+#### Day 029｜2026-09-21 星期一｜2 小时｜Linux 板卡与 BSP 边界
+
+**详细执行指南：** [Day 029 详细执行指南](daily-guides/day-029.md)
+
+**当天任务**
+
+- [ ] 确定真实 ARM 板或 QEMU 目标，记录 SoC、Cortex-A7/其他内核、启动介质和串口接线。
+- [ ] 区分厂商 BSP、上游源码、本人配置和本人代码；列出不能公开的 SDK/镜像。
+- [ ] 保存一次完整启动日志并标注 BootROM/U-Boot/Kernel/init/应用阶段。
+
+**所需资源：** [R40 Buildroot 官方手册](https://buildroot.org/downloads/manual/manual.html)；[R41 Linux内核设备树文档](https://docs.kernel.org/devicetree/index.html)；H16 ARM Linux开发板或QEMU目标；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** hardware/linux-board-inventory.md 与 boot/boot-baseline.log
+
+**完成验收：** 每段启动责任边界清楚；若无真实板则标记 QEMU-only；不把厂商驱动算作本人开发。
+
+<a id="day-030"></a>
+
+#### Day 030｜2026-09-22 星期二｜2 小时｜Buildroot 最小镜像
+
+**详细执行指南：** [Day 030 详细执行指南](daily-guides/day-030.md)
+
+**当天任务**
+
+- [ ] 固定 Buildroot release 和 defconfig，首次只启用串口、网络和必要调试工具。
+- [ ] 在独立输出目录构建，记录下载缓存、工具链和镜像 hash。
+- [ ] 启动镜像并验证登录、时间、网络和只读/可写分区预期。
+
+**所需资源：** [R40 Buildroot 官方手册](https://buildroot.org/downloads/manual/manual.html)；H02 Linux 开发主机；H16 ARM Linux开发板或QEMU目标
+
+**机器墙钟时间：** 预计 首次构建 1～3 小时；硬上限 6 小时；构建可后台继续；当天人工时间仍限制为 2 小时，超时记录后停止排障。
+
+**当天交付物：** buildroot/board/edge_gateway、defconfig 与 build-manifest.md
+
+**完成验收：** 干净输出目录可重建；镜像 hash 与配置有记录；构建过程不依赖未说明的本机文件。
+
+<a id="day-031"></a>
+
+#### Day 031｜2026-09-23 星期三｜2 小时｜U-Boot 环境与可恢复启动
+
+**详细执行指南：** [Day 031 详细执行指南](daily-guides/day-031.md)
+
+**当天任务**
+
+- [ ] 记录 bootcmd、bootargs、分区和内核/DTB 加载位置。
+- [ ] 添加主/备启动计数或可回退变量，不修改未知生产设备。
+- [ ] 模拟主镜像缺失或校验失败，观察并记录回退行为。
+
+**所需资源：** [R41 Linux内核设备树文档](https://docs.kernel.org/devicetree/index.html)；H16 ARM Linux开发板或QEMU目标；H15 逻辑分析仪/示波器与安全供电
+
+**当天交付物：** boot/u-boot-flow.md、脱敏环境快照与回退日志
+
+**完成验收：** 正常和失败启动均有日志；变量修改可恢复；不声称编写了未实际修改的 U-Boot 驱动。
+
+<a id="day-032"></a>
+
+#### Day 032｜2026-09-24 星期四｜2 小时｜设备树与一个可验证外设
+
+**详细执行指南：** [Day 032 详细执行指南](daily-guides/day-032.md)
+
+**当天任务**
+
+- [ ] 从原理图和现有 DTS 找到一个 GPIO/I2C/SPI 外设节点，记录 compatible、reg、interrupt 和 pinctrl。
+- [ ] 用 overlay 或受控源码变更启停设备，编译 DTB 并用 dtc 反编译核对。
+- [ ] 通过 sysfs/libgpiod/IIO 或最小用户态程序验证设备出现和错误路径。
+
+**所需资源：** [R41 Linux内核设备树文档](https://docs.kernel.org/devicetree/index.html)；H16 ARM Linux开发板或QEMU目标；H13 I2C传感器、SPI Flash与基础接线
+
+**当天交付物：** linux/dts/、docs/device-tree-case.md 与启动验证
+
+**完成验收：** 变更前后现象可比较；DTB 可反编译；边界表述为设备树配置/用户态验证，除非确实写了驱动。
+
+<a id="day-033"></a>
+
+#### Day 033｜2026-09-25 星期五｜2 小时｜systemd 服务、看门狗与日志
+
+**详细执行指南：** [Day 033 详细执行指南](daily-guides/day-033.md)
+
+**当天任务**
+
+- [ ] 将设备 daemon 定义为非 root systemd service，设置工作目录、权限、Restart 和启动依赖。
+- [ ] 接入 watchdog/health 通知，限制重启频率并保留失败原因。
+- [ ] 配置 journald 或日志轮转，验证磁盘上限和崩溃后自动恢复。
+
+**所需资源：** [R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** deploy/systemd/、configs/logging 与 recovery-log.md
+
+**完成验收：** 杀进程后在预期时间恢复；反复崩溃进入受控失败而非重启风暴；日志不会无限增长。
+
+<a id="day-034"></a>
+
+#### Day 034｜2026-09-26 星期六｜4 小时｜C++17 epoll 设备守护进程
+
+**详细执行指南：** [Day 034 详细执行指南](daily-guides/day-034.md)
+
+**当天任务**
+
+- [ ] 实现 epoll 事件循环管理 timerfd、signal fd 和一个模拟串口/CAN fd。
+- [ ] 用 RAII 管理 fd 和线程，定义停止顺序、背压和错误码。
+- [ ] 编写并发、断连、半包和优雅退出测试，运行 Sanitizer。
+
+**所需资源：** [R34 C++ Core Guidelines](https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines)；[R35 CMake 官方教程](https://cmake.org/cmake/help/latest/guide/tutorial/)；[R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；H02 Linux 开发主机；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** gateway/device-daemon 与 unit/integration tests
+
+**完成验收：** 1000 次连接/断连测试无 fd 泄漏；TSan/ASan 适用项无报告；SIGTERM 在限定时间退出。
+
+<a id="day-035"></a>
+
+#### Day 035｜2026-09-27 星期日｜2 小时｜Linux 系统阶段复现
+
+**详细执行指南：** [Day 035 详细执行指南](daily-guides/day-035.md)
+
+**当天任务**
+
+- [ ] 从 defconfig 和仓库重新构建/启动，执行 daemon 与服务测试。
+- [ ] 统计启动时间、镜像尺寸、空载内存和服务恢复时间，注明测量方法。
+- [ ] 更新 Linux 应用、系统构建、设备树和 BSP/驱动四者的简历边界。
+
+**所需资源：** [R40 Buildroot 官方手册](https://buildroot.org/downloads/manual/manual.html)；[R41 Linux内核设备树文档](https://docs.kernel.org/devicetree/index.html)；[R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** reviews/week-05.md 与 reproducibility/linux-image.md
+
+**完成验收：** 至少另一空目录复现；四项指标有原始命令；没有把一次设备树配置写成完整 BSP 经验。
+
+### 第 6 周｜边缘网关、可靠性与机器人前置｜2026-09-28～2026-10-04
+
+**本周目标：** 把 MCU/CAN 节点接入 Linux 网关，完成存储转发、升级、观测和长稳，同时补齐机器人坐标系与安全基础。
+
+**阶段门：** 端到端链路在断网、重启、CAN异常和进程崩溃下可恢复；完成至少 48 小时长稳或如实记录 PARTIAL。
+
+<a id="day-036"></a>
+
+#### Day 036｜2026-09-28 星期一｜2 小时｜SocketCAN 网关适配
+
+**详细执行指南：** [Day 036 详细执行指南](daily-guides/day-036.md)
+
+**当天任务**
+
+- [ ] 将 vcan 和真实 can0 统一封装，支持过滤、时间戳和错误帧。
+- [ ] 把 MCU 心跳/传感器帧转换为内部类型，未知 ID 保留原始数据但不误解析。
+- [ ] 用录制帧回放正常、超时、Bus-Off 和乱序场景。
+
+**所需资源：** [R39 Linux SocketCAN 官方文档](https://docs.kernel.org/networking/can.html)；H14 CAN收发器与USB-CAN/第二节点；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** gateway/can-adapter、fixtures/can-replay 与诊断日志
+
+**完成验收：** vcan CI 与真实 CAN 冒烟分开；错误帧可观测；解析器有 golden tests。
+
+<a id="day-037"></a>
+
+#### Day 037｜2026-09-29 星期二｜2 小时｜MQTT 遥测与命令边界
+
+**详细执行指南：** [Day 037 详细执行指南](daily-guides/day-037.md)
+
+**当天任务**
+
+- [ ] 定义设备状态、传感器、告警和命令 topic/schema，写清 QoS、retain 和过期策略。
+- [ ] 实现本地 CAN 到 MQTT 遥测，以及云命令到本地受限动作的映射。
+- [ ] 验证重复、离线、过期和未授权命令不会绕过本地安全状态。
+
+**所需资源：** [R30 OASIS MQTT 5.0 规范](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)；H07 4G 网络与可控网络环境；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** gateway/mqtt-bridge、protocol/mqtt-v1.md 与集成测试
+
+**完成验收：** 断网不阻塞 CAN；重复命令幂等；过期命令拒绝且有审计日志。
+
+<a id="day-038"></a>
+
+#### Day 038｜2026-09-30 星期三｜2 小时｜SQLite 存储转发
+
+**详细执行指南：** [Day 038 详细执行指南](daily-guides/day-038.md)
+
+**当天任务**
+
+- [ ] 设计遥测队列表：sequence、created_at、payload_version、retry_count 和状态。
+- [ ] 使用事务和批量提交，设置容量、水位和删除策略。
+- [ ] 断网写入、重启恢复、恢复网络后限速回传，统计重复和缺口。
+
+**所需资源：** [R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** gateway/store-forward、schema.sql 与 reports/offline-replay.csv
+
+**完成验收：** 重启后待发送记录不丢；容量达到上限行为明确；回传不会压垮本地实时链路。
+
+<a id="day-039"></a>
+
+#### Day 039｜2026-10-01 星期四｜2 小时｜应用升级与回滚
+
+**详细执行指南：** [Day 039 详细执行指南](daily-guides/day-039.md)
+
+**当天任务**
+
+- [ ] 定义应用包 manifest、版本、hash 和最低兼容数据版本。
+- [ ] 下载到临时位置、校验、原子切换并由 systemd 启动确认。
+- [ ] 注入下载中断、hash错误、启动失败和数据库不兼容，验证回滚。
+
+**所需资源：** [R21 Docker 文档](https://docs.docker.com/)；[R42 GoogleTest 官方入门](https://google.github.io/googletest/primer.html)；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** deploy/update-agent、release manifest 与 rollback-matrix.csv
+
+**完成验收：** 四类失败均保留旧版本可运行；升级日志可追溯；不把应用回滚写成整机 A/B 系统 OTA。
+
+<a id="day-040"></a>
+
+#### Day 040｜2026-10-02 星期五｜2 小时｜性能与资源观测
+
+**详细执行指南：** [Day 040 详细执行指南](daily-guides/day-040.md)
+
+**当天任务**
+
+- [ ] 给事件循环、CAN处理、SQLite批次和MQTT队列增加延迟与水位指标。
+- [ ] 用 pidstat/strace/perf/Valgrind 记录空载和压力下 CPU、内存、fd 与热点。
+- [ ] 只优化一个有数据支持的瓶颈，并保留优化前后同条件结果。
+
+**所需资源：** [R36 Linux tracing 与性能工具文档](https://docs.kernel.org/trace/index.html)；H16 ARM Linux开发板或QEMU目标
+
+**当天交付物：** observability/、reports/gateway-performance.md
+
+**完成验收：** 报告有相同负载/版本/时长；无内存和fd持续增长；优化结论可由原始数据复核。
+
+<a id="day-041"></a>
+
+#### Day 041｜2026-10-03 星期六｜4 小时｜48 小时端到端长稳与故障注入
+
+**详细执行指南：** [Day 041 详细执行指南](daily-guides/day-041.md)
+
+**当天任务**
+
+- [ ] 冻结 MCU、网关、协议和测试清单，启动不少于 48 小时运行。
+- [ ] 定时注入断网、CAN断开、进程终止和设备重启，记录检测/恢复时间。
+- [ ] 墙钟运行期间学习坐标系、关节/末端、控制周期和急停边界，整理机器人术语图。
+
+**所需资源：** [R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R13 MoveIt 2 Jazzy 入门](https://moveit.picknik.ai/main/doc/tutorials/getting_started/getting_started.html)；H07 4G 网络与可控网络环境；H11 原始数据独立备份介质；H12 可持续使用的 HC32/STM32 开发板；H16 ARM Linux开发板或QEMU目标
+
+**机器墙钟时间：** 预计 48 小时后台运行；硬上限 72 小时；达到上限即结束并分析；不得无限等待或补写不存在的数据。
+
+**当天交付物：** reports/e2e-soak-48h.md、fault-events.csv 与 docs/robotics-primer.md
+
+**完成验收：** 真实运行时长、故障次数和恢复结果完整；不足48小时写PARTIAL；机器人笔记不暗示已有机械臂经验。
+
+<a id="day-042"></a>
+
+#### Day 042｜2026-10-04 星期日｜2 小时｜嵌入式作品阶段门
+
+**详细执行指南：** [Day 042 详细执行指南](daily-guides/day-042.md)
+
+**当天任务**
+
+- [ ] 汇总 MCU→CAN→Linux→MQTT 数据流、线程/任务模型和安全边界。
+- [ ] 由本人从空环境演示构建、烧录、启动、断网恢复和升级回滚。
+- [ ] 决定后续 R 真机或 S 仿真轨；未取得机械臂授权、急停和排期时默认 S 轨。
+
+**所需资源：** [R03 Hugging Face Robot Learning Course](https://huggingface.co/learn/robotics-course/en/unit0/1)；[R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)；A05 机械臂所有者授权与使用排期；H01 同学的机械臂与厂商 SDK；H05 独立急停与安全工作区；H10 示教 / 遥操作输入源
+
+**当天交付物：** reviews/week-06.md、embedded-edge-demo.md 与机器人轨道预决策
+
+**完成验收：** 嵌入式核心演示可独立完成；失败项进入 backlog；机器人轨道选择不依赖口头承诺。
+
+### 第 7 周｜ROS 2、相机与系统接口｜2026-10-05～2026-10-11
+
+**本周目标：** 完成可回放、可诊断、包含相机和虚拟关节状态的 ROS2 小系统，并在周末作正式硬件轨道决策。
+
+**阶段门：** ROS2 工作区可从新 shell 构建运行；MCAP、tf2、标定和 diagnostics 均通过；Day 49 后 R/S 轨选择有书面证据。
+
+<a id="day-043"></a>
+
+#### Day 043｜2026-10-05 星期一｜2 小时｜ROS 2 Jazzy 安装与工作区
+
+**详细执行指南：** [Day 043 详细执行指南](daily-guides/day-043.md)
 
 **当天任务**
 
@@ -419,9 +997,11 @@
 
 **完成验收：** 全新终端中可构建并运行两个 package；ROS 与 LeRobot 分别使用独立启动脚本，`python3` 路径和 rclpy ABI 检查写入日志。
 
-<a id="day-016"></a>
+<a id="day-044"></a>
 
-#### Day 016｜2026-08-18 星期二｜2 小时｜Node、Topic、Service、Action
+#### Day 044｜2026-10-06 星期二｜2 小时｜Node、Topic、Service、Action
+
+**详细执行指南：** [Day 044 详细执行指南](daily-guides/day-044.md)
 
 **当天任务**
 
@@ -435,9 +1015,11 @@
 
 **完成验收：** 节点可互通；service/action 的取消、超时和失败路径均被测试。
 
-<a id="day-017"></a>
+<a id="day-045"></a>
 
-#### Day 017｜2026-08-19 星期三｜2 小时｜URDF 与 tf2
+#### Day 045｜2026-10-07 星期三｜2 小时｜URDF 与 tf2
+
+**详细执行指南：** [Day 045 详细执行指南](daily-guides/day-045.md)
 
 **当天任务**
 
@@ -451,9 +1033,11 @@
 
 **完成验收：** tf 树无环、时间戳有效，能查询相机到末端的变换。
 
-<a id="day-018"></a>
+<a id="day-046"></a>
 
-#### Day 018｜2026-08-20 星期四｜2 小时｜rosbag2、MCAP 与时间戳
+#### Day 046｜2026-10-08 星期四｜2 小时｜rosbag2、MCAP 与时间戳
+
+**详细执行指南：** [Day 046 详细执行指南](daily-guides/day-046.md)
 
 **当天任务**
 
@@ -467,9 +1051,11 @@
 
 **完成验收：** 质量报告能输出每个 topic 的数量、频率、时间范围和最大间隔。
 
-<a id="day-019"></a>
+<a id="day-047"></a>
 
-#### Day 019｜2026-08-21 星期五｜2 小时｜OpenCV 相机标定
+#### Day 047｜2026-10-09 星期五｜2 小时｜OpenCV 相机标定
+
+**详细执行指南：** [Day 047 详细执行指南](daily-guides/day-047.md)
 
 **当天任务**
 
@@ -483,9 +1069,11 @@
 
 **完成验收：** 标定样本覆盖画面各区域；误差与失败样本均写入报告。
 
-<a id="day-020"></a>
+<a id="day-048"></a>
 
-#### Day 020｜2026-08-22 星期六｜4 小时｜Lifecycle、参数与诊断
+#### Day 048｜2026-10-10 星期六｜4 小时｜Lifecycle、参数与诊断
+
+**详细执行指南：** [Day 048 详细执行指南](daily-guides/day-048.md)
 
 **当天任务**
 
@@ -499,149 +1087,35 @@
 
 **完成验收：** 断开后进入安全非活动状态，恢复必须显式重新激活。
 
-<a id="day-021"></a>
+<a id="day-049"></a>
 
-#### Day 021｜2026-08-23 星期日｜2 小时｜ROS 2 周项目验收
+#### Day 049｜2026-10-11 星期日｜2 小时｜ROS2 阶段验收与 R/S 轨决策
+
+**详细执行指南：** [Day 049 详细执行指南](daily-guides/day-049.md)
 
 **当天任务**
 
-- [ ] 一键启动相机、虚拟机器人、记录器和诊断面板。
-- [ ] 回放上一轮数据并复现状态。
-- [ ] 更新 ROS2 技术问答和岗位匹配表。
+- [ ] 从新 shell 构建并启动 ROS2 小系统，回放 MCAP、检查 tf 树、相机标定和 diagnostics。
+- [ ] 核对机械臂授权、SDK许可、独立急停、示教输入和未来 6 周可用时段；逐项保存证据。
+- [ ] 全部满足才选择 R 真机轨，否则选择 S mock/回放轨；写清切换条件和简历边界。
 
 **所需资源：** [R12 ROS 2 官方文档](https://docs.ros.org/en/jazzy/index.html)；[R15 OpenCV 相机标定](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
 
-**当天交付物：** week-03-demo.md 与启动脚本
+**当天交付物：** week-07-demo.md、启动脚本与 ADR-robot-track.md
 
-**完成验收：** 陌生环境按文档 20 分钟内跑通；断线、回放、诊断三条验收通过。
+**完成验收：** ROS2 演示可重复；R/S 决策每个前置条件均有 PASS/BLOCKED；未满足时不会因赶进度选择 R 轨。
 
-### 第 4 周｜LeRobot 数据与仿真基线｜2026-08-24～2026-08-30
+### 第 8 周｜机器人接口、Mock/真机与安全｜2026-10-12～2026-10-18
 
-**本周目标：** 无硬件条件下跑通 LeRobot 数据读取、训练、仿真评测和可复现记录。
+**本周目标：** 用同一 Robot I/O 契约完成 S 轨 mock/replay；只有安全门全部通过时才在 R 轨低速接入真机。
 
-**阶段门：** 固定版本的 ACT 仿真基线可重复训练和评测，并有失败分析。
+**阶段门：** 契约测试、动作限制、超时、状态机和遥操作流程通过；R轨额外要求物理急停与人工看护，S轨材料明确simulation-only。
 
-<a id="day-022"></a>
+<a id="day-050"></a>
 
-#### Day 022｜2026-08-24 星期一｜2 小时｜LeRobot 版本冻结与源码地图
+#### Day 050｜2026-10-12 星期一｜2 小时｜机械臂与 SDK 资产盘点
 
-**当天任务**
-
-- [ ] 固定 LeRobot v0.6.0 tag 对应 commit 并建立独立环境。
-- [ ] 定位 robot、camera、teleoperator、dataset、policy、train、eval 模块。
-- [ ] 绘制调用关系，注明哪些是上游代码、哪些将自行开发。
-
-**所需资源：** [R01 LeRobot v0.6.0 官方仓库](https://github.com/huggingface/lerobot/tree/v0.6.0)；[R02 LeRobot 安装指南](https://huggingface.co/docs/lerobot/v0.6.0/en/installation)
-
-**当天交付物：** docs/lerobot-source-map.md
-
-**完成验收：** 运行时依赖和文档引用对应 v0.6.0 tag/commit；只有上游贡献指南使用 main，文档明确 EdgeVLA Lab 并非上游现有项目。
-
-<a id="day-023"></a>
-
-#### Day 023｜2026-08-25 星期二｜2 小时｜LeRobotDataset v3 解剖
-
-**当天任务**
-
-- [ ] 固定 `lerobot/aloha_sim_transfer_cube_human` 的 revision，并查看 Parquet、MP4 与元数据。
-- [ ] 记录 AlohaTransferCube-v0 对应的 observation、action、相机键、fps、episode、timestamp 和归一化统计。
-- [ ] 编写数据集完整性与训练/环境 feature 兼容检查器雏形。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R18 Hugging Face Dataset Cards](https://huggingface.co/docs/hub/en/datasets-cards)；[R32 LeRobot ALOHA 仿真数据集](https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human)；[R33 LeRobot ACT ALOHA 模型卡](https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human)；[A02 Hugging Face Hub 账号](https://huggingface.co/)
-
-**当天交付物：** tools/inspect_lerobot_dataset.py
-
-**完成验收：** manifest 固定 repo/revision/AlohaTransferCube-v0/schema；检查器能发现缺帧、时间倒退、字段缺失、视频不可读和动作空间不兼容五类错误。
-
-<a id="day-024"></a>
-
-#### Day 024｜2026-08-26 星期三｜2 小时｜数据可视化与回放
-
-**当天任务**
-
-- [ ] 同步显示多相机、关节状态和动作曲线。
-- [ ] 实现 episode/时间点跳转和异常标记。
-- [ ] 记录 observation 与 action 对齐方式。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)
-
-**当天交付物：** 最小数据回放工具
-
-**完成验收：** 同一时间点可同时查看图像、状态与动作，时间误差可见。
-
-<a id="day-025"></a>
-
-#### Day 025｜2026-08-27 星期四｜2 小时｜ACT 仿真训练冒烟
-
-**当天任务**
-
-- [ ] 使用 Day 23 固定的 ALOHA 数据集 revision 与 AlohaTransferCube-v0 feature/action schema 完成 ACT 小步数兼容性冒烟。
-- [ ] 记录显存、耗时、loss、checkpoint 和精确命令。
-- [ ] 验证输入键、动作维度、归一化和中断恢复；以官方 ACT ALOHA 模型卡作为配套基线。
-
-**所需资源：** [R06 LeRobot ACT 策略文档](https://huggingface.co/docs/lerobot/v0.6.0/en/act)；[R09 LeRobot 算力指南](https://huggingface.co/docs/lerobot/v0.6.0/en/hardware_guide)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R32 LeRobot ALOHA 仿真数据集](https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human)；[R33 LeRobot ACT ALOHA 模型卡](https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human)；[A03 实验跟踪账号](https://wandb.ai/)
-
-**当天交付物：** experiments/sim-act-smoke
-
-**完成验收：** 训练数据与 AlohaTransferCube-v0 的图像键、状态和动作维度完全一致；checkpoint 恢复和一次 rollout 均成功。
-
-<a id="day-026"></a>
-
-#### Day 026｜2026-08-28 星期五｜2 小时｜标准化仿真评测
-
-**当天任务**
-
-- [ ] 只在与 Day 25 同一 AlohaTransferCube-v0 observation/action 空间运行评测。
-- [ ] 固定数据 revision、环境包版本、种子、至少 20 个 episode 和官方成功判定。
-- [ ] 保存逐 episode 结果而非只保留均值。
-
-**所需资源：** [R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；[R32 LeRobot ALOHA 仿真数据集](https://huggingface.co/datasets/lerobot/aloha_sim_transfer_cube_human)；[R33 LeRobot ACT ALOHA 模型卡](https://huggingface.co/lerobot/act_aloha_sim_transfer_cube_human)
-
-**当天交付物：** experiments/sim-act-eval/results.csv
-
-**完成验收：** 结果包含每轮种子、初始条件、成功、耗时和失败原因。
-
-<a id="day-027"></a>
-
-#### Day 027｜2026-08-29 星期六｜4 小时｜失败分析与可复现性
-
-**当天任务**
-
-- [ ] 抽查成功与失败视频，建立视觉、动作、环境和评测错误分类。
-- [ ] 重复训练或复评一次，比较方差。
-- [ ] 生成自动实验摘要。
-
-**所需资源：** [R08 LeRobot LIBERO](https://huggingface.co/docs/lerobot/v0.6.0/en/libero)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
-
-**当天交付物：** reports/sim-baseline.md 与生成脚本
-
-**完成验收：** 报告包含负面结果、复现差异和至少三条下一步假设。
-
-<a id="day-028"></a>
-
-#### Day 028｜2026-08-30 星期日｜2 小时｜仿真阶段门与硬件预约
-
-**当天任务**
-
-- [ ] 从空环境重跑数据检查、训练冒烟和评测。
-- [ ] 取得机械臂型号、SDK/协议、示教输入、可用时段、公开许可和安全停止方案；只发出请求不视为取得。
-- [ ] 若任一必要信息未取得，登记 S 轨并继续仿真；暂不购买 SO-101。
-
-**所需资源：** [R01 LeRobot v0.6.0 官方仓库](https://github.com/huggingface/lerobot/tree/v0.6.0)；[R08 LeRobot LIBERO](https://huggingface.co/docs/lerobot/v0.6.0/en/libero)；H01 同学的机械臂与厂商 SDK；H05 独立急停与安全工作区
-
-**当天交付物：** week-04-review.md 与 hardware-questionnaire.md
-
-**完成验收：** 仿真链路通过；六项真机信息全部已取得，或已明确切换 S 轨。不得以“已发请求”解锁真机。
-
-### 第 5 周｜机械臂摸底、接口契约与采购门｜2026-08-31～2026-09-06
-
-**本周目标：** 确认同学机械臂是否适合接入和开源，先用 mock 固定适配接口再决定硬件投入。
-
-**阶段门：** 接口与安全评审通过；明确继续借用、只开源通用层或采购 SO-101 的选择。
-
-<a id="day-029"></a>
-
-#### Day 029｜2026-08-31 星期一｜2 小时｜机械臂与 SDK 资产盘点
+**详细执行指南：** [Day 050 详细执行指南](daily-guides/day-050.md)
 
 **当天任务**
 
@@ -655,9 +1129,11 @@
 
 **完成验收：** 所有未知项有负责人和截止日；无授权的厂商源码不会进入公开仓库。
 
-<a id="day-030"></a>
+<a id="day-051"></a>
 
-#### Day 030｜2026-09-01 星期二｜2 小时｜Robot I/O 契约
+#### Day 051｜2026-10-13 星期二｜2 小时｜Robot I/O 契约
+
+**详细执行指南：** [Day 051 详细执行指南](daily-guides/day-051.md)
 
 **当天任务**
 
@@ -671,25 +1147,11 @@
 
 **完成验收：** 契约可在不知道厂商内部实现的情况下编写 mock 和测试。
 
-<a id="day-031"></a>
+<a id="day-052"></a>
 
-#### Day 031｜2026-09-02 星期三｜2 小时｜通信跟踪与时序预算
+#### Day 052｜2026-10-14 星期三｜2 小时｜安全风险评审
 
-**当天任务**
-
-- [ ] 只使用公开/获准接口记录一次读取与控制调用时序。
-- [ ] 测量典型调用延迟、抖动、丢帧和重连时间。
-- [ ] 建立端到端时延预算。
-
-**所需资源：** H01 同学的机械臂与厂商 SDK；H02 Linux 开发主机
-
-**当天交付物：** reports/hardware-latency-baseline.csv
-
-**完成验收：** 至少 1000 次读取样本，包含 P50/P95/P99 和错误数。
-
-<a id="day-032"></a>
-
-#### Day 032｜2026-09-03 星期四｜2 小时｜安全风险评审
+**详细执行指南：** [Day 052 详细执行指南](daily-guides/day-052.md)
 
 **当天任务**
 
@@ -703,9 +1165,11 @@
 
 **完成验收：** 每个高风险项都有预防、检测、响应和责任人；未满足 H05 则禁止上电动作。
 
-<a id="day-033"></a>
+<a id="day-053"></a>
 
-#### Day 033｜2026-09-04 星期五｜2 小时｜适配器骨架
+#### Day 053｜2026-10-15 星期四｜2 小时｜适配器骨架
+
+**详细执行指南：** [Day 053 详细执行指南](daily-guides/day-053.md)
 
 **当天任务**
 
@@ -719,9 +1183,11 @@
 
 **完成验收：** 不修改 LeRobot 上游源码即可发现插件；默认配置不连接真实硬件。
 
-<a id="day-034"></a>
+<a id="day-054"></a>
 
-#### Day 034｜2026-09-05 星期六｜4 小时｜Mock、契约测试与故障注入
+#### Day 054｜2026-10-16 星期五｜2 小时｜Mock、契约测试与故障注入
+
+**详细执行指南：** [Day 054 详细执行指南](daily-guides/day-054.md)
 
 **当天任务**
 
@@ -735,111 +1201,11 @@
 
 **完成验收：** 正常路径和至少五类故障均自动测试，错误不会静默转成动作。
 
-<a id="day-035"></a>
+<a id="day-055"></a>
 
-#### Day 035｜2026-09-06 星期日｜2 小时｜设计评审与硬件决策
+#### Day 055｜2026-10-17 星期六｜4 小时｜R 遥操作 / S 仿真示教
 
-**当天任务**
-
-- [ ] 与同学评审接口、安全、时段和开源边界。
-- [ ] 根据持续可用性选择：R 轨借用、采购 SO-101 但等待到货验收、或 S 轨仿真/回放。
-- [ ] 记录决策理由、预算上限、到货/授权依赖、退出条件和后续周次替代交付物。
-
-**所需资源：** [R23 SO-101 开源硬件](https://github.com/TheRobotStudio/SO-ARM100)；H01 同学的机械臂与厂商 SDK；H09 SO-101 leader+follower；A05 机械臂所有者授权与使用排期
-
-**当天交付物：** ADR-001-hardware-platform.md
-
-**完成验收：** 只有授权、排期、示教输入、独立急停、安全区五项全部通过才能进入 R 轨；其余情况进入 S 轨，采购中设备也不得提前解锁。
-
-### 第 6 周｜真机适配、遥操作与安全联调｜2026-09-07～2026-09-13
-
-**本周目标：** R 轨在低速和人工看护下完成真机链路；S 轨完成同接口的 mock/replay、仿真示教和契约测试。
-
-**阶段门：** R 轨通过连接、标定、低速控制和安全恢复；或 S 轨通过仿真/回放契约并明确 simulation-only。
-
-<a id="day-036"></a>
-
-#### Day 036｜2026-09-07 星期一｜2 小时｜R 真机连接 / S Mock 连接
-
-**当天任务**
-
-- [ ] R 轨实现真实 connect/disconnect 和只读状态；S 轨实现 mock/replay connect/disconnect。
-- [ ] 两轨默认启用 dry-run，不发送真实运动命令。
-- [ ] 验证错误码、资源释放，并在产物元数据写明 real 或 simulation。
-
-**所需资源：** [R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)；H01 同学的机械臂与厂商 SDK；H05 独立急停与安全工作区
-
-**当天交付物：** R 轨真实适配器只读版本或 S 轨 mock/replay adapter
-
-**完成验收：** 连续连接/断开 50 次无句柄增长；未显式解锁时任何真实 action 不执行，S 轨产物标记 simulation-only。
-
-<a id="day-037"></a>
-
-#### Day 037｜2026-09-08 星期二｜2 小时｜R 真机标定 / S 虚拟映射
-
-**当天任务**
-
-- [ ] R 轨建立厂商关节映射与真实标定；S 轨建立 ALOHA/LIBERO 或 mock feature 映射。
-- [ ] 实现标定/映射数据保存、校验和版本化。
-- [ ] 两轨测试异常零位、维度和关节顺序错误。
-
-**所需资源：** [R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)；H01 同学的机械臂与厂商 SDK；H05 独立急停与安全工作区
-
-**当天交付物：** calibration schema 与标定命令
-
-**完成验收：** 标定/映射不可跨设备或环境误用；校验失败时拒绝进入运动或 rollout 状态。
-
-<a id="day-038"></a>
-
-#### Day 038｜2026-09-09 星期三｜2 小时｜R 实时 Observation / S 回放 Observation
-
-**当天任务**
-
-- [ ] R 轨输出实时关节位置和可用状态；S 轨从固定数据 revision 输出回放状态。
-- [ ] 计算采样频率与抖动。
-- [ ] 验证缺字段和 NaN 处理。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)
-
-**当天交付物：** observation pipeline 与质量报告
-
-**完成验收：** 连续 30 分钟无时间倒退；NaN、断线/回放中断和过期状态均被标记并阻断动作消费。
-
-<a id="day-039"></a>
-
-#### Day 039｜2026-09-10 星期四｜2 小时｜R Action 发送 / S 仿真动作守卫
-
-**当天任务**
-
-- [ ] R 轨实现位置动作发送；S 轨只向仿真/mock sink 发送动作。
-- [ ] 增加软限位、最大步长、速率限制和命令超时。
-- [ ] R 轨低速执行预定义小幅轨迹；S 轨用同样测试向量验证守卫。
-
-**所需资源：** [R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)；H05 独立急停与安全工作区
-
-**当天交付物：** 安全动作层与边界测试
-
-**完成验收：** 预置的全部越界命令均被拒绝或裁剪并记录；R 轨小幅轨迹可用物理急停终止，S 轨不得宣称物理安全验证。
-
-<a id="day-040"></a>
-
-#### Day 040｜2026-09-11 星期五｜2 小时｜R 相机接入 / S 视频回放同步
-
-**当天任务**
-
-- [ ] R 轨接入固定 RGB 相机；S 轨使用固定数据 revision 的视频流，锁定分辨率和 fps。
-- [ ] 将图像与实时/回放状态统一时间戳。
-- [ ] 测量 10 分钟帧交付率、帧间隔和图像—状态偏差。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R15 OpenCV 相机标定](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)；H04 固定机位 RGB 摄像头
-
-**当天交付物：** camera adapter 与 sync report
-
-**完成验收：** 10 分钟内帧交付率不低于 99%；P95 帧间隔不超过目标周期 1.5 倍，P95 图像—状态偏差不超过 1 个目标帧周期，否则阻断采集。
-
-<a id="day-041"></a>
-
-#### Day 041｜2026-09-12 星期六｜4 小时｜R 遥操作 / S 仿真示教
+**详细执行指南：** [Day 055 详细执行指南](daily-guides/day-055.md)
 
 **当天任务**
 
@@ -853,9 +1219,11 @@
 
 **完成验收：** 松开 dead-man 后下一控制周期不再产生新动作；10 次演练无越界，R/S 证据明确分开。
 
-<a id="day-042"></a>
+<a id="day-056"></a>
 
-#### Day 042｜2026-09-13 星期日｜2 小时｜可靠性与阶段验收
+#### Day 056｜2026-10-18 星期日｜2 小时｜可靠性与阶段验收
+
+**详细执行指南：** [Day 056 详细执行指南](daily-guides/day-056.md)
 
 **当天任务**
 
@@ -869,15 +1237,17 @@
 
 **完成验收：** 不少于 25 个契约/故障用例全部通过；任一断线不会继续消费旧动作，恢复需要显式确认。
 
-### 第 7 周｜数据采集、质量控制与 Dataset Card｜2026-09-14～2026-09-20
+### 第 9 周｜小规模数据采集与质量控制｜2026-10-19～2026-10-25
 
-**本周目标：** R 轨形成 50-episode 真机数据集；S 轨形成固定 revision 的 50-episode 公开数据 manifest；两轨均完成自动质量检查。
+**本周目标：** 在 R 轨采集 25 个有效 Episode，或在 S 轨固定 25 个公开数据 Episode/窗口；重点验证工具和质量，不追求数量。
 
-**阶段门：** 数据集可回放、可划分、质量检查通过，隐私和许可明确。
+**阶段门：** 25 个样本全部有 manifest、校验和、质量报告和明确来源；R/S 轨永久分开。
 
-<a id="day-043"></a>
+<a id="day-057"></a>
 
-#### Day 043｜2026-09-14 星期一｜2 小时｜任务定义与成功标准
+#### Day 057｜2026-10-19 星期一｜2 小时｜任务定义与成功标准
+
+**详细执行指南：** [Day 057 详细执行指南](daily-guides/day-057.md)
 
 **当天任务**
 
@@ -891,9 +1261,11 @@
 
 **完成验收：** 两名未参与编写者独立判断 10 个预录案例，至少 9 个案例结论一致；分歧案例在采集前修正规范。
 
-<a id="day-044"></a>
+<a id="day-058"></a>
 
-#### Day 044｜2026-09-15 星期二｜2 小时｜Schema、同步与版本规则
+#### Day 058｜2026-10-20 星期二｜2 小时｜Schema、同步与版本规则
+
+**详细执行指南：** [Day 058 详细执行指南](daily-guides/day-058.md)
 
 **当天任务**
 
@@ -907,9 +1279,11 @@
 
 **完成验收：** schema 可机器校验；原始 episode 不被后处理覆盖。
 
-<a id="day-045"></a>
+<a id="day-059"></a>
 
-#### Day 045｜2026-09-16 星期三｜2 小时｜R 试采 / S 公开数据试切片
+#### Day 059｜2026-10-21 星期三｜2 小时｜R 试采 / S 公开数据试切片（5个）
+
+**详细执行指南：** [Day 059 详细执行指南](daily-guides/day-059.md)
 
 **当天任务**
 
@@ -919,13 +1293,15 @@
 
 **所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料；H10 示教 / 遥操作输入源；H11 原始数据独立备份介质
 
-**当天交付物：** dataset/raw/pilot-10 或 dataset/public-manifest/pilot-10 与日志
+**当天交付物：** dataset/raw/pilot-5 或 dataset/public-manifest/pilot-5 与日志
 
 **完成验收：** 10 个 episode 全部可解码回放；S 轨保留来源/revision，任何中止或坏样本均保留原因。
 
-<a id="day-046"></a>
+<a id="day-060"></a>
 
-#### Day 046｜2026-09-17 星期四｜2 小时｜自动质量检查器
+#### Day 060｜2026-10-22 星期四｜2 小时｜自动质量检查器
+
+**详细执行指南：** [Day 060 详细执行指南](daily-guides/day-060.md)
 
 **当天任务**
 
@@ -939,9 +1315,11 @@
 
 **完成验收：** 六类错误各制作 2 个固定夹具，共 12 个坏样本全部检出且错误类型正确；结果可导出 CSV/JSON。
 
-<a id="day-047"></a>
+<a id="day-061"></a>
 
-#### Day 047｜2026-09-18 星期五｜2 小时｜R 第一批采集 / S 第一批兼容样本
+#### Day 061｜2026-10-23 星期五｜2 小时｜R 第一批采集 / S 第一批兼容样本（10个）
+
+**详细执行指南：** [Day 061 详细执行指南](daily-guides/day-061.md)
 
 **当天任务**
 
@@ -951,13 +1329,15 @@
 
 **所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料；H10 示教 / 遥操作输入源；H11 原始数据独立备份介质
 
-**当天交付物：** dataset/raw/batch-a-25 或 dataset/public-manifest/batch-a-25
+**当天交付物：** dataset/raw/batch-a-10 或 dataset/public-manifest/batch-a-10
 
 **完成验收：** 25 个有效 episode 覆盖 5 个层次且每层 5 个；质量失败样本被隔离并记录来源和原因。
 
-<a id="day-048"></a>
+<a id="day-062"></a>
 
-#### Day 048｜2026-09-19 星期六｜4 小时｜R 第二批采集 / S 第二批兼容样本
+#### Day 062｜2026-10-24 星期六｜4 小时｜R 第二批采集 / S 第二批兼容样本（10个）
+
+**详细执行指南：** [Day 062 详细执行指南](daily-guides/day-062.md)
 
 **当天任务**
 
@@ -967,13 +1347,15 @@
 
 **所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R18 Hugging Face Dataset Cards](https://huggingface.co/docs/hub/en/datasets-cards)；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料；H10 示教 / 遥操作输入源；H11 原始数据独立备份介质
 
-**当天交付物：** dataset/raw/batch-b-25 或 dataset/public-manifest/batch-b-25 与 checksums
+**当天交付物：** dataset/raw/batch-b-10 或 dataset/public-manifest/batch-b-10 与 checksums
 
 **完成验收：** 累计至少 50 个通过检查的有效 episode；备份校验一致。
 
-<a id="day-049"></a>
+<a id="day-063"></a>
 
-#### Day 049｜2026-09-20 星期日｜2 小时｜划分、Dataset Card 与阶段门
+#### Day 063｜2026-10-25 星期日｜2 小时｜划分、Dataset Card 与阶段门
+
+**详细执行指南：** [Day 063 详细执行指南](daily-guides/day-063.md)
 
 **当天任务**
 
@@ -985,17 +1367,19 @@
 
 **当天交付物：** DATASET_CARD.md 与 split manifest
 
-**完成验收：** 不同划分无 episode/场景泄漏；未授权视频不进入发布包。
+**完成验收：** 25 个样本来源、任务、划分和限制均可追溯；无效样本未静默删除；S轨不声称自行采集。
 
-### 第 8 周｜ACT 训练与 R 真机 / S 仿真评测｜2026-09-21～2026-09-27
+### 第 10 周｜ACT 小基线与冻结评测｜2026-10-26～2026-11-01
 
-**本周目标：** 先用计算成本较低的 ACT 验证数据质量和完整训练评测流程。
+**本周目标：** 先用小数据和低成本 ACT 验证训练、恢复、推理和评测链路；训练墙钟时间不计入人工工时。
 
-**阶段门：** ACT checkpoint、与所选轨道一致的独立评测和失败报告可复现；R 轨指标只来自真实评测，S 轨只报告仿真结果并明确 simulation-only。
+**阶段门：** 训练任务可恢复；R轨完成10次、S轨完成20次冻结评测；成功率带样本量和条件，失败逐条保留。
 
-<a id="day-050"></a>
+<a id="day-064"></a>
 
-#### Day 050｜2026-09-21 星期一｜2 小时｜ACT 配置与数据审查
+#### Day 064｜2026-10-26 星期一｜2 小时｜ACT 配置与数据审查
+
+**详细执行指南：** [Day 064 详细执行指南](daily-guides/day-064.md)
 
 **当天任务**
 
@@ -1009,9 +1393,11 @@
 
 **完成验收：** 配置含精确数据版本、代码 commit、随机种子和硬件信息。
 
-<a id="day-051"></a>
+<a id="day-065"></a>
 
-#### Day 051｜2026-09-22 星期二｜2 小时｜ACT 冒烟训练
+#### Day 065｜2026-10-27 星期二｜2 小时｜ACT 冒烟训练
+
+**详细执行指南：** [Day 065 详细执行指南](daily-guides/day-065.md)
 
 **当天任务**
 
@@ -1025,27 +1411,31 @@
 
 **完成验收：** 固定 16-episode 子集训练无 NaN，最终 loss 不高于初始值 20%；checkpoint 重载输出最大绝对差不超过 1e-5。
 
-<a id="day-052"></a>
+<a id="day-066"></a>
 
-#### Day 052｜2026-09-23 星期三｜2 小时｜完整 ACT 训练
+#### Day 066｜2026-10-28 星期三｜2 小时｜ACT 正式训练启动与恢复验证
+
+**详细执行指南：** [Day 066 详细执行指南](daily-guides/day-066.md)
 
 **当天任务**
 
-- [ ] 运行固定预算的完整训练。
-- [ ] 自动保存配置、日志、checkpoint 和环境信息。
-- [ ] 启用最长运行时间与成本保护。
+- [ ] 冻结数据 revision、配置、随机种子和代码 commit，先估算显存与最长墙钟时间。
+- [ ] 启动训练并设置定时 checkpoint、日志和预算/运行时上限；人工观察首个验证周期后离开。
+- [ ] 主动中断一次并从 checkpoint 恢复，确认 step、优化器和指标连续；训练未结束可标记 RUNNING。
 
 **所需资源：** [R06 LeRobot ACT 策略文档](https://huggingface.co/docs/lerobot/v0.6.0/en/act)；[R09 LeRobot 算力指南](https://huggingface.co/docs/lerobot/v0.6.0/en/hardware_guide)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R28 Hugging Face Jobs GPU 价格](https://huggingface.co/docs/hub/jobs-pricing)；H03 NVIDIA GPU 或按量云 GPU；[A04 按量 GPU 与预算告警](https://huggingface.co/docs/hub/jobs)
 
-**机器墙钟时间：** 预计 1–4 小时（以 Day 51 实测速率估算）；硬上限 8 小时；max_cost 写入实验配置，达到上限自动终止
+**机器墙钟时间：** 预计 4～12 小时；硬上限 24 小时；云 GPU 必须设置预算和自动停止；超时保留最后 checkpoint，不追加无上限费用。
 
 **当天交付物：** experiments/act-v1 完整产物
 
-**完成验收：** 实验配置包含 8 小时硬超时和明确 max_cost；完成或自动终止后，配置、产物哈希、日志、checkpoint/失败原因齐全。
+**完成验收：** 训练可从 checkpoint 恢复；启动两小时不等于训练完成；达到墙钟上限自动停止并保留结果。
 
-<a id="day-053"></a>
+<a id="day-067"></a>
 
-#### Day 053｜2026-09-24 星期四｜2 小时｜曲线、过拟合与离线检查
+#### Day 067｜2026-10-29 星期四｜2 小时｜曲线、过拟合与离线检查
+
+**详细执行指南：** [Day 067 详细执行指南](daily-guides/day-067.md)
 
 **当天任务**
 
@@ -1059,9 +1449,11 @@
 
 **完成验收：** 报告明确 checkpoint 选择规则、异常曲线和至少两个风险假设。
 
-<a id="day-054"></a>
+<a id="day-068"></a>
 
-#### Day 054｜2026-09-25 星期五｜2 小时｜R 真机 / S 回放推理预检
+#### Day 068｜2026-10-30 星期五｜2 小时｜R 真机 / S 回放推理预检
+
+**详细执行指南：** [Day 068 详细执行指南](daily-guides/day-068.md)
 
 **当天任务**
 
@@ -1075,25 +1467,29 @@
 
 **完成验收：** 正常输出通过安全检查，任一异常均被拒绝而不是临时绕过；R 轨保留 3 次真机预检记录，S 轨 5 类注入均被拒绝并标记 simulation-only。
 
-<a id="day-055"></a>
+<a id="day-069"></a>
 
-#### Day 055｜2026-09-26 星期六｜4 小时｜R 20 次真机 / S 50 次仿真评测
+#### Day 069｜2026-10-31 星期六｜4 小时｜R 10 次真机 / S 20 次仿真冻结评测
+
+**详细执行指南：** [Day 069 详细执行指南](daily-guides/day-069.md)
 
 **当天任务**
 
-- [ ] R 轨按预注册起点运行 20 个真机 episode；S 轨运行 50 个固定种子仿真 episode。
-- [ ] 逐轮记录成功、耗时、人工接管、安全拦截和视频。
-- [ ] 评测期间不修改模型或成功判定。
+- [ ] 确认评测协议、成功定义、超时和失败分类在看结果前已冻结。
+- [ ] R轨低速执行10轮且每轮有人看护；S轨执行20轮固定seed仿真，不混合统计。
+- [ ] 逐轮记录成功、失败原因、耗时、恢复动作和原始证据，不只保留最佳视频。
 
 **所需资源：** [R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；H01 同学的机械臂与厂商 SDK；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料
 
 **当天交付物：** evaluations/act-v1/results.csv 与 R/S 原始证据
 
-**完成验收：** R 轨 20 轮或 S 轨 50 轮全部可追溯；成功率由冻结规则计算，S 轨不得标记为真机。
+**完成验收：** 结果行数与计划轮数一致；所有失败存在；成功率附R/S、任务、样本数和版本。
 
-<a id="day-056"></a>
+<a id="day-070"></a>
 
-#### Day 056｜2026-09-27 星期日｜2 小时｜失败分类与 ACT 阶段门
+#### Day 070｜2026-11-01 星期日｜2 小时｜失败分类与 ACT 阶段门
+
+**详细执行指南：** [Day 070 详细执行指南](daily-guides/day-070.md)
 
 **当天任务**
 
@@ -1107,15 +1503,17 @@
 
 **完成验收：** 所有失败均有证据或标注“根因未知”；未达到目标也如实发布。
 
-### 第 9 周｜SmolVLA 语言任务与微调｜2026-09-28～2026-10-04
+### 第 11 周｜SmolVLA 小规模验证与泛化｜2026-11-02～2026-11-08
 
-**本周目标：** 设计真正由语言区分的多任务数据，并完成 SmolVLA 微调与初评。
+**本周目标：** 在 ACT 链路稳定后才进行 SmolVLA 冒烟和小规模微调，用三个最有价值的变化维度做冻结评测。
 
-**阶段门：** 模型能接收图像、状态、语言并输出动作；数据、成本和评测记录完整。
+**阶段门：** 微调可恢复；至少完成语言改写、位置和光照三类评测；算力或数据不足时允许停在smoke，不把未完成写成成果。
 
-<a id="day-057"></a>
+<a id="day-071"></a>
 
-#### Day 057｜2026-09-28 星期一｜2 小时｜SmolVLA 架构与输入输出审计
+#### Day 071｜2026-11-02 星期一｜2 小时｜SmolVLA 架构与输入输出审计
+
+**详细执行指南：** [Day 071 详细执行指南](daily-guides/day-071.md)
 
 **当天任务**
 
@@ -1129,9 +1527,11 @@
 
 **完成验收：** 完成 15 道 shape/归一化/action chunk 自测且正确不少于 12 道；不照抄模型宣传语。
 
-<a id="day-058"></a>
+<a id="day-072"></a>
 
-#### Day 058｜2026-09-29 星期二｜2 小时｜算力、依赖与显存冒烟
+#### Day 072｜2026-11-03 星期二｜2 小时｜算力、依赖与显存冒烟
+
+**详细执行指南：** [Day 072 详细执行指南](daily-guides/day-072.md)
 
 **当天任务**
 
@@ -1147,9 +1547,11 @@
 
 **完成验收：** 冒烟任务 30 分钟内完成或被自动终止；记录峰值显存、step/s，并据此填写 max_runtime 与 max_cost。
 
-<a id="day-059"></a>
+<a id="day-073"></a>
 
-#### Day 059｜2026-09-30 星期三｜2 小时｜语言条件任务设计
+#### Day 073｜2026-11-04 星期三｜2 小时｜语言条件任务设计
+
+**详细执行指南：** [Day 073 详细执行指南](daily-guides/day-073.md)
 
 **当天任务**
 
@@ -1163,41 +1565,11 @@
 
 **完成验收：** 如果去掉语言，至少两种场景无法由视觉唯一决定；3×10 条测试改写与训练文本零重叠。
 
-<a id="day-060"></a>
+<a id="day-074"></a>
 
-#### Day 060｜2026-10-01 星期四｜2 小时｜任务 B：50 个 Episode
+#### Day 074｜2026-11-05 星期四｜2 小时｜数据总审与 SmolVLA 微调启动
 
-**当天任务**
-
-- [ ] R 轨采集任务 B 的 50 个有效 episode；S 轨从固定 LIBERO revision 选择任务 B 的 50 个兼容 episode。
-- [ ] 每 10 个 episode 检查文本、图像、状态和动作一致性并生成校验和。
-- [ ] 把失败/中止保留在隔离区，不用重采成功样本覆盖。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R08 LeRobot LIBERO](https://huggingface.co/docs/lerobot/v0.6.0/en/libero)；[R18 Hugging Face Dataset Cards](https://huggingface.co/docs/hub/en/datasets-cards)；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料；H10 示教 / 遥操作输入源；H11 原始数据独立备份介质；[A02 Hugging Face Hub 账号](https://huggingface.co/)
-
-**当天交付物：** dataset/multitask-v1/task-b-50 与质量报告
-
-**完成验收：** 任务 B 恰有 50 个通过 schema/视频/时间戳检查的有效 episode；50 条任务文本逐条核对无错标。
-
-<a id="day-061"></a>
-
-#### Day 061｜2026-10-02 星期五｜2 小时｜任务 C：50 个 Episode
-
-**当天任务**
-
-- [ ] R 轨采集任务 C 的 50 个有效 episode；S 轨从固定 LIBERO revision 选择任务 C 的 50 个兼容 episode。
-- [ ] 每 10 个 episode 运行质量检查并核对语言标签。
-- [ ] 与 Week 7 任务 A 合并为 3×50 分层 manifest，不复制 episode。
-
-**所需资源：** [R04 LeRobotDataset v3](https://huggingface.co/docs/lerobot/v0.6.0/en/lerobot-dataset-v3)；[R08 LeRobot LIBERO](https://huggingface.co/docs/lerobot/v0.6.0/en/libero)；[R18 Hugging Face Dataset Cards](https://huggingface.co/docs/hub/en/datasets-cards)；H04 固定机位 RGB 摄像头；H05 独立急停与安全工作区；H06 标定与任务物料；H10 示教 / 遥操作输入源；H11 原始数据独立备份介质；[A02 Hugging Face Hub 账号](https://huggingface.co/)
-
-**当天交付物：** dataset/multitask-v1/task-c-50 与 150-episode manifest
-
-**完成验收：** A/B/C 各 50 个有效 episode、总计 150 个且 ID 不重复；任务标签逐条核对，R/S 来源明确。
-
-<a id="day-062"></a>
-
-#### Day 062｜2026-10-03 星期六｜4 小时｜数据总审、过拟合与完整微调启动
+**详细执行指南：** [Day 074 详细执行指南](daily-guides/day-074.md)
 
 **当天任务**
 
@@ -1207,15 +1579,17 @@
 
 **所需资源：** [R07 SmolVLA 官方说明](https://huggingface.co/blog/smolvla)；[R25 SmolVLA 官方微调指南](https://huggingface.co/docs/lerobot/v0.6.0/en/smolvla)；[R09 LeRobot 算力指南](https://huggingface.co/docs/lerobot/v0.6.0/en/hardware_guide)；[R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R28 Hugging Face Jobs GPU 价格](https://huggingface.co/docs/hub/jobs-pricing)；H03 NVIDIA GPU 或按量云 GPU；[A03 实验跟踪账号](https://wandb.ai/)；[A04 按量 GPU 与预算告警](https://huggingface.co/docs/hub/jobs)
 
-**机器墙钟时间：** 预计 3–6 小时（随 GPU、分辨率、batch 与冻结策略变化）；硬上限 8 小时；max_cost 写入实验配置，达到上限自动终止
+**机器墙钟时间：** 预计 8～24 小时；硬上限 36 小时；先smoke再付费；超过预算或墙钟上限自动停止。
 
 **当天交付物：** experiments/smolvla-v1
 
-**完成验收：** 16-episode 子集 loss 降至初始值 20% 以下且 checkpoint round-trip 输出最大绝对差不超过 1e-5；完整任务有 8 小时硬超时和费用上限。
+**完成验收：** 数据审计通过后才启动；训练配置、模型revision、数据revision和预算上限均已冻结；未完成可写RUNNING。
 
-<a id="day-063"></a>
+<a id="day-075"></a>
 
-#### Day 063｜2026-10-04 星期日｜2 小时｜训练收尾、Checkpoint 初评与上线门
+#### Day 075｜2026-11-06 星期五｜2 小时｜训练收尾、Checkpoint 初评与上线门
+
+**详细执行指南：** [Day 075 详细执行指南](daily-guides/day-075.md)
 
 **当天任务**
 
@@ -1230,15 +1604,11 @@
 
 **完成验收：** checkpoint 可加载、无 NaN、所有测试动作通过守卫；R 轨另需 3 次低速预检。任一失败则阻断第 10 周自动 rollout。
 
-### 第 10 周｜泛化评测与 ACT/SmolVLA 对比｜2026-10-05～2026-10-11
+<a id="day-076"></a>
 
-**本周目标：** 用冻结协议量化位置、语言、光照、物体和相机变化，不做只展示成功案例的 Demo。
+#### Day 076｜2026-11-07 星期六｜4 小时｜未见位置评测
 
-**阶段门：** 获得可审计的基线与泛化结果表，并明确能力边界。
-
-<a id="day-064"></a>
-
-#### Day 064｜2026-10-05 星期一｜2 小时｜未见位置评测
+**详细执行指南：** [Day 076 详细执行指南](daily-guides/day-076.md)
 
 **当天任务**
 
@@ -1252,111 +1622,35 @@
 
 **完成验收：** ACT 与 SmolVLA 各完成 10 个冻结起点 episode；20 轮均有逐轮结果和失败视频索引。
 
-<a id="day-065"></a>
+<a id="day-077"></a>
 
-#### Day 065｜2026-10-06 星期二｜2 小时｜未见指令改写评测
+#### Day 077｜2026-11-08 星期日｜2 小时｜语言、位置与光照三类汇总
+
+**详细执行指南：** [Day 077 详细执行指南](daily-guides/day-077.md)
 
 **当天任务**
 
-- [ ] 使用冻结的同义改写指令测试 SmolVLA。
-- [ ] 加入错误/含糊指令的安全拒绝观察。
-- [ ] 与训练措辞结果比较。
+- [ ] 完成未见位置、指令改写和光照变化结果校验，其他变化维度留到后续90天。
+- [ ] 按同一表结构比较 ACT 与 SmolVLA，禁止合并 R/S、不同任务或不同样本量。
+- [ ] 写出至少三个失败案例、适用边界和下一轮数据决策。
 
 **所需资源：** [R07 SmolVLA 官方说明](https://huggingface.co/blog/smolvla)；[R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；H05 独立急停与安全工作区
 
-**当天交付物：** evaluations/generalization/paraphrase.csv
+**当天交付物：** reports/act-vs-smolvla-small.md
 
-**完成验收：** SmolVLA 完成 3 个任务×10 条未见改写共 30 轮；训练文本零重叠，含糊指令单独报告而不计成功。
+**完成验收：** 三类评测均有冻结协议和逐轮记录；结论不外推到未测试对象、相机或真实环境。
 
-<a id="day-066"></a>
+### 第 12 周｜异步推理、弱网与本地安全｜2026-11-09～2026-11-15
 
-#### Day 066｜2026-10-07 星期三｜2 小时｜光照变化评测
+**本周目标：** 建立 Policy Server/Robot Client、动作年龄/队列守卫和本地安全状态机，再用 netem/真实4G量化弱网影响。
 
-**当天任务**
+**阶段门：** 断线、旧动作、队列堆积和进程故障均进入安全状态；报告明确4G不承担硬实时安全控制。
 
-- [ ] 设置可重复的正常、较暗和较亮条件。
-- [ ] 固定其他变量进行双模型评测。
-- [ ] 记录相机曝光和环境参数。
+<a id="day-078"></a>
 
-**所需资源：** [R15 OpenCV 相机标定](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)；[R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；H04 固定机位 RGB 摄像头；H06 标定与任务物料
+#### Day 078｜2026-11-09 星期一｜2 小时｜Policy Server 与 Robot Client
 
-**当天交付物：** evaluations/generalization/lighting.csv
-
-**完成验收：** 正常/较暗/较亮三条件下每模型各 5 轮，共 30 轮；曝光或照度设置可复现，评测中不补训练数据。
-
-<a id="day-067"></a>
-
-#### Day 067｜2026-10-08 星期四｜2 小时｜对象变化评测
-
-**当天任务**
-
-- [ ] 选择形状、颜色或材质变化的测试对象。
-- [ ] 运行相同任务并记录抓取与放置阶段。
-- [ ] 分析视觉泛化和机械摩擦的混淆。
-
-**所需资源：** [R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；H06 标定与任务物料
-
-**当天交付物：** evaluations/generalization/object-shift.csv
-
-**完成验收：** 两个冻结未见对象下每模型各 5 轮，共 20 轮；机械失败和策略失败分别标注。
-
-<a id="day-068"></a>
-
-#### Day 068｜2026-10-09 星期五｜2 小时｜相机轻微扰动评测
-
-**当天任务**
-
-- [ ] 在安全范围内设置可测量的小角度/位移扰动。
-- [ ] 重新验证标定假设并运行评测。
-- [ ] 评估模型对固定机位的依赖。
-
-**所需资源：** [R15 OpenCV 相机标定](https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html)；[R24 LeRobot Policy Rollout](https://huggingface.co/docs/lerobot/v0.6.0/en/inference)；H04 固定机位 RGB 摄像头
-
-**当天交付物：** evaluations/generalization/camera-shift.csv
-
-**完成验收：** 两个预注册扰动幅度下每模型各 5 轮，共 20 轮；位移/角度有测量记录并标注是否超出训练分布。
-
-<a id="day-069"></a>
-
-#### Day 069｜2026-10-10 星期六｜4 小时｜ACT 与 SmolVLA 汇总对比
-
-**当天任务**
-
-- [ ] 统一计算成功率、置信区间、完成时间、推理耗时和安全拦截。
-- [ ] 比较单任务、语言任务和各类分布偏移。
-- [ ] 生成表格与失败样本索引。
-
-**所需资源：** [R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R19 Hugging Face Model Cards](https://huggingface.co/docs/hub/en/model-cards)
-
-**当天交付物：** reports/act-vs-smolvla.md
-
-**完成验收：** 所有汇总数字可追溯至逐 episode 原始记录，不删除不利结果。
-
-<a id="day-070"></a>
-
-#### Day 070｜2026-10-11 星期日｜2 小时｜泛化阶段门与数据决策
-
-**当天任务**
-
-- [ ] 根据失败分布决定是否补数据、改任务或保留限制。
-- [ ] 冻结进入边云实验的最佳可用模型。
-- [ ] 更新简历证据账本，但仍不正式写入未发布项目。
-
-**所需资源：** [R19 Hugging Face Model Cards](https://huggingface.co/docs/hub/en/model-cards)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
-
-**当天交付物：** ADR-002-policy-selection.md
-
-**完成验收：** 选择理由包含指标、成本和风险；不以单一最好视频作结论。
-
-### 第 11 周｜异步推理、动作队列与安全降级｜2026-10-12～2026-10-18
-
-**本周目标：** 建立可测试的 Policy Server/Robot Client 和独立安全层；ACT 使用同步/通用异步队列，只有 flow-matching policy 才比较 RTC。
-
-**阶段门：** 延迟、旧动作、断线和模型异常均能被测量并触发可预测的安全响应。
-
-<a id="day-071"></a>
-
-#### Day 071｜2026-10-12 星期一｜2 小时｜Policy Server 与 Robot Client
+**详细执行指南：** [Day 078 详细执行指南](daily-guides/day-078.md)
 
 **当天任务**
 
@@ -1370,9 +1664,11 @@
 
 **完成验收：** 局域网连续运行 30 分钟无未处理异常；停止 server 后 2 个控制周期内停止接收新动作，超时后旧动作执行数为 0。
 
-<a id="day-072"></a>
+<a id="day-079"></a>
 
-#### Day 072｜2026-10-13 星期二｜2 小时｜端到端时延可观测性
+#### Day 079｜2026-11-10 星期二｜2 小时｜端到端时延可观测性
+
+**详细执行指南：** [Day 079 详细执行指南](daily-guides/day-079.md)
 
 **当天任务**
 
@@ -1386,9 +1682,11 @@
 
 **完成验收：** 单个动作可追溯完整链路；指标能区分网络、排队和推理耗时。
 
-<a id="day-073"></a>
+<a id="day-080"></a>
 
-#### Day 073｜2026-10-14 星期三｜2 小时｜动作年龄与队列水位
+#### Day 080｜2026-11-11 星期三｜2 小时｜动作年龄与队列水位
+
+**详细执行指南：** [Day 080 详细执行指南](daily-guides/day-080.md)
 
 **当天任务**
 
@@ -1402,9 +1700,11 @@
 
 **完成验收：** 超过阈值的旧动作不会执行；每次丢弃都有原因和计数。
 
-<a id="day-074"></a>
+<a id="day-081"></a>
 
-#### Day 074｜2026-10-15 星期四｜2 小时｜限位、看门狗与状态机
+#### Day 081｜2026-11-12 星期四｜2 小时｜限位、看门狗与状态机
+
+**详细执行指南：** [Day 081 详细执行指南](daily-guides/day-081.md)
 
 **当天任务**
 
@@ -1418,9 +1718,11 @@
 
 **完成验收：** 所有危险状态只能进入 FAULT/ESTOP；复位需要显式操作且不能跳过标定。
 
-<a id="day-075"></a>
+<a id="day-082"></a>
 
-#### Day 075｜2026-10-16 星期五｜2 小时｜断线与恢复策略
+#### Day 082｜2026-11-13 星期五｜2 小时｜断线与恢复策略
+
+**详细执行指南：** [Day 082 详细执行指南](daily-guides/day-082.md)
 
 **当天任务**
 
@@ -1434,127 +1736,11 @@
 
 **完成验收：** 四类断线均不会消费旧动作；恢复必须通过健康检查和人工确认。
 
-<a id="day-076"></a>
-
-#### Day 076｜2026-10-17 星期六｜4 小时｜R 物理急停 / S 软件安全状态机
-
-**当天任务**
-
-- [ ] 实现策略控制到人工控制的明确交接。
-- [ ] R 轨验证物理急停不依赖 Policy Server 或网络；S 轨验证 mock 的 ESTOP/FAULT 不依赖推理进程，并声明不能证明物理安全。
-- [ ] R 轨演练接管、急停、断电和复位；S 轨演练接管、ESTOP、进程终止和显式复位。
-
-**所需资源：** H05 独立急停与安全工作区；H01 同学的机械臂与厂商 SDK
-
-**当天交付物：** safety/takeover-estop-test.md
-
-**完成验收：** R 轨由测试人员按单页规程完成独立物理急停且系统只记录不控制急停；S 轨四类状态转换测试全部通过，并在结论中明确“未验证物理急停”。
-
-<a id="day-077"></a>
-
-#### Day 077｜2026-10-18 星期日｜2 小时｜故障注入阶段验收
-
-**当天任务**
-
-- [ ] 自动注入延迟、丢包、旧动作、NaN、超界和 server 崩溃。
-- [ ] 统计检测率、误报和响应时延。
-- [ ] 修复未覆盖路径。
-
-**所需资源：** [R22 Linux tc-netem](https://man7.org/linux/man-pages/man8/tc-netem.8.html)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)；H05 独立急停与安全工作区
-
-**当天交付物：** reports/safety-fault-injection-v1.md
-
-**完成验收：** 预注册危险故障检测率 100%；未达标则禁止真实 4G 自动控制。
-
-### 第 12 周｜4G 弱网与边云协同实验｜2026-10-19～2026-10-25
-
-**本周目标：** 量化弱网对 VLA 动作队列和任务的影响，证明安全控制留在本地。
-
-**阶段门：** 局域网、netem 与真实 4G 三组结果可复现，结论不超出样本。
-
-<a id="day-078"></a>
-
-#### Day 078｜2026-10-19 星期一｜2 小时｜边云责任边界
-
-**当天任务**
-
-- [ ] 定义本地执行/安全、边缘采集、云端训练/推理和平台管理边界。
-- [ ] 建立数据流、控制流和故障域图。
-- [ ] 明确 4G 不承载无保护硬实时闭环；R 轨标出独立物理急停，S 轨标出 mock 安全状态机及其物理验证缺口。
-
-**所需资源：** [R10 LeRobot 异步推理](https://huggingface.co/docs/lerobot/v0.6.0/en/async)；H05 独立急停与安全工作区；H07 4G 网络与可控网络环境
-
-**当天交付物：** docs/edge-cloud-architecture.md
-
-**完成验收：** 断云后 R 轨的物理急停、安全限位和停止逻辑仍有效；S 轨的 mock 限位与停止逻辑仍有效，且架构图明确物理急停尚未验证。
-
-<a id="day-079"></a>
-
-#### Day 079｜2026-10-20 星期二｜2 小时｜MQTT 遥测与消息模型
-
-**当天任务**
-
-- [ ] 设计设备、任务、网络、队列、安全和模型版本遥测 topic。
-- [ ] 配置 QoS、保留、过期和幂等规则。
-- [ ] 实现本地缓存与断线重传的非控制数据。
-
-**所需资源：** [R30 OASIS MQTT 5.0 规范](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html)；H07 4G 网络与可控网络环境
-
-**当天交付物：** platform/telemetry-schema.md 与 publisher
-
-**完成验收：** 重复和乱序消息不破坏状态；控制命令不与普通遥测混用。
-
-<a id="day-080"></a>
-
-#### Day 080｜2026-10-21 星期三｜2 小时｜日志、指标与实验记录
-
-**当天任务**
-
-- [ ] 统一 trace、episode、model、dataset、network_profile ID。
-- [ ] 记录 RTT、抖动、丢包、推理、动作年龄、队列和成功率。
-- [ ] 实现实验结束自动汇总。
-
-**所需资源：** [R17 Weights & Biases 文档](https://docs.wandb.ai/)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)
-
-**当天交付物：** observability/experiment_reporter
-
-**完成验收：** 任一结果行可定位模型、数据、网络配置和原始日志。
-
-<a id="day-081"></a>
-
-#### Day 081｜2026-10-22 星期四｜2 小时｜模型与数据版本 API
-
-**当天任务**
-
-- [ ] 建立只读模型/数据集清单和兼容性检查。
-- [ ] 禁止 feature、关节顺序或归一化不兼容模型上线。
-- [ ] 记录部署与回滚事件。
-
-**所需资源：** [R18 Hugging Face Dataset Cards](https://huggingface.co/docs/hub/en/datasets-cards)；[R19 Hugging Face Model Cards](https://huggingface.co/docs/hub/en/model-cards)；[R26 LeRobot Adding a Policy](https://huggingface.co/docs/lerobot/v0.6.0/en/bring_your_own_policies)
-
-**当天交付物：** platform/registry-api 与兼容性测试
-
-**完成验收：** 不兼容模型被部署前阻断；回滚不覆盖历史证据。
-
-<a id="day-082"></a>
-
-#### Day 082｜2026-10-23 星期五｜2 小时｜netem 网络矩阵
-
-**当天任务**
-
-- [ ] 定义延迟、抖动、丢包、乱序和带宽组合。
-- [ ] 自动应用/清理 netem，保存实际测量。
-- [ ] 在无真机或低速安全条件下跑预实验。
-
-**所需资源：** [R22 Linux tc-netem](https://man7.org/linux/man-pages/man8/tc-netem.8.html)；H07 4G 网络与可控网络环境；H05 独立急停与安全工作区
-
-**当天交付物：** network/profiles.yaml 与运行脚本
-
-**完成验收：** 每个 profile 可重复应用且退出后完全恢复；实测参数进入报告。
-
 <a id="day-083"></a>
 
-#### Day 083｜2026-10-24 星期六｜4 小时｜局域网、弱网与真实 4G 对比
+#### Day 083｜2026-11-14 星期六｜4 小时｜局域网、netem 与一次真实4G对比
+
+**详细执行指南：** [Day 083 详细执行指南](daily-guides/day-083.md)
 
 **当天任务**
 
@@ -1566,11 +1752,13 @@
 
 **当天交付物：** evaluations/network-v1/results.csv
 
-**完成验收：** 三类条件使用同一模型和任务；每轮原始日志、网络测量和视频可追溯；结果列明确 R-real 或 S-simulation，禁止混合汇总。
+**完成验收：** 每种网络配置至少3轮且保留原始时延/丢包；真实4G受环境限制单独报告；不声称网络结论具有普遍性。
 
 <a id="day-084"></a>
 
-#### Day 084｜2026-10-25 星期日｜2 小时｜弱网结论与安全阶段门
+#### Day 084｜2026-11-15 星期日｜2 小时｜弱网结论与安全阶段门
+
+**详细执行指南：** [Day 084 详细执行指南](daily-guides/day-084.md)
 
 **当天任务**
 
@@ -1584,15 +1772,17 @@
 
 **完成验收：** 报告不宣称 4G 是硬实时控制；所有建议都由测量或安全原则支持。
 
-### 第 13 周｜实验平台、Web 面板与 Flutter HMI｜2026-10-26～2026-11-01
+### 第 13 周｜实验记录平台与最小 HMI｜2026-11-16～2026-11-22
 
-**本周目标：** 把既有 IoT/全栈优势转化为机器人数据、实验、告警和人工接管平台。
+**本周目标：** 只实现支撑实验复现和人工接管的最小平台，不在一周内重造完整IoT产品。
 
-**阶段门：** 设备到平台、实验到证据、告警到接管的端到端链路可演示。
+**阶段门：** 能登记实验、查看健康和时间线、标注失败并触发受限人工接管；认证和隐私检查通过。
 
 <a id="day-085"></a>
 
-#### Day 085｜2026-10-26 星期一｜2 小时｜实验注册表后端
+#### Day 085｜2026-11-16 星期一｜2 小时｜实验注册表后端
+
+**详细执行指南：** [Day 085 详细执行指南](daily-guides/day-085.md)
 
 **当天任务**
 
@@ -1608,7 +1798,9 @@
 
 <a id="day-086"></a>
 
-#### Day 086｜2026-10-27 星期二｜2 小时｜Web 实验与健康面板
+#### Day 086｜2026-11-17 星期二｜2 小时｜Web 实验与健康面板
+
+**详细执行指南：** [Day 086 详细执行指南](daily-guides/day-086.md)
 
 **当天任务**
 
@@ -1624,7 +1816,9 @@
 
 <a id="day-087"></a>
 
-#### Day 087｜2026-10-28 星期三｜2 小时｜Flutter 移动 HMI
+#### Day 087｜2026-11-18 星期三｜2 小时｜Flutter 移动 HMI
+
+**详细执行指南：** [Day 087 详细执行指南](daily-guides/day-087.md)
 
 **当天任务**
 
@@ -1640,7 +1834,9 @@
 
 <a id="day-088"></a>
 
-#### Day 088｜2026-10-29 星期四｜2 小时｜视频、日志与轨迹同步
+#### Day 088｜2026-11-19 星期四｜2 小时｜视频、日志与轨迹同步
+
+**详细执行指南：** [Day 088 详细执行指南](daily-guides/day-088.md)
 
 **当天任务**
 
@@ -1656,7 +1852,9 @@
 
 <a id="day-089"></a>
 
-#### Day 089｜2026-10-30 星期五｜2 小时｜失败标注与数据闭环
+#### Day 089｜2026-11-20 星期五｜2 小时｜失败标注与数据闭环
+
+**详细执行指南：** [Day 089 详细执行指南](daily-guides/day-089.md)
 
 **当天任务**
 
@@ -1672,7 +1870,9 @@
 
 <a id="day-090"></a>
 
-#### Day 090｜2026-10-31 星期六｜4 小时｜认证、配置与安全审查
+#### Day 090｜2026-11-21 星期六｜4 小时｜认证、配置与安全审查
+
+**详细执行指南：** [Day 090 详细执行指南](daily-guides/day-090.md)
 
 **当天任务**
 
@@ -1688,7 +1888,9 @@
 
 <a id="day-091"></a>
 
-#### Day 091｜2026-11-01 星期日｜2 小时｜平台端到端阶段门
+#### Day 091｜2026-11-22 星期日｜2 小时｜平台端到端阶段门
+
+**详细执行指南：** [Day 091 详细执行指南](daily-guides/day-091.md)
 
 **当天任务**
 
@@ -1702,15 +1904,17 @@
 
 **完成验收：** 采集、登记、部署、评测、标注、告警六条主链路及设备/网络两条故障链路共 8 项全部通过；平台停止后本地安全状态机测试仍通过。
 
-### 第 14 周｜容器化、测试、CI 与可靠性｜2026-11-02～2026-11-08
+### 第 14 周｜测试、容器、性能与恢复｜2026-11-23～2026-11-29
 
-**本周目标：** 把实验代码提升为可复现、可测试、可恢复的工程作品。
+**本周目标：** 将作品提升为可重建、可测试、可恢复的工程系统，硬件测试与模拟CI分离。
 
-**阶段门：** 新环境一键运行核心链路，CI 绿色，完成压力和恢复记录。
+**阶段门：** CI绿色；镜像/环境可重建；48小时长稳或如实PARTIAL；关键故障有恢复证据。
 
 <a id="day-092"></a>
 
-#### Day 092｜2026-11-02 星期一｜2 小时｜容器与依赖分层
+#### Day 092｜2026-11-23 星期一｜2 小时｜容器与依赖分层
+
+**详细执行指南：** [Day 092 详细执行指南](daily-guides/day-092.md)
 
 **当天任务**
 
@@ -1726,7 +1930,9 @@
 
 <a id="day-093"></a>
 
-#### Day 093｜2026-11-03 星期二｜2 小时｜配置、密钥与环境校验
+#### Day 093｜2026-11-24 星期二｜2 小时｜配置、密钥与环境校验
+
+**详细执行指南：** [Day 093 详细执行指南](daily-guides/day-093.md)
 
 **当天任务**
 
@@ -1742,7 +1948,9 @@
 
 <a id="day-094"></a>
 
-#### Day 094｜2026-11-04 星期三｜2 小时｜单元测试补齐
+#### Day 094｜2026-11-25 星期三｜2 小时｜单元测试补齐
+
+**详细执行指南：** [Day 094 详细执行指南](daily-guides/day-094.md)
 
 **当天任务**
 
@@ -1758,7 +1966,9 @@
 
 <a id="day-095"></a>
 
-#### Day 095｜2026-11-05 星期四｜2 小时｜R 硬件在环 / S 模拟集成测试
+#### Day 095｜2026-11-26 星期四｜2 小时｜R 硬件在环 / S 模拟集成测试
+
+**详细执行指南：** [Day 095 详细执行指南](daily-guides/day-095.md)
 
 **当天任务**
 
@@ -1774,7 +1984,9 @@
 
 <a id="day-096"></a>
 
-#### Day 096｜2026-11-06 星期五｜2 小时｜GitHub Actions CI
+#### Day 096｜2026-11-27 星期五｜2 小时｜GitHub Actions CI
+
+**详细执行指南：** [Day 096 详细执行指南](daily-guides/day-096.md)
 
 **当天任务**
 
@@ -1790,7 +2002,9 @@
 
 <a id="day-097"></a>
 
-#### Day 097｜2026-11-07 星期六｜4 小时｜性能分析与瓶颈
+#### Day 097｜2026-11-28 星期六｜4 小时｜性能分析与瓶颈
+
+**详细执行指南：** [Day 097 详细执行指南](daily-guides/day-097.md)
 
 **当天任务**
 
@@ -1806,7 +2020,9 @@
 
 <a id="day-098"></a>
 
-#### Day 098｜2026-11-08 星期日｜2 小时｜长稳与恢复验收
+#### Day 098｜2026-11-29 星期日｜2 小时｜48小时长稳与恢复验收
+
+**详细执行指南：** [Day 098 详细执行指南](daily-guides/day-098.md)
 
 **当天任务**
 
@@ -1816,21 +2032,23 @@
 
 **所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R22 Linux tc-netem](https://man7.org/linux/man-pages/man8/tc-netem.8.html)；H05 独立急停与安全工作区
 
-**机器墙钟时间：** 预计 2 小时；硬上限 2.5 小时；使用本地或已批准资源，不开启无人看护真机运动
+**机器墙钟时间：** 预计 48 小时；硬上限 72 小时；后台运行不占满人工时间；达到上限停止并分析。
 
 **当天交付物：** reports/soak-and-recovery.md
 
-**完成验收：** 2 小时测试中，30 分钟预热后 RSS 增长不超过 10%、句柄/文件描述符净增不超过 5、全部数据校验和一致；故障与恢复均有时间戳。
+**完成验收：** 达到48小时且故障注入完成才PASS；否则保留PARTIAL和后台继续计划；无资源持续增长趋势。
 
-### 第 15 周｜开源发布、数据/模型卡与上游贡献｜2026-11-09～2026-11-15
+### 第 15 周｜脱敏开源、证据与技术表达｜2026-11-30～2026-12-06
 
-**本周目标：** 形成招聘方能够审查、复现和质疑的公开证据，而不泄露厂商或个人隐私。
+**本周目标：** 形成招聘方可复现、可质疑的公开证据，不以必须被上游接受PR作为完成条件。
 
-**阶段门：** 公开候选版本通过许可、安全、复现和内容审查，至少产生一个真实上游互动。
+**阶段门：** README、架构、数据/模型卡、失败演示、许可证和隐私审计完整；外部贡献按真实结果记录。
 
 <a id="day-099"></a>
 
-#### Day 099｜2026-11-09 星期一｜2 小时｜README 与快速开始
+#### Day 099｜2026-11-30 星期一｜2 小时｜README 与快速开始
+
+**详细执行指南：** [Day 099 详细执行指南](daily-guides/day-099.md)
 
 **当天任务**
 
@@ -1846,7 +2064,9 @@
 
 <a id="day-100"></a>
 
-#### Day 100｜2026-11-10 星期二｜2 小时｜架构与威胁边界图
+#### Day 100｜2026-12-01 星期二｜2 小时｜架构与威胁边界图
+
+**详细执行指南：** [Day 100 详细执行指南](daily-guides/day-100.md)
 
 **当天任务**
 
@@ -1862,7 +2082,9 @@
 
 <a id="day-101"></a>
 
-#### Day 101｜2026-11-11 星期三｜2 小时｜Dataset Card 定稿
+#### Day 101｜2026-12-02 星期三｜2 小时｜Dataset Card 定稿
+
+**详细执行指南：** [Day 101 详细执行指南](daily-guides/day-101.md)
 
 **当天任务**
 
@@ -1878,7 +2100,9 @@
 
 <a id="day-102"></a>
 
-#### Day 102｜2026-11-12 星期四｜2 小时｜Model Card 与评测证据
+#### Day 102｜2026-12-03 星期四｜2 小时｜Model Card 与评测证据
+
+**详细执行指南：** [Day 102 详细执行指南](daily-guides/day-102.md)
 
 **当天任务**
 
@@ -1894,7 +2118,9 @@
 
 <a id="day-103"></a>
 
-#### Day 103｜2026-11-13 星期五｜2 小时｜成功与失败演示视频
+#### Day 103｜2026-12-04 星期五｜2 小时｜成功与失败演示视频
+
+**详细执行指南：** [Day 103 详细执行指南](daily-guides/day-103.md)
 
 **当天任务**
 
@@ -1910,23 +2136,27 @@
 
 <a id="day-104"></a>
 
-#### Day 104｜2026-11-14 星期六｜4 小时｜上游 Issue 或 PR
+#### Day 104｜2026-12-05 星期六｜4 小时｜上游贡献候选与真实反馈
+
+**详细执行指南：** [Day 104 详细执行指南](daily-guides/day-104.md)
 
 **当天任务**
 
-- [ ] 从真实使用中选择文档、测试、硬件插件或异步指标问题。
-- [ ] 先检索重复 issue，再提交最小复现和解决方案。
-- [ ] 遵守 LeRobot 贡献规范并响应 review。
+- [ ] 从学习中筛选一个可复现的上游文档、测试或bug问题，先搜索现有issue。
+- [ ] 能给最小复现时提交issue/PR；证据不足时只在本仓库写调查报告，不制造低质量贡献。
+- [ ] 记录链接、审查意见、未被接受或关闭原因；是否合并不作为当天PASS条件。
 
 **所需资源：** [R01 LeRobot v0.6.0 官方仓库](https://github.com/huggingface/lerobot/tree/v0.6.0)；[R05 LeRobot 自定义硬件](https://huggingface.co/docs/lerobot/v0.6.0/en/integrate_hardware)；[R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R27 LeRobot 贡献指南](https://huggingface.co/docs/lerobot/main/en/contributing)；[A01 GitHub 账号与独立仓库](https://github.com/)
 
-**当天交付物：** 至少一个公开 issue 或 PR 链接
+**当天交付物：** 一个高质量issue/PR链接，或一份可复核的no-submit调查报告
 
-**完成验收：** 互动基于真实问题且可复现；不以无意义格式改动凑贡献。
+**完成验收：** 提交内容有版本、最小复现和期望/实际结果；没有为了KPI重复issue；未合并不包装成上游贡献。
 
 <a id="day-105"></a>
 
-#### Day 105｜2026-11-15 星期日｜2 小时｜开源、安全与发布阶段门
+#### Day 105｜2026-12-06 星期日｜2 小时｜开源、安全与发布阶段门
+
+**详细执行指南：** [Day 105 详细执行指南](daily-guides/day-105.md)
 
 **当天任务**
 
@@ -1940,15 +2170,17 @@
 
 **完成验收：** 复现、安全、许可、隐私四项均签字/记录；任何未决高风险项阻止公开。
 
-### 第 16 周｜岗位转换、简历证据与正式发布｜2026-11-16～2026-11-22
+### 第 16 周｜求职材料、投递实验与后续迭代｜2026-12-07～2026-12-13
 
-**本周目标：** 把真实项目证据映射到 100 个岗位，形成可投递材料和后续迭代路线。
+**本周目标：** 只把已通过证据门的内容同步到简历，完成三类定向材料、面试复盘和首批小规模投递。
 
-**阶段门：** 按 R/S 实际范围条件发布、简历只写已验证事实、完成首批高匹配岗位申请。
+**阶段门：** 证据与简历逐条可追溯；完成3～5个高匹配岗位投递和反馈记录；发布范围与R/S轨一致。
 
 <a id="day-106"></a>
 
-#### Day 106｜2026-11-16 星期一｜2 小时｜可写入简历的指标审计
+#### Day 106｜2026-12-07 星期一｜2 小时｜可写入简历的指标审计
+
+**详细执行指南：** [Day 106 详细执行指南](daily-guides/day-106.md)
 
 **当天任务**
 
@@ -1964,7 +2196,9 @@
 
 <a id="day-107"></a>
 
-#### Day 107｜2026-11-17 星期二｜2 小时｜GitHub 与作品集页面
+#### Day 107｜2026-12-08 星期二｜2 小时｜GitHub 与作品集页面
+
+**详细执行指南：** [Day 107 详细执行指南](daily-guides/day-107.md)
 
 **当天任务**
 
@@ -1980,7 +2214,9 @@
 
 <a id="day-108"></a>
 
-#### Day 108｜2026-11-18 星期三｜2 小时｜三类定向简历
+#### Day 108｜2026-12-09 星期三｜2 小时｜三类定向简历
+
+**详细执行指南：** [Day 108 详细执行指南](daily-guides/day-108.md)
 
 **当天任务**
 
@@ -1996,7 +2232,9 @@
 
 <a id="day-109"></a>
 
-#### Day 109｜2026-11-19 星期四｜2 小时｜项目面试故事与技术深挖
+#### Day 109｜2026-12-10 星期四｜2 小时｜项目面试故事与技术深挖
+
+**详细执行指南：** [Day 109 详细执行指南](daily-guides/day-109.md)
 
 **当天任务**
 
@@ -2012,7 +2250,9 @@
 
 <a id="day-110"></a>
 
-#### Day 110｜2026-11-20 星期五｜2 小时｜模拟面试与缺口修正
+#### Day 110｜2026-12-11 星期五｜2 小时｜模拟面试与缺口修正
+
+**详细执行指南：** [Day 110 详细执行指南](daily-guides/day-110.md)
 
 **当天任务**
 
@@ -2028,46 +2268,50 @@
 
 <a id="day-111"></a>
 
-#### Day 111｜2026-11-21 星期六｜4 小时｜100 岗位分层与首批申请
+#### Day 111｜2026-12-12 星期六｜4 小时｜100岗位再分层与首批3～5个申请
+
+**详细执行指南：** [Day 111 详细执行指南](daily-guides/day-111.md)
 
 **当天任务**
 
-- [ ] 按硬门槛、技能重合、地点和兴趣给 100 岗位打分。
-- [ ] 优先选择 P0 机器人系统/数据部署及少量 P1 VLA 应用岗位。
-- [ ] 完成 10–15 个高匹配定向申请并记录版本。
+- [ ] 用现有100岗位报告更新已失效链接，从中选择15个仍开放且地点/学历/年限可行的样本。
+- [ ] 逐个做硬门槛和证据映射，选出3～5个高匹配岗位；为每个岗位调整项目顺序和自我介绍。
+- [ ] 人工完成首批申请并记录日期、版本和结果；不使用高频自动化投递或抓取。
 
 **所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)
 
-**当天交付物：** career/application-tracker.csv
+**当天交付物：** career/application-tracker.csv 与3～5份投递记录
 
-**完成验收：** 每个申请有岗位快照、匹配理由、简历版本和跟进日期；不盲投博士研究岗。
+**完成验收：** 每个申请都链接简历版本和匹配证据；未申请的岗位不标已投；不承诺当天获得反馈。
 
 <a id="day-112"></a>
 
-#### Day 112｜2026-11-22 星期日｜2 小时｜条件发布与 90 天迭代
+#### Day 112｜2026-12-13 星期日｜2 小时｜条件发布、总复盘与下一90天
+
+**详细执行指南：** [Day 112 详细执行指南](daily-guides/day-112.md)
 
 **当天任务**
 
-- [ ] 完成最终复现、安全、许可和链接检查。
-- [ ] R 轨全部门通过才发布 v1.0.0；否则发布 v0.x simulation/data-tooling 版或延期。
-- [ ] 复盘 112 天，依据申请反馈制定下一轮 90 天计划。
+- [ ] 按R/S轨、许可证、隐私、复现和测试清单决定发布v0.x、v1.0或延期，不为日期强行升级版本。
+- [ ] 统计112天真实投入、完成率、阻塞、硬件/GPU成本、面试反馈和最有价值证据。
+- [ ] 从未完成项和岗位反馈中只选3个下一阶段目标，为每个目标定义进入/退出条件。
 
 **所需资源：** [R20 GitHub Actions 文档](https://docs.github.com/en/actions)；[R21 Docker 文档](https://docs.docker.com/)；[A01 GitHub 账号与独立仓库](https://github.com/)；[A02 Hugging Face Hub 账号](https://huggingface.co/)
 
 **当天交付物：** 条件化 release、retrospective.md 与 next-90-days.md
 
-**完成验收：** 所发布范围可从干净环境复现；Git 工作区干净；版本号、简历和 R/S 公开证据一致。
+**完成验收：** Git状态干净、公开范围与证据一致；未完成内容保持未完成；下一90天不超过3个主目标。
 
 ## 里程碑与简历开放条件
 
 | 里程碑 | 最早时间 | 必须具备的证据 | 简历可写范围 |
 |---|---|---|---|
-| M0 环境与仿真 | 第 4 周 | 固定版本、数据检查、ACT 仿真训练与评测 | 只能写“正在系统学习/仿真实践”，不写真机项目 |
-| M1 真机数据 | 第 7 周 | 获准硬件适配、物理急停、50 个有效 episode、Dataset Card | 可写“机械臂数据采集工具开发中”，不得写 VLA 成果 |
-| M2 ACT 基线 | 第 8 周 | checkpoint、冻结评测、20 次逐轮真机记录和失败报告 | 可写真实 ACT 基线及样本数，数字必须带条件 |
-| M3 VLA 与泛化 | 第 10 周 | SmolVLA 微调、语言任务、位置/指令/光照等泛化评测 | 可写 VLA 微调和评测，但不得称基础模型研究 |
-| M4 边云与安全 | 第 12 周 | 异步队列、旧动作处理、故障注入、局域网/netem/真实 4G 对比 | 可写弱网与安全工程结果，不宣称 4G 硬实时 |
-| M5 条件开源 | 第 16 周 | R 轨门全过发布 v1.0.0；否则发布 v0.x simulation/data-tooling 或延期，并完成 CI、复现、许可与隐私审查 | 只能按实际发布范围进入简历，S 轨不得写真机成果 |
+| M0 工程基线 | 第 1 周 | 私有仓库、证据账本、固定环境、C/C++与Python最小测试 | 只能写既有能力；新项目仍是学习计划 |
+| M1 MCU/CAN 实证 | 第 4 周 | 真实I2C/SPI/UART/CAN、FreeRTOS测量、Bootloader与故障测试 | 只能按真实硬件、测试条件和个人实现范围描述 |
+| M2 Linux 边缘系统 | 第 6 周 | Buildroot/启动链/设备树配置、C++ daemon、存储转发、回滚和长稳 | 可写系统构建与应用工程；未写内核驱动时不得称完整BSP |
+| M3 机器人数据闭环 | 第 10 周 | R/S轨明确、25个小样本、ACT checkpoint、冻结评测与失败报告 | R轨可写真实样本；S轨只能写仿真/公开数据工具 |
+| M4 VLA 与弱网安全 | 第 12 周 | SmolVLA smoke/小微调、三类泛化、异步队列、故障注入和网络对比 | 只写实际完成范围；4G不描述为硬实时安全控制 |
+| M5 条件开源 | 第 16 周 | CI、复现、许可、隐私和证据门通过；按实际范围发布v0.x/v1.0或延期 | 简历内容必须逐条链接证据，S轨不得写真机成果 |
 
 ## 偏航处理
 

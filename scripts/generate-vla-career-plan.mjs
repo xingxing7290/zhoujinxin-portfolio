@@ -236,11 +236,11 @@ function validateJobs(partName, payload, expectedCount) {
 }
 
 function validatePlan(resources, plan) {
-  assert(resources.snapshot_date === "2026-07-31", "资源快照日期错误");
+  assert(resources.snapshot_date === "2026-08-18", "资源快照日期错误");
   assert(resources.project?.status === "拟建开源作品", "项目状态必须明确为“拟建开源作品”");
   assert(resources.project?.clarification?.includes("不是"), "项目说明必须明确不是现有同名仓库");
-  assert(resources.schedule?.start_date === "2026-08-03", "计划开始日期错误");
-  assert(resources.schedule?.end_date === "2026-11-22", "计划结束日期错误");
+  assert(resources.schedule?.start_date === "2026-08-24", "计划开始日期错误");
+  assert(resources.schedule?.end_date === "2026-12-13", "计划结束日期错误");
   assert(resources.schedule?.total_days === 112, "资源配置的总天数必须为 112");
   assert(resources.schedule?.planned_hours === 256, "资源配置的总工时必须为 256");
   assert(
@@ -248,7 +248,7 @@ function validatePlan(resources, plan) {
     "每四周必须设置一个阶段缓冲日",
   );
   assert(Array.isArray(resources.environment_rules) && resources.environment_rules.length >= 4, "环境隔离规则不足");
-  assert(resources.fallback_tracks?.decision_day === 35, "真机/仿真分支必须在 Day 35 决策");
+  assert(resources.fallback_tracks?.decision_day === 49, "真机/仿真分支必须在 Day 49 决策");
   assert(Array.isArray(resources.fallback_tracks?.rules) && resources.fallback_tracks.rules.length >= 6, "真机不可用的后续分支不完整");
 
   assert(Array.isArray(resources.accounts_and_access) && resources.accounts_and_access.length > 0, "缺少账号与授权资源");
@@ -262,6 +262,7 @@ function validatePlan(resources, plan) {
   }
 
   assert(Array.isArray(plan.weeks) && plan.weeks.length === 16, "逐日计划必须恰好 16 周");
+  assert(Array.isArray(plan.assumptions) && plan.assumptions.length >= 4, "逐日计划缺少可执行前提与真实性假设");
   const days = plan.weeks.flatMap((week) => week.days);
   assert(days.length === 112, `逐日计划必须恰好 112 天，实际 ${days.length}`);
   const guidePaths = new Set();
@@ -320,20 +321,14 @@ function validatePlan(resources, plan) {
     totalHours += day.hours;
   });
 
-  for (const dayNumber of [1, 2]) {
+  for (const dayNumber of Array.from({ length: 112 }, (_, index) => index + 1)) {
     assert(days[dayNumber - 1].guide_path, `Day ${dayNumber} 必须提供详细执行指南`);
   }
 
-  const dualTrackDays = [54, 76, 78, 83, 95];
-  for (const dayNumber of dualTrackDays) {
-    const day = days[dayNumber - 1];
-    const text = JSON.stringify(day);
-    assert(text.includes("R 轨") && text.includes("S 轨"), `Day ${dayNumber} 必须明确 R 真机与 S 仿真两套验收`);
-  }
-  const weekEightGate = plan.weeks[7].gate;
+  const postDecisionPlan = JSON.stringify(plan.weeks.slice(7));
   assert(
-    weekEightGate.includes("R 轨") && weekEightGate.includes("S 轨"),
-    "第 8 周阶段门必须同时允许 R 真机和 S 仿真路径",
+    postDecisionPlan.includes("R 轨") && postDecisionPlan.includes("S 轨"),
+    "Day 49 后计划必须同时保留 R 真机和 S 仿真路径",
   );
 
   assert(totalHours === 256, `计划总工时应为 256，实际 ${totalHours}`);
@@ -855,7 +850,7 @@ function resourceLabel(id, resourceMap) {
 function buildDailyPlan(resources, plan, planValidation) {
   const resourceMap = new Map(planValidation.allResources.map((item) => [item.id, item]));
   const sections = [];
-  sections.push(`# EdgeVLA Lab：112 天逐日学习与开源项目计划`);
+  sections.push(`# ${plan.project_name}：112 天逐日学习与开源项目计划`);
   sections.push(
     [
       `> 项目状态：**${resources.project.status}**。`,
@@ -891,6 +886,8 @@ function buildDailyPlan(resources, plan, planValidation) {
       "| 安全原则 | 真机必须有人看护、低速、独立物理急停；4G 不承担无保护硬实时控制 |",
     ].join("\n"),
   );
+  sections.push(`### 本版执行前提`);
+  sections.push(markdownList(plan.assumptions));
   sections.push(`## 资源总表`);
   sections.push(`### 环境隔离规则`);
   sections.push(
@@ -908,7 +905,7 @@ function buildDailyPlan(resources, plan, planValidation) {
       "| ID | 资源 | 本计划用途 |",
       "|---|---|---|",
       ...resources.software.map(
-        (item) => `| ${item.id} | [${escapeMarkdown(item.name)}](${item.url}) | ${escapeMarkdown(item.usage)} |`,
+        (item) => `| ${item.id} | [${escapeMarkdown(item.name)}](${item.url}) | ${escapeMarkdown(item.usage ?? item.purpose ?? "按逐日指南使用")} |`,
       ),
     ].join("\n"),
   );
@@ -919,7 +916,7 @@ function buildDailyPlan(resources, plan, planValidation) {
       "|---|---|---|---|",
       ...resources.hardware.map(
         (item) =>
-          `| ${item.id} | ${escapeMarkdown(item.name)} | ${escapeMarkdown(item.priority)} | ${escapeMarkdown(item.requirement)} |`,
+          `| ${item.id} | ${escapeMarkdown(item.name)} | ${escapeMarkdown(item.priority ?? "阶段门前准备")} | ${escapeMarkdown(item.requirement)} |`,
       ),
     ].join("\n"),
   );
@@ -936,7 +933,7 @@ function buildDailyPlan(resources, plan, planValidation) {
   );
   sections.push(`### 预算与采购门`);
   sections.push(markdownList(resources.budget_rules));
-  sections.push(`## Day 35 后的双轨执行`);
+  sections.push(`## Day ${resources.fallback_tracks.decision_day} 后的双轨执行`);
   sections.push(
     [
       `- **决策日：Day ${resources.fallback_tracks.decision_day}。**`,
@@ -1021,12 +1018,12 @@ function buildDailyPlan(resources, plan, planValidation) {
     [
       "| 里程碑 | 最早时间 | 必须具备的证据 | 简历可写范围 |",
       "|---|---|---|---|",
-      "| M0 环境与仿真 | 第 4 周 | 固定版本、数据检查、ACT 仿真训练与评测 | 只能写“正在系统学习/仿真实践”，不写真机项目 |",
-      "| M1 真机数据 | 第 7 周 | 获准硬件适配、物理急停、50 个有效 episode、Dataset Card | 可写“机械臂数据采集工具开发中”，不得写 VLA 成果 |",
-      "| M2 ACT 基线 | 第 8 周 | checkpoint、冻结评测、20 次逐轮真机记录和失败报告 | 可写真实 ACT 基线及样本数，数字必须带条件 |",
-      "| M3 VLA 与泛化 | 第 10 周 | SmolVLA 微调、语言任务、位置/指令/光照等泛化评测 | 可写 VLA 微调和评测，但不得称基础模型研究 |",
-      "| M4 边云与安全 | 第 12 周 | 异步队列、旧动作处理、故障注入、局域网/netem/真实 4G 对比 | 可写弱网与安全工程结果，不宣称 4G 硬实时 |",
-      "| M5 条件开源 | 第 16 周 | R 轨门全过发布 v1.0.0；否则发布 v0.x simulation/data-tooling 或延期，并完成 CI、复现、许可与隐私审查 | 只能按实际发布范围进入简历，S 轨不得写真机成果 |",
+      "| M0 工程基线 | 第 1 周 | 私有仓库、证据账本、固定环境、C/C++与Python最小测试 | 只能写既有能力；新项目仍是学习计划 |",
+      "| M1 MCU/CAN 实证 | 第 4 周 | 真实I2C/SPI/UART/CAN、FreeRTOS测量、Bootloader与故障测试 | 只能按真实硬件、测试条件和个人实现范围描述 |",
+      "| M2 Linux 边缘系统 | 第 6 周 | Buildroot/启动链/设备树配置、C++ daemon、存储转发、回滚和长稳 | 可写系统构建与应用工程；未写内核驱动时不得称完整BSP |",
+      "| M3 机器人数据闭环 | 第 10 周 | R/S轨明确、25个小样本、ACT checkpoint、冻结评测与失败报告 | R轨可写真实样本；S轨只能写仿真/公开数据工具 |",
+      "| M4 VLA 与弱网安全 | 第 12 周 | SmolVLA smoke/小微调、三类泛化、异步队列、故障注入和网络对比 | 只写实际完成范围；4G不描述为硬实时安全控制 |",
+      "| M5 条件开源 | 第 16 周 | CI、复现、许可、隐私和证据门通过；按实际范围发布v0.x/v1.0或延期 | 简历内容必须逐条链接证据，S轨不得写真机成果 |",
     ].join("\n"),
   );
   sections.push(`## 偏航处理`);
