@@ -68,4 +68,9 @@ Remove-Item Env:RESUME_EMAIL
 
 内容维护见 [docs/CONTENT.md](docs/CONTENT.md)，生产部署和回滚见 [docs/OPERATIONS.md](docs/OPERATIONS.md)，安全说明见 [SECURITY.md](SECURITY.md)。
 
+## 机器人 / VLA 学习与面试资料
+
+- [EdgeVLA Simulation-to-Cloud Lab：112 天执行计划](docs/career/VLA-LEROBOT-112-DAY-PLAN.md)
+- [VLA 技术面试核验与双轨回答](docs/career/VLA-INTERVIEW-QA.md)：逐题区分“当前真实回答”“大模型标准回答”“完成实证后的模板”和“禁止冒充”。
+
 本仓库默认不附加开源许可证。
